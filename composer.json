@@ -1,0 +1,49 @@
+{
+    "name": "hiqdev/hipanel-module-hosting",
+    "type": "yii2-extension",
+    "description": "Hosting Plugin for HiPanel",
+    "keywords": ["hosting","hipanel","plugin"],
+    "homepage": "https://hiqdev.com/hipanel-module-hosting",
+    "license": "BSD-3-clause",
+    "support": {
+        "email":  "support@hiqdev.com",
+        "source": "https://github.com/hiqdev/hipanel-module-hosting",
+        "issues": "https://github.com/hiqdev/hipanel-module-hosting/issues",
+        "wiki":   "https://github.com/hiqdev/hipanel-module-hosting/wiki",
+        "forum":  "https://forum.hiqdev.com/yii2"
+    },
+    "authors": [
+        {
+            "role":     "Project lead",
+            "name":     "Andrii Vasyliev",
+            "email":    "sol@hiqdev.com",
+            "homepage": "https://hipanel.com/"
+        },
+        {
+            "role":     "Lead backend developer",
+            "name":     "Dmitry Naumenko",
+            "email":    "silverfire@hiqdev.com",
+            "homepage": "http://silverfire.me/"
+        },
+        {
+            "role":     "Lead frontend developer",
+            "name":     "Andrey Klochok",
+            "email":    "tafid@hiqdev.com",
+            "homepage": "https://hiqdev.com/"
+        },
+        {
+            "role":     "QA Lead",
+            "name":     "Yuriy Myronchuk",
+            "email":    "bladeroot@hiqdev.com",
+            "homepage": "https://hiqdev.com/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "hipanel\\modules\\hosting\\": ""
+        }
+    }
+}
