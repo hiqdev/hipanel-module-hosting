@@ -7,6 +7,8 @@
 
 namespace hipanel\modules\hosting\models;
 
-class DBSearch extends DB{
-    use \hipanel\base\SearchModelTrait;
+use hipanel\base\SearchModelTrait;
+
+class DbSearch extends Db {
+    use SearchModelTrait;
 }
