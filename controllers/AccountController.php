@@ -7,6 +7,11 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\modules\hosting\models\Account;
+use Yii;
+use yii\base\Response;
+use yii\web\NotFoundHttpException;
+
 class AccountController extends \hipanel\base\CrudController
 {
     public function actionCreateFtp () {
@@ -34,7 +39,7 @@ class AccountController extends \hipanel\base\CrudController
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
             Yii::$app->getSession()->addFlash('success', [
                 'title' => $model->login,
-                'text'  => \Yii::t('app', 'Password changing task has been successfully added to queue'),
+                'text'  => Yii::t('app', 'Password changing task has been successfully added to queue'),
             ]);
 
             return $this->redirect(['view', 'id' => $model->id]);
@@ -46,7 +51,7 @@ class AccountController extends \hipanel\base\CrudController
 
     /**
      * @param $id
-     * @return string|yii\web\Response
+     * @return string|Response
      * @throws NotFoundHttpException
      */
     public function actionSetAllowedIps ($id) {
