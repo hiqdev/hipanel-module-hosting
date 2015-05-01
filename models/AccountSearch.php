@@ -7,6 +7,24 @@
 
 namespace hipanel\modules\hosting\models;
 
-class AccountSearch extends Account{
-    use \hipanel\base\SearchModelTrait;
+use hipanel\base\SearchModelTrait;
+use yii\helpers\ArrayHelper;
+
+class AccountSearch extends Account
+{
+    use SearchModelTrait {
+        searchAttributes as defaultSearchAttributes;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function searchAttributes()
+    {
+        return ArrayHelper::merge($this->defaultSearchAttributes(), [
+            'with_request',
+            'with_mail_settings',
+            'with_counters'
+        ]);
+    }
 }
