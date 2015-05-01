@@ -8,7 +8,6 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\base\CrudController;
-use hipanel\modules\hosting\models\DB;
 use Yii;
 use yii\filters\VerbFilter;
 

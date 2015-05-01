@@ -18,7 +18,8 @@ use Yii;
 
 class DbGridView extends BoxedGridView
 {
-    static public function defaultColumns () {
+    static public function defaultColumns()
+    {
         return [
             'db'          => [
                 'class'           => MainColumn::className(),
