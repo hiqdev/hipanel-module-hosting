@@ -1,6 +1,7 @@
 <?php
 
 namespace hipanel\modules\hosting\assets\combo2;
+
 use hipanel\widgets\Combo2Config;
 use yii\helpers\ArrayHelper;
 
@@ -11,10 +12,10 @@ use yii\helpers\ArrayHelper;
 class Service extends Combo2Config
 {
     /** @inheritdoc */
-    public $type = 'service';
+    public $type = 'hosting/service';
 
     /** @inheritdoc */
-    public $_primaryFilter = 'name_like';
+    public $name = 'name';
 
     /** @inheritdoc */
     public $url = '/hosting/service/search';
@@ -27,22 +28,27 @@ class Service extends Combo2Config
 
     /** @inheritdoc */
     public $_filter = [
-        'client' => 'client',
-        'server' => 'server'
+        'client' => 'client/client',
+        'server' => 'server/server',
     ];
 
+    /**
+     * @var string the soft type, used by [[getFilter]] to filter by the soft type
+     * @see getFilter()
+     */
     public $softType;
 
     /** @inheritdoc */
-    function getConfig ($config = []) {
+    function getConfig($config = [])
+    {
         $config = ArrayHelper::merge([
-            'affects' => [
-                'seller' => 'seller',
-                'client' => 'client',
-                'server' => 'device'
+            'affects'    => [
+                'client/seller' => 'seller',
+                'client/client' => 'client',
+                'server/server' => 'device',
             ],
             'activeWhen' => [
-                'server'
+                'server/server',
             ]
         ], $config);
 
@@ -50,7 +56,8 @@ class Service extends Combo2Config
     }
 
     /** @inheritdoc */
-    public function getFilter () {
+    public function getFilter()
+    {
         return ArrayHelper::merge(parent::getFilter(), [
             'soft_type' => ['format' => $this->softType]
         ]);

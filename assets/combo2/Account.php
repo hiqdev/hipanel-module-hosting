@@ -11,30 +11,35 @@ use yii\helpers\ArrayHelper;
 class Account extends Combo2Config
 {
     /** @inheritdoc */
-    public $type = 'account';
+    public $type = 'hosting/account';
 
     /** @inheritdoc */
-    public $_primaryFilter = 'login_like';
+    public $name = 'login';
 
     /** @inheritdoc */
     public $url = '/hosting/account/search';
 
+    /** @inheritdoc */
     public $_return = ['id', 'client', 'client_id', 'device', 'device_id'];
 
+    /** @inheritdoc */
     public $_rename = ['text' => 'login'];
 
+    /** @inheritdoc */
     public $_filter = [
-        'client' => 'client',
-        'server' => 'server'
+        'client' => 'client/client',
+        'server' => 'server/server',
     ];
 
     /** @inheritdoc */
-    function getConfig ($config = []) {
+    function getConfig($config = [])
+    {
         $config = ArrayHelper::merge([
-            'clearWhen'     => ['client', 'server'],
-            'affects'       => [
-                'client' => 'client',
-                'server' => 'device'
+            'clearWhen' => ['client/client', 'server/server'],
+            'affects'   => [
+                'client/seller' => 'seller',
+                'client/client' => 'client',
+                'server/server' => 'device',
             ]
         ], $config);
 
