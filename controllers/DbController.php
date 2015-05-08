@@ -34,7 +34,7 @@ class DBController extends CrudController
                 'success'   => Yii::t('app', 'DB delete task has been created successfully'),
                 'error'     => Yii::t('app', 'Error while deleting DB'),
                 'POST html' => [
-                    'perform' => true,
+                    'save' => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
                         'url'   => ['index'],
