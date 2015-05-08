@@ -13,7 +13,8 @@ use yii\filters\VerbFilter;
 
 class DBController extends CrudController
 {
-    public function behaviors () {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class'   => VerbFilter::className(),
@@ -24,7 +25,91 @@ class DBController extends CrudController
         ];
     }
 
-    public function actionCreate () {
+    public function actions()
+    {
+        return [
+            'delete' => [
+                'class'     => 'hipanel\actions\SwitchAction',
+                'addFlash'  => true,
+                'success'   => Yii::t('app', 'DB delete task has been created successfully'),
+                'error'     => Yii::t('app', 'Error while deleting DB'),
+                'POST html' => [
+                    'perform' => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => ['index'],
+                    ],
+                    'error'   => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => [
+                            'view',
+                            function ($model) {
+                                return ['id' => $model->id];
+                            }
+                        ],
+                    ]
+                ],
+            ],
+            'create' => [
+                'class'     => 'hipanel\actions\SwitchAction',
+                'addFlash'  => true,
+                'success'   => Yii::t('app', 'DB delete task has been created successfully'),
+                'error'     => Yii::t('app', 'Error while deleting DB'),
+                'GET html | GET pjax'  => [
+                    'class'  => 'hipanel\actions\RenderAction',
+                    'view'   => 'create',
+                    'params' => $this->newModel(['scenario' => 'create'])
+                ],
+                'POST html' => [
+                    'perform' => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => [
+                            'view',
+                            function ($model) {
+                                return ['id' => $model->id];
+                            }
+                        ],
+                    ],
+                    'error'   => [
+                        'class' => 'hipanel\actions\RenderAction',
+                        'url'   => [
+                            'create',
+                            function ($model) {
+                                return compact('model');
+                            }
+                        ],
+                    ],
+                ],
+                'POST pjax' => [
+                    'perform' => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => [
+                            'view',
+                            function ($model) {
+                                return ['id' => $model->id];
+                            }
+                        ],
+                        'pjaxLocationHeader' => true,
+                    ],
+                    'error'   => [
+                        'class' => 'hipanel\actions\RenderAction',
+                        'url'   => [
+                            'create',
+                            function ($model) {
+                                return [$model->model];
+                            }
+                        ],
+                        'pjaxLocationHeader' => true,
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    public function actionCreate()
+    {
         $model = $this->newModel(['scenario' => 'create']);
 
         return $this->perform([
@@ -46,7 +131,8 @@ class DBController extends CrudController
 
     }
 
-    public function actionDelete () {
+    public function actionDelete()
+    {
         return $this->perform([
             'success' => [
                 'message' => Yii::t('app', 'DB deleting task has been created successfully'),
@@ -70,7 +156,8 @@ class DBController extends CrudController
         ]);
     }
 
-    public function actionSetPassword () {
+    public function actionSetPassword()
+    {
         return $this->perform([
             'result' => [ ///
                           'POST pjax' => ['action', ['view', function ($model) { return ['id' => $model->id]; }], 'addFlash' => true]
@@ -78,7 +165,8 @@ class DBController extends CrudController
         ]);
     }
 
-    public function actionTruncate () {
+    public function actionTruncate()
+    {
         return $this->perform([
             'success'  => [
                 'message' => Yii::t('app', 'DB truncate task has been created successfully'),
