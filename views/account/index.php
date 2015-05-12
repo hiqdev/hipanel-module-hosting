@@ -13,7 +13,7 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
 
 ?>
 
-<?= accountGridView::widget([
+<?= AccountGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
     'columns'      => [

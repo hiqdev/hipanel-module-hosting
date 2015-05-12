@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this View */
-/* @var $model frontend\modules\hosting\models\Db */
+/* @var $model hipanel\modules\hosting\models\Db */
 /* @var $type string */
 
 use hipanel\base\View;
@@ -27,10 +27,18 @@ use yii\helpers\Url;
                         <!-- Properties -->
 
                         <?php
-                        print $form->field($model, 'client')->widget(Combo2::className(), ['type' => 'client']);
-                        print $form->field($model, 'server')->widget(Combo2::className(), ['type' => 'server']);
-                        print $form->field($model, 'account')->widget(Combo2::className(), ['type' => 'account']);
-                        print $form->field($model, 'service_id')->widget(Combo2::className(), ['type' => 'dbService', ]);
+                        print $form->field($model, 'client')->widget(Combo2::className(), [
+                            'class' => \hipanel\modules\client\assets\combo2\Client::className()
+                        ]);
+                        print $form->field($model, 'server')->widget(Combo2::className(), [
+                            'class' => \hipanel\modules\server\assets\combo2\Server::className()
+                        ]);
+                        print $form->field($model, 'account')->widget(Combo2::className(), [
+                            'class' => \hipanel\modules\hosting\assets\combo2\Account::className()
+                        ]);
+                        print $form->field($model, 'service_id')->widget(Combo2::className(), [
+                            'class' => \hipanel\modules\hosting\assets\combo2\DbService::className()
+                        ]);
 
                         print $form->field($model, 'name');
                         print $form->field($model, 'password')->widget(PasswordInput::className());

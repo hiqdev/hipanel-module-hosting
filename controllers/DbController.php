@@ -11,7 +11,7 @@ use hipanel\base\CrudController;
 use Yii;
 use yii\filters\VerbFilter;
 
-class DBController extends CrudController
+class DbController extends CrudController
 {
     public function behaviors()
     {
@@ -34,7 +34,7 @@ class DBController extends CrudController
                 'success'   => Yii::t('app', 'DB delete task has been created successfully'),
                 'error'     => Yii::t('app', 'Error while deleting DB'),
                 'POST html' => [
-                    'save' => true,
+                    'save'    => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
                         'url'   => ['index'],
@@ -51,16 +51,16 @@ class DBController extends CrudController
                 ],
             ],
             'create' => [
-                'class'     => 'hipanel\actions\SwitchAction',
-                'addFlash'  => true,
-                'success'   => Yii::t('app', 'DB delete task has been created successfully'),
-                'error'     => Yii::t('app', 'Error while deleting DB'),
-                'GET html | GET pjax'  => [
+                'class'               => 'hipanel\actions\SwitchAction',
+                'addFlash'            => true,
+                'success'             => Yii::t('app', 'DB create task has been created successfully'),
+                'error'               => Yii::t('app', 'Error while creating DB'),
+                'GET html | GET pjax' => [
                     'class'  => 'hipanel\actions\RenderAction',
                     'view'   => 'create',
-                    'params' => $this->newModel(['scenario' => 'create'])
+                    'params' => ['model' => $this->newModel(['scenario' => 'create'])],
                 ],
-                'POST html' => [
+                'POST html'           => [
                     'perform' => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
@@ -69,7 +69,7 @@ class DBController extends CrudController
                             function ($model) {
                                 return ['id' => $model->id];
                             }
-                        ],
+                        ]
                     ],
                     'error'   => [
                         'class' => 'hipanel\actions\RenderAction',
@@ -81,11 +81,11 @@ class DBController extends CrudController
                         ],
                     ],
                 ],
-                'POST pjax' => [
+                'POST pjax'           => [
                     'perform' => true,
                     'success' => [
-                        'class' => 'hipanel\actions\RedirectAction',
-                        'url'   => [
+                        'class'              => 'hipanel\actions\RedirectAction',
+                        'url'                => [
                             'view',
                             function ($model) {
                                 return ['id' => $model->id];
@@ -94,8 +94,8 @@ class DBController extends CrudController
                         'pjaxLocationHeader' => true,
                     ],
                     'error'   => [
-                        'class' => 'hipanel\actions\RenderAction',
-                        'url'   => [
+                        'class'              => 'hipanel\actions\RenderAction',
+                        'url'                => [
                             'create',
                             function ($model) {
                                 return [$model->model];
