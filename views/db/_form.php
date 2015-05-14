@@ -28,16 +28,16 @@ use yii\helpers\Url;
 
                         <?php
                         print $form->field($model, 'client')->widget(Combo2::className(), [
-                            'class' => \hipanel\modules\client\assets\combo2\Client::className()
+                            'type' => \hipanel\modules\client\assets\combo2\Client::className()
                         ]);
                         print $form->field($model, 'server')->widget(Combo2::className(), [
-                            'class' => \hipanel\modules\server\assets\combo2\Server::className()
+                            'type' => \hipanel\modules\server\assets\combo2\Server::className()
                         ]);
                         print $form->field($model, 'account')->widget(Combo2::className(), [
-                            'class' => \hipanel\modules\hosting\assets\combo2\Account::className()
+                            'type' => \hipanel\modules\hosting\assets\combo2\Account::className()
                         ]);
                         print $form->field($model, 'service_id')->widget(Combo2::className(), [
-                            'class' => \hipanel\modules\hosting\assets\combo2\DbService::className()
+                            'type' => \hipanel\modules\hosting\assets\combo2\DbService::className()
                         ]);
 
                         print $form->field($model, 'name');

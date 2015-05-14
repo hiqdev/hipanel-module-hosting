@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $model frontend\modules\ticket\models\Thread */
+/* @var $model hipanel\modules\ticket\models\Thread */
 /* @var $type string */
 
 $this->title                   = $title[$type];
