@@ -1,15 +1,15 @@
 <?php
 
-namespace hipanel\modules\hosting\assets\combo2;
+namespace hipanel\modules\hosting\widgets\combo;
 
-use hipanel\widgets\Combo2Config;
+use hipanel\widgets\Combo;
 use yii\helpers\ArrayHelper;
 
 
 /**
  * Class Service
  */
-class Service extends Combo2Config
+class ServiceCombo extends Combo
 {
     /** @inheritdoc */
     public $type = 'hosting/service';
@@ -38,22 +38,16 @@ class Service extends Combo2Config
      */
     public $softType;
 
-    /** @inheritdoc */
-    function getConfig($config = [])
-    {
-        $config = ArrayHelper::merge([
-            'affects'    => [
-                'client/seller' => 'seller',
-                'client/client' => 'client',
-                'server/server' => 'device',
-            ],
-            'activeWhen' => [
-                'server/server',
-            ]
-        ], $config);
-
-        return parent::getConfig($config);
-    }
+    public $_pluginOptions = [
+        'activeWhen' => [
+            'server/server',
+        ],
+        'affects'    => [
+            'client/seller' => 'seller',
+            'client/client' => 'client',
+            'server/server' => 'device',
+        ]
+    ];
 
     /** @inheritdoc */
     public function getFilter()

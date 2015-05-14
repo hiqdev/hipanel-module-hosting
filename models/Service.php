@@ -20,6 +20,7 @@ class Service extends \hipanel\base\Model
     public function rules ()
     {
         return [
+
         ];
     }
 

@@ -8,8 +8,8 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\base\CrudController;
-use Yii;
 use yii\filters\VerbFilter;
+use Yii;
 
 class DbController extends CrudController
 {
@@ -58,7 +58,9 @@ class DbController extends CrudController
                 'GET html | GET pjax' => [
                     'class'  => 'hipanel\actions\RenderAction',
                     'view'   => 'create',
-                    'params' => ['model' => $this->newModel(['scenario' => 'create'])],
+                    'params' => ['model' => function ($action) {
+                        return $action->controller->newModel(['scenario' => 'create']);
+                    }]
                 ],
                 'POST html'           => [
                     'perform' => true,
@@ -66,7 +68,7 @@ class DbController extends CrudController
                         'class' => 'hipanel\actions\RedirectAction',
                         'url'   => [
                             'view',
-                            function ($model) {
+                            function ($action, $model) {
                                 return ['id' => $model->id];
                             }
                         ]
@@ -75,7 +77,7 @@ class DbController extends CrudController
                         'class' => 'hipanel\actions\RenderAction',
                         'url'   => [
                             'create',
-                            function ($model) {
+                            function ($action, $model) {
                                 return compact('model');
                             }
                         ],
