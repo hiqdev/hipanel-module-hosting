@@ -10,6 +10,9 @@ namespace hipanel\modules\hosting;
 class Menu extends \hipanel\base\Menu implements \yii\base\BootstrapInterface
 {
 
+    /**
+     * @inheritdoc
+     */
     protected $_menus = [
         'sidebar' => [
             'where' => [
