@@ -3,7 +3,7 @@
 /* @var $model hipanel\modules\ticket\models\Thread */
 /* @var $type string */
 
-$this->title                   = $title[$type];
+$this->title                   = Yii::t('app', 'Create database');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Databases'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
