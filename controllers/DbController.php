@@ -52,58 +52,34 @@ class DbController extends CrudController
             ],
             'create' => [
                 'class'               => 'hipanel\actions\SwitchAction',
-                'addFlash'            => true,
                 'success'             => Yii::t('app', 'DB create task has been created successfully'),
                 'error'               => Yii::t('app', 'Error while creating DB'),
                 'GET html | GET pjax' => [
                     'class'  => 'hipanel\actions\RenderAction',
                     'view'   => 'create',
-                    'params' => ['model' => function ($action) {
-                        return $action->controller->newModel(['scenario' => 'create']);
-                    }]
+                    'params' => [
+                        'model' => function ($action) {
+                            return $action->controller->newModel(['scenario' => 'create']);
+                        }
+                    ],
                 ],
                 'POST html'           => [
-                    'perform' => true,
+                    'save'    => true,
+                    'flash'   => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
-                        'url'   => [
-                            'view',
-                            function ($action, $model) {
-                                return ['id' => $model->id];
-                            }
-                        ]
+                        'url'   => function ($action, $model) {
+                            return ['view', 'id' => $model->id];
+                        }
                     ],
                     'error'   => [
-                        'class' => 'hipanel\actions\RenderAction',
-                        'url'   => [
-                            'create',
-                            function ($action, $model) {
-                                return compact('model');
+                        'class'  => 'hipanel\actions\RenderAction',
+                        'view'   => 'create',
+                        'params' => [
+                            'model' => function ($action, $model) {
+                                return $model;
                             }
                         ],
-                    ],
-                ],
-                'POST pjax'           => [
-                    'perform' => true,
-                    'success' => [
-                        'class'              => 'hipanel\actions\RedirectAction',
-                        'url'                => [
-                            'view',
-                            function ($model) {
-                                return ['id' => $model->id];
-                            }
-                        ],
-                        'pjaxLocationHeader' => true,
-                    ],
-                    'error'   => [
-                        'class'              => 'hipanel\actions\RenderAction',
-                        'url'                => [
-                            'create',
-                            function ($model) {
-                                return [$model->model];
-                            }
-                        ],
-                        'pjaxLocationHeader' => true,
                     ],
                 ],
             ],

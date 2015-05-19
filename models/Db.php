@@ -39,7 +39,7 @@ class Db extends Model
 
     public function scenarios () {
         return [
-            'create'          => ['server', 'account', 'service_id', 'name', 'password', 'description'],
+            'create'          => ['client', 'server', 'account', 'service_id', 'name', 'password', 'description'],
             'truncate'        => ['id'],
             'set-description' => ['id', 'description'],
             'set-password'    => ['id', 'password'],
