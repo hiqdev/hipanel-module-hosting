@@ -28,7 +28,7 @@ class DbController extends CrudController
     public function actions()
     {
         return [
-            'delete' => [
+            'delete'       => [
                 'class'     => 'hipanel\actions\SwitchAction',
                 'addFlash'  => true,
                 'success'   => Yii::t('app', 'DB delete task has been created successfully'),
@@ -50,7 +50,7 @@ class DbController extends CrudController
                     ]
                 ],
             ],
-            'create' => [
+            'create'       => [
                 'class'               => 'hipanel\actions\SwitchAction',
                 'success'             => Yii::t('app', 'DB create task has been created successfully'),
                 'error'               => Yii::t('app', 'Error while creating DB'),
@@ -83,87 +83,36 @@ class DbController extends CrudController
                     ],
                 ],
             ],
-        ];
-    }
-
-    public function actionCreate()
-    {
-        $model = $this->newModel(['scenario' => 'create']);
-
-        return $this->perform([
-            'success' => [
-                'result' => [
-                    'POST html' => ['redirect', function ($m) { return $m->id; }, 'addFlash' => true],
-                    'POST pjax' => [
-                        'action',
-                        ['view', function ($m) { return $m->id; }],
-                        'setUrl'   => function ($m) { return ['view', 'id' => $m->id]; },
-                        'addFlash' => true
+            'set-password' => [
+                'class'   => 'hipanel\actions\SwitchAction',
+                'success' => Yii::t('app', 'DB password change task has been created successfully'),
+                'error'   => Yii::t('app', 'Error while DB password changing'),
+                'POST'    => [
+                    'save'    => true,
+                    'success' => [
+                        'class'  => 'hipanel\actions\ProxyAction',
+                        'action' => 'view',
+                        'params' => function ($action, $model) {
+                            return ['id' => $model->id];
+                        },
                     ]
-                ]
+                ],
             ],
-            'result'  => [
-                'GET html' => ['render', ['create', ['model' => $model]]]
-            ],
-        ]);
-
-    }
-
-    public function actionDelete()
-    {
-        return $this->perform([
-            'success' => [
-                'message' => Yii::t('app', 'DB deleting task has been created successfully'),
-                'result'  => [
-                    'POST pjax' => [
-                        'action',
-                        ['index'],
-                        'addFlash'  => true,
-                        'changeUrl' => function ($model) {
-                            return ['index'];
+            'truncate'     => [
+                'class'   => 'hipanel\actions\SwitchAction',
+                'success' => Yii::t('app', 'DB truncate task has been created successfully'),
+                'error'   => Yii::t('app', 'Error while truncating DB'),
+                'POST'    => [
+                    'save'    => true,
+                    'success' => [
+                        'class'  => 'hipanel\actions\ProxyAction',
+                        'action' => 'view',
+                        'params' => function ($action, $model) {
+                            return ['id' => $model->id];
                         }
-                    ]
-                ],
-            ],
-            'error'   => [
-                'message' => Yii::t('app', 'Error while deleting DB'),
-                'result'  => [
-                    'POST pjax' => ['action', ['view', function ($model) { return ['id' => $model->id]; }], 'addFlash' => true]
-                ],
-            ],
-        ]);
-    }
-
-    public function actionSetPassword()
-    {
-        return $this->perform([
-            'result' => [ ///
-                          'POST pjax' => ['action', ['view', function ($model) { return ['id' => $model->id]; }], 'addFlash' => true]
-            ],
-        ]);
-    }
-
-    public function actionTruncate()
-    {
-        return $this->perform([
-            'success'  => [
-                'message' => Yii::t('app', 'DB truncate task has been created successfully'),
-            ],
-            'error'    => [
-                'message' => Yii::t('app', 'Error while truncating DB'),
-            ],
-            'result'   => [
-                'pjax'       => ['action', ['view', function ($model) { return ['id' => $model->id]; }]],
-                'html'       => ['render', ['create', function ($model) { return ['id' => $model->id]; }]],
-                'html2'      => ['render', ['create', ['id']]],
-                'POST html'  => ['redirect', ['create']],
-                'POST html1' => ['redirect', function ($model) { return ['view', 'id' => $model->id]; }],
-                'POST html2' => ['redirect', ['view', ['id']]],
-                'POST html3' => ['return'],
-                'POST html4' => ['renderJson'],
-                'POST html5' => ['custom',],
-            ],
-            'addFlash' => true
-        ]);
+                    ],
+                ]
+            ]
+        ];
     }
 }
