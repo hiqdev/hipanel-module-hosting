@@ -2,7 +2,7 @@
 
 namespace hipanel\modules\hosting\widgets\combo;
 
-use hipanel\widgets\Combo;
+use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
 
 /**
