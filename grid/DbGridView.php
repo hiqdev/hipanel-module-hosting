@@ -7,13 +7,13 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use frontend\modules\server\grid\ServerColumn;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\BoxedGridView;
 use hipanel\grid\MainColumn;
 use hipanel\grid\EditableColumn;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\widgets\db\State;
+use hipanel\modules\server\grid\ServerColumn;
 use Yii;
 
 class DbGridView extends BoxedGridView

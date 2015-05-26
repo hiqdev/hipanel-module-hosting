@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?php
                     echo Html::beginForm(['delete'], "POST", ['data' => ['pjax' => 1, 'pjax-push' => 0], 'class' => 'inline']);
-                    echo Html::hiddenInput('id', $model->id);
+                    echo Html::activeHiddenInput($model, 'id');
                     Modal::begin([
                         'options'       => [
                             'data-backdrop' => 0

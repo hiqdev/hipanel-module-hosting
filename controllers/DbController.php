@@ -30,10 +30,9 @@ class DbController extends CrudController
         return [
             'delete'       => [
                 'class'     => 'hipanel\actions\SwitchAction',
-                'addFlash'  => true,
                 'success'   => Yii::t('app', 'DB delete task has been created successfully'),
                 'error'     => Yii::t('app', 'Error while deleting DB'),
-                'POST html' => [
+                'POST' => [
                     'save'    => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
@@ -41,12 +40,9 @@ class DbController extends CrudController
                     ],
                     'error'   => [
                         'class' => 'hipanel\actions\RedirectAction',
-                        'url'   => [
-                            'view',
-                            function ($model) {
-                                return ['id' => $model->id];
-                            }
-                        ],
+                        'url'   => function ($action, $model) {
+                            return ['view', 'id' => $model->id];
+                        }
                     ]
                 ],
             ],
