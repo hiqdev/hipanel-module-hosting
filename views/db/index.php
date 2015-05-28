@@ -9,15 +9,15 @@ $this->title                   = Yii::t('app', 'Databases');
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['subtitle']      = Yii::$app->request->queryParams ? 'filtered list' : 'full list';
 
-Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
+Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
 
-<?php $box = ActionBox::begin(['options' => ['class' => 'box-info']]) ?>
-<?php $box->beginActions(); ?>
-<?= Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'DB']), ['create'], ['class' => 'btn btn-success']) ?>&nbsp;
-<?php $box->endActions(); ?>
-<?php $box::end(); ?>
+$box = ActionBox::begin(['options' => ['class' => 'box-info']]);
+$box->beginActions();
+echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'DB']), ['create'], ['class' => 'btn btn-success']) . '&nbsp;';
+$box->endActions();
+$box::end();
 
-<?= DbGridView::widget([
+echo DbGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
     'columns'      => [
@@ -30,6 +30,6 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
         'state',
         'actions'
     ],
-]) ?>
+]);
 
-<?php Pjax::end(); ?>
+Pjax::end();

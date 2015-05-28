@@ -7,72 +7,107 @@
 
 namespace hipanel\modules\hosting\controllers;
 
-use hipanel\modules\hosting\models\Account;
 use Yii;
-use yii\base\Response;
-use yii\web\NotFoundHttpException;
 
 class AccountController extends \hipanel\base\CrudController
 {
-    public function actionCreateFtp () {
-        return $this->actionCreate('ftponly');
-    }
-
-    public function actionCreate ($type = 'user') {
-        if (!in_array($type, ['user', 'ftponly'])) {
-            throw new NotFoundHttpException('Account type is unknown');
-        }
-        $model = new Account(['scenario' => 'insert-' . $type]);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-            'type'  => $type,
-        ]);
-    }
-
-    public function actionSetPassword ($id) {
-        $model           = $this->findModel($id);
-        $model->scenario = 'set-password';
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
-            Yii::$app->getSession()->addFlash('success', [
-                'title' => $model->login,
-                'text'  => Yii::t('app', 'Password changing task has been successfully added to queue'),
-            ]);
-
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            /// TODO: do
-            return $this->render('view', ['model' => $model]);
-        }
-    }
-
-    /**
-     * @param $id
-     * @return string|Response
-     * @throws NotFoundHttpException
-     */
-    public function actionSetAllowedIps ($id) {
-        $model           = $this->findModel($id);
-        $model->scenario = 'set-allowed-ips';
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->save()) {
-            $flash = [
-                'type' => 'success',
-                'text' => Yii::t('app', 'Allowed IPs changing task has been successfully added to queue')
-            ];
-        } else {
-            $flash['type'] = 'error';
-            if ($model->hasErrors()) {
-                $flash['text'] = $model->getFirstError('sshftp_ips');
-            } else {
-                $flash['text'] = Yii::t('app', 'An error occurred when trying to change allowed IPs');
-            }
-        }
-
-        Yii::$app->getSession()->addFlash($flash['type'], $flash['text']);
-
-        return $this->redirect(['view', 'id' => $model->id]);
+    public function actions()
+    {
+        return [
+            'create'          => [
+                'class'                 => 'hipanel\actions\SwitchAction',
+                'success'               => Yii::t('app', 'Account create task has been created successfully'),
+                'error'                 => Yii::t('app', 'Error while creating account'),
+                'scenario'              => 'create-user',
+                'GET html | GET pjax'   => [
+                    'class'  => 'hipanel\actions\RenderAction',
+                    'view'   => 'create',
+                    'params' => [
+                        'model' => function ($action) {
+                            return $action->controller->newModel(['scenario' => 'create-user']);
+                        },
+                    ],
+                ],
+                'POST html | POST pjax' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => function ($action, $model) {
+                            return ['view', 'id' => $model->id];
+                        }
+                    ],
+                    'error'   => [
+                        'class'  => 'hipanel\actions\RenderAction',
+                        'view'   => 'create',
+                        'params' => [
+                            'model' => function ($action, $model) {
+                                return $model;
+                            },
+                            'type'  => 'user'
+                        ],
+                    ],
+                ],
+            ],
+            'create-ftponly'  => [
+                'class'                 => 'hipanel\actions\SwitchAction',
+                'success'               => Yii::t('app', 'Account create task has been created successfully'),
+                'error'                 => Yii::t('app', 'Error while creating account'),
+                'GET html | GET pjax'   => [
+                    'class'  => 'hipanel\actions\RenderAction',
+                    'view'   => 'create',
+                    'params' => [
+                        'model' => function ($action) {
+                            return $action->controller->newModel(['scenario' => 'create-ftponly']);
+                        }
+                    ],
+                ],
+                'POST html | POST pjax' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => function ($action, $model) {
+                            return ['view', 'id' => $model->id];
+                        }
+                    ],
+                    'error'   => [
+                        'class'  => 'hipanel\actions\RenderAction',
+                        'view'   => 'create',
+                        'params' => [
+                            'model' => function ($action, $model) {
+                                return $model;
+                            }
+                        ],
+                    ],
+                ],
+            ],
+            'set-password'    => [
+                'class'                 => 'hipanel\actions\SwitchAction',
+                'success'               => Yii::t('app', 'Password changing task has been successfully added to queue'),
+                'error'                 => Yii::t('app', 'An error occurred when trying to change password'),
+                'POST html | POST pjax' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => function ($action, $model) {
+                            return ['view', 'id' => $model->id];
+                        }
+                    ]
+                ],
+            ],
+            'set-allowed-ips' => [
+                'class'                 => 'hipanel\actions\SwitchAction',
+                'success'               => Yii::t('app', 'Allowed IPs changing task has been successfully added to queue'),
+                'error'                 => Yii::t('app', 'An error occurred when trying to change allowed IPs'),
+                'POST html | POST pjax' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => 'hipanel\actions\RedirectAction',
+                        'url'   => function ($action, $model) {
+                            return ['view', 'id' => $model->id];
+                        }
+                    ]
+                ],
+            ],
+        ];
     }
 }
