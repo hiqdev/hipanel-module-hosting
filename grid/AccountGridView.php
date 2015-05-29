@@ -21,7 +21,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             'account' => [
                 'class'                 => MainColumn::className(),
                 'attribute'             => 'login',
-                'filterAttribute'       => 'account_like',
+                'filterAttribute'       => 'login_like',
             ],
             'state'       => [
                 'class'  => RefColumn::className(),

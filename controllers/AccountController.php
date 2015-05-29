@@ -81,10 +81,10 @@ class AccountController extends \hipanel\base\CrudController
                 ],
             ],
             'set-password'    => [
-                'class'                 => 'hipanel\actions\SwitchAction',
-                'success'               => Yii::t('app', 'Password changing task has been successfully added to queue'),
-                'error'                 => Yii::t('app', 'An error occurred when trying to change password'),
-                'POST html | POST pjax' => [
+                'class'     => 'hipanel\actions\SwitchAction',
+                'success'   => Yii::t('app', 'Password changing task has been successfully added to queue'),
+                'error'     => Yii::t('app', 'An error occurred when trying to change password'),
+                'POST html' => [
                     'save'    => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
@@ -93,18 +93,38 @@ class AccountController extends \hipanel\base\CrudController
                         }
                     ]
                 ],
+                'POST pjax' => [
+                    'save'    => true,
+                    'success' => [
+                        'class'  => 'hipanel\actions\ProxyAction',
+                        'action' => 'view',
+                        'params' => function ($action, $model) {
+                            return ['id' => $model->id];
+                        },
+                    ]
+                ],
             ],
             'set-allowed-ips' => [
-                'class'                 => 'hipanel\actions\SwitchAction',
-                'success'               => Yii::t('app', 'Allowed IPs changing task has been successfully added to queue'),
-                'error'                 => Yii::t('app', 'An error occurred when trying to change allowed IPs'),
-                'POST html | POST pjax' => [
+                'class'     => 'hipanel\actions\SwitchAction',
+                'success'   => Yii::t('app', 'Allowed IPs changing task has been successfully added to queue'),
+                'error'     => Yii::t('app', 'An error occurred when trying to change allowed IPs'),
+                'POST html' => [
                     'save'    => true,
                     'success' => [
                         'class' => 'hipanel\actions\RedirectAction',
                         'url'   => function ($action, $model) {
                             return ['view', 'id' => $model->id];
                         }
+                    ]
+                ],
+                'POST pjax' => [
+                    'save'    => true,
+                    'success' => [
+                        'class'  => 'hipanel\actions\ProxyAction',
+                        'action' => 'view',
+                        'params' => function ($action, $model) {
+                            return ['id' => $model->id];
+                        },
                     ]
                 ],
             ],

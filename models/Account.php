@@ -84,13 +84,16 @@ class Account extends \hipanel\base\Model
                 'sshftp_ips',
                 'filter',
                 'filter' => function ($value) { return ArrayHelper::csplit($value); },
-                'on'     => ['create-user', 'create-ftponly', 'update']
+                'on'     => ['create-user', 'create-ftponly', 'update', 'set-allowed-ips']
             ],
             [
                 'sshftp_ips',
-                IpAddressValidator::className(),
-                'on'        => ['create-user', 'create-ftponly', 'update', 'set-allowed-ips'],
-                'exclusion' => true
+                'each',
+                'rule' => [
+                    IpAddressValidator::className(),
+                    'exclusion' => true
+                ],
+                'on'   => ['create-user', 'create-ftponly', 'update', 'set-allowed-ips']
             ]
         ];
     }
