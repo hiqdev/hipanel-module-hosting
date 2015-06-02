@@ -49,7 +49,8 @@ $type2action = [
                                'data' => [
                                    'title'   => Yii::t('app', 'IP restrictions'),
                                    'content' => Yii::t('app', 'Text about IP restrictions'),
-                               ]
+                               ],
+                               'value' => $model->getSshFtpIpsList()
                             ]);
                         ?>
 

@@ -9,7 +9,7 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\client\validators\LoginValidator;
-use hipanel\validators\IpAddressValidator;
+use hipanel\validators\IpValidator;
 use Yii;
 
 class Account extends \hipanel\base\Model
@@ -89,10 +89,7 @@ class Account extends \hipanel\base\Model
             [
                 'sshftp_ips',
                 'each',
-                'rule' => [
-                    IpAddressValidator::className(),
-                    'exclusion' => true
-                ],
+                'rule' => [IpValidator::className(), 'negationChar' => true, 'subnet' => null],
                 'on'   => ['create-user', 'create-ftponly', 'update', 'set-allowed-ips']
             ]
         ];
