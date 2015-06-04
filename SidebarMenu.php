@@ -35,6 +35,11 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
                     'url'   => ['/hosting/db/index'],
                     'icon'  => 'fa-database',
                 ],
+                'hdomains' => [
+                    'label' => 'Domains',
+                    'url'   => ['/hosting/hdomain/index'],
+                    'icon'  => 'fa-globe',
+                ]
             ],
         ],
     ];

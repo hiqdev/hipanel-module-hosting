@@ -22,8 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= HdomainGridView::detailView([
         'model'   => $model,
         'columns' => [
-            'seller_id','client_id',
-            ['attribute' => 'hdomain'],
+            'seller_id',
+            'client_id',
+            ['attribute' => 'domain']
         ],
     ]) ?>
 </div>

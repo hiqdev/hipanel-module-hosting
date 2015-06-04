@@ -7,6 +7,24 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\base\SearchModelTrait;
+use yii\helpers\ArrayHelper;
+
 class HdomainSearch extends Hdomain{
-    use \hipanel\base\SearchModelTrait;
+    use SearchModelTrait {
+        searchAttributes as defaultSearchAttributes;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function searchAttributes()
+    {
+        return ArrayHelper::merge($this->defaultSearchAttributes(), [
+            'with_aliases',
+            'with_request',
+            'with_vhosts',
+            'with_dns'
+        ]);
+    }
 }

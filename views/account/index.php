@@ -19,7 +19,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
 $box = ActionBox::begin(['options' => ['class' => 'box-info']]);
 $box->beginActions();
 echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'account']), ['create'], ['class' => 'btn btn-success']) . '&nbsp;';
-echo Html::a(Yii::t('app', 'Create FTP {modelClass}', ['modelClass' => 'account']), ['create-ftp'], ['class' => 'btn btn-success']) . '&nbsp;';
+echo Html::a(Yii::t('app', 'Create FTP {modelClass}', ['modelClass' => 'account']), ['create-ftponly'], ['class' => 'btn btn-success']) . '&nbsp;';
 $box->endActions();
 $box::end();
 
@@ -36,3 +36,5 @@ echo AccountGridView::widget([
         'actions'
     ],
 ]);
+
+Pjax::end();

@@ -11,24 +11,27 @@ use Yii;
 
 class Hdomain extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
 
     /** @inheritdoc */
     public function rules () {
         return [
             [
-                ['id', 'server_id', 'client_id', 'seller_id', 'account_id', 'hdomain_id', 'state_id', 'type_id'],
+                ['id', 'server_id', 'client_id', 'seller_id', 'account_id', 'hdomain_id', 'state_id', 'type_id', 'vhost_id', 'device_id'],
                 'integer'
             ],
-            [['server', 'client', 'seller', 'account', 'hdomain', 'state', 'type', 'ip', 'alias'], 'safe'],
+            [['server', 'vhost', 'device', 'client', 'seller', 'account', 'domain', 'state', 'type', 'ip', 'alias'], 'safe'],
         ];
+    }
+
+    function getIsProxied() {
+        return isset($this->vhost['backend']);
     }
 
     /** @inheritdoc */
     public function attributeLabels () {
         return $this->mergeAttributeLabels([
-            'hdomain'               => Yii::t('app', 'Domain Name'),
+            'domain'               => Yii::t('app', 'Domain Name'),
         ]);
     }
 }
