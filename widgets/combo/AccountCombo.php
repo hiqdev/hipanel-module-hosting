@@ -31,13 +31,14 @@ class AccountCombo extends Combo
         'server' => 'server/server',
     ];
 
-    /** @inheritdoc */
-    public $_pluginOptions = [
-        'clearWhen' => ['client/client', 'server/server'],
-        'affects'   => [
-            'client/seller' => 'seller',
-            'client/client' => 'client',
-            'server/server' => 'device',
-        ]
-    ];
+    public function getPluginOptions($config) {
+        return parent::getPluginOptions([
+            'clearWhen' => ['client/client', 'server/server'],
+            'affects'   => [
+                'client/seller' => 'seller',
+                'client/client' => 'client',
+                'server/server' => 'device',
+            ]
+        ]);
+    }
 }

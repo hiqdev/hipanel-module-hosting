@@ -19,7 +19,7 @@ class Account extends \hipanel\base\Model
 
     public function init()
     {
-        $this->on(static::EVENT_BEFORE_INSERT, [$this, 'onBeforeInsert']);
+        $this->on(static::EVENT_BEFORE_VALIDATE, [$this, 'onBeforeValidate']);
     }
 
     public function rules()
@@ -35,7 +35,7 @@ class Account extends \hipanel\base\Model
             [
                 [
                     'login',
-                    'server_id',
+                    'server',
                     'password',
                     'sshftp_ips',
                     'type',
@@ -46,7 +46,7 @@ class Account extends \hipanel\base\Model
             [
                 [
                     'login',
-                    'server_id',
+                    'server',
                     'password',
                     'sshftp_ips',
                     'type',
@@ -147,7 +147,7 @@ class Account extends \hipanel\base\Model
         ];
     }
 
-    public function onBeforeInsert()
+    public function onBeforeValidate()
     {
         if ($this->scenario == 'create-user') {
             $this->type = 'user';
