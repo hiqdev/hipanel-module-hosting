@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\widgets\ip;
 
 use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
+use yii\web\JsExpression;
 
 
 /**

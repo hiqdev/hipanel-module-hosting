@@ -37,9 +37,9 @@ class HdomainIpCombo extends Combo
         'server' => 'server/server',
     ];
 
-    public function getPluginOptions()
+    public function getPluginOptions($options = [])
     {
-        return parent::getPluginOptions([
+        return parent::getPluginOptions(ArrayHelper::merge([
             'activeWhen'     => [
                 'hosting/account',
             ],
@@ -71,7 +71,7 @@ class HdomainIpCombo extends Combo
                 ")
                 ],
             ]
-        ]);
+        ], $options));
     }
 
     /** @inheritdoc */

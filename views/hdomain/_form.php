@@ -1,23 +1,22 @@
 <?php
 
 /* @var $this View */
-/* @var $model hipanel\modules\hosting\models\Db */
+/* @var $model hipanel\modules\hosting\models\Hdomain */
 /* @var $type string */
 
 use hipanel\base\View;
 use hipanel\models\Ref;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\AccountCombo;
-use hipanel\modules\hosting\widgets\combo\DbServiceCombo;
 use hipanel\modules\hosting\widgets\ip\BackIpCombo;
 use hipanel\modules\hosting\widgets\ip\FrontIpCombo;
 use hipanel\modules\hosting\widgets\ip\HdomainIpCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
-use hipanel\widgets\PasswordInput;
 use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\web\JsExpression;
 
 $this->registerJs(<<<'JS'
     $('.hdomain-create').on('change', '#hdomain-proxy_enable', function () {
@@ -28,23 +27,12 @@ $this->registerJs(<<<'JS'
 
         if ($checkbox.prop('checked')) {
             $proxied.removeClass('hidden');
-
-            if ($scope.find('#hdomain-account').select2('data')) {
-                $proxied.find('input').select2('enable', true);
-            } else {
-                $proxied.find('input').select2('enable', false);
-            }
-
-            $not_proxied.addClass('hidden').find('input').prop({'required': false}).select2('enable', false);
+            $not_proxied.addClass('hidden');
+            $scope.find('#hdomain-account').trigger('change');
         } else {
             $proxied.addClass('hidden').find('input').select2('enable', false);
             $not_proxied.removeClass('hidden');
-
-            if ($scope.find('#hdomain-account').select2('data')) {
-                $not_proxied.find('input').select2('enable', true);
-            } else {
-                $not_proxied.find('input').select2('enable', false);
-            }
+            $scope.find('#hdomain-account').trigger('change');
         }
     });
 JS
@@ -97,27 +85,27 @@ TODO: after ABAC - for admin
 JS
 );
 ?>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="box box-danger">
-                <div class="box-body">
-                    <div class="ticket-form" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-                        <?php $form = ActiveForm::begin([
-                            'action'  => $model->isNewRecord ? Url::to('create') : Url::toRoute([
-                                'update',
-                                'id' => $model->id
-                            ]),
-                            'options' => ['class' => 'hdomain-create']
-                        ]);
-                        ?>
-                        <!-- Properties -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="box box-danger">
+            <div class="box-body">
+                <div class="ticket-form" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+                    <?php $form = ActiveForm::begin([
+                        'action'  => $model->isNewRecord ? Url::to('create') : Url::toRoute([
+                            'update',
+                            'id' => $model->id
+                        ]),
+                        'options' => ['class' => 'hdomain-create']
+                    ]);
+                    ?>
+                    <!-- Properties -->
 
-                        <?php
-                        print $form->field($model, 'client')->widget(ClientCombo::className());
-                        print $form->field($model, 'server')->widget(ServerCombo::className());
-                        print $form->field($model, 'account')->widget(AccountCombo::className(), [
-                            'pluginOptions' => [
-                                'onChange' => new \yii\web\JsExpression(<<<'JS'
+                    <?php
+                    print $form->field($model, 'client')->widget(ClientCombo::className());
+                    print $form->field($model, 'server')->widget(ServerCombo::className());
+                    print $form->field($model, 'account')->widget(AccountCombo::className(), [
+                        'pluginOptions' => [
+                            'onChange' => new \yii\web\JsExpression(<<<'JS'
     function (event) {
         var $form = event.element.closest('form');
         var data;
@@ -130,12 +118,12 @@ JS
         return true;
     }
 JS
-                                )
-                            ]
-                        ]);
-                        print $form->field($model, 'domain');
-                        print $form->field($model, 'path', [
-                            'template' => '
+                            )
+                        ]
+                    ]);
+                    print $form->field($model, 'domain');
+                    print $form->field($model, 'path', [
+                        'template' => '
                                 {label}
                                 <div class="input-group">
                                     <span class="input-group-addon">/home/</span>
@@ -144,30 +132,68 @@ JS
                                     {error}
                                 </div>
                             '
-                        ]);
-                        print $form->field($model, 'with_www')->checkbox();
-                        print $form->field($model, 'proxy_enable')->checkbox();
-                        print $form->field($model, 'ip', ['options' => ['class' => 'field-hdomain-not-proxied_ip']])
-                                   ->widget(HdomainIpCombo::className());
-                        print $form->field($model, 'ip', ['options' => ['class' => 'field-hdomain-frontend_ip hidden']])
-                                   ->widget(FrontIpCombo::className(), ['inputOptions' => ['id' => 'hdomain-frontend_ip']])
-                                   ->label('Frontend IP');
-                        print $form->field($model, 'backend_ip', ['options' => ['class' => 'field-hdomain-frontend_ip hidden']])
-                                   ->widget(BackIpCombo::className());
-                        print $form->field($model, 'backuping_type')->widget(StaticCombo::className(), [
-                            'hasId' => true,
-                            'data'  => Ref::getList('type,backuping')
-                        ]);
-                        ?>
-                        <div class="form-group">
-                            <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-primary']) ?>
-                        </div>
+                    ]);
+                    print $form->field($model, 'with_www')->checkbox();
 
-                        <?php ActiveForm::end(); ?>
+                    print $form->field($model, 'proxy_enable')->checkbox();
+
+                    print $form->field($model, 'ip', ['options' => ['class' => 'field-hdomain-not-proxied_ip']])
+                               ->widget(HdomainIpCombo::className(), [
+                                   'pluginOptions' => [
+                                       'activeWhen' => [
+                                           new JsExpression("function (self) {
+                                                return !self.form.find('#hdomain-proxy_enable').prop('checked');
+                                           }")
+                                       ]
+                                   ]
+                               ]);
+
+                    print $form->field($model, 'ip', ['options' => ['class' => 'field-hdomain-frontend_ip hidden']])
+                               ->widget(FrontIpCombo::className(), [
+                                   'inputOptions' => [
+                                       'id'       => 'hdomain-frontend_ip',
+                                   ],
+                                   'pluginOptions' => [
+                                       'activeWhen' => [
+                                           new JsExpression("function (self) {
+                                                return self.form.find('#hdomain-proxy_enable').prop('checked');
+                                           }")
+                                       ]
+                                   ]
+                               ])->label('Frontend IP');
+
+                    print $form->field($model, 'backend_ip', [
+                        'options' => [
+                            'class'    => 'field-hdomain-frontend_ip hidden',
+                        ]
+                    ])->widget(BackIpCombo::className(), [
+                        'pluginOptions' => [
+                            'activeWhen' => [
+                                new JsExpression("function (self) {
+                                    return self.form.find('#hdomain-proxy_enable').prop('checked');
+                                }")
+                            ]
+                        ]
+                    ]);
+
+
+                    print $form->field($model, 'backuping_type')->widget(StaticCombo::className(), [
+                        'hasId' => true,
+                        'data'  => Ref::getList('type,backuping')
+                    ]);
+                    ?>
+                    <div class="form-group">
+                        <?= Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-primary']) ?>
                     </div>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
-
-            <!-- ticket-_form -->
         </div>
+
+        <!-- ticket-_form -->
     </div>
+</div>
+
+<?php
+$this->registerJs("$('#hdomain-proxy_enable').trigger('change');");
