@@ -7,7 +7,6 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\AccountColumn;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
@@ -33,10 +32,20 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'ip'      => [
                 'filter' => false,
+                'format' => 'raw',
                 'value'  => function ($model) {
-                    $html = $model['vhost']['ip'];
+                    $vhost = $model['vhost'];
+
+                    $html = $vhost['ip'];
+                    if (isset($vhost['port']) && $vhost['port'] != 80) {
+                        $html .= ':' . $vhost['port'];
+                    }
                     if ($model->isProxied) {
-                        $html .= Html::tag('i', ['class' => 'fa fa-long-arrow-right']) . $model['vhost']['backend']['ip'];
+                        $backend = $model['vhost']['backend'];
+                        $html .= ' ' . Html::tag('i', '', ['class' => 'fa fa-long-arrow-right']) . ' ' . $backend['ip'];
+                        if ($backend['port'] != 80) {
+                            $html .= ':' . $backend['port'];
+                        }
                     }
                     return $html;
                 }
@@ -56,7 +65,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'actions' => [
                 'class'    => ActionColumn::className(),
-                'template' => '{view} {update} {delete}'
+                'template' => '{view} {delete}'
             ],
         ];
     }

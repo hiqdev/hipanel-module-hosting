@@ -9,24 +9,33 @@ use hipanel\modules\hosting\grid\HdomainGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title                    = Yii::t('app', 'Domains');
-$this->params['breadcrumbs'][]  = $this->title;
+$this->breadcrumbs->setItems([
+    $this->title,
+]);
 $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered list' : 'full list';
 
 Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
 
-$box = ActionBox::begin(['options' => ['class' => 'box-info']]);
+
+echo Html::beginForm();
+$box = ActionBox::begin(['bulk' => true, 'options' => ['class' => 'box-info']]);
 $box->beginActions();
-echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'domain']), ['create'], ['class' => 'btn btn-success']) . '&nbsp;';
+echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', 'Domain')]), ['create'], ['class' => 'btn btn-primary']);
+echo '&nbsp;';
 $box->endActions();
+
+$box->beginBulkActions();
+echo Html::submitButton(Yii::t('app', 'Delete'), ['class' => 'btn btn-danger', 'formmethod' => 'POST', 'formaction' => Url::to('delete')]);
+$box->endBulkActions();
 $box::end();
 
 echo HdomainGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
     'columns'      => [
-        'checkbox',
         'seller_id',
         'client_id',
         'account',
@@ -34,7 +43,8 @@ echo HdomainGridView::widget([
         'hdomain',
         'ip',
         'service',
-        'actions'
+        'actions',
+        'checkbox',
     ],
 ]);
 

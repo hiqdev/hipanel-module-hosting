@@ -41,16 +41,20 @@ class DbGridView extends BoxedGridView
                 'filter' => false
             ],
             'description' => [
-                'class'   => EditableColumn::className(),
+                'class' => 'hiqdev\xeditable\grid\XEditableColumn',
+                'pluginOptions' => [
+                    'url' => 'set-description',
+                ],
                 'filter'  => true,
                 'popover' => Yii::t('app', 'Make any notes for your convenience'),
-                'action'  => ['set-description'],
             ],
-            'password'    => [
-                'class'   => EditableColumn::className(),
+            'password' => [
+                'class' => 'hiqdev\xeditable\grid\XEditableColumn',
+                'pluginOptions' => [
+                    'url' => 'set-password',
+                ],
                 'filter'  => true,
                 'popover' => Yii::t('app', 'Change the DB password'),
-                'action'  => ['set-password'],
                 'value'   => function () {
                     return Yii::t('app', 'Change password');
                 }

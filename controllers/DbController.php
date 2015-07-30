@@ -108,7 +108,11 @@ class DbController extends CrudController
                         }
                     ],
                 ]
-            ]
+            ],
+            'set-description' => [
+                'class'     => 'hipanel\actions\SmartUpdateAction',
+                'success'   => Yii::t('app', 'Description set successfully'),
+            ],
         ];
     }
 }

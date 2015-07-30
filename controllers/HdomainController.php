@@ -64,4 +64,11 @@ class HdomainController extends \hipanel\base\CrudController
 
         return $this->render('index', compact('searchModel', 'dataProvider'));
     }
+
+    public function actionView ($id) {
+        $model = $this->findModel(['id' => $id, 'with_aliases' => true, 'with_vhosts' => true, 'with_request' => true]);
+
+        return $this->render('view', compact('model'));
+    }
+
 }
