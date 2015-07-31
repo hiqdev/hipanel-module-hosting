@@ -9,7 +9,6 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\DataColumn;
 use hipanel\modules\hosting\widgets\combo\AccountCombo;
-use hipanel\widgets\Select2;
 use yii\helpers\Url;
 use yii\helpers\Html;
 
