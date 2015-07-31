@@ -39,4 +39,9 @@ class AccountColumn extends DataColumn
             };
         };
     }
+
+    public function getDataCellValue($model, $key, $index)
+    {
+        return Html::a($model->{$this->nameAttribute}, ['/hosting/account/view', 'id' => $model->{$this->attribute}]);
+    }
 }

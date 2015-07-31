@@ -46,7 +46,8 @@ class Hdomain extends \hipanel\base\Model
                     'device',
                     'state',
                     'type',
-                    'backuping_type'
+                    'backuping_type',
+                    'state_label',
                 ],
                 'safe'
             ],

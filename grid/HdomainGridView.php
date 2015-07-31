@@ -61,7 +61,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'value'  => function ($model) {
                     return State::widget(compact('model'));
                 },
-                'gtype'  => 'state,db',
+                'gtype'  => 'state,hdomain',
             ],
             'actions' => [
                 'class'    => ActionColumn::className(),
