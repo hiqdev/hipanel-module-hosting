@@ -43,7 +43,7 @@
     },
     "autoload": {
         "psr-4": {
-            "hipanel\\modules\\hosting\\": ""
+            "hipanel\\modules\\hosting\\": "src"
         }
     }
 }
