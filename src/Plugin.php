@@ -15,6 +15,11 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
                 'class' => 'hipanel\modules\hosting\SidebarMenu',
             ],
         ],
+        'aliases' => [
+            "@account" => "/hosting/account",
+            "@hdomain" => "/hosting/hdomain",
+            "@db"      => "/hosting/db",
+        ],
         'modules' => [
             'hosting' => [
                 'class' => 'hipanel\modules\hosting\Module',
