@@ -4,10 +4,10 @@
 /* @var $type string */
 
 $this->title                   = Yii::t('app', 'Create database');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Databases'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->breadcrumbs->setItems([['label' => Yii::t('app', 'Databases'), 'url' => ['index']]]);
+$this->breadcrumbs->setItems([$this->title]);
 ?>
 
 <div class="db-create">
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('models')) ?>
 </div>

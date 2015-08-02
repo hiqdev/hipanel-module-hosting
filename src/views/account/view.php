@@ -22,94 +22,94 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <? Pjax::begin(Yii::$app->params['pjax']) ?>
 
-    <div class="box box-danger">
-        <div class="box-header">
-            <?php
-            $model->scenario = 'set-password';
-            $form            = \yii\bootstrap\ActiveForm::begin([
-                'action'  => Url::toRoute(['set-password']),
-                'options' => [
-                    'data'  => ['pjax' => 1],
-                    'class' => 'inline',
-                ]
-            ]);
-            print Html::activeHiddenInput($model, 'id');
-            $this->registerJs("$('#{$form->id}').on('beforeSubmit', function (event) {
+<div class="box box-danger">
+    <div class="box-header">
+        <?php
+        $model->scenario = 'set-password';
+        $form            = \yii\bootstrap\ActiveForm::begin([
+            'action'  => Url::toRoute(['set-password']),
+            'options' => [
+                'data'  => ['pjax' => 1],
+                'class' => 'inline',
+            ]
+        ]);
+        print Html::activeHiddenInput($model, 'id');
+        $this->registerJs("$('#{$form->id}').on('beforeSubmit', function (event) {
                             if ($(this).data('yiiActiveForm').validated) {
                                 return $(this).find('[type=\"submit\"]').button('loading');
                             }
                         });");
-            Modal::begin([
-                'toggleButton'  => [
-                    'label'    => '<i class="fa fa-lock"></i>&nbsp;&nbsp;' . Yii::t('app', 'Change password'),
-                    'class'    => 'btn btn-default',
-                    'disabled' => !$model->isOperable(),
-                ],
-                'header'        => Html::tag('h4', Yii::t('app', 'Enter a new password')),
-                'headerOptions' => ['class' => 'label-info'],
-                'footer'        => Html::submitButton(Yii::t('app', 'Change'), [
-                    'class'             => 'btn btn-warning',
-                    'data-loading-text' => Yii::t('app', 'Changing...'),
-                ])
-            ]);
-            ?>
-            <div class="callout callout-warning">
-                <h4><?= Yii::t('app', 'This will immediately terminate all sessions of the user!') ?></h4>
-            </div>
-
-            <?php echo $form->field($model, 'password')->widget(PasswordInput::className())->label(false);
-            echo $form->field($model, 'login')->hiddenInput()->label(false);
-            Modal::end();
-            $form->end();
-            ?>
-
-            <?php
-            $model->scenario = 'update';
-            $form            = \yii\bootstrap\ActiveForm::begin([
-                'action'  => Url::toRoute(['set-allowed-ips']),
-                'options' => [
-                    'data'  => ['pjax' => 1],
-                    'class' => 'inline',
-                ],
-            ]);
-            print Html::activeHiddenInput($model, 'id');
-            $this->registerJs("$('#{$form->id}').on('beforeSubmit', function (event) {
-                            if ($(this).data('yiiActiveForm').validated) {
-                                return $(this).find('[type=\"submit\"]').button('loading');
-                            }
-                        });");
-            Modal::begin([
-                'toggleButton'  => [
-                    'label'    => '<i class="fa fa-globe"></i>&nbsp;&nbsp;' . Yii::t('app', 'Change SSH/FTP IPs'),
-                    'class'    => 'btn btn-default',
-                    'disabled' => !$model->isOperable(),
-                ],
-                'header'        => Html::tag('h4', Yii::t('app', 'Enter new restrictions')),
-                'headerOptions' => ['class' => 'label-info'],
-                'footer'        => Html::submitButton(Yii::t('app', 'Change'), [
-                    'class'             => 'btn btn-warning',
-                    'data-loading-text' => Yii::t('app', 'Changing...'),
-                ])
-            ]);
-            ?>
-            <div class="callout callout-warning">
-                <h4><?= Yii::t('app', 'This will immediately terminate all sessions of the user!') ?></h4>
-            </div>
-
-            <?php echo $form->field($model, 'sshftp_ips');
-            Modal::end();
-            $form->end();
-            ?>
-
-            <?= Html::a('<i class="fa fa-close"></i>&nbsp;&nbsp;' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger pull-right',
-                'data'  => [
-                    'confirm' => Yii::t('app', 'Are you sure you want to delete this account?'),
-                    'method'  => 'post',
-                ],
-            ]) ?>
+        Modal::begin([
+            'toggleButton'  => [
+                'label'    => '<i class="fa fa-lock"></i>&nbsp;&nbsp;' . Yii::t('app', 'Change password'),
+                'class'    => 'btn btn-default',
+                'disabled' => !$model->isOperable(),
+            ],
+            'header'        => Html::tag('h4', Yii::t('app', 'Enter a new password')),
+            'headerOptions' => ['class' => 'label-info'],
+            'footer'        => Html::submitButton(Yii::t('app', 'Change'), [
+                'class'             => 'btn btn-warning',
+                'data-loading-text' => Yii::t('app', 'Changing...'),
+            ])
+        ]);
+        ?>
+        <div class="callout callout-warning">
+            <h4><?= Yii::t('app', 'This will immediately terminate all sessions of the user!') ?></h4>
         </div>
+
+        <?php echo $form->field($model, 'password')->widget(PasswordInput::className())->label(false);
+        echo $form->field($model, 'login')->hiddenInput()->label(false);
+        Modal::end();
+        $form->end();
+        ?>
+
+        <?php
+        $model->scenario = 'update';
+        $form            = \yii\bootstrap\ActiveForm::begin([
+            'action'  => Url::toRoute(['set-allowed-ips']),
+            'options' => [
+                'data'  => ['pjax' => 1],
+                'class' => 'inline',
+            ],
+        ]);
+        print Html::activeHiddenInput($model, 'id');
+        $this->registerJs("$('#{$form->id}').on('beforeSubmit', function (event) {
+                            if ($(this).data('yiiActiveForm').validated) {
+                                return $(this).find('[type=\"submit\"]').button('loading');
+                            }
+                        });");
+        Modal::begin([
+            'toggleButton'  => [
+                'label'    => '<i class="fa fa-globe"></i>&nbsp;&nbsp;' . Yii::t('app', 'Change SSH/FTP IPs'),
+                'class'    => 'btn btn-default',
+                'disabled' => !$model->isOperable(),
+            ],
+            'header'        => Html::tag('h4', Yii::t('app', 'Enter new restrictions')),
+            'headerOptions' => ['class' => 'label-info'],
+            'footer'        => Html::submitButton(Yii::t('app', 'Change'), [
+                'class'             => 'btn btn-warning',
+                'data-loading-text' => Yii::t('app', 'Changing...'),
+            ])
+        ]);
+        ?>
+        <div class="callout callout-warning">
+            <h4><?= Yii::t('app', 'This will immediately terminate all sessions of the user!') ?></h4>
+        </div>
+
+        <?php echo $form->field($model, 'sshftp_ips');
+        Modal::end();
+        $form->end();
+        ?>
+
+        <?= Html::a('<i class="fa fa-close"></i>&nbsp;&nbsp;' . Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger pull-right',
+            'data'  => [
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this account?'),
+                'method'  => 'post',
+            ],
+        ]) ?>
     </div>
+</div>
 <div class="row" xmlns="http://www.w3.org/1999/html">
     <div class="col-md-5">
         <div class="box box-info">

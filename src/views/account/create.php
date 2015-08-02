@@ -9,5 +9,5 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="account-create">
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('models')) ?>
 </div>

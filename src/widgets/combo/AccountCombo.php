@@ -25,13 +25,26 @@ class AccountCombo extends Combo
     /** @inheritdoc */
     public $_rename = ['text' => 'login'];
 
-    /** @inheritdoc */
-    public $_filter = [
-        'client' => 'client/client',
-        'server' => 'server/server',
-    ];
+    /**
+     * @var string the type of client
+     *             Used by [[getFilter]] to generate filter
+     *
+     * @see getFilter()
+     */
+    public $accountType;
 
-    public function getPluginOptions($config) {
+    /** @inheritdoc */
+    public function getFilter()
+    {
+        return ArrayHelper::merge(parent::getFilter(), [
+            'client' => 'client/client',
+            'server' => 'server/server',
+            'type'   => ['format' => $this->accountType],
+        ]);
+    }
+
+    public function getPluginOptions($config)
+    {
         return parent::getPluginOptions([
             'clearWhen' => ['client/client', 'server/server'],
             'affects'   => [

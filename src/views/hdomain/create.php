@@ -3,11 +3,11 @@
 /* @var $model hipanel\modules\ticket\models\Thread */
 /* @var $type string */
 
-$this->title                   = Yii::t('app', 'Create domain');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Domains'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Create domain');
+$this->breadcrumbs->setItems([['label' => Yii::t('app', 'Databases'), 'url' => ['index']]]);
+$this->breadcrumbs->setItems([$this->title]);
 ?>
 
 <div class="db-create">
-    <?= $this->render('_form', compact('model')) ?>
+    <?= $this->render('_form', compact('models')) ?>
 </div>

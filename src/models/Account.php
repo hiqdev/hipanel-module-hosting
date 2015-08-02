@@ -41,7 +41,7 @@ class Account extends \hipanel\base\Model
                     'type',
                 ],
                 'safe',
-                'on' => ['create-user', 'create-ftponly']
+                'on' => ['create', 'create-ftponly']
             ],
             [
                 [
@@ -52,7 +52,7 @@ class Account extends \hipanel\base\Model
                     'type',
                 ],
                 'required',
-                'on' => ['create-user', 'create-ftponly']
+                'on' => ['create', 'create-ftponly']
             ],
             [
                 ['password'],
@@ -65,32 +65,32 @@ class Account extends \hipanel\base\Model
                 'compareAttribute' => 'login',
                 'message'          => Yii::t('app', 'Password must not be equal to login'),
                 'operator'         => '!=',
-                'on'               => ['create-user', 'create-ftponly', 'update', 'set-password'],
+                'on'               => ['create', 'create-ftponly', 'update', 'set-password'],
             ],
             [
                 'login',
                 LoginValidator::className(),
-                'on' => ['create-user', 'create-ftponly', 'set-password']
+                'on' => ['create', 'create-ftponly', 'set-password']
             ],
             [
                 'login',
                 'in',
                 'range'   => ['root', 'toor'],
                 'not'     => true,
-                'on'      => ['create-user', 'create-ftponly'],
+                'on'      => ['create', 'create-ftponly'],
                 'message' => Yii::t('app', 'You can not use this login')
             ],
             [
                 'sshftp_ips',
                 'filter',
                 'filter' => function ($value) { return ArrayHelper::csplit($value); },
-                'on'     => ['create-user', 'create-ftponly', 'update', 'set-allowed-ips']
+                'on'     => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
             ],
             [
                 'sshftp_ips',
                 'each',
                 'rule' => [IpValidator::className(), 'negationChar' => true, 'subnet' => null],
-                'on'   => ['create-user', 'create-ftponly', 'update', 'set-allowed-ips']
+                'on'   => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
             ]
         ];
     }
@@ -142,14 +142,13 @@ class Account extends \hipanel\base\Model
     {
         return [
             'set-allowed-ips' => [null, 'SetAllowedIPs'],
-            'create-user'     => 'create',
             'create-ftponly'  => 'create',
         ];
     }
 
     public function onBeforeValidate()
     {
-        if ($this->scenario == 'create-user') {
+        if ($this->scenario == 'create') {
             $this->type = 'user';
         } elseif ($this->scenario == 'create-ftponly') {
             $this->type = 'ftponly';
