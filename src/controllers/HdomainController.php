@@ -16,15 +16,11 @@ class HdomainController extends \hipanel\base\CrudController
         return [
             'index'  => [
                 'class'       => 'hipanel\actions\IndexAction',
-                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true]
+                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true],
             ],
             'view'   => [
                 'class'       => 'hipanel\actions\ViewAction',
-                'findOptions' => [
-                    'with_aliases' => true,
-                    'with_vhosts'  => true,
-                    'with_request' => true
-                ]
+                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true],
             ],
             'create' => [
                 'class'   => 'hipanel\actions\SmartCreateAction',
