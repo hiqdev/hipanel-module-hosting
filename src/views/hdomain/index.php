@@ -21,17 +21,19 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
 
 
 echo Html::beginForm();
-$box = ActionBox::begin(['bulk' => true, 'options' => ['class' => 'box-info']]);
+$box = ActionBox::begin(['model' => $model, 'options' => ['class' => 'box-info']]);
 $box->beginActions();
-echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', 'Domain')]), ['create'], ['class' => 'btn btn-primary']);
+print $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', 'Domain')]));
 echo '&nbsp;';
+print $box->renderSearchButton();
 $box->endActions();
 
 $box->beginBulkActions();
 echo Html::submitButton(Yii::t('app', 'Delete'), ['class' => 'btn btn-danger', 'formmethod' => 'POST', 'formaction' => Url::to('delete')]);
 $box->endBulkActions();
+print $box->renderSearchForm();
 $box::end();
-
+$box->beginBulkForm();
 echo HdomainGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
@@ -48,5 +50,5 @@ echo HdomainGridView::widget([
         'checkbox',
     ],
 ]);
-
+$box::endBulkForm();
 Pjax::end();

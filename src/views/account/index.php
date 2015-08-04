@@ -21,11 +21,12 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
 Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
 
 echo Html::beginForm();
-$box = ActionBox::begin(['bulk' => true, 'options' => ['class' => 'box-info']]);
+$box = ActionBox::begin(['model' => $model, 'bulk' => true, 'options' => ['class' => 'box-info']]);
 $box->beginActions();
-echo Html::a(Yii::t('app', 'Advanced search'), '#', ['class' => 'btn btn-info search-button']) . '&nbsp;';
+
 echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'account']), ['create'], ['class' => 'btn btn-success']) . '&nbsp;';
 echo Html::a(Yii::t('app', 'Create FTP {modelClass}', ['modelClass' => 'account']), ['create-ftponly'], ['class' => 'btn btn-success']) . '&nbsp;';
+print $box->renderSearchButton();
 echo LinkSorter::widget([
     'show'       => true,
     'sort'       => $dataProvider->getSort(),
@@ -33,14 +34,16 @@ echo LinkSorter::widget([
         'login', 'client', 'server', 'state', 'type'
     ],
 ]);
+
 $box->endActions();
 
 $box->beginBulkActions();
 echo Html::submitButton(Yii::t('app', 'Delete'), ['class' => 'btn btn-danger', 'formmethod' => 'POST', 'formaction' => Url::to('delete')]);
 $box->endBulkActions();
-echo $this->render('_search', compact('model'));
+print $box->renderSearchForm();
 $box::end();
 
+$box->beginBulkForm();
 echo AccountGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
@@ -54,5 +57,6 @@ echo AccountGridView::widget([
         'actions',
     ],
 ]);
+$box::endBulkForm();
 
 Pjax::end();

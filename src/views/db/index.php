@@ -13,10 +13,10 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
 
 Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
 
-echo Html::beginForm();
-$box = ActionBox::begin(['bulk' => true, 'options' => ['class' => 'box-info']]);
+$box = ActionBox::begin(['model' => $model, 'options' => ['class' => 'box-info']]);
 $box->beginActions();
-echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'DB']), ['create'], ['class' => 'btn btn-success']) . '&nbsp;';
+print $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'DB'])) . '&nbsp;';
+print $box->renderSearchButton();
 echo LinkSorter::widget([
     'show'       => true,
     'sort'       => $dataProvider->getSort(),
@@ -29,8 +29,9 @@ $box->endActions();
 $box->beginBulkActions();
 echo Html::submitButton(Yii::t('app', 'Delete'), ['class' => 'btn btn-danger', 'formmethod' => 'POST', 'formaction' => Url::to('delete')]);
 $box->endBulkActions();
+print $box->renderSearchForm();
 $box::end();
-
+$box->beginBulkForm();
 echo DbGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
@@ -45,5 +46,5 @@ echo DbGridView::widget([
         'actions'
     ],
 ]);
-
+$box::endBulkForm();
 Pjax::end();
