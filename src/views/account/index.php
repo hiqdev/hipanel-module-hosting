@@ -46,10 +46,10 @@ echo AccountGridView::widget([
     'filterModel'  => $searchModel,
     'columns'      => [
         'checkbox',
-        'seller_id',
-        'client_id',
-        'server',
         'account',
+        'client_id',
+        'seller_id',
+        'server',
         'state',
         'actions',
     ],

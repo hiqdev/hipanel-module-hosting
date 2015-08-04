@@ -120,6 +120,7 @@ class Account extends \hipanel\base\Model
      */
     public function isOperable()
     {
+        return false;
         /// TODO: all is operable for admin
         if (!in_array($this->state, $this->goodStates())) {
             return false;
