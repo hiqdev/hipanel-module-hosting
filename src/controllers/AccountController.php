@@ -20,7 +20,7 @@ class AccountController extends \hipanel\base\CrudController
                 'error'   => Yii::t('app', 'An error occurred when trying to create account')
             ],
             'create-ftponly'  => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class'   => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'Account creating task has been added to queue'),
                 'error'   => Yii::t('app', 'An error occurred when trying to create account')
             ],

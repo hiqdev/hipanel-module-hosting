@@ -38,16 +38,16 @@ echo HdomainGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $searchModel,
     'columns'      => [
+        'checkbox',
         'hdomain',
-        'account',
-        'server',
         'client_id',
         'seller_id',
+        'account',
+        'server',
         'state',
         'ip',
         'service',
         'actions',
-        'checkbox',
     ],
 ]);
 $box::endBulkForm();

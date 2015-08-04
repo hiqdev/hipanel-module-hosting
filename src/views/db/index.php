@@ -37,9 +37,9 @@ echo DbGridView::widget([
     'filterModel'  => $searchModel,
     'columns'      => [
         'checkbox',
-        'seller_id',
-        'client_id',
         'name',
+        'client_id',
+        'seller_id',
         'service_ip',
         'description',
         'state',

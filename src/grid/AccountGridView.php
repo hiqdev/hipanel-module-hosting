@@ -12,18 +12,19 @@ use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\widgets\account\State;
 use hipanel\modules\server\grid\ServerColumn;
+use hipanel\widgets\ArraySpoiler;
 
 class AccountGridView extends \hipanel\grid\BoxedGridView
 {
     static public function defaultColumns()
     {
         return [
-            'account' => [
-                'class'                 => MainColumn::className(),
-                'attribute'             => 'login',
-                'filterAttribute'       => 'login_like',
+            'account'    => [
+                'class'           => MainColumn::className(),
+                'attribute'       => 'login',
+                'filterAttribute' => 'login_like',
             ],
-            'state'       => [
+            'state'      => [
                 'class'  => RefColumn::className(),
                 'format' => 'raw',
                 'value'  => function ($model) {
@@ -31,14 +32,23 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 },
                 'gtype'  => 'state,db',
             ],
-            'server'      => [
+            'server'     => [
                 'class' => ServerColumn::className()
             ],
-            'actions'     => [
+            'sshftp_ips' => [
+                'attribute' => 'sshftp_ips',
+                'format'    => 'raw',
+                'value'     => function ($model) {
+                    return ArraySpoiler::widget([
+                        'data'         => $model->sshftp_ips,
+                        'visibleCount' => 3
+                    ]);
+                }
+            ],
+            'actions'    => [
                 'class'    => ActionColumn::className(),
                 'template' => '{view} {update} {delete}'
             ],
-
         ];
     }
 }
