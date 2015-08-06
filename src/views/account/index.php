@@ -23,18 +23,29 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
 echo Html::beginForm();
 $box = ActionBox::begin(['model' => $model, 'bulk' => true, 'options' => ['class' => 'box-info']]);
 $box->beginActions();
+?>
+    <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <?= Yii::t('app', 'Create accaunt'); ?>&nbsp;
+            <span class="caret"></span>
+        </button>
+        <?= $box->renderSearchButton(); ?>
+        <?= LinkSorter::widget([
+            'show'       => true,
+            'sort'       => $dataProvider->getSort(),
+            'attributes' => [
+                'login', 'client', 'server', 'state', 'type'
+            ],
+        ]); ?>
+        <?= \yii\bootstrap\Dropdown::widget([
+            'items' => [
+                ['label' => Yii::t('app', 'Create {modelClass}', ['modelClass' => 'account']), 'url' => ['create']],
+                ['label' => Yii::t('app', 'Create FTP {modelClass}', ['modelClass' => 'account']), 'url' => ['create-ftponly']],
+            ]
+        ]) . '&nbsp;'; ?>
+    </div>
 
-echo Html::a(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'account']), ['create'], ['class' => 'btn btn-success']) . '&nbsp;';
-echo Html::a(Yii::t('app', 'Create FTP {modelClass}', ['modelClass' => 'account']), ['create-ftponly'], ['class' => 'btn btn-success']) . '&nbsp;';
-print $box->renderSearchButton();
-echo LinkSorter::widget([
-    'show'       => true,
-    'sort'       => $dataProvider->getSort(),
-    'attributes' => [
-        'login', 'client', 'server', 'state', 'type'
-    ],
-]);
-
+<?php
 $box->endActions();
 
 $box->beginBulkActions();
