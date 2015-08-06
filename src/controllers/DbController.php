@@ -36,7 +36,7 @@ class DbController extends CrudController
                 'error'   => Yii::t('app', 'Failed to set DB description'),
             ],
             'delete'          => [
-                'class'   => 'hipanel\actions\SmartDeleteAction',
+                'class'   => 'hipanel\actions\SmartPerformAction',
                 'success' => Yii::t('app', 'DB delete task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while deleting DB'),
             ],
