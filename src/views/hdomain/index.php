@@ -21,11 +21,21 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
 
 
 echo Html::beginForm();
-$box = ActionBox::begin(['model' => $model, 'options' => ['class' => 'box-info']]);
+$box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]);
 $box->beginActions();
-print $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', 'Domain')]));
-echo '&nbsp;';
+print $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', 'Domain')])) . '&nbsp;';
 print $box->renderSearchButton();
+print $box->renderSorter([
+    'attributes' => [
+        'domain',
+        'client',
+        'seller',
+        'account',
+        'server',
+        'state',
+    ],
+]);
+print $box->renderPerPage();
 $box->endActions();
 
 $box->beginBulkActions();

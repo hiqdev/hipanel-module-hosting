@@ -13,17 +13,17 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
 
 Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
 
-$box = ActionBox::begin(['model' => $model, 'options' => ['class' => 'box-info']]);
+$box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]);
 $box->beginActions();
 print $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'DB'])) . '&nbsp;';
-print $box->renderSearchButton();
-echo LinkSorter::widget([
-    'show'       => true,
-    'sort'       => $dataProvider->getSort(),
+print $box->renderSearchButton(); ?>
+<?= $box->renderSorter([
     'attributes' => [
         'client', 'account', 'server', 'name', 'description', 'state'
     ],
-]);
+]) ?>
+<?= $box->renderPerPage() ?>
+<?php
 $box->endActions();
 
 $box->beginBulkActions();

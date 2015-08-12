@@ -21,7 +21,7 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
 Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
 
 echo Html::beginForm();
-$box = ActionBox::begin(['model' => $model, 'bulk' => true, 'options' => ['class' => 'box-info']]);
+$box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]);
 $box->beginActions();
 ?>
     <div class="dropdown">
@@ -30,13 +30,12 @@ $box->beginActions();
             <span class="caret"></span>
         </button>
         <?= $box->renderSearchButton(); ?>
-        <?= LinkSorter::widget([
-            'show'       => true,
-            'sort'       => $dataProvider->getSort(),
+        <?= $box->renderSorter([
             'attributes' => [
                 'login', 'client', 'server', 'state', 'type'
             ],
-        ]); ?>
+        ]) ?>
+        <?= $box->renderPerPage() ?>
         <?= \yii\bootstrap\Dropdown::widget([
             'items' => [
                 ['label' => Yii::t('app', 'Create {modelClass}', ['modelClass' => 'account']), 'url' => ['create']],
