@@ -60,8 +60,8 @@ echo AccountGridView::widget([
     'columns'      => [
         'checkbox',
         'account',
-        'client_id',
-        'seller_id',
+        'client',
+        'seller',
         'server',
         'state',
         'actions',

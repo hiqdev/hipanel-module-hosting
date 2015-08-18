@@ -50,8 +50,8 @@ echo HdomainGridView::widget([
     'columns'      => [
         'checkbox',
         'hdomain',
-        'client_id',
-        'seller_id',
+        'client',
+        'seller',
         'account',
         'server',
         'state',

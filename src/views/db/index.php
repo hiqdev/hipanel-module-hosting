@@ -38,8 +38,8 @@ echo DbGridView::widget([
     'columns'      => [
         'checkbox',
         'name',
-        'client_id',
-        'seller_id',
+        'client',
+        'seller',
         'service_ip',
         'description',
         'state',
