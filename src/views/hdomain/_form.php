@@ -90,7 +90,7 @@ $form = ActiveForm::begin([
     'enableClientValidation' => true,
     'validateOnBlur'         => true,
     'enableAjaxValidation'   => true,
-    'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->isNewRecord ? reset($models)->scenario : 'update']),
+    'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->isNewRecord ? $model->scenario : 'update']),
 ]) ?>
 
     <div class="container-items">

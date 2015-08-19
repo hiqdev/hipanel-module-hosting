@@ -7,7 +7,7 @@
 
 namespace hipanel\modules\hosting\models;
 
-use hipanel\helpers\ArrayHelper;
+use hipanel\helpers\StringHelper;
 use hipanel\modules\client\validators\LoginValidator;
 use hipanel\validators\IpValidator;
 use Yii;
@@ -25,7 +25,7 @@ class Account extends \hipanel\base\Model
     public function rules()
     {
         return [
-            [['id', 'client_id', 'device_id', 'server_id'], 'integer'],
+            [['client_id', 'device_id', 'server_id'], 'integer'],
             [
                 ['login', 'password', 'uid', 'gid', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller', 'seller_id'],
                 'safe'
@@ -48,7 +48,6 @@ class Account extends \hipanel\base\Model
                     'login',
                     'server',
                     'password',
-                    'sshftp_ips',
                     'type',
                 ],
                 'required',
@@ -60,7 +59,7 @@ class Account extends \hipanel\base\Model
                 'on' => ['set-password']
             ],
             [
-                'password',
+                ['password'],
                 'compare',
                 'compareAttribute' => 'login',
                 'message'          => Yii::t('app', 'Password must not be equal to login'),
@@ -68,12 +67,12 @@ class Account extends \hipanel\base\Model
                 'on'               => ['create', 'create-ftponly', 'update', 'set-password'],
             ],
             [
-                'login',
+                ['login'],
                 LoginValidator::className(),
                 'on' => ['create', 'create-ftponly', 'set-password']
             ],
             [
-                'login',
+                ['login'],
                 'in',
                 'range'   => ['root', 'toor'],
                 'not'     => true,
@@ -81,16 +80,19 @@ class Account extends \hipanel\base\Model
                 'message' => Yii::t('app', 'You can not use this login')
             ],
             [
-                'sshftp_ips',
+                ['sshftp_ips'],
                 'filter',
-                'filter' => function ($value) { return ArrayHelper::csplit($value); },
+                'filter' => function ($value) { return StringHelper::explode($value); },
                 'on'     => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
             ],
             [
-                'sshftp_ips',
+                ['sshftp_ips'],
                 'each',
                 'rule' => [IpValidator::className(), 'negationChar' => true, 'subnet' => null],
                 'on'   => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
+            ],
+            [
+                ['id'], 'integer', 'on' => ['delete']
             ]
         ];
     }

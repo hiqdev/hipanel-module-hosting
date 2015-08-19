@@ -9,5 +9,5 @@ $this->breadcrumbs->setItems([$this->title]);
 ?>
 
 <div class="db-create">
-    <?= $this->render('_form', compact('models')) ?>
+    <?= $this->render('_form', compact('model', 'models')) ?>
 </div>

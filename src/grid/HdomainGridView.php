@@ -20,28 +20,29 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'hdomain' => [
-                'class'           => MainColumn::className(),
+                'class' => MainColumn::className(),
                 'filterAttribute' => 'domain_like',
-                'attribute'       => 'domain'
+                'attribute' => 'domain'
             ],
             'account' => [
                 'class' => AccountColumn::className()
             ],
-            'server'  => [
+            'server' => [
                 'class' => ServerColumn::className()
             ],
-            'ip'      => [
+            'ip' => [
                 'filter' => false,
                 'format' => 'raw',
-                'value'  => function ($model) {
-                    $vhost = $model['vhost'];
+                'value' => function ($model) {
+                    $html = '';
+                    $vhost = $model->getAttribute('vhost');
 
                     $html = $vhost['ip'];
                     if (isset($vhost['port']) && $vhost['port'] != 80) {
                         $html .= ':' . $vhost['port'];
                     }
                     if ($model->isProxied) {
-                        $backend = $model['vhost']['backend'];
+                        $backend = $vhost['backend'];
                         $html .= ' ' . Html::tag('i', '', ['class' => 'fa fa-long-arrow-right']) . ' ' . $backend['ip'];
                         if ($backend['port'] != 80) {
                             $html .= ':' . $backend['port'];
@@ -52,19 +53,19 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'service' => [
                 'value' => function ($model) {
-                    return $model->vhost['service'];
+                    return $model->getAttribute('vhost')['service'];
                 }
             ],
-            'state'   => [
-                'class'  => RefColumn::className(),
+            'state' => [
+                'class' => RefColumn::className(),
                 'format' => 'raw',
-                'value'  => function ($model) {
+                'value' => function ($model) {
                     return State::widget(compact('model'));
                 },
-                'gtype'  => 'state,hdomain',
+                'gtype' => 'state,hdomain',
             ],
             'actions' => [
-                'class'    => ActionColumn::className(),
+                'class' => ActionColumn::className(),
                 'template' => '{view} {delete}'
             ],
         ];

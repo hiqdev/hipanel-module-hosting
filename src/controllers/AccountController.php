@@ -7,6 +7,7 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\models\Ref;
 use Yii;
 
 class AccountController extends \hipanel\base\CrudController
@@ -14,6 +15,14 @@ class AccountController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
+            'index' => [
+                'class'     => 'hipanel\actions\IndexAction',
+                'data'  => function ($action) {
+                    return [
+                        'stateData' => $action->controller->getStateData(),
+                    ];
+                }
+            ],
             'create'          => [
                 'class'   => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'Account creating task has been added to queue'),
@@ -37,6 +46,16 @@ class AccountController extends \hipanel\base\CrudController
             'validate-form'   => [
                 'class' => 'hipanel\actions\ValidateFormAction',
             ],
+            'delete'          => [
+                'class'   => 'hipanel\actions\SmartDeleteAction',
+                'success' => Yii::t('app', 'Account deleting task has been added to queue'),
+                'error'   => Yii::t('app', 'An error occurred when trying to delete account')
+            ],
         ];
+    }
+
+    public function getStateData()
+    {
+        return Ref::getList('state,account');
     }
 }
