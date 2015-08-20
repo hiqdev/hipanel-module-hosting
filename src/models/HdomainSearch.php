@@ -37,6 +37,7 @@ class HdomainSearch extends Hdomain {
             'with_request',
             'with_vhosts',
             'with_dns',
+            'show_aliases_only',
         ]);
     }
 }

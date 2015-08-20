@@ -16,7 +16,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
         <?= $box->renderSearchButton(); ?>
         <?= $box->renderSorter([
             'attributes' => [
-                'client', 'account', 'server', 'name', 'description', 'state'
+                'client', 'seller', 'account', 'server', 'name', 'description', 'state'
             ],
         ]) ?>
         <?= $box->renderPerPage() ?>

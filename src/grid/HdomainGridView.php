@@ -12,6 +12,7 @@ use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
+use hipanel\widgets\ArraySpoiler;
 use yii\helpers\Html;
 
 class HdomainGridView extends \hipanel\grid\BoxedGridView
@@ -63,6 +64,18 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                     return State::widget(compact('model'));
                 },
                 'gtype' => 'state,hdomain',
+            ],
+            'dns_on' => [
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->dns_on ? \Yii::t('app', 'Enabled') : \Yii::t('app', 'Disabled');
+                }
+            ],
+            'aliases' => [
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return ArraySpoiler::widget(['data' => $model->getAttribute('aliases')]);
+                }
             ],
             'actions' => [
                 'class' => ActionColumn::className(),

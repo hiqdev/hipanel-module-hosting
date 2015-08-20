@@ -17,7 +17,7 @@ use hiqdev\combo\StaticCombo;
     <?= $search->field('client_id')->widget(ClientCombo::classname(), ['formElementSelector' => '.form-group']) ?>
     <?= $search->field('seller_id')->widget(SellerCombo::classname(), ['formElementSelector' => '.form-group']) ?>
     <?= $search->field('state')->widget(StaticCombo::classname(), [
-        'data' => $state_data,
+        'data' => $stateData,
         'hasId' => true,
         'pluginOptions' => [
             'select2Options' => [

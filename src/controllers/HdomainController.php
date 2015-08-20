@@ -27,7 +27,7 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
-                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true],
+                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true, 'show_deleted' => true, 'show_aliases' => true],
             ],
             'create' => [
                 'class' => 'hipanel\actions\SmartCreateAction',
@@ -56,6 +56,9 @@ class HdomainController extends \hipanel\base\CrudController
 
     public function getTypeData()
     {
-        return Ref::getList('type,hdomain');
+        return [
+            0 => Yii::t('app', 'Domain'),
+            1 => Yii::t('app', 'Alias'),
+        ];
     }
 }

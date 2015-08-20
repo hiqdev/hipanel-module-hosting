@@ -20,7 +20,7 @@ use hiqdev\combo\StaticCombo;
             ]
         ],
     ]) ?>
-    <?= $search->field('type')->widget(StaticCombo::classname(), [
+    <?= $search->field('show_aliases_only')->widget(StaticCombo::classname(), [
         'data' => $typeData,
         'hasId' => true,
         'pluginOptions' => [
@@ -28,7 +28,7 @@ use hiqdev\combo\StaticCombo;
                 'multiple' => false,
             ]
         ],
-    ]) ?>
+    ])->label(Yii::t('app', 'Type')); ?>
 </div>
 
 <div class="col-md-6">

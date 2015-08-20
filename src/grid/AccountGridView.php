@@ -7,10 +7,12 @@
 
 namespace hipanel\modules\hosting\grid;
 
+use Yii;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\widgets\account\State;
+use hipanel\modules\hosting\widgets\account\Type;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 
@@ -30,7 +32,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 'value'  => function ($model) {
                     return State::widget(compact('model'));
                 },
-                'gtype'  => 'state,db',
+                'gtype'  => 'state,account',
             ],
             'server'     => [
                 'class' => ServerColumn::className()
@@ -48,6 +50,14 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             'actions'    => [
                 'class'    => ActionColumn::className(),
                 'template' => '{view} {update} {delete}'
+            ],
+            'type'      => [
+                'class'  => RefColumn::className(),
+                'format' => 'raw',
+                'value'  => function ($model) {
+                    return Type::widget(compact('model'));
+                },
+                'gtype'  => 'type,account',
             ],
         ];
     }

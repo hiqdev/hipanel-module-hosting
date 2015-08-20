@@ -133,7 +133,7 @@ class Account extends \hipanel\base\Model
 
     public function getSshFtpIpsList()
     {
-        return implode(', ', $this->sshftp_ips);
+        return implode(', ', empty($this->sshftp_ips) ? ['0.0.0.0/0'] : $this->sshftp_ips);
     }
 
     public function getKnownTypes()

@@ -82,6 +82,8 @@ $this->breadcrumbs->setItems([
                         'service',
                         'ip',
                         'state',
+                        'dns_on',
+                        'aliases',
                     ],
                 ]);
                 $box->endBody();

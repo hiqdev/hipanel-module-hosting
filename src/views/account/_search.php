@@ -25,6 +25,15 @@ use hiqdev\combo\StaticCombo;
 <div class="col-md-6">
     <?= $search->field('client_id')->widget(ClientCombo::classname(), ['formElementSelector' => '.form-group']) ?>
     <?= $search->field('seller_id')->widget(SellerCombo::classname(), ['formElementSelector' => '.form-group']) ?>
+    <?= $search->field('type')->widget(StaticCombo::classname(), [
+        'data' => $typeData,
+        'hasId' => true,
+        'pluginOptions' => [
+            'select2Options' => [
+                'multiple' => false,
+            ]
+        ],
+    ]) ?>
 </div>
 
 

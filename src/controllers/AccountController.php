@@ -20,8 +20,12 @@ class AccountController extends \hipanel\base\CrudController
                 'data'  => function ($action) {
                     return [
                         'stateData' => $action->controller->getStateData(),
+                        'typeData' => $action->controller->getTypeData(),
                     ];
                 }
+            ],
+            'view' => [
+                'class'     => 'hipanel\actions\ViewAction'
             ],
             'create'          => [
                 'class'   => 'hipanel\actions\SmartCreateAction',
@@ -57,5 +61,10 @@ class AccountController extends \hipanel\base\CrudController
     public function getStateData()
     {
         return Ref::getList('state,account');
+    }
+
+    public function getTypeData()
+    {
+        return Ref::getList('type,account');
     }
 }

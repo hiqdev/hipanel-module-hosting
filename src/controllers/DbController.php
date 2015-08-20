@@ -24,6 +24,9 @@ class DbController extends CrudController
                     ];
                 }
             ],
+            'view' => [
+                'class'     => 'hipanel\actions\ViewAction'
+            ],
             'create'          => [
                 'class'   => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'DB create task has been created successfully'),
@@ -43,6 +46,9 @@ class DbController extends CrudController
                 'class'   => 'hipanel\actions\SmartUpdateAction',
                 'success' => Yii::t('app', 'DB description set successfully'),
                 'error'   => Yii::t('app', 'Failed to set DB description'),
+            ],
+            'validate-form'   => [
+                'class' => 'hipanel\actions\ValidateFormAction',
             ],
             'delete'          => [
                 'class'   => 'hipanel\actions\SmartPerformAction',

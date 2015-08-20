@@ -36,7 +36,7 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
             <?= $box->renderSearchButton() ?>
             <?= $box->renderSorter([
                 'attributes' => [
-                    'login', 'client', 'server', 'state', 'type'
+                    'login', 'client', 'seller', 'server', 'state', 'type'
                 ],
             ]) ?>
             <?= $box->renderPerPage() ?>
@@ -45,7 +45,7 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
     <?php $box->beginBulkActions() ?>
         <?= $box->renderDeleteButton() ?>
     <?php $box->endBulkActions() ?>
-        <?= $box->renderSearchForm(['stateData' => $stateData]) ?>
+        <?= $box->renderSearchForm(['stateData' => $stateData, 'typeData' => $typeData]) ?>
     <?php $box->end() ?>
 
     <?php $box->beginBulkForm() ?>
@@ -59,6 +59,7 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
                 'seller',
                 'server',
                 'state',
+                'type',
                 'actions',
             ],
         ]) ?>

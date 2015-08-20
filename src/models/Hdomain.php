@@ -21,6 +21,12 @@ class Hdomain extends \hipanel\base\Model
      */
     public $vhost;
 
+    /**
+     * @var array Stores array of aliases of hdomain 
+     */
+    public $aliases;
+
+
     /** @inheritdoc */
     public function rules()
     {
@@ -87,6 +93,7 @@ class Hdomain extends \hipanel\base\Model
             'with_www'       => Yii::t('app', 'Create www alias'),
             'proxy_enable'   => Yii::t('app', 'Enable proxy (NEED MANUAL)'),
             'backuping_type' => Yii::t('app', 'Backup periodicity'),
+            'dns_on'         => Yii::t('app', 'DNS'),
         ]);
     }
 
