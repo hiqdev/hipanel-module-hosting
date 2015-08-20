@@ -8,11 +8,23 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\base\SearchModelTrait;
+use hipanel\helpers\StringHelper;
 use yii\helpers\ArrayHelper;
 
-class HdomainSearch extends Hdomain{
+class HdomainSearch extends Hdomain {
     use SearchModelTrait {
         searchAttributes as defaultSearchAttributes;
+        rules as defaultRules;
+    }
+
+    public function rules() {
+        return ArrayHelper::merge(self::defaultRules(), [
+            [
+                ['domain_in'],
+                'filter',
+                'filter' => function ($value) { return is_array($value) ? $value : StringHelper::explode($value); }
+            ],
+        ]);
     }
 
     /**
@@ -24,7 +36,7 @@ class HdomainSearch extends Hdomain{
             'with_aliases',
             'with_request',
             'with_vhosts',
-            'with_dns'
+            'with_dns',
         ]);
     }
 }

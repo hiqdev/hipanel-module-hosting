@@ -18,7 +18,8 @@ $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered li
     'filterModel'  => $searchModel,
     'columns'      => [
         'checkbox',
-        'seller_id','client_id',
+        'seller',
+        'client',
         'mail'
     ],
 ]) ?>

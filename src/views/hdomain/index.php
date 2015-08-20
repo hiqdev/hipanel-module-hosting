@@ -17,48 +17,46 @@ $this->breadcrumbs->setItems([
 ]);
 $this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered list' : 'full list';
 
-Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]));
+Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
 
+<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
+    <?php $box->beginActions() ?>
+        <?= $box->renderCreateButton(Yii::t('app', 'Create domain')) ?>
+        <?= $box->renderSearchButton() ?>
+        <?= $box->renderSorter([
+            'attributes' => [
+                'domain',
+                'client',
+                'seller',
+                'account',
+                'server',
+                'state',
+            ],
+        ]) ?>
+        <?= $box->renderPerPage() ?>
+    <?php $box->endActions() ?>
 
-echo Html::beginForm();
-$box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]);
-$box->beginActions();
-print $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', 'Domain')])) . '&nbsp;';
-print $box->renderSearchButton();
-print $box->renderSorter([
-    'attributes' => [
-        'domain',
-        'client',
-        'seller',
-        'account',
-        'server',
-        'state',
-    ],
-]);
-print $box->renderPerPage();
-$box->endActions();
-
-$box->beginBulkActions();
-echo Html::submitButton(Yii::t('app', 'Delete'), ['class' => 'btn btn-danger', 'formmethod' => 'POST', 'formaction' => Url::to('delete')]);
-$box->endBulkActions();
-print $box->renderSearchForm();
-$box::end();
-$box->beginBulkForm();
-echo HdomainGridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel'  => $searchModel,
-    'columns'      => [
-        'checkbox',
-        'hdomain',
-        'client_id',
-        'seller_id',
-        'account',
-        'server',
-        'state',
-        'ip',
-        'service',
-        'actions',
-    ],
-]);
-$box::endBulkForm();
-Pjax::end();
+    <?php $box->beginBulkActions() ?>
+        <?= $box->renderDeleteButton() ?>
+    <?php $box->endBulkActions() ?>
+        <?= $box->renderSearchForm(compact(['stateData', 'typeData'])) ?>
+    <?php $box->end() ?>
+    <?php $box->beginBulkForm() ?>
+        <?= HdomainGridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel'  => $model,
+            'columns'      => [
+                'checkbox',
+                'hdomain',
+                'client',
+                'seller',
+                'account',
+                'server',
+                'state',
+                'ip',
+                'service',
+                'actions',
+            ],
+        ]) ?>
+    <?php $box->endBulkForm() ?>
+<?php Pjax::end();

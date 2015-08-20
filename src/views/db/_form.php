@@ -36,7 +36,7 @@ $form = ActiveForm::begin([
                                 print $form->field($model, "[$i]service_id")->widget(DbServiceCombo::className(), ['formElementSelector' => '.form-instance']);
 
                                 print $form->field($model, "[$i]name");
-                                print $form->field($model, "[$i]password")->widget(PasswordInput::className(), ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]password")->widget(PasswordInput::className());
 
                                 print $form->field($model, "[$i]description");
                                 ?>

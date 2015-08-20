@@ -7,6 +7,7 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\models\Ref;
 use Yii;
 
 class HdomainController extends \hipanel\base\CrudController
@@ -14,20 +15,26 @@ class HdomainController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'index'  => [
-                'class'       => 'hipanel\actions\IndexAction',
+            'index' => [
+                'class' => 'hipanel\actions\IndexAction',
                 'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true],
+                'data' => function ($action) {
+                    return [
+                        'stateData' => $action->controller->getStateData(),
+                        'typeData' => $action->controller->getTypeData(),
+                    ];
+                }
             ],
-            'view'   => [
-                'class'       => 'hipanel\actions\ViewAction',
+            'view' => [
+                'class' => 'hipanel\actions\ViewAction',
                 'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true],
             ],
             'create' => [
-                'class'   => 'hipanel\actions\SmartCreateAction',
+                'class' => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'Account create task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while creating account'),
+                'error' => Yii::t('app', 'Error while creating account'),
             ],
-            'validate-form'   => [
+            'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',
             ],
             // Premium Autorenewal
@@ -40,5 +47,15 @@ class HdomainController extends \hipanel\base\CrudController
                 'success' => Yii::t('app', 'Premium autorenewal has been disabled'),
             ],
         ];
+    }
+
+    public function getStateData()
+    {
+        return Ref::getList('state,hdomain');
+    }
+
+    public function getTypeData()
+    {
+        return Ref::getList('type,hdomain');
     }
 }

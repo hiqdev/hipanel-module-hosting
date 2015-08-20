@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\base\CrudController;
+use hipanel\models\Ref;
 use Yii;
 
 class DbController extends CrudController
@@ -15,6 +16,14 @@ class DbController extends CrudController
     public function actions()
     {
         return [
+            'index' => [
+                'class'     => 'hipanel\actions\IndexAction',
+                'data'  => function ($action) {
+                    return [
+                        'stateData' => $action->controller->getStateData(),
+                    ];
+                }
+            ],
             'create'          => [
                 'class'   => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'DB create task has been created successfully'),
@@ -41,5 +50,10 @@ class DbController extends CrudController
                 'error'   => Yii::t('app', 'Error while deleting DB'),
             ],
         ];
+    }
+
+    public function getStateData()
+    {
+        return Ref::getList('state,db');
     }
 }
