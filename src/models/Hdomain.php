@@ -68,6 +68,8 @@ class Hdomain extends \hipanel\base\Model
             [['dns_on', 'with_www', 'proxy_enable'], 'boolean'],
             [['domain', 'alias'], DomainValidator::className()],
             [['ip', 'backend_ip'], 'safe'], /// TODO: replace with IP validator
+
+            [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],
         ];
     }
 

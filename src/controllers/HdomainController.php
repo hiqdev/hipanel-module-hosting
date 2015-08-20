@@ -30,6 +30,15 @@ class HdomainController extends \hipanel\base\CrudController
             'validate-form'   => [
                 'class' => 'hipanel\actions\ValidateFormAction',
             ],
+            // Premium Autorenewal
+            'enable-paid-feature-autorenewal' => [
+                'class' => 'hipanel\actions\SmartPerformAction',
+                'success' => Yii::t('app', 'Premium autorenewal has been enabled'),
+            ],
+            'disable-paid-feature-autorenewal' => [
+                'class' => 'hipanel\actions\SmartPerformAction',
+                'success' => Yii::t('app', 'Premium autorenewal has been disabled'),
+            ],
         ];
     }
 }
