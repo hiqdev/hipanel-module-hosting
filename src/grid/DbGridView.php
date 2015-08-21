@@ -21,8 +21,9 @@ class DbGridView extends BoxedGridView
     static public function defaultColumns()
     {
         return [
-            'db'          => [
+            'name'          => [
                 'class'           => MainColumn::className(),
+                'format' => 'html',
                 'attribute'       => 'name',
                 'filterAttribute' => 'name_like'
             ],
@@ -33,6 +34,9 @@ class DbGridView extends BoxedGridView
                     return State::widget(compact('model'));
                 },
                 'gtype'  => 'state,db',
+            ],
+            'account' => [
+                'class' => AccountColumn::className()
             ],
             'server'      => [
                 'class' => ServerColumn::className()

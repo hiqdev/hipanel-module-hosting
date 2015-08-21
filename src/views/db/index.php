@@ -34,10 +34,10 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
             'columns'      => [
                 'checkbox',
                 'name',
+                'account',
+                'server',
                 'client',
                 'seller',
-                'server',
-                'service_ip',
                 'description',
                 'state',
                 'actions'

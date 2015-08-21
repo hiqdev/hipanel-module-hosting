@@ -25,52 +25,26 @@ class Account extends \hipanel\base\Model
     public function rules()
     {
         return [
-            [['client_id', 'device_id', 'server_id'], 'integer'],
+            [['id', 'client_id', 'device_id', 'server_id'],             'integer'],
             [
                 ['login', 'password', 'uid', 'gid', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller', 'seller_id'],
                 'safe'
             ],
-            [['type', 'type_label', 'state', 'state_label'], 'safe'],
-            [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label', 'mail_settings'], 'safe'],
-            [
-                [
-                    'login',
-                    'server',
-                    'password',
-                    'sshftp_ips',
-                    'type',
-                ],
-                'safe',
-                'on' => ['create', 'create-ftponly']
-            ],
-            [
-                [
-                    'login',
-                    'server',
-                    'password',
-                    'type',
-                ],
-                'required',
-                'on' => ['create', 'create-ftponly']
-            ],
-            [
-                ['password'],
-                'required',
-                'on' => ['set-password']
-            ],
-            [
-                ['password'],
+            [['type', 'type_label', 'state', 'state_label'],            'safe'],
+            [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label', 'mail_settings'],                'safe'],
+            [['login', 'server', 'password', 'sshftp_ips', 'type'],     'safe',         'on' => ['create', 'create-ftponly']],
+            [['login', 'server', 'password', 'type'],                   'required',     'on' => ['create', 'create-ftponly']],
+            [['id'],                                                    'integer',      'on' => ['set-password', 'set-allowed-ips']],
+            [['login'],                                                 'required',     'on' => ['set-password']],
+            [['password'],                                              'required',     'on' => ['set-password']],
+            [['password'],
                 'compare',
                 'compareAttribute' => 'login',
                 'message'          => Yii::t('app', 'Password must not be equal to login'),
                 'operator'         => '!=',
                 'on'               => ['create', 'create-ftponly', 'update', 'set-password'],
             ],
-            [
-                ['login'],
-                LoginValidator::className(),
-                'on' => ['create', 'create-ftponly', 'set-password']
-            ],
+            [['login'], LoginValidator::className(),    'on' => ['create', 'create-ftponly', 'set-password']],
             [
                 ['login'],
                 'in',
@@ -92,7 +66,7 @@ class Account extends \hipanel\base\Model
                 'on'   => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
             ],
             [
-                ['id'], 'integer', 'on' => ['delete']
+                ['id'], 'integer', 'on' => ['delete'],
             ]
         ];
     }
