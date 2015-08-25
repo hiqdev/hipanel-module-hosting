@@ -47,7 +47,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
             'filterModel'  => $model,
             'columns'      => [
                 'checkbox',
-                'hdomain',
+                'hdomain_with_aliases',
                 'client',
                 'seller',
                 'account',

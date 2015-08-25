@@ -65,7 +65,7 @@ class DbGridView extends BoxedGridView
             ],
             'actions'     => [
                 'class'    => ActionColumn::className(),
-                'template' => '{view} {update} {truncate} {delete}'
+                'template' => '{view} {delete}'
             ]
         ];
     }

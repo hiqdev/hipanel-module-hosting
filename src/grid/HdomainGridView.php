@@ -13,6 +13,8 @@ use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
+use Yii;
+use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Html;
 
 class HdomainGridView extends \hipanel\grid\BoxedGridView
@@ -24,6 +26,27 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'class' => MainColumn::className(),
                 'filterAttribute' => 'domain_like',
                 'attribute' => 'domain'
+            ],
+            'hdomain_with_aliases' => [
+                'format' => 'raw',
+                'attribute' => 'domain',
+                'filterAttribute' => 'domain_like',
+                'value' => function ($model) {
+                    $aliases = $model->getAttribute('aliases');
+
+                    $html = Html::a($model->domain, ['view', 'id' => $model->id], ['class' => 'bold']) . '&nbsp;';
+                    $html .= ArraySpoiler::widget([
+                        'data' => $aliases,
+                        'visibleCount' => 0,
+                        'delimiter' => '<br />',
+                        'popoverOptions' => ['html' => true],
+                        'formatter' => function ($value, $key) {
+                            return Html::a($value, ['view', 'id' => $key]);
+                        },
+                        'badgeFormat' => Yii::t('app', '+{count, plural, one{# alias} other{# aliases}}', ['count' => count($aliases)]),
+                    ]);
+                    return $html;
+                }
             ],
             'account' => [
                 'class' => AccountColumn::className()
