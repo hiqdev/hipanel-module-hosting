@@ -32,7 +32,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'attribute' => 'domain',
                 'filterAttribute' => 'domain_like',
                 'value' => function ($model) {
-                    $aliases = $model->getAttribute('aliases');
+                    $aliases = (array)$model->getAttribute('aliases');
 
                     $html = Html::a($model->domain, ['view', 'id' => $model->id], ['class' => 'bold']) . '&nbsp;';
                     $html .= ArraySpoiler::widget([
@@ -43,7 +43,8 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         'formatter' => function ($value, $key) {
                             return Html::a($value, ['view', 'id' => $key]);
                         },
-                        'badgeFormat' => Yii::t('app', '+{count, plural, one{# alias} other{# aliases}}', ['count' => count($aliases)]),
+                        'badgeFormat' => Yii::t('app', '+{count, plural, one{# alias} other{# aliases}}',
+                            ['count' => count($aliases)]),
                     ]);
                     return $html;
                 }
@@ -91,13 +92,17 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'dns_on' => [
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->dns_on ? \Yii::t('app', 'Enabled') : \Yii::t('app', 'Disabled');
+                    return $model->dns_on ? Yii::t('app', 'Enabled') : Yii::t('app', 'Disabled');
                 }
             ],
             'aliases' => [
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return ArraySpoiler::widget(['data' => $model->getAttribute('aliases')]);
+                    return ArraySpoiler::widget([
+                        'data' => (array)$model->getAttribute('aliases'),
+                        'delimiter' => '<br />',
+                        'popoverOptions' => ['html' => true],
+                    ]);
                 }
             ],
             'actions' => [
