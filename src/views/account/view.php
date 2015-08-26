@@ -21,11 +21,16 @@ $this->breadcrumbs->setItems([
 ]);
 
 ?>
-
-
 <div class="row">
     <div class="col-md-3">
-        <?php Box::begin(); ?>
+        <?php Box::begin([
+            'options' => [
+                'class' => 'box-solid',
+            ],
+            'bodyOptions' => [
+                'class' => 'no-padding'
+            ]
+        ]); ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-user fa-5x"></i>
         </div>
