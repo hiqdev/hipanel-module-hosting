@@ -9,13 +9,13 @@ use hipanel\modules\hosting\grid\ServiceGridView;
 
 $this->title                    = Yii::t('app', 'Services');
 $this->params['breadcrumbs'][]  = $this->title;
-$this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered list' : 'full list';
+$this->params['subtitle']       = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
 
 ?>
 
 <?= serviceGridView::widget([
     'dataProvider' => $dataProvider,
-    'filterModel'  => $searchModel,
+    'filterModel'  => $model,
     'columns'      => [
         'checkbox',
         'seller',

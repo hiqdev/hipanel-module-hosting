@@ -15,7 +15,7 @@ $this->title                    = Yii::t('app', 'Domains');
 $this->breadcrumbs->setItems([
     $this->title,
 ]);
-$this->params['subtitle']       = Yii::$app->request->queryParams ? 'filtered list' : 'full list';
+$this->params['subtitle']       = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
 
 Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
 
