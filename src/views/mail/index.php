@@ -15,7 +15,7 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
 
 <?= mailGridView::widget([
     'dataProvider' => $dataProvider,
-    'filterModel'  => $searchModel,
+    'filterModel'  => $model,
     'columns'      => [
         'checkbox',
         'seller',
