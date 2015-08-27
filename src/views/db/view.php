@@ -120,23 +120,23 @@ $this->breadcrumbs->setItems([
             <div class="col-md-6">
                 <?php
                 $box = Box::begin(['renderBody' => false]);
-                $box->beginHeader();
-                echo $box->renderTitle(Yii::t('app', 'Database information'));
-                $box->endHeader();
-                $box->beginBody();
-                echo DbGridView::detailView([
-                    'boxed' => false,
-                    'model' => $model,
-                    'columns' => [
-                        'seller_id',
-                        'client_id',
-                        ['attribute' => 'name'],
-                        'service_ip',
-                        'description',
-                    ],
-                ]);
-                $box->endBody();
-                $box::end();
+                    $box->beginHeader();
+                        echo $box->renderTitle(Yii::t('app', 'Database information'));
+                    $box->endHeader();
+                    $box->beginBody();
+                        echo DbGridView::detailView([
+                            'boxed' => false,
+                            'model' => $model,
+                            'columns' => [
+                                'seller_id',
+                                'client_id',
+                                ['attribute' => 'name'],
+                                'service_ip',
+                                'description',
+                            ],
+                        ]);
+                    $box->endBody();
+                $box->end();
                 ?>
             </div>
         </div>

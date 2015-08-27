@@ -74,27 +74,27 @@ $this->breadcrumbs->setItems([
             <div class="col-md-6">
                 <?php
                 $box = Box::begin(['renderBody' => false]);
-                $box->beginHeader();
-                echo $box->renderTitle(Yii::t('app', 'Domain information'));
-                $box->endHeader();
-                $box->beginBody();
-                echo HdomainGridView::detailView([
-                    'boxed'   => false,
-                    'model'   => $model,
-                    'columns' => [
-                        'client_id',
-                        'seller_id',
-                        'account',
-                        'server',
-                        'service',
-                        'ip',
-                        'state',
-                        'dns_on',
-                        'aliases',
-                    ],
-                ]);
-                $box->endBody();
-                $box::end();
+                    $box->beginHeader();
+                        echo $box->renderTitle(Yii::t('app', 'Domain information'));
+                    $box->endHeader();
+                    $box->beginBody();
+                        echo HdomainGridView::detailView([
+                            'boxed'   => false,
+                            'model'   => $model,
+                            'columns' => [
+                                'client_id',
+                                'seller_id',
+                                'account',
+                                'server',
+                                'service',
+                                'ip',
+                                'state',
+                                'dns_on',
+                                'aliases',
+                            ],
+                        ]);
+                    $box->endBody();
+                $box->end();
                 ?>
             </div>
         </div>
