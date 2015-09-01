@@ -25,16 +25,16 @@ class Account extends \hipanel\base\Model
     public function rules()
     {
         return [
-            [['id', 'client_id', 'device_id', 'server_id'],             'integer'],
+            [['id', 'client_id', 'device_id', 'server_id', 'seller_id', 'uid', 'gid'],             'integer'],
             [
-                ['login', 'password', 'uid', 'gid', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller', 'seller_id'],
+                ['login', 'password', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller'],
                 'safe'
             ],
             [['type', 'type_label', 'state', 'state_label'],            'safe'],
             [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label', 'mail_settings'],                'safe'],
             [['login', 'server', 'password', 'sshftp_ips', 'type'],     'safe',         'on' => ['create', 'create-ftponly']],
             [['login', 'server', 'password', 'type'],                   'required',     'on' => ['create', 'create-ftponly']],
-            [['id'],                                                    'integer',      'on' => ['set-password', 'set-allowed-ips']],
+            [['account', 'path'],                                       'required',     'on' => ['create-ftponly']],
             [['login'],                                                 'required',     'on' => ['set-password']],
             [['password'],                                              'required',     'on' => ['set-password']],
             [['password'],
@@ -65,9 +65,8 @@ class Account extends \hipanel\base\Model
                 'rule' => [IpValidator::className(), 'negationChar' => true, 'subnet' => null],
                 'on'   => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
             ],
-            [
-                ['id'], 'integer', 'on' => ['delete'],
-            ]
+            [['id'],                    'required',     'on' => ['set-password', 'set-allowed-ips', 'delete']],
+            [['account', 'server'],     'required',     'on' => ['get-directories-list']],
         ];
     }
 

@@ -23,8 +23,9 @@ class AccountSearch extends Account
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
             'with_request',
+            'with_counters',
+            'with_directories',
             'with_mail_settings',
-            'with_counters'
         ]);
     }
 }

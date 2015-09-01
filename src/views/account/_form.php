@@ -6,6 +6,8 @@
 
 use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
+use hipanel\modules\hosting\widgets\combo\AccountPathCombo;
+use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
@@ -38,9 +40,16 @@ use yii\helpers\Url;
                                 <?php
                                 print $form->field($model, "[$i]client")->widget(ClientCombo::className());
                                 print $form->field($model, "[$i]server")->widget(ServerCombo::className());
+                                if ($model->scenario === 'create-ftponly') {
+                                    print $form->field($model, "[$i]account")->widget(SshAccountCombo::className());
+                                }
 
                                 print $form->field($model, "[$i]login");
                                 print $form->field($model, "[$i]password")->widget(PasswordInput::className());
+
+                                if ($model->scenario === 'create-ftponly') {
+                                    print $form->field($model, "[$i]path")->widget(AccountPathCombo::className());
+                                }
 
                                 print $form->field($model, "[$i]sshftp_ips")->hint(Yii::t('app',
                                     'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))

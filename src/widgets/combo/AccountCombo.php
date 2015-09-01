@@ -17,7 +17,7 @@ class AccountCombo extends Combo
     public $name = 'login';
 
     /** @inheritdoc */
-    public $url = '/hosting/account/search';
+    public $url = '/hosting/account/index';
 
     /** @inheritdoc */
     public $_return = ['id', 'client', 'client_id', 'device', 'device_id'];
@@ -43,7 +43,8 @@ class AccountCombo extends Combo
         ]);
     }
 
-    public function getPluginOptions($config)
+    /** @inheritdoc */
+    public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions([
             'clearWhen' => ['client/client', 'server/server'],

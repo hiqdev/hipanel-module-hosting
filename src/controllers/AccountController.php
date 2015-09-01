@@ -7,6 +7,7 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use Yii;
 
@@ -55,6 +56,20 @@ class AccountController extends \hipanel\base\CrudController
                 'success' => Yii::t('app', 'Account deleting task has been added to queue'),
                 'error'   => Yii::t('app', 'An error occurred when trying to delete account')
             ],
+            'get-directories-list' => [
+                'class'         => 'hipanel\actions\SearchAction',
+                'findOptions'   => ['with_directories' => true],
+                'ajaxResponseFormatter' => function ($action) {
+                    $results = [];
+
+                    $model = $action->collection->first;
+                    foreach ($model['path'] as $path) {
+                        $results[] = ['id' => $path, 'text' => $path];
+                    }
+
+                    return $results;
+                }
+            ]
         ];
     }
 
