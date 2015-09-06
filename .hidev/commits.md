@@ -6,6 +6,7 @@ hiqdev/hipanel-module-hosting commits history
 - Added account creating
     - 86c2a81 2015-09-01 Implemented FTP account creating (d.naumenko.a@gmail.com)
 - Fixed many for release
+    - ef3ee91 2015-09-06 hideved (sol@hiqdev.com)
     - 89363d9 2015-09-01 ServiceCombo - changed search url (d.naumenko.a@gmail.com)
     - 00f2754 2015-08-28 Added dependencies on related projects (d.naumenko.a@gmail.com)
     - a319b0b 2015-08-27 Fixed breadcrumbs subtitle (d.naumenko.a@gmail.com)
