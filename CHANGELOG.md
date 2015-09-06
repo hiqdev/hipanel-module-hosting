@@ -1,7 +1,11 @@
 hiqdev/hipanel-module-hosting changelog
 ---------------------------------------
 
-### 0.1.0 under development
+## Under development
 
-- inited
+- Added account creating
+- Fixed many for release
+- Added all basics
+
+## Development started 2015-04-22
 

@@ -1,0 +1,12 @@
+package:
+    name:           hipanel-module-hosting
+    namespace:      hipanel\modules\hosting
+    label:          HiPanel HostingModule
+    title:          Hosting Plugin for HiPanel
+    type:           yii2-extension
+    keywords:       hosting, hipanel, plugin
+    year:           2014
+
+require:
+    hiqdev/hidev-config:        "*"
+    hiqdev/hidev-config-php:    "*"

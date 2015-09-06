@@ -1,0 +1,63 @@
+hiqdev/hipanel-module-hosting commits history
+---------------------------------------------
+
+## Under development
+
+- Added account creating
+    - 86c2a81 2015-09-01 Implemented FTP account creating (d.naumenko.a@gmail.com)
+- Fixed many for release
+    - 89363d9 2015-09-01 ServiceCombo - changed search url (d.naumenko.a@gmail.com)
+    - 00f2754 2015-08-28 Added dependencies on related projects (d.naumenko.a@gmail.com)
+    - a319b0b 2015-08-27 Fixed breadcrumbs subtitle (d.naumenko.a@gmail.com)
+    - 6c6002e 2015-08-27 Fixed deprecated method calling syntax (d.naumenko.a@gmail.com)
+    - a247c86 2015-08-26 HdomainGridView - fixed E_WARNING errors (d.naumenko.a@gmail.com)
+    - aef3fb5 2015-08-26 Redisign view box (andreyklochok@gmail.com)
+    - 163bcfb 2015-08-25 HdomainGridView - added hdomain_with_aliases column (d.naumenko.a@gmail.com)
+    - 2af1cb0 2015-08-21 Fixed minor bugs (d.naumenko.a@gmail.com)
+    - 8c52cf3 2015-08-20 Account, Db, Hdomain - mass fixes (d.naumenko.a@gmail.com)
+    - d98d156 2015-08-20 Add some actions (andreyklochok@gmail.com)
+    - c5c6b39 2015-08-19 Accounts, Db, Hdomains - deep coding, fiting actual standarts (d.naumenko.a@gmail.com)
+    - 4a8ebb8 2015-08-18 Fixed calling of client,seller columns (d.naumenko.a@gmail.com)
+    - 5137122 2015-08-12 Add sorter and per page functionality (andreyklochok@gmail.com)
+    - fb6bc96 2015-08-06 renamed SmartDeleteAction to SmartPerformAction (sol@hiqdev.com)
+    - 94a5459 2015-08-06 Change create separate buttons to one, Dropdown button (andreyklochok@gmail.com)
+    - 039fa4c 2015-08-04 Refactor index page. Add new ActionBox and Advanced Search (andreyklochok@gmail.com)
+    - 7b0d23a 2015-08-04 Account, DB, Hdomain - index, view pages (d.naumenko.a@gmail.com)
+    - 143db74 2015-08-02 DB, Accounts, Hdomains - controllers, views, models updated to actualy agreed style Minor fixes (d.naumenko.a@gmail.com)
+    - 97c279c 2015-08-02 * Plugin: + aliases (sol@hiqdev.com)
+    - cf4ac41 2015-07-31 continue (d.naumenko.a@gmail.com)
+    - 2ff79fe 2015-07-31 Sources moved to src (d.naumenko.a@gmail.com)
+- Added all basics
+    - d792336 2015-07-30 Accounts GridView done (d.naumenko.a@gmail.com)
+    - 90ce547 2015-07-30 Db, Hdomain deep coding (d.naumenko.a@gmail.com)
+    - 8456939 2015-06-11 Domain deep coding (d.naumenko.a@gmail.com)
+    - 41a1875 2015-06-10 Domains deep coding (d.naumenko.a@gmail.com)
+    - a351075 2015-06-04 Continue hdomains implementation (d.naumenko.a@gmail.com)
+    - 95e5af1 2015-06-02 Account adopted for IpValidator (d.naumenko.a@gmail.com)
+    - 8798333 2015-05-29 Fixed Account model, view (d.naumenko.a@gmail.com)
+    - fdf94e1 2015-05-28 accounts alive (d.naumenko.a@gmail.com)
+    - bf0bd61 2015-05-26 Fixed DB delete (d.naumenko.a@gmail.com)
+    - e1e9f9d 2015-05-22 combo - updated parent namespace (d.naumenko.a@gmail.com)
+    - bd8f2a0 2015-05-20 Actions redone with SwitchAction (d.naumenko.a@gmail.com)
+    - 6d37d84 2015-05-19 DbController - playing with switchAction Models filled in (d.naumenko.a@gmail.com)
+    - c5ba741 2015-05-18 fixed title and breadcrumbs (sol@hiqdev.com)
+    - 0fa38da 2015-05-18 renamed to grid/DbGridView.php (sol@hiqdev.com)
+    - 3e89e96 2015-05-15 + Plugin, * Menu (sol@hiqdev.com)
+    - 7ec2fa7 2015-05-15 Merge commit '89120b8' (sol@hiqdev.com)
+    - 89120b8 2015-05-14 + Menu.php (sol@hiqdev.com)
+    - 2b9489c 2015-05-14 {combo2} -> {combo}, DbController - playing with switchAction (d.naumenko.a@gmail.com)
+    - 7b95ac0 2015-05-14 Changed combo2 call options (d.naumenko.a@gmail.com)
+    - 11923c6 2015-05-12 Combo2 call updated, SwithcAction testing in DbController (d.naumenko.a@gmail.com)
+    - 14a7658 2015-05-08 renamed perform -> save (sol@hiqdev.com)
+    - 16b1be8 2015-05-08 In the middle of nowhere. Playing with SwitchAction (d.naumenko.a@gmail.com)
+    - bcca4d3 2015-05-06 DB parts case fix (d.naumenko.a@gmail.com)
+    - 5c2c6a6 2015-05-06 Git inconsistence fix (d.naumenko.a@gmail.com)
+    - 707f988 2015-05-02 DB minor changes (d.naumenko.a@gmail.com)
+    - b328f45 2015-05-02  Started to fill in the account contriller (d.naumenko.a@gmail.com)
+    - 66d2a2b 2015-05-02  Changes in Combo2 configs to suite new scheme (d.naumenko.a@gmail.com)
+    - 94dd965 2015-04-23  Added combo2 for Acctount, DbService, Service  Db Deep coding (d.naumenko.a@gmail.com)
+    - bbcab8d 2015-04-22  After init changes  DB deep coding (d.naumenko.a@gmail.com)
+    - 8ec72f5 2015-04-22 inited (sol@hiqdev.com)
+
+## Development started 2015-04-22
+
