@@ -143,6 +143,7 @@ $this->breadcrumbs->setItems([
                                 'seller_id',
                                 'client_id',
                                 ['attribute' => 'login'],
+                                'type',
                                 'state',
                                 'sshftp_ips'
                             ],
