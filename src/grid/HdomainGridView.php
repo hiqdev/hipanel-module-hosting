@@ -43,7 +43,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         'formatter' => function ($value, $key) {
                             return Html::a($value, ['view', 'id' => $key]);
                         },
-                        'badgeFormat' => Yii::t('app', '+{count, plural, one{# alias} other{# aliases}}', ['count' => count($aliases)]),
+                        'badgeFormat' => Yii::t('app', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
                     ]);
                     return $html;
                 }
@@ -55,6 +55,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'class' => ServerColumn::className()
             ],
             'ip' => [
+                'enableSorting' => false,
                 'filter' => false,
                 'format' => 'raw',
                 'value' => function ($model) {
