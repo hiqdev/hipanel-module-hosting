@@ -107,7 +107,7 @@ $this->registerJs(<<<'JS'
         if (domain && domain.text) {
             value = sub + '.' + domain.text;
         }
-        $(this).val(value);
+        $(this).val(value).trigger('change');
     });
 
     $('#dynamic-form').on('change', 'input[data-field="sub"]', function () {
