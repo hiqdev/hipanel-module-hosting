@@ -62,6 +62,12 @@ $form = ActiveForm::begin([
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'data-field' => 'dns_hdomain_id'
+                                    ],
+                                    'pluginOptions' => [
+                                        'onChange' => new \yii\web\JsExpression("function () {
+                                                $(this).closest('.form-instance').find('input[data-field=\"sub-with-domain\"]').trigger('update');
+                                            }
+                                        ")
                                     ]
                                 ])->label(false) ?>
                                 <?= $form->field($model, "[$i]domain")->hiddenInput(['data-field' => 'sub-with-domain'])->label(false) ?>
