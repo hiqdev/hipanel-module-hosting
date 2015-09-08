@@ -17,7 +17,11 @@ class HdomainController extends \hipanel\base\CrudController
         return [
             'index' => [
                 'class' => 'hipanel\actions\IndexAction',
-                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true],
+                'findOptions' => [
+                    'with_vhosts' => true,
+                    'with_aliases' => true,
+                    'with_request' => true,
+                ],
                 'data' => function ($action) {
                     return [
                         'stateData' => $action->controller->getStateData(),
@@ -27,17 +31,28 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
-                'findOptions' => ['with_aliases' => true, 'with_vhosts' => true, 'with_request' => true, 'show_deleted' => true, 'show_aliases' => true],
+                'findOptions' => [
+                    'with_vhosts' => true,
+                    'with_aliases' => true,
+                    'with_request' => true,
+                    'show_deleted' => true,
+                    'show_aliases' => true,
+                ],
             ],
             'create' => [
                 'class' => 'hipanel\actions\SmartCreateAction',
-                'success' => Yii::t('app', 'Account create task has been created successfully'),
-                'error' => Yii::t('app', 'Error while creating account'),
+                'success' => Yii::t('app', 'Domain create task has been created successfully'),
+                'error' => Yii::t('app', 'Error while creating domain'),
+            ],
+            'create-alias' => [
+                'class' => 'hipanel\actions\SmartCreateAction',
+                'view' => 'create-alias',
+                'success' => Yii::t('app', 'Domain alias create task has been created successfully'),
+                'error' => Yii::t('app', 'Error while creating domain'),
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',
             ],
-            // Premium Autorenewal
             'enable-paid-feature-autorenewal' => [
                 'class' => 'hipanel\actions\SmartPerformAction',
                 'success' => Yii::t('app', 'Premium autorenewal has been enabled'),

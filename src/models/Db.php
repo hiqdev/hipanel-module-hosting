@@ -24,8 +24,8 @@ class Db extends Model
             [['service_ip', 'description'], 'safe'],
             [['type', 'state', 'backuping_type', 'type_label', 'state_label', 'backuping_type_label'], 'safe'],
             /// Create
-            [['server', 'account', 'service_id', 'name', 'password'], 'required', 'on' => 'create'],
-            [['name'], DbNameValidator::className(), 'on' => 'create'],
+            [['server', 'account', 'service_id', 'name', 'password'], 'required', 'on' => ['create']],
+            [['name'], DbNameValidator::className(), 'on' => ['create']],
             [
                 ['password'],
                 'match',
@@ -33,17 +33,8 @@ class Db extends Model
                 'message' => \Yii::t('app', '{attribute} should not contain non-latin characters'),
                 'on'      => ['create', 'set-password']
             ],
-            [['password'], 'required', 'on' => ['set-password']]
-        ];
-    }
-
-    public function scenarios () {
-        return [
-            'create'          => ['client', 'server', 'account', 'service_id', 'name', 'password', 'description'],
-            'truncate'        => ['id'],
-            'set-description' => ['id', 'description'],
-            'set-password'    => ['id', 'password'],
-            'delete'          => ['id'],
+            [['password'], 'required', 'on' => ['set-password']],
+            [['id'], 'required', 'on' => ['delete', 'set-password', 'set-description', 'truncate']]
         ];
     }
 

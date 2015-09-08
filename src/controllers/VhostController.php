@@ -7,7 +7,9 @@
 
 namespace hipanel\modules\hosting\controllers;
 
-class ServiceController extends \hipanel\base\CrudController
+use Yii;
+
+class VhostController extends \hipanel\base\CrudController
 {
     public function actions()
     {

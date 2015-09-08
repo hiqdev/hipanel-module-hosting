@@ -163,8 +163,8 @@ JS
                                                'pluginOptions'       => [
                                                    'activeWhen' => [
                                                        new JsExpression("function (self) {
-                                                return !self.form.find('.proxy_enable').prop('checked');
-                                            }")
+                                                            return !self.form.find('.proxy_enable').prop('checked');
+                                                       }")
                                                    ]
                                                ]
                                            ]);
