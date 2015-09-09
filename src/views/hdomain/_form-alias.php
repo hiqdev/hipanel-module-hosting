@@ -14,6 +14,7 @@ use hiqdev\combo\StaticCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\JsExpression;
 
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
@@ -64,7 +65,7 @@ $form = ActiveForm::begin([
                                         'data-field' => 'dns_hdomain_id'
                                     ],
                                     'pluginOptions' => [
-                                        'onChange' => new \yii\web\JsExpression("function () {
+                                        'onChange' => new JsExpression("function () {
                                                 $(this).closest('.form-instance').find('input[data-field=\"sub-with-domain\"]').trigger('update');
                                             }
                                         ")
