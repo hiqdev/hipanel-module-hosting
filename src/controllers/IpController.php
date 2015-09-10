@@ -9,5 +9,12 @@ namespace hipanel\modules\hosting\controllers;
 
 class IpController extends \hipanel\base\CrudController
 {
-
+    public function actions()
+    {
+        return [
+            'index' => [
+                'class' => 'hipanel\actions\IndexAction',
+            ],
+        ];
+    }
 }
