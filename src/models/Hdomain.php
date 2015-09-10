@@ -12,6 +12,7 @@ use hipanel\modules\domain\validators\DomainValidator;
 use hipanel\modules\hosting\validators\LoginValidator as AccountLoginValidator;
 use hipanel\validators\IpValidator;
 use Yii;
+use yii\web\JsExpression;
 
 class Hdomain extends \hipanel\base\Model
 {
@@ -26,7 +27,6 @@ class Hdomain extends \hipanel\base\Model
      * @var array Stores array of aliases of hdomain
      */
     public $aliases;
-
 
     /** @inheritdoc */
     public function rules()
@@ -56,6 +56,7 @@ class Hdomain extends \hipanel\base\Model
                     'type',
                     'backuping_type',
                     'state_label',
+                    'alias_type',
                 ],
                 'safe'
             ],
@@ -78,24 +79,40 @@ class Hdomain extends \hipanel\base\Model
                 'on' => ['create']
             ],
             [
-                ['sub'],
+                ['subdomain'],
                 'match',
                 'pattern' => '/^(\*|[a-z0-9][a-z0-9-]*)$/i',
                 'message' => \Yii::t('app', '{attribute} does not look like a domain part'),
                 'on' => ['create-alias']
             ],
-
             [
                 [
                     'server',
                     'account',
                     'vhost_id',
-                    'domain',
                     'with_www',
                 ],
                 'required',
                 'on' => ['create-alias']
             ],
+            [
+                [
+                    'domain',
+                ],
+                'required',
+                'when' => function ($model) {
+                    return $model->alias_type === 'new';
+                },
+                'whenClient' => new JsExpression("function (attribute, value) {
+                    return false;
+                }"),
+                'on' => ['create-alias']
+            ],
+            [
+                ['id'],
+                'required',
+                'on' => ['delete']
+            ]
         ];
     }
 

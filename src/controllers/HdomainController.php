@@ -61,6 +61,17 @@ class HdomainController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\SmartPerformAction',
                 'success' => Yii::t('app', 'Premium autorenewal has been disabled'),
             ],
+            'delete' => [
+                'class' => 'hipanel\actions\SmartDeleteAction',
+                'success' => Yii::t('app', 'Domain delete task has been created successfully'),
+                'error'   => Yii::t('app', 'Error while deleting domain'),
+            ],
+            'delete-alias' => [
+                'class' => 'hipanel\actions\SmartDeleteAction',
+                'scenario' => 'delete',
+                'success' => Yii::t('app', 'Alias delete task has been created successfully'),
+                'error'   => Yii::t('app', 'Error while deleting alias'),
+            ]
         ];
     }
 

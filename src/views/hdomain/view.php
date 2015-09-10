@@ -1,9 +1,11 @@
 <?php
 
 use hipanel\modules\hosting\grid\HdomainGridView;
+use hipanel\modules\hosting\models\Hdomain;
 use hipanel\widgets\Box;
-use yii\bootstrap\Modal;
+use hipanel\widgets\ModalButton;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 
 $this->title    = $model->domain;
 $this->subtitle = Yii::t('app', 'hosting domain detailed information') . ' #' . $model->id;
@@ -35,34 +37,26 @@ $this->breadcrumbs->setItems([
         <div class="profile-usermenu">
             <ul class="nav">
                 <li>
-                    <?= Html::a('<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete'), '#', [
-                        'data-toggle' => 'modal',
-                        'data-target' => "#modal_{$model->id}_delete",
-                    ]); ?>
-
-                    <?php
-                    echo Html::beginForm(['delete'], "POST", ['data' => ['pjax' => 1, 'pjax-push' => 0], 'class' => 'inline']);
-                    echo Html::activeHiddenInput($model, 'id');
-                    Modal::begin([
-                        'id'            => "modal_{$model->id}_delete",
-                        'toggleButton'  => false,
-                        'header'        => Html::tag('h4', Yii::t('app', 'Confirm domain deleting')),
-                        'headerOptions' => ['class' => 'label-danger'],
-                        'footer'        => Html::button(Yii::t('app', 'Delete domain'), [
-                            'class'             => 'btn btn-danger',
-                            'data-loading-text' => Yii::t('app', 'Deleting domain...'),
-                            'onClick'           => new \yii\web\JsExpression("
-                                    $(this).closest('form').trigger('submit');
-                                    $(this).button('loading');
-                                ")
-                        ])
-                    ]);
-                    echo Yii::t('app',
-                        'Are you sure, that you want to delete hosting domain {name}? All files on the server will stay untouched. You can delete them manually.',
-                        ['name' => $model->domain]);
-                    Modal::end();
-                    echo Html::endForm();
-                    ?>
+                    <?= ModalButton::widget([
+                        'model' => $model,
+                        'scenario' => 'delete',
+                        'button' => [
+                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete'),
+                        ],
+                        'modal' => [
+                            'header' => Html::tag('h4', Yii::t('app', 'Confirm domain deleting')),
+                            'headerOptions' => ['class' => 'label-info'],
+                            'footer' => [
+                                'label' => Yii::t('app', 'Delete domain'),
+                                'data-loading-text' => Yii::t('app', 'Deleting domain...'),
+                                'class' => 'btn btn-danger',
+                            ]
+                        ],
+                        'body' => Yii::t('app',
+                            'Are you sure, that you want to delete hosting domain {name}? All files under domain root on the server will stay untouched. You can delete them manually later.',
+                            ['name' => $model->domain]
+                        )
+                    ]) ?>
                 </li>
             </ul>
         </div>
@@ -90,7 +84,51 @@ $this->breadcrumbs->setItems([
                                 'ip',
                                 'state',
                                 'dns_on',
-                                'aliases',
+                                [
+                                    'attribute' => 'aliases',
+                                    'format' => 'raw',
+                                    'value' => function ($model) {
+                                        $html = [];
+                                        foreach ((array)$model->getAttribute('aliases') as $id => $alias) {
+                                            $aliasModel = Yii::createObject([
+                                                'class' => Hdomain::className(),
+                                                'id' => $id,
+                                                'domain' => $alias
+                                            ]);
+                                            $item = Html::a($aliasModel->domain, ['view', 'id' => $aliasModel->id]) . ' ';
+                                            $item .= ModalButton::widget([
+                                                'model' => $aliasModel,
+                                                'scenario' => 'delete-alias',
+                                                'submit' => ModalButton::SUBMIT_AJAX,
+                                                'button' => [
+                                                    'label' => '<i class="fa fa-trash-o"></i>',
+                                                ],
+                                                'modal' => [
+                                                    'header' => Html::tag('h4', Yii::t('app', 'Confirm alias deleting')),
+                                                    'headerOptions' => ['class' => 'label-info'],
+                                                    'footer' => [
+                                                        'label' => Yii::t('app', 'Delete alias'),
+                                                        'data-loading-text' => Yii::t('app', 'Deleting alias...'),
+                                                        'class' => 'btn btn-danger',
+                                                    ]
+                                                ],
+                                                'body' => Yii::t('app',
+                                                    'Are you sure, that you want to delete alias {name}?',
+                                                    ['name' => $aliasModel->domain]
+                                                ),
+                                                'ajaxOptions' => [
+                                                    'success' => new JsExpression("
+                                                        function (data) {
+                                                            form.closest('.alias-item').remove();
+                                                        }
+                                                    ")
+                                                ]
+                                            ]);
+                                            $html[] = Html::tag('div', $item, ['class' => 'alias-item']);
+                                        }
+                                        return implode("\n", $html);
+                                    }
+                                ]
                             ],
                         ]);
                     $box->endBody();

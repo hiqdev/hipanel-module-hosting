@@ -21,7 +21,7 @@ $form = ActiveForm::begin([
     'enableClientValidation' => true,
     'validateOnBlur'         => true,
     'enableAjaxValidation'   => true,
-    'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->isNewRecord ? $model->scenario : 'update']),
+    'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
 ]); ?>
 
 <div class="container-items">
@@ -42,22 +42,22 @@ $form = ActiveForm::begin([
                             ]);
                             print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::className(), ['formElementSelector' => '.form-instance']);
 
-                            print Html::label(Yii::t('app', 'Domain')
-                                . '<br />' . Html::radio("[$i]vhost_type", true, [
+                            $model->alias_type = 'subdomain';
+                            print $form->field($model, "[$i]alias_type")->radio([
                                     'value' => 'subdomain',
-                                    'class' => 'vhost-type',
-                                    'label' => Yii::t('app', 'Subdomain of existing domain')
-                                ])
-                                . '<br />' . Html::radio("[$i]vhost_type", false, [
+                                    'class' => 'alias-type',
+                                    'label' => Yii::t('app', 'Subdomain of existing domain'),
+                                ]);
+                            print $form->field($model, "[$i]alias_type")->radio([
+                                    'id' => $model->formName() . '-' . $i . '-alias_type-new',
                                     'value' => 'new',
-                                    'class' => 'vhost-type',
+                                    'class' => 'alias-type',
                                     'label' => Yii::t('app', 'New domain')
-                                ])
-                            );
+                                ]);
                             ?>
 
-                            <div class="vhost-subdomain form-inline">
-                                <?= $form->field($model, "[$i]sub")->input('text',  ['data-field' => 'sub'])->label(false) ?>
+                            <div class="alias-subdomain form-inline">
+                                <?= $form->field($model, "[$i]subdomain")->input('text',  ['data-field' => 'subdomain'])->label(false) ?>
                                 <?= Html::tag('span', '.') ?>
                                 <?= $form->field($model, "[$i]dns_hdomain_id")->widget(HdomainCombo::className(), [
                                     'formElementSelector' => '.form-instance',
@@ -71,10 +71,17 @@ $form = ActiveForm::begin([
                                         ")
                                     ]
                                 ])->label(false) ?>
-                                <?= $form->field($model, "[$i]domain")->hiddenInput(['data-field' => 'sub-with-domain'])->label(false) ?>
+                                <?= $form->field($model, "[$i]domain")->hiddenInput([
+                                    'id' => $model->formName() . '-' . $i . '-domain-sub',
+                                    'data-field' => 'sub-with-domain'
+                                ])->label(false) ?>
                             </div>
-                            <div class="vhost-newdomain">
-                                <?= $form->field($model, "[$i]domain")->input('text', ['data-field' => 'domain', 'disabled' => true, 'class' => 'form-control collapse'])->label(false) ?>
+                            <div class="alias-newdomain">
+                                <?= $form->field($model, "[$i]domain")->input('text', [
+                                    'data-field' => 'domain',
+                                    'disabled' => true,
+                                    'class' => 'form-control collapse'
+                                ])->label(false) ?>
                             </div>
                             <?= $form->field($model, "[$i]with_www")->checkbox() ?>
                         </div>
@@ -90,11 +97,11 @@ $form = ActiveForm::begin([
 <?php ActiveForm::end();
 
 $this->registerJs(<<<'JS'
-    $(this).on('change', '.vhost-type', function (e) {
+    $(this).on('change', '.alias-type', function (e) {
         var $form = $(this).closest('.form-instance');
 
-        var $sub_inputs = $form.find('.vhost-subdomain, input[data-field="sub"], input[data-field="sub-with-domain"]');
-        var $new_inputs = $form.find('.vhost-newdomain, input[data-field="domain"]');
+        var $sub_inputs = $form.find('.alias-subdomain, input[data-field="subdomain"], input[data-field="sub-with-domain"]');
+        var $new_inputs = $form.find('.alias-newdomain, input[data-field="domain"]');
 
         if ($(this).attr('value') == 'subdomain') {
             $sub_inputs.show().prop('disabled', false);
@@ -107,17 +114,17 @@ $this->registerJs(<<<'JS'
 
     $('#dynamic-form').on('update', 'input[data-field="sub-with-domain"]', function (event) {
         var $form = $(this).closest('.form-instance');
-        var sub = $form.find('input[data-field="sub"]').val();
+        var subdomain = $form.find('input[data-field="subdomain"]').val();
         var domain = $form.find('input[data-field="dns_hdomain_id"]').select2('data');
         var value = '';
 
         if (domain && domain.text) {
-            value = sub + '.' + domain.text;
+            value = (subdomain.length > 0 ? (subdomain + '.') : '') + domain.text;
         }
         $(this).val(value).trigger('change');
     });
 
-    $('#dynamic-form').on('change', 'input[data-field="sub"]', function () {
+    $('#dynamic-form').on('change', 'input[data-field="subdomain"]', function () {
         var $form = $(this).closest('.form-instance');
         $form.find('input[data-field="sub-with-domain"]').trigger('update');
     });
