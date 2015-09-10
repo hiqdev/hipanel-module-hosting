@@ -19,7 +19,7 @@ class HdomainIpCombo extends Combo
     public $name = 'hdomain-ip';
 
     /** @inheritdoc */
-    public $url = '/hosting/ip/search';
+    public $url = '/hosting/ip/index';
 
     /** @inheritdoc */
     public $_return = [
