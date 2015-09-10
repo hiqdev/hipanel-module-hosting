@@ -17,6 +17,9 @@ class HdomainSearch extends Hdomain {
         rules as defaultRules;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function rules() {
         return ArrayHelper::merge(self::defaultRules(), [
             [
@@ -28,7 +31,7 @@ class HdomainSearch extends Hdomain {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function searchAttributes()
     {

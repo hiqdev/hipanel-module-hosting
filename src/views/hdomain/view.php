@@ -37,6 +37,13 @@ $this->breadcrumbs->setItems([
         <div class="profile-usermenu">
             <ul class="nav">
                 <li>
+                    <?php $url = 'http://' . $model->domain . '/' ?>
+                    <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('app', 'Go to site ') . $url, $url, ['target' => '_blank']); ?>
+                </li>
+                <li>
+                    <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('app', 'Advanced settings'), ['/hosting/vhost/advanced-config', 'id' => $model->id]); ?>
+                </li>
+                <li>
                     <?= ModalButton::widget([
                         'model' => $model,
                         'scenario' => 'delete',

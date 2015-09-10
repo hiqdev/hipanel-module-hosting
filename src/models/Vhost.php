@@ -71,10 +71,14 @@ class Vhost extends \hipanel\base\Model
                     'enable_errorslog',
                     'enable_scripts',
                     'dns_on',
-
                 ],
                 'boolean'
             ],
+            [
+                ['id'],
+                'required',
+                'on' => ['advanced-config']
+            ]
         ];
     }
 
@@ -84,7 +88,23 @@ class Vhost extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-
+            'domain_prefix' => Yii::t('app', 'Domain directory prefix'),
+            'docroot_postfix' => Yii::t('app', 'DocumentRoot directory postfix'),
+            'cgibin' => Yii::t('app', 'CGI-BIN directory postfix'),
+            'nginx_conf' => Yii::t('app', 'Additional NGINX config'),
+            'apache_conf' => Yii::t('app', 'Additional Apache config'),
+            'enable_accesslog' => Yii::t('app', 'Enable access log'),
+            'enable_errorslog' => Yii::t('app', 'Enable error log'),
+            'enable_suexec' => Yii::t('app', 'Enable suexec'),
+            'enable_scripts' => Yii::t('app', 'Allow scripts execution'),
+            'enable_ssi' => Yii::t('app', 'Enable SSI'),
         ]);
+    }
+
+    public function scenarioCommands()
+    {
+        return [
+            'advanced-config'  => 'setAdvancedConfig',
+        ];
     }
 }
