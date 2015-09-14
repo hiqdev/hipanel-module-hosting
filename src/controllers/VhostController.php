@@ -20,7 +20,7 @@ class VhostController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => 'hipanel\actions\RedirectAction',
-                'url' => ArrayHelper::merge(['/hosting/hdomain/view'], Yii::$app->request->get())
+                'url' => ArrayHelper::merge(['@hdomain/view'], Yii::$app->request->get())
             ],
             'advanced-config' => [
                 'class' => 'hipanel\actions\SearchAction',
@@ -44,7 +44,7 @@ class VhostController extends \hipanel\base\CrudController
                     'class' => 'hipanel\actions\SmartUpdateAction',
                 ],
                 'success' => Yii::t('app', 'Advanced settings was updated successfully'),
-                'error'   => Yii::t('app', 'Error while advanced settings update'),
+                'error'   => Yii::t('app', 'Error while advanced settings update'), 
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',

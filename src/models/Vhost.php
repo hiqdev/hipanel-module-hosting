@@ -14,7 +14,6 @@ use Yii;
 
 class Vhost extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
 
 

@@ -5,13 +5,22 @@
 /* @var $type string */
 
 use hipanel\base\View;
+use hipanel\helpers\Url;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Url;
+
+$this->title    = $model->domain;
+$this->subtitle = Yii::t('app', 'hosting domain advanced config') . ' #' . $model->id;
+$this->breadcrumbs->setItems([
+    ['label' => 'Domains', 'url' => ['@hdomain/index']],
+    ['label' => $model->domain, 'url' => ['@hdomain/view', 'id' => $model->id]],
+    Yii::t('app', 'Advanced config')
+]);
+
 
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
@@ -86,5 +95,3 @@ $form = ActiveForm::begin([
     &nbsp;
 <?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
-
-//$this->registerJs("$('#hdomain-proxy_enable').trigger('change');");
