@@ -1,15 +1,11 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 namespace hipanel\modules\hosting;
 
+use Yii;
+
 class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInterface
 {
-
     /**
      * @inheritdoc
      */
@@ -17,31 +13,34 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
 
     protected $_where = [
         'after'     => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
+        'before'    => ['stock'],
     ];
 
-    protected $_items = [
-        'hosting' => [
-            'label' => 'Hosting',
-            'url'   => '#',
-            'icon'  => 'fa-sitemap',
-            'items' => [
-                'accounts' => [
-                    'label' => 'Accounts',
-                    'url'   => ['/hosting/account/index'],
-                    'icon'  => 'fa-user',
+    public function items()
+    {
+        return [
+            'hosting' => [
+                'label' => Yii::t('app', 'Hosting'),
+                'url'   => '#',
+                'icon'  => 'fa-sitemap',
+                'items' => [
+                    'accounts' => [
+                        'label' => Yii::t('app', 'Accounts'),
+                        'url'   => ['/hosting/account/index'],
+                        'icon'  => 'fa-user',
+                    ],
+                    'dbs' => [
+                        'label' => Yii::t('app', 'Databases'),
+                        'url'   => ['/hosting/db/index'],
+                        'icon'  => 'fa-database',
+                    ],
+                    'hdomains' => [
+                        'label' => Yii::t('app', 'Domains'),
+                        'url'   => ['/hosting/hdomain/index'],
+                        'icon'  => 'fa-globe',
+                    ]
                 ],
-                'dbs' => [
-                    'label' => 'DataBases',
-                    'url'   => ['/hosting/db/index'],
-                    'icon'  => 'fa-database',
-                ],
-                'hdomains' => [
-                    'label' => 'Domains',
-                    'url'   => ['/hosting/hdomain/index'],
-                    'icon'  => 'fa-globe',
-                ]
             ],
-        ],
-    ];
-
+        ];
+    }
 }

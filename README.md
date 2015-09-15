@@ -5,6 +5,7 @@ Hosting Plugin for HiPanel
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/hipanel-module-hosting/v/stable.png)](https://packagist.org/packages/hiqdev/hipanel-module-hosting)
 [![Total Downloads](https://poser.pugx.org/hiqdev/hipanel-module-hosting/downloads.png)](https://packagist.org/packages/hiqdev/hipanel-module-hosting)
+[![Dependency Status](https://www.versioneye.com/php/hiqdev:hipanel-module-hosting/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:hipanel-module-hosting/dev-master)
 
 ## Installation
 
