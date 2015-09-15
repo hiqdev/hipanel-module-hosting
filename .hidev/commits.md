@@ -3,6 +3,7 @@ hiqdev/hipanel-module-hosting commits history
 
 ## Under development
 
+- Added more basic functions
     - 0805c91 2015-09-14 Vhost advanced config improved (d.naumenko.a@gmail.com)
     - 82cdb84 2015-09-10 Implemented advanced config for vhost (not tested yet) (d.naumenko.a@gmail.com)
     - 5140898 2015-09-10 Hdomain aliases operation improved (d.naumenko.a@gmail.com)
@@ -11,7 +12,8 @@ hiqdev/hipanel-module-hosting commits history
     - 3e28409 2015-09-08 Added Hdomain alias create form (d.naumenko.a@gmail.com)
 - Added account creating
     - 86c2a81 2015-09-01 Implemented FTP account creating (d.naumenko.a@gmail.com)
-- Fixed many for release
+- Fixed minor issues
+    - 39e2b74 2015-09-15 localized menu (sol@hiqdev.com)
     - ef3ee91 2015-09-06 hideved (sol@hiqdev.com)
     - 89363d9 2015-09-01 ServiceCombo - changed search url (d.naumenko.a@gmail.com)
     - 00f2754 2015-08-28 Added dependencies on related projects (d.naumenko.a@gmail.com)
