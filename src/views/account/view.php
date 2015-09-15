@@ -67,7 +67,8 @@ $this->breadcrumbs->setItems([
                         <h4><?= Yii::t('app', 'This will immediately terminate all sessions of the user!') ?></h4>
                     </div>
 
-                    <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false);
+                    <?php echo $modalButton->form->field($model,
+                        'password')->widget(PasswordInput::className())->label(false);
                     echo Html::activeHiddenInput($model, 'login');
 
                     ModalButton::end();
@@ -105,19 +106,49 @@ $this->breadcrumbs->setItems([
                     ModalButton::end();
                     ?>
                 </li>
+                <?php if ($model->canSetMailSettings()) { ?>
+                    <li>
+                        <?php
+                        $modalButton = ModalButton::begin([
+                            'model' => $model,
+                            'scenario' => 'set-mail-settings',
+                            'button' => [
+                                'label' => '<i class="fa fa-envelope-o"></i>' . Yii::t('app', 'Mail settings'),
+                                'disabled' => !$model->isOperable(),
+                            ],
+                            'modal' => [
+                                'header' => Html::tag('h4', Yii::t('app', 'Enter mail settings')),
+                                'headerOptions' => ['class' => 'label-info'],
+                                'footer' => [
+                                    'label' => Yii::t('app', 'Change'),
+                                    'data-loading-text' => Yii::t('app', 'Changing...'),
+                                    'class' => 'btn btn-info',
+                                ]
+                            ]
+                        ]);
+
+                        echo $modalButton->form->field($model, 'per_hour_limit');
+                        echo $modalButton->form->field($model, 'block_send')->checkbox();
+
+                        ModalButton::end();
+                        ?>
+                    </li>
+                <?php } ?>
                 <li>
                     <?= ModalButton::widget([
-                        'model'    => $model,
+                        'model' => $model,
                         'scenario' => 'delete',
-                        'button'   => ['label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete')],
-                        'body'     => Yii::t('app', 'Are you sure you want to delete account {name}? You will loose all data, that relates this account!', ['name' => $model->login]),
-                        'modal'    => [
-                            'header'        => Html::tag('h4', Yii::t('app', 'Confirm account deleting deleting')),
+                        'button' => ['label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete')],
+                        'body' => Yii::t('app',
+                            'Are you sure you want to delete account {name}? You will loose all data, that relates this account!',
+                            ['name' => $model->login]),
+                        'modal' => [
+                            'header' => Html::tag('h4', Yii::t('app', 'Confirm account deleting deleting')),
                             'headerOptions' => ['class' => 'label-danger'],
-                            'footer'        => [
-                                'label'             => Yii::t('app', 'Delete'),
+                            'footer' => [
+                                'label' => Yii::t('app', 'Delete'),
                                 'data-loading-text' => Yii::t('app', 'Deleting...'),
-                                'class'             => 'btn btn-danger',
+                                'class' => 'btn btn-danger',
                             ]
                         ]
                     ]) ?>
@@ -132,23 +163,24 @@ $this->breadcrumbs->setItems([
             <div class="col-md-6">
                 <?php
                 $box = Box::begin(['renderBody' => false]);
-                    $box->beginHeader();
-                        echo $box->renderTitle(Yii::t('app', 'Account information'));
-                    $box->endHeader();
-                    $box->beginBody();
-                        echo AccountGridView::detailView([
-                            'boxed' => false,
-                            'model' => $model,
-                            'columns' => [
-                                'seller_id',
-                                'client_id',
-                                ['attribute' => 'login'],
-                                'type',
-                                'state',
-                                'sshftp_ips'
-                            ],
-                        ]);
-                    $box->endBody();
+                $box->beginHeader();
+                echo $box->renderTitle(Yii::t('app', 'Account information'));
+                $box->endHeader();
+                $box->beginBody();
+                echo AccountGridView::detailView([
+                    'boxed' => false,
+                    'model' => $model,
+                    'columns' => [
+                        'seller_id',
+                        'client_id',
+                        ['attribute' => 'login'],
+                        'type',
+                        'state',
+                        'sshftp_ips',
+                        'per_hour_limit'
+                    ],
+                ]);
+                $box->endBody();
                 $box->end();
                 ?>
             </div>
