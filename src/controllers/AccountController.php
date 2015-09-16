@@ -17,8 +17,8 @@ class AccountController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class'     => 'hipanel\actions\IndexAction',
-                'data'  => function ($action) {
+                'class' => 'hipanel\actions\IndexAction',
+                'data' => function ($action) {
                     return [
                         'stateData' => $action->controller->getStateData(),
                         'typeData' => $action->controller->getTypeData(),
@@ -26,39 +26,47 @@ class AccountController extends \hipanel\base\CrudController
                 }
             ],
             'view' => [
-                'class'     => 'hipanel\actions\ViewAction'
+                'class' => 'hipanel\actions\ViewAction',
+                'findOptions' => [
+                    'with_mail_settings' => true
+                ]
             ],
-            'create'          => [
-                'class'   => 'hipanel\actions\SmartCreateAction',
+            'create' => [
+                'class' => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'Account creating task has been added to queue'),
-                'error'   => Yii::t('app', 'An error occurred when trying to create account')
+                'error' => Yii::t('app', 'An error occurred when trying to create account')
             ],
-            'create-ftponly'  => [
-                'class'   => 'hipanel\actions\SmartCreateAction',
+            'create-ftponly' => [
+                'class' => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'Account creating task has been added to queue'),
-                'error'   => Yii::t('app', 'An error occurred when trying to create account')
+                'error' => Yii::t('app', 'An error occurred when trying to create account')
             ],
-            'set-password'    => [
-                'class'   => 'hipanel\actions\SmartUpdateAction',
+            'set-password' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
                 'success' => Yii::t('app', 'Password changed'),
-                'error'   => Yii::t('app', 'Failed to change password'),
+                'error' => Yii::t('app', 'Failed to change password'),
             ],
             'set-allowed-ips' => [
-                'class'   => 'hipanel\actions\SmartUpdateAction',
+                'class' => 'hipanel\actions\SmartUpdateAction',
                 'success' => Yii::t('app', 'Allowed IPs changing task has been successfully added to queue'),
-                'error'   => Yii::t('app', 'An error occurred when trying to change allowed IPs'),
+                'error' => Yii::t('app', 'An error occurred when trying to change allowed IPs'),
             ],
-            'validate-form'   => [
+            'set-mail-settings' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
+                'success' => Yii::t('app', 'Mail settings where changed'),
+                'error' => Yii::t('app', 'An error occurred when trying to change mail settings'),
+            ],
+            'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',
             ],
-            'delete'          => [
-                'class'   => 'hipanel\actions\SmartDeleteAction',
+            'delete' => [
+                'class' => 'hipanel\actions\SmartDeleteAction',
                 'success' => Yii::t('app', 'Account deleting task has been added to queue'),
-                'error'   => Yii::t('app', 'An error occurred when trying to delete account')
+                'error' => Yii::t('app', 'An error occurred when trying to delete account')
             ],
             'get-directories-list' => [
-                'class'         => 'hipanel\actions\SearchAction',
-                'findOptions'   => ['with_directories' => true],
+                'class' => 'hipanel\actions\SearchAction',
+                'findOptions' => ['with_directories' => true],
                 'ajaxResponseFormatter' => function ($action) {
                     $results = [];
 
