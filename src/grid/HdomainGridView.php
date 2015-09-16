@@ -77,6 +77,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'service' => [
+                'label' => Yii::t('app', 'Service'),
                 'value' => function ($model) {
                     return $model->getAttribute('vhost')['service'];
                 }
@@ -96,6 +97,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'aliases' => [
+                'label' => Yii::t('app', 'Aliases'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([

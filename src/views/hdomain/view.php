@@ -8,9 +8,9 @@ use yii\helpers\Html;
 use yii\web\JsExpression;
 
 $this->title    = $model->domain;
-$this->subtitle = Yii::t('app', 'hosting domain detailed information') . ' #' . $model->id;
+$this->subtitle = Yii::t('app', 'Hosting domain detailed information') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => 'Domains', 'url' => ['index']],
+    ['label' => Yii::t('app', 'Domains'), 'url' => ['index']],
     $this->title,
 ]);
 ?>
@@ -93,6 +93,7 @@ $this->breadcrumbs->setItems([
                                 'dns_on',
                                 [
                                     'attribute' => 'aliases',
+                                    'label'     => Yii::t('app', 'Aliases'),
                                     'format' => 'raw',
                                     'value' => function ($model) {
                                         $html = [];

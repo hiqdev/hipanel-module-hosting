@@ -14,9 +14,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = $model->login;
-$this->subtitle = Yii::t('app', 'account detailed information') . ' #' . $model->id;
+$this->subtitle = Yii::t('app', 'Account detailed information') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => 'Accounts', 'url' => ['index']],
+    ['label' => Yii::t('app', 'Accounts'), 'url' => ['index']],
     $this->title,
 ]);
 
@@ -112,7 +112,7 @@ $this->breadcrumbs->setItems([
                         'button'   => ['label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete')],
                         'body'     => Yii::t('app', 'Are you sure you want to delete account {name}? You will loose all data, that relates this account!', ['name' => $model->login]),
                         'modal'    => [
-                            'header'        => Html::tag('h4', Yii::t('app', 'Confirm account deleting deleting')),
+                            'header'        => Html::tag('h4', Yii::t('app', 'Confirm account deleting')),
                             'headerOptions' => ['class' => 'label-danger'],
                             'footer'        => [
                                 'label'             => Yii::t('app', 'Delete'),

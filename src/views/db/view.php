@@ -8,9 +8,9 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
 $this->title = $model->name;
-$this->subtitle = Yii::t('app', 'database detailed information') . ' #' . $model->id;
+$this->subtitle = Yii::t('app', 'Database detailed information') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => 'Databases', 'url' => ['index']],
+    ['label' => Yii::t('app', 'Databases'), 'url' => ['index']],
     $this->title,
 ]);
 ?>
