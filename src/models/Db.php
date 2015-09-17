@@ -43,7 +43,6 @@ class Db extends Model
         return $this->mergeAttributeLabels([
             'name'                 => Yii::t('app', 'DB name'),
             'service_ip'           => Yii::t('app', 'Service IP'),
-            'service_id'           => Yii::t('app', 'Service'),
             'backuping_type'       => Yii::t('app', 'Type of backuping'),
             'backuping_type_label' => Yii::t('app', 'Backuping type label'),
         ]);

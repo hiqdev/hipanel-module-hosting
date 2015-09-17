@@ -27,7 +27,6 @@ class Service extends \hipanel\base\Model
     /** @inheritdoc */
     public function attributeLabels () {
         return $this->mergeAttributeLabels([
-            'soft_id'         => Yii::t('app', 'Soft ID'),
             'soft_type'       => Yii::t('app', 'Soft Type'),
             'soft_type_label' => Yii::t('app', 'Soft type label'),
         ]);

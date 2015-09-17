@@ -89,11 +89,8 @@ class Account extends \hipanel\base\Model
     {
         return $this->mergeAttributeLabels([
             'login_like' => Yii::t('app', 'Login'),
-            'type_label' => Yii::t('app', 'state'),
-            'state_label' => Yii::t('app', 'state'),
             'allowed_ips' => Yii::t('app', 'Allowed IPs'),
             'sshftp_ips' => Yii::t('app', 'IP to access on the server via SSH or FTP'),
-            'server_id' => Yii::t('app', 'Server'),
             'block_send' => Yii::t('app', 'Block outgoing post'),
             'per_hour_limit' => Yii::t('app', 'Maximum letters per hour'),
         ]);

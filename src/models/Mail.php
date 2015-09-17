@@ -30,7 +30,6 @@ class Mail extends \hipanel\base\Model
             'hdomain'               => Yii::t('app', 'Domain Name'),
             'domain'                => Yii::t('app', 'Domain Name'),
             'forwards'              => Yii::t('app', 'Forwarding'),
-            'spam_action'           => Yii::t('app', 'Spam action'),
             'du_limit'              => Yii::t('app', 'Disk usage limit'),
         ]);
     }

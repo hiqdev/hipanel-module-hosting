@@ -30,8 +30,6 @@ class Request extends \hipanel\base\Model
     public function attributeLabels () {
         return $this->mergeAttributeLabels([
             'object_name'           => Yii::t('app', 'Object Name'),
-            'tries_left'            => Yii::t('app', 'Tries left'),
-            'time_lag'              => Yii::t('app', 'Time lag'),
         ]);
     }
 }

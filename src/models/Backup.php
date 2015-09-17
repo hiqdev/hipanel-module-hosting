@@ -28,7 +28,6 @@ class Backup extends \hipanel\base\Model
     /** @inheritdoc */
     public function attributeLabels () {
         return $this->mergeAttributeLabels([
-            'object_id'             => Yii::t('app', 'Object ID'),
             'ty_id'                 => Yii::t('app', 'Type ID'),
             'ty'                    => Yii::t('app', 'Type'),
             'size_gb'               => Yii::t('app', 'Size in GB'),

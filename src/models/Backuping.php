@@ -32,7 +32,6 @@ class Backuping extends \hipanel\base\Model
         return $this->mergeAttributeLabels([
             'day'                   => Yii::t('app', 'Date'),
             'hour'                  => Yii::t('app', 'Time'),
-            'skip_lock'             => Yii::t('app', 'Skip lock'),
             'backup_last'           => Yii::t('app', 'Last backup'),
             'backup_count'          => Yii::t('app', 'Count'),
             'total_du'              => Yii::t('app', 'Total of backup uses'),
