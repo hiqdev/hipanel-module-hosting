@@ -5,7 +5,7 @@ hiqdev/hipanel-module-hosting changelog
 
 - Fixed localization
 - Added more basic functions
-- Added account creating
+- Added FTP account creating
 - Fixed minor issues
 - Added basics
 

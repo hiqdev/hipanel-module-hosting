@@ -9,6 +9,7 @@ hiqdev/hipanel-module-hosting commits history
     - 2e58313 2015-09-16 * change language (bladeroot@gmail.com)
     - 9556106 2015-09-15 Account mail settings edit implemented (d.naumenko.a@gmail.com)
     - 89aeac4 2015-09-15 x fix localization (bladeroot@gmail.com)
+    - 39e2b74 2015-09-15 localized menu (sol@hiqdev.com)
 - Added more basic functions
     - 0805c91 2015-09-14 Vhost advanced config improved (d.naumenko.a@gmail.com)
     - 82cdb84 2015-09-10 Implemented advanced config for vhost (not tested yet) (d.naumenko.a@gmail.com)
@@ -16,10 +17,10 @@ hiqdev/hipanel-module-hosting commits history
     - e70c777 2015-09-10 IpController - added index action (d.naumenko.a@gmail.com)
     - be85c2d 2015-09-10 HdomainIpCombo - fixed request URL (d.naumenko.a@gmail.com)
     - 3e28409 2015-09-08 Added Hdomain alias create form (d.naumenko.a@gmail.com)
-- Added account creating
+- Added FTP account creating
     - 86c2a81 2015-09-01 Implemented FTP account creating (d.naumenko.a@gmail.com)
 - Fixed minor issues
-    - 39e2b74 2015-09-15 localized menu (sol@hiqdev.com)
+    - 72f6fc3 2015-09-18 hidden Hdomains menu item when no domains available (sol@hiqdev.com)
     - ef3ee91 2015-09-06 hideved (sol@hiqdev.com)
     - 89363d9 2015-09-01 ServiceCombo - changed search url (d.naumenko.a@gmail.com)
     - 00f2754 2015-08-28 Added dependencies on related projects (d.naumenko.a@gmail.com)
