@@ -3,6 +3,12 @@ hiqdev/hipanel-module-hosting commits history
 
 ## Under development
 
+- Fixed localization
+    - db9287d 2015-09-17 * improve language pack; - remove unnesessary lines (bladeroot@gmail.com)
+    - 7f037b9 2015-09-16 x fix conflicts (bladeroot@gmail.com)
+    - 2e58313 2015-09-16 * change language (bladeroot@gmail.com)
+    - 9556106 2015-09-15 Account mail settings edit implemented (d.naumenko.a@gmail.com)
+    - 89aeac4 2015-09-15 x fix localization (bladeroot@gmail.com)
 - Added more basic functions
     - 0805c91 2015-09-14 Vhost advanced config improved (d.naumenko.a@gmail.com)
     - 82cdb84 2015-09-10 Implemented advanced config for vhost (not tested yet) (d.naumenko.a@gmail.com)
@@ -36,7 +42,7 @@ hiqdev/hipanel-module-hosting commits history
     - 97c279c 2015-08-02 * Plugin: + aliases (sol@hiqdev.com)
     - cf4ac41 2015-07-31 continue (d.naumenko.a@gmail.com)
     - 2ff79fe 2015-07-31 Sources moved to src (d.naumenko.a@gmail.com)
-- Added all basics
+- Added basics
     - d792336 2015-07-30 Accounts GridView done (d.naumenko.a@gmail.com)
     - 90ce547 2015-07-30 Db, Hdomain deep coding (d.naumenko.a@gmail.com)
     - 8456939 2015-06-11 Domain deep coding (d.naumenko.a@gmail.com)
