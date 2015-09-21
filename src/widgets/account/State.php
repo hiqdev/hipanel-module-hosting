@@ -2,8 +2,8 @@
 
 namespace hipanel\modules\hosting\widgets\account;
 
-use hipanel\base\Re;
 use hipanel\widgets\Label;
+use Yii;
 
 class State extends Label
 {
@@ -16,7 +16,7 @@ class State extends Label
         else $class = 'warning';
 
         $this->zclass   = $class;
-        $this->label    = Re::l($this->model->state_label);
+        $this->label    = Yii::t('app', $this->model->state_label);
         parent::run();
     }
 }
