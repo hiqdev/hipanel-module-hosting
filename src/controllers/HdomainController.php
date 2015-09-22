@@ -38,6 +38,11 @@ class HdomainController extends \hipanel\base\CrudController
                     'show_deleted' => true,
                     'show_aliases' => true,
                 ],
+                'data' => function ($action) {
+                    return [
+                        'blockReasons' => $action->controller->getBlockReasons()
+                    ];
+                }
             ],
             'create' => [
                 'class' => 'hipanel\actions\SmartCreateAction',
@@ -49,6 +54,16 @@ class HdomainController extends \hipanel\base\CrudController
                 'view' => 'create-alias',
                 'success' => Yii::t('app', 'Domain alias create task has been created successfully'),
                 'error' => Yii::t('app', 'Error while creating domain'),
+            ],
+            'enable-block' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
+                'success' => 'Hosting domain was blocked successfully',
+                'error' => 'Error during the hosting domain blocking',
+            ],
+            'disable-block' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
+                'success' => 'Hosting domain was unblocked successfully',
+                'error' => 'Error during the hosting domain unblocking',
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',

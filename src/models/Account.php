@@ -19,6 +19,10 @@ class Account extends \hipanel\base\Model
     const TYPE_SSH = 'user';
     const TYPE_FTP = 'ftponly';
 
+    const STATE_OK = 'ok';
+    const STATE_BLOCKED = 'blocked';
+    const STATE_DELETED = 'deleted';
+
     public function init()
     {
         $this->on(static::EVENT_BEFORE_VALIDATE, [$this, 'onBeforeValidate']);
@@ -79,6 +83,8 @@ class Account extends \hipanel\base\Model
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
             [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
+            [['type', 'comment'], 'required', 'on' => ['enable-block']],
+            [['comment'], 'safe', 'on' => ['disable-block']],
         ];
     }
 
@@ -93,12 +99,13 @@ class Account extends \hipanel\base\Model
             'sshftp_ips' => Yii::t('app', 'IP to access on the server via SSH or FTP'),
             'block_send' => Yii::t('app', 'Block outgoing post'),
             'per_hour_limit' => Yii::t('app', 'Maximum letters per hour'),
+            'comment' => Yii::t('app', 'Comment'),
         ]);
     }
 
     public function goodStates()
     {
-        return ['ok'];
+        return [self::STATE_OK];
     }
 
     /**
@@ -121,7 +128,11 @@ class Account extends \hipanel\base\Model
 
     public function getKnownTypes()
     {
-        return ['user', 'ftponly'];
+        return [static::TYPE_FTP, static::TYPE_SSH];
+    }
+
+    public function getIsBlocked() {
+        return $this->state == self::STATE_BLOCKED;
     }
 
     public function canSetMailSettings() {
@@ -139,9 +150,9 @@ class Account extends \hipanel\base\Model
     public function onBeforeValidate()
     {
         if ($this->scenario == 'create') {
-            $this->type = 'user';
+            $this->type = static::TYPE_SSH;
         } elseif ($this->scenario == 'create-ftponly') {
-            $this->type = 'ftponly';
+            $this->type = static::TYPE_FTP;
         }
         return true;
     }

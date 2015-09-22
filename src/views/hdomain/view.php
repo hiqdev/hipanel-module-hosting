@@ -43,6 +43,11 @@ $this->breadcrumbs->setItems([
                 <li>
                     <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('app', 'Advanced settings'), ['/hosting/vhost/advanced-config', 'id' => $model->id]); ?>
                 </li>
+                <?php if (Yii::$app->user->can('support')) { ?>
+                    <li>
+                        <?= $this->render('_block', compact(['model', 'blockReasons'])); ?>
+                    </li>
+                <?php } ?>
                 <li>
                     <?= ModalButton::widget([
                         'model' => $model,

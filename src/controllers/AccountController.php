@@ -29,7 +29,12 @@ class AccountController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\ViewAction',
                 'findOptions' => [
                     'with_mail_settings' => true
-                ]
+                ],
+                'data' => function ($action) {
+                    return [
+                        'blockReasons' => $action->controller->getBlockReasons()
+                    ];
+                }
             ],
             'create' => [
                 'class' => 'hipanel\actions\SmartCreateAction',
@@ -55,6 +60,16 @@ class AccountController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\SmartUpdateAction',
                 'success' => Yii::t('app', 'Mail settings where changed'),
                 'error' => Yii::t('app', 'An error occurred when trying to change mail settings'),
+            ],
+            'enable-block' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
+                'success' => 'Account was blocked successfully',
+                'error' => 'Error during the account blocking',
+            ],
+            'disable-block' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
+                'success' => 'Account was unblocked successfully',
+                'error' => 'Error during the account unblocking',
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',

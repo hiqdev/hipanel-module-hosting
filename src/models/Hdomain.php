@@ -18,6 +18,12 @@ class Hdomain extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
+    const STATE_OK = 'ok';
+    const STATE_BLOCKED = 'blocked';
+    const STATE_DELETED = 'deleted';
+    const STATE_DISABLED = 'disabled';
+    const STATE_TEMPORARY = 'temporary';
+
     /**
      * @var array Stores array of additional info for vhost of hdomain
      */
@@ -112,7 +118,9 @@ class Hdomain extends \hipanel\base\Model
                 ['id'],
                 'required',
                 'on' => ['delete']
-            ]
+            ],
+            [['type', 'comment'], 'required', 'on' => ['enable-block']],
+            [['comment'], 'safe', 'on' => ['disable-block']],
         ];
     }
 
@@ -131,8 +139,13 @@ class Hdomain extends \hipanel\base\Model
             'proxy_enable' => Yii::t('app', 'Enable proxy (NEED MANUAL)'),
             'backuping_type' => Yii::t('app', 'Backup periodicity'),
             'dns_on' => Yii::t('app', 'DNS'),
-            'vhost_id' => Yii::t('app', 'Alias for')
+            'vhost_id' => Yii::t('app', 'Alias for'),
+            'comment' => Yii::t('app', 'Comment'),
         ]);
+    }
+
+    public function getIsBlocked() {
+        return $this->state === static::STATE_BLOCKED;
     }
 
     public function scenarioCommands()

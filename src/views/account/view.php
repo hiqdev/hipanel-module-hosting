@@ -134,6 +134,11 @@ $this->breadcrumbs->setItems([
                         ?>
                     </li>
                 <?php } ?>
+                <?php if (Yii::$app->user->can('support')) { ?>
+                    <li>
+                        <?= $this->render('_block', compact(['model', 'blockReasons'])); ?>
+                    </li>
+                <?php } ?>
                 <li>
                     <?= ModalButton::widget([
                         'model' => $model,
