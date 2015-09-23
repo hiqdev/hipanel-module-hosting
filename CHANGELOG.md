@@ -3,7 +3,8 @@ hiqdev/hipanel-module-hosting changelog
 
 ## Under development
 
-- Fixed localization
+- Added block/unblock to account, hdomain
+- Fixed translation and minor issues
 - Added more basic functions
 - Added FTP account creating
 - Fixed minor issues

@@ -3,7 +3,11 @@ hiqdev/hipanel-module-hosting commits history
 
 ## Under development
 
-- Fixed localization
+- Added block/unblock to account, hdomain
+    - 3f7bb6b 2015-09-22 Added block/unblock to account, hdomain (d.naumenko.a@gmail.com)
+- Fixed translation and minor issues
+    - 9981465 2015-09-23 fixed Label zclass -> color (sol@hiqdev.com)
+    - f5636a5 2015-09-21 fixed translation, redone Re::l to Yii::t (sol@hiqdev.com)
     - db9287d 2015-09-17 * improve language pack; - remove unnesessary lines (bladeroot@gmail.com)
     - 7f037b9 2015-09-16 x fix conflicts (bladeroot@gmail.com)
     - 2e58313 2015-09-16 * change language (bladeroot@gmail.com)
