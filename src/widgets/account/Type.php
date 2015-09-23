@@ -14,8 +14,8 @@ class Type extends Label
         if ($type=='user') $class = 'info';
         else $type = 'warning';
 
-        $this->zclass   = $class;
-        $this->label    = Yii::t('app', $this->model->type_label);
+        $this->color = $class;
+        $this->label = Yii::t('app', $this->model->type_label);
         parent::run();
     }
 }

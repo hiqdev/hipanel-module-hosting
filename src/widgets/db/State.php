@@ -15,8 +15,8 @@ class State extends Label
         elseif ($state=='blocked') $class = 'danger';
         else $class = 'warning';
 
-        $this->zclass   = $class;
-        $this->label    = Yii::t('app', $this->model->state_label);
+        $this->color = $class;
+        $this->label = Yii::t('app', $this->model->state_label);
         parent::run();
     }
 }
