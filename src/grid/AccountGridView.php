@@ -50,7 +50,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             ],
             'actions'       => [
                 'class'             => ActionColumn::className(),
-                'template'          => '{view} {update} {delete}'
+                'template'          => '{view} {delete}'
             ],
             'type'          => [
                 'class'             => RefColumn::className(),

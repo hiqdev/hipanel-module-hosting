@@ -43,6 +43,7 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
         </div>
     <?php $box->endActions() ?>
     <?php $box->beginBulkActions() ?>
+
         <?= $box->renderDeleteButton() ?>
     <?php $box->endBulkActions() ?>
         <?= $box->renderSearchForm(['stateData' => $stateData, 'typeData' => $typeData]) ?>
