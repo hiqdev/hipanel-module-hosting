@@ -38,7 +38,10 @@ use yii\helpers\Url;
                                 ?>
 
                                 <?php
-                                print $form->field($model, "[$i]client")->widget(ClientCombo::className());
+                                if (Yii::$app->user->can('support')) {
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className());
+                                }
+
                                 print $form->field($model, "[$i]server")->widget(ServerCombo::className());
                                 if ($model->scenario === 'create-ftponly') {
                                     print $form->field($model, "[$i]account")->widget(SshAccountCombo::className());

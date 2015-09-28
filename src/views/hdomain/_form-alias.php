@@ -32,7 +32,10 @@ $form = ActiveForm::begin([
                     <div class="box-body">
                         <div class="form-instance" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
                             <?php
-                            print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
+                            if (Yii::$app->user->can('support')) {
+                                print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
+                            }
+
                             print $form->field($model, "[$i]server")->widget(ServerCombo::className(), ['formElementSelector' => '.form-instance']);
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
                                 'formElementSelector' => '.form-instance',
