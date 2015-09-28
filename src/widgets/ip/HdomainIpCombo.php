@@ -24,7 +24,8 @@ class HdomainIpCombo extends Combo
     /** @inheritdoc */
     public $_return = [
         'id',
-        'expanded_ips'
+        'expanded_ips',
+        'links'
     ];
 
     public $_rename = [

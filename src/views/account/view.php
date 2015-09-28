@@ -134,7 +134,7 @@ $this->breadcrumbs->setItems([
                         ?>
                     </li>
                 <?php } ?>
-                <?php if (Yii::$app->user->can('support')) { ?>
+                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id != $model->client_id) { ?>
                     <li>
                         <?= $this->render('_block', compact(['model', 'blockReasons'])); ?>
                     </li>
