@@ -3,9 +3,12 @@ hiqdev/hipanel-module-hosting commits history
 
 ## Under development
 
-- Added block/unblock to account, hdomain
+- Added create to Account, DB, Hdomain
+    - 99602fd 2015-09-28 Account, DB, Hdomain create form - removed client input for non-support (d.naumenko.a@gmail.com)
+- Added block/unblock to Account, Hdomain
     - 3f7bb6b 2015-09-22 Added block/unblock to account, hdomain (d.naumenko.a@gmail.com)
 - Fixed translation and minor issues
+    - 907ff1a 2015-10-06 fixed use of DomainValidator moved to hipanel-core (sol@hiqdev.com)
     - 9981465 2015-09-23 fixed Label zclass -> color (sol@hiqdev.com)
     - f5636a5 2015-09-21 fixed translation, redone Re::l to Yii::t (sol@hiqdev.com)
     - db9287d 2015-09-17 * improve language pack; - remove unnesessary lines (bladeroot@gmail.com)

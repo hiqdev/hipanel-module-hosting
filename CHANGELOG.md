@@ -3,7 +3,8 @@ hiqdev/hipanel-module-hosting changelog
 
 ## Under development
 
-- Added block/unblock to account, hdomain
+- Added create to Account, DB, Hdomain
+- Added block/unblock to Account, Hdomain
 - Fixed translation and minor issues
 - Added more basic functions
 - Added FTP account creating
