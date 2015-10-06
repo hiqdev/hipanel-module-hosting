@@ -8,8 +8,8 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\modules\client\validators\LoginValidator as ClientLoginValidator;
-use hipanel\modules\domain\validators\DomainValidator;
 use hipanel\modules\hosting\validators\LoginValidator as AccountLoginValidator;
+use hipanel\validators\DomainValidator;
 use hipanel\validators\IpValidator;
 use Yii;
 use yii\web\JsExpression;
