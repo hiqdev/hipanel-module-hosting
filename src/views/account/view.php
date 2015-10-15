@@ -141,7 +141,7 @@ $this->breadcrumbs->setItems([
                 <?php } ?>
                 <li>
                     <?= ModalButton::widget([
-                        'model' => $model,
+                        'model'    => $model,
                         'scenario' => 'delete',
                         'button'   => ['label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete')],
                         'body'     => Yii::t('app',
