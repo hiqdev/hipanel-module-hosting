@@ -41,7 +41,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         'delimiter' => '<br />',
                         'button' => [
                             'label' => Yii::t('app', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
-                            'clientOptions' => ['html' => true],
+                            'popoverOptions' => ['html' => true],
                         ],
                         'formatter' => function ($value, $key) {
                             return Html::a($value, ['view', 'id' => $key]);
@@ -106,7 +106,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                     return ArraySpoiler::widget([
                         'data' => (array)$model->getAttribute('aliases'),
                         'delimiter' => '<br />',
-                        'popoverOptions' => ['html' => true],
+                        'button' => ['popoverOptions' => ['html' => true]],
                     ]);
                 }
             ],
