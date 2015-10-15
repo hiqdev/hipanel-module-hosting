@@ -39,12 +39,15 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         'data' => $aliases,
                         'visibleCount' => 0,
                         'delimiter' => '<br />',
-                        'popoverOptions' => ['html' => true],
+                        'button' => [
+                            'label' => Yii::t('app', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
+                            'clientOptions' => ['html' => true],
+                        ],
                         'formatter' => function ($value, $key) {
                             return Html::a($value, ['view', 'id' => $key]);
                         },
-                        'badgeFormat' => Yii::t('app', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
                     ]);
+
                     return $html;
                 }
             ],
