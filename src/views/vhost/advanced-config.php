@@ -24,8 +24,6 @@ $this->breadcrumbs->setItems([
 
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
-    'enableClientValidation' => true,
-    'validateOnBlur'         => true,
     'enableAjaxValidation'   => true,
     'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
 ]); ?>

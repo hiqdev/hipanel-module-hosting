@@ -43,6 +43,9 @@ $this->breadcrumbs->setItems([
                 <li>
                     <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('app', 'Advanced settings'), ['/hosting/vhost/advanced-config', 'id' => $model->id]); ?>
                 </li>
+                <li>
+                    <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('app', 'Proxy settings'), ['/hosting/vhost/manage-proxy', 'id' => $model->id]); ?>
+                </li>
                 <?php if (Yii::$app->user->can('support') && Yii::$app->user->id != $model->client_id) { ?>
                     <li>
                         <?= $this->render('_block', compact(['model', 'blockReasons'])); ?>

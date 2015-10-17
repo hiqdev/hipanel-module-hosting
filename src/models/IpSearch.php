@@ -28,6 +28,8 @@ class IpSearch extends Ip{
             'soft_type',
             'server',
             'device',
+            'soft',
+            'soft_in',
         ]);
     }
 }

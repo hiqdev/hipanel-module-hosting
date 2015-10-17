@@ -16,6 +16,16 @@ class Vhost extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
+    public $backend;
+
+    public function init() {
+        $this->on(self::EVENT_AFTER_FIND, function ($event) {
+            $this->setAttributes([
+                'backend_ip' => $this->getAttribute('backend')['ip'],
+                'proxy_enabled' => $this->getIsProxied(),
+            ]);
+        });
+    }
 
     public function rules()
     {
@@ -45,6 +55,7 @@ class Vhost extends \hipanel\base\Model
                     'docroot',
                     'cgibin',
                     'fullpath',
+                    'proxy_enabled',
                 ],
                 'safe'
             ],
@@ -76,8 +87,10 @@ class Vhost extends \hipanel\base\Model
             [
                 ['id'],
                 'required',
-                'on' => ['advanced-config']
-            ]
+                'on' => ['advanced-config', 'manage-proxy']
+            ],
+            [['ip', 'backend_ip'], IpValidator::className()], /// TODO: replace with core IP validator
+            [['ip'], 'required', 'on' => ['manage-proxy']],
         ];
     }
 
@@ -100,10 +113,20 @@ class Vhost extends \hipanel\base\Model
         ]);
     }
 
+    public function getIsProxied()
+    {
+        return isset($this->getAttribute('backend')['id']);
+    }
+
+    public function getBackend_ip()
+    {
+        return $this->getAttribute('backend')['ip'];
+    }
+
     public function scenarioCommands()
     {
         return [
-            'advanced-config'  => 'setAdvancedConfig',
+            'advanced-config' => 'setAdvancedConfig',
         ];
     }
 }

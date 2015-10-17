@@ -24,6 +24,16 @@ class Hdomain extends \hipanel\base\Model
     const STATE_DISABLED = 'disabled';
     const STATE_TEMPORARY = 'temporary';
 
+    public function init() {
+        $this->on(self::EVENT_AFTER_FIND, function ($event) {
+            $this->setAttributes([
+                'ip' => $this->getAttribute('vhost')['ip'],
+                'backend_ip' => $this->getAttribute('vhost')['backend']['ip'],
+                'proxy_enabled' => $this->getIsProxied(),
+            ]);
+        });
+    }
+
     /**
      * @var array Stores array of additional info for vhost of hdomain
      */
@@ -63,6 +73,7 @@ class Hdomain extends \hipanel\base\Model
                     'backuping_type',
                     'state_label',
                     'alias_type',
+                    'proxy_enabled',
                 ],
                 'safe'
             ],
@@ -70,7 +81,8 @@ class Hdomain extends \hipanel\base\Model
             [['account'], AccountLoginValidator::className()],
             [['dns_on', 'with_www', 'proxy_enable'], 'boolean'],
             [['domain', 'alias'], DomainValidator::className()],
-            [['ip', 'backend_ip'], IpValidator::className()], /// TODO: replace with IP validator
+            [['ip', 'backend_ip'], IpValidator::className()], /// TODO: replace with core IP validator
+            [['ip'], 'required', 'on' => ['create']],
             [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],
             [
                 [
@@ -117,7 +129,7 @@ class Hdomain extends \hipanel\base\Model
             [
                 ['id'],
                 'required',
-                'on' => ['delete']
+                'on' => ['manage-proxy', 'delete']
             ],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
@@ -126,7 +138,7 @@ class Hdomain extends \hipanel\base\Model
 
     function getIsProxied()
     {
-        return isset($this->vhost['backend']);
+        return isset($this->getAttribute('vhost')['backend']);
     }
 
     /** @inheritdoc */
@@ -144,7 +156,8 @@ class Hdomain extends \hipanel\base\Model
         ]);
     }
 
-    public function getIsBlocked() {
+    public function getIsBlocked()
+    {
         return $this->state === static::STATE_BLOCKED;
     }
 

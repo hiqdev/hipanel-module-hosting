@@ -23,28 +23,21 @@ class VhostController extends \hipanel\base\CrudController
                 'url' => ArrayHelper::merge(['@hdomain/view'], Yii::$app->request->get())
             ],
             'advanced-config' => [
-                'class' => 'hipanel\actions\SearchAction',
+                'class' => 'hipanel\actions\SmartUpdateAction',
                 'findOptions' => [
-                    'select' => 'advanced'
-                ],
-                'GET html' => [
-                    'save' => true,
-                    'flash' => false,
-                    'success' => [
-                        'class' => 'hipanel\actions\RenderAction',
-                        'params' => function ($action) {
-                            return [
-                                'models' => $action->collection->models,
-                                'model' => $action->collection->first
-                            ];
-                        }
-                    ]
-                ],
-                'POST html' => [
-                    'class' => 'hipanel\actions\SmartUpdateAction',
+                    'select' => 'advanced',
                 ],
                 'success' => Yii::t('app', 'Advanced settings was updated successfully'),
-                'error'   => Yii::t('app', 'Error while advanced settings update'), 
+                'error'   => Yii::t('app', 'Error while advanced settings update'),
+            ],
+            'manage-proxy' => [
+                'class' => 'hipanel\actions\SmartUpdateAction',
+                'findOptions' => [
+                    'select' => 'advanced',
+                    'with_backends' => true
+                ],
+                'success' => Yii::t('app', 'Domain proxy setting settings changed'),
+                'error' => Yii::t('app', 'Error while changing domain proxy settings'),
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',

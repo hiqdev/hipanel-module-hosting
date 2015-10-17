@@ -21,7 +21,8 @@ class VhostSearch extends Vhost {
     public function searchAttributes()
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
-            'select'
+            'select',
+            'with_backends',
         ]);
     }
 }
