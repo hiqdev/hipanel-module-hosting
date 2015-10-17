@@ -58,7 +58,8 @@ class HdomainIpCombo extends Combo
                                     used_ips[ip] = true
                                     if (v.links) {
                                         $.each(v.links, function(k,link) {
-                                            row.text = link.service + ': ' + ip;
+                                            row.text = ip;
+                                            row.service = link.service;
                                         });
                                     } else {
                                         row.text = ip;
@@ -69,8 +70,20 @@ class HdomainIpCombo extends Combo
 
                             return {results: ret};
                         }
-                ")
+                "),
                 ],
+                'formatResult' => new JsExpression("
+                    function(row) {
+                        if (!row.service) return row.text;
+                        return row.service + ': ' + row.text;
+                    }
+                "),
+                'formatSelection' => new JsExpression("
+                    function(row) {
+                        if (!row.service) return row.text;
+                        return row.service + ': ' + row.text;
+                    }
+                ")
             ]
         ], $options));
     }
