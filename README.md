@@ -1,10 +1,10 @@
 Hosting Plugin for HiPanel
---------------------------
+==========================
 
 Hosting Plugin for HiPanel
 
-[![Latest Stable Version](https://poser.pugx.org/hiqdev/hipanel-module-hosting/v/stable.png)](https://packagist.org/packages/hiqdev/hipanel-module-hosting)
-[![Total Downloads](https://poser.pugx.org/hiqdev/hipanel-module-hosting/downloads.png)](https://packagist.org/packages/hiqdev/hipanel-module-hosting)
+[![Latest Stable Version](https://poser.pugx.org/hiqdev/hipanel-module-hosting/v/stable)](//packagist.org/packages/hiqdev/hipanel-module-hosting)
+[![Total Downloads](https://poser.pugx.org/hiqdev/hipanel-module-hosting/downloads)](//packagist.org/packages/hiqdev/hipanel-module-hosting)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:hipanel-module-hosting/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:hipanel-module-hosting/dev-master)
 
 ## Installation
@@ -25,9 +25,9 @@ or add
 
 to the require section of your composer.json.
 
-## Licence
+## License
 
-This project is released under the terms of the BSD-3-Clause [license](https://github.com/hiqdev/hidev/blob/master/LICENSE).
+This project is released under the terms of the BSD-3-Clause [license](https://github.com/hiqdev/hipanel-module-hosting/blob/master/LICENSE).
 Read more [here](http://choosealicense.com/licenses/bsd-3-clause).
 
-Copyright © 2014-2015, HiQDev (https://hiqdev.com/)
+Copyright © 2014-2015, HiQDev (http://hiqdev.com/)

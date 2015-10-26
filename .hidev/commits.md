@@ -3,11 +3,10 @@ hiqdev/hipanel-module-hosting commits history
 
 ## Under development
 
-- Added create to Account, DB, Hdomain
-    - 99602fd 2015-09-28 Account, DB, Hdomain create form - removed client input for non-support (d.naumenko.a@gmail.com)
-- Added block/unblock to Account, Hdomain
-    - 3f7bb6b 2015-09-22 Added block/unblock to account, hdomain (d.naumenko.a@gmail.com)
 - Fixed translation and minor issues
+    - c32da92 2015-10-17 Hdomain/Vhost - proxy options edit implemented (d.naumenko.a@gmail.com)
+    - 8265b2b 2015-10-17 HdomainIpCombo - changed formatResult (d.naumenko.a@gmail.com)
+    - 154e546 2015-10-15 HdomainGridView - changed call of ArraySpoiler due to class API changes (d.naumenko.a@gmail.com)
     - 907ff1a 2015-10-06 fixed use of DomainValidator moved to hipanel-core (sol@hiqdev.com)
     - 9981465 2015-09-23 fixed Label zclass -> color (sol@hiqdev.com)
     - f5636a5 2015-09-21 fixed translation, redone Re::l to Yii::t (sol@hiqdev.com)
@@ -17,6 +16,10 @@ hiqdev/hipanel-module-hosting commits history
     - 9556106 2015-09-15 Account mail settings edit implemented (d.naumenko.a@gmail.com)
     - 89aeac4 2015-09-15 x fix localization (bladeroot@gmail.com)
     - 39e2b74 2015-09-15 localized menu (sol@hiqdev.com)
+- Added create to Account, DB, Hdomain
+    - 99602fd 2015-09-28 Account, DB, Hdomain create form - removed client input for non-support (d.naumenko.a@gmail.com)
+- Added block/unblock to Account, Hdomain
+    - 3f7bb6b 2015-09-22 Added block/unblock to account, hdomain (d.naumenko.a@gmail.com)
 - Added more basic functions
     - 0805c91 2015-09-14 Vhost advanced config improved (d.naumenko.a@gmail.com)
     - 82cdb84 2015-09-10 Implemented advanced config for vhost (not tested yet) (d.naumenko.a@gmail.com)
