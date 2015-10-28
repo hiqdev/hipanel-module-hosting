@@ -16,11 +16,12 @@ use yii\helpers\Url;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'id'                     => 'dynamic-form',
-    'enableClientValidation' => true,
-    'validateOnBlur'         => true,
-    'enableAjaxValidation'   => true,
-    'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->isNewRecord ? reset($models)->scenario : 'update']),
+    'id' => 'dynamic-form',
+    'enableAjaxValidation' => true,
+    'validationUrl' => Url::toRoute([
+        'validate-form',
+        'scenario' => $model->isNewRecord ? reset($models)->scenario : 'update'
+    ]),
 ]) ?>
 
     <div class="container-items"><!-- widgetContainer -->
@@ -34,7 +35,7 @@ use yii\helpers\Url;
                                 if (!$model->isNewRecord) {
                                     $model->setScenario('update');
                                     echo Html::activeHiddenInput($model, "[$i]id");
-                                };
+                                }
                                 ?>
 
                                 <?php
@@ -54,15 +55,16 @@ use yii\helpers\Url;
                                     print $form->field($model, "[$i]path")->widget(AccountPathCombo::className());
                                 }
 
-                                print $form->field($model, "[$i]sshftp_ips")->hint(Yii::t('app',
-                                    'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))
-                                           ->input('text', [
-                                               'data'  => [
-                                                   'title'   => Yii::t('app', 'IP restrictions'),
-                                                   'content' => Yii::t('app', 'Text about IP restrictions'),
-                                               ],
-                                               'value' => $model->getSshFtpIpsList()
-                                           ]);
+                                print $form->field($model, "[$i]sshftp_ips")
+                                    ->hint(Yii::t('app', 'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))
+                                    ->input('text', [
+                                            'data' => [
+                                                'title' => Yii::t('app', 'IP restrictions'),
+                                                'content' => Yii::t('app', 'Text about IP restrictions'),
+                                            ],
+                                            'value' => $model->getSshFtpIpsList()
+                                        ]
+                                    );
                                 ?>
                             </div>
                         </div>
@@ -76,6 +78,4 @@ use yii\helpers\Url;
 <?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
 
-$this->registerJs("
-    $('#account-sshftp_ips').popover({placement: 'top', trigger: 'focus'});
-");
+$this->registerJs("$('#account-sshftp_ips').popover({placement: 'top', trigger: 'focus'});");
