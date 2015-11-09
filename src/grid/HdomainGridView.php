@@ -41,6 +41,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         'delimiter' => '<br />',
                         'button' => [
                             'label' => Yii::t('app', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
+                            'class' => 'badge progress-bar-info',
                             'popoverOptions' => ['html' => true],
                         ],
                         'formatter' => function ($value, $key) {

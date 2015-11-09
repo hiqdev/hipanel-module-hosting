@@ -24,7 +24,8 @@ class Hdomain extends \hipanel\base\Model
     const STATE_DISABLED = 'disabled';
     const STATE_TEMPORARY = 'temporary';
 
-    public function init() {
+    public function init()
+    {
         $this->on(self::EVENT_AFTER_FIND, function ($event) {
             $this->setAttributes([
                 'ip' => $this->getAttribute('vhost')['ip'],
@@ -159,6 +160,11 @@ class Hdomain extends \hipanel\base\Model
     public function getIsBlocked()
     {
         return $this->state === static::STATE_BLOCKED;
+    }
+
+    public function getDnsId()
+    {
+        return $this->dns_hdomain_id ?: $this->id;
     }
 
     public function scenarioCommands()
