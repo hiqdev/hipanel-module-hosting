@@ -5,21 +5,55 @@
  * @copyright Copyright (c) 2015 HiQDev
  */
 
+use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\BackupGridView;
+use hipanel\widgets\ActionBox;
+use hipanel\widgets\Pjax;
 
-$this->title                    = Yii::t('app', 'Backups');
-$this->params['breadcrumbs'][]  = $this->title;
-$this->params['subtitle']       = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
+$this->title = Yii::t('app', 'Backups');
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
 
 ?>
+<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
+<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
+<?php $box->beginActions() ?>
 
-<?= backupGridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel'  => $model,
-    'columns'      => [
-        'checkbox',
-        'seller',
+<?= $box->renderSearchButton() ?>
+<?= $box->renderSorter([
+    'attributes' => [
         'client',
-        'backup'
+        'account',
+        'server',
+        'object',
+        'id',
+//        'time',
+//        'disk',
     ],
 ]) ?>
+<?= $box->renderPerPage() ?>
+<?php $box->endActions() ?>
+<?php $box->renderBulkActions([
+    'items' => [
+        $box->renderDeleteButton(Yii::t('app', 'Delete'))
+    ],
+]) ?>
+<?= $box->renderSearchForm(compact('objectOptions')) ?>
+<?php $box->end() ?>
+<?php $box->beginBulkForm() ?>
+<?= BackupGridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $model,
+    'columns' => [
+        'checkbox',
+        'client',
+        'account',
+        'server',
+        'object',
+        'name',
+        'object_id',
+        'size_gb'
+    ],
+]) ?>
+<?php $box->endBulkForm() ?>
+<?php Pjax::end() ?>

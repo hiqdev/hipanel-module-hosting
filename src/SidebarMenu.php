@@ -39,6 +39,12 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
                         'url'     => ['/hosting/hdomain/index'],
                         'icon'    => 'fa-globe',
                         'visible' => function () { return (bool)Yii::getAlias('@domain', false); },
+                    ],
+                    'Backups' => [
+                        'label'   => Yii::t('app', 'Backups'),
+                        'url'     => ['/hosting/backup/index'],
+//                        'icon'    => 'fa-globe',
+                        'visible' => function () { return (bool)Yii::getAlias('@domain', false); },
                     ]
                 ],
             ],
