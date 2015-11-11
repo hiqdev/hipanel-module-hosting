@@ -9,13 +9,13 @@ class Type extends Label
 {
     public $model = [];
 
-    public function run () {
+    public function init () {
         $type = $this->model->type;
         if ($type=='user') $class = 'info';
-        else $type = 'warning';
+        else $class = 'warning';
 
         $this->color = $class;
         $this->label = Yii::t('app', $this->model->type_label);
-        parent::run();
+        parent::init();
     }
 }

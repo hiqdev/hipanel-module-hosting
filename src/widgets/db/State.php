@@ -9,7 +9,7 @@ class State extends Label
 {
     public $model = [];
 
-    public function run () {
+    public function init () {
         $state = $this->model->state;
         if ($state=='ok') $class = 'info';
         elseif ($state=='blocked') $class = 'danger';
@@ -17,6 +17,6 @@ class State extends Label
 
         $this->color = $class;
         $this->label = Yii::t('app', $this->model->state_label);
-        parent::run();
+        parent::init();
     }
 }
