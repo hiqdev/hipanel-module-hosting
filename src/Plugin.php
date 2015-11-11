@@ -9,6 +9,8 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
             "@account" => "/hosting/account",
             "@hdomain" => "/hosting/hdomain",
             "@db"      => "/hosting/db",
+            "@mail"    => "/hosting/mail",
+            "@backup"  => "/hosting/backup",
         ],
         'menus' => [
             'hipanel\modules\hosting\SidebarMenu',
