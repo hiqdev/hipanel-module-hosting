@@ -13,6 +13,7 @@ use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
+use hipanel\widgets\Label;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Html;
@@ -63,7 +64,6 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'filter' => false,
                 'format' => 'raw',
                 'value' => function ($model) {
-                    $html = '';
                     $vhost = $model->getAttribute('vhost');
 
                     $html = $vhost['ip'];
@@ -90,7 +90,17 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'class' => RefColumn::className(),
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return State::widget(compact('model'));
+                    $html = '';
+                    if ($model->dns_on) {
+                        $html .= Label::widget([
+                            'color' => 'success',
+                            'label' => Yii::t('app', 'DNS'),
+                            'tag' => 'span',
+                            'labelOptions' => ['title' => Yii::t('app', 'DNS is enabled')],
+                        ]);
+                    }
+                    $html .= ' ' . State::widget(compact('model'));
+                    return $html;
                 },
                 'gtype' => 'state,hdomain',
             ],
