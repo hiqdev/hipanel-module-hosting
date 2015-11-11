@@ -7,6 +7,7 @@
 
 namespace hipanel\modules\hosting\models;
 
-class MailSearch extends Mail{
+class MailSearch extends Mail
+{
     use \hipanel\base\SearchModelTrait;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace hipanel\modules\hosting\widgets\account;
+namespace hipanel\modules\hosting\widgets\mail;
 
 use hipanel\widgets\Label;
 use Yii;
