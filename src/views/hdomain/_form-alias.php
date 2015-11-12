@@ -47,16 +47,16 @@ $form = ActiveForm::begin([
 
                             $model->alias_type = 'subdomain';
                             print $form->field($model, "[$i]alias_type")->radio([
-                                    'value' => 'subdomain',
-                                    'class' => 'alias-type',
-                                    'label' => Yii::t('app', 'Subdomain of existing domain'),
-                                ]);
+                                'value' => 'subdomain',
+                                'class' => 'alias-type',
+                                'label' => Yii::t('app', 'Subdomain of existing domain'),
+                            ]);
                             print $form->field($model, "[$i]alias_type")->radio([
-                                    'id' => $model->formName() . '-' . $i . '-alias_type-new',
-                                    'value' => 'new',
-                                    'class' => 'alias-type',
-                                    'label' => Yii::t('app', 'New domain')
-                                ]);
+                                'id' => $model->formName() . '-' . $i . '-alias_type-new',
+                                'value' => 'new',
+                                'class' => 'alias-type',
+                                'label' => Yii::t('app', 'New domain')
+                            ]);
                             ?>
 
                             <div class="alias-subdomain form-inline">

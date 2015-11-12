@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $model hipanel\modules\ticket\models\Thread */
+/* @var $model hipanel\modules\hosting\models\Account */
 /* @var $type string */
 
 $this->title                   = Yii::t('app', 'Create FTP account');
