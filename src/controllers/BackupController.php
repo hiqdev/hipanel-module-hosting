@@ -17,6 +17,9 @@ class BackupController extends \hipanel\base\CrudController
                     ];
                 },
             ],
+            'view' => [
+                'class' => 'hipanel\actions\ViewAction',
+            ],
         ];
     }
 

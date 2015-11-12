@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2015 HiQDev
  */
 
-use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\BackupGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
@@ -27,8 +26,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
         'server',
         'object',
         'id',
-//        'time',
-//        'disk',
+        'time',
     ],
 ]) ?>
 <?= $box->renderPerPage() ?>
@@ -46,12 +44,12 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
     'filterModel' => $model,
     'columns' => [
         'checkbox',
+        'object_id',
         'client',
         'account',
         'server',
         'object',
-        'name',
-        'object_id',
+        'time',
         'size_gb'
     ],
 ]) ?>
