@@ -20,13 +20,13 @@ class Type extends Label
      */
     public function init()
     {
-        if ($this->model->is_alias) {
+        if ($this->model->type == 'forward_only') {
             $this->label = Yii::t('app', 'Forward only');
             $this->color = 'primary';
             $this->labelOptions = [
                 'title' => Yii::t('app', 'You can not login ...') // TODO
             ];
-        } elseif ($this->model->forwards) {
+        } elseif ($this->model->type == 'mailbox_with_forwards') {
             $this->label = Yii::t('app', 'Mailbox with forwards');
             $this->color = 'warning';
         } else {

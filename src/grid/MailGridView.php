@@ -15,7 +15,7 @@ use hipanel\modules\hosting\widgets\mail\Type;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use Yii;
-use yii\helpers\StringHelper;
+use yii\helpers\Html;
 
 class MailGridView extends \hipanel\grid\BoxedGridView
 {
@@ -49,6 +49,16 @@ class MailGridView extends \hipanel\grid\BoxedGridView
 //            ],
             'type' => [
                 'format' => 'raw',
+                'filter' => function ($column, $model, $attribute) {
+                    return Html::activeDropDownList($model, $attribute, [
+                        '' => Yii::t('app', '---'),
+                        'mailbox' => Yii::t('app', 'Mailbox'),
+                        'forward_only' => Yii::t('app', 'Forward only'),
+                        'mailbox_with_forwards' => Yii::t('app', 'Mailbox with forwards'),
+                    ], [
+                        'class' => 'form-control',
+                    ]);
+                },
                 'value' => function ($model) {
                     return Type::widget(compact('model'));
                 }

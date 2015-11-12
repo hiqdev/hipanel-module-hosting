@@ -20,7 +20,7 @@ class Mail extends \hipanel\base\Model
         return [
             [['id', 'hdomain_id', 'client_id', 'seller_id', 'account_id', 'server_id'], 'integer'],
             [['mail', 'nick', 'hdomain', 'client', 'seller', 'account', 'server', 'domain'], 'safe'],
-            [['type', 'state', 'state_label'], 'safe'],
+            [['type', 'state', 'state_label', 'password', 'spam_forward_mail'], 'safe'],
             [['forwards', 'spam_action', 'autoanswer', 'du_limit'], 'safe'],
             [['is_alias'], 'boolean'],
         ];
