@@ -57,6 +57,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             ],
             'size_gb' => [
                 'attribute' => 'size_gb',
+                'filter' => false,
                 'value' => function($model) {
                     return sprintf('%s GB', $model->size_gb);
                 }

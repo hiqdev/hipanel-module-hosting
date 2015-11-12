@@ -18,6 +18,7 @@ class Backup extends \hipanel\base\Model
             [['size'], 'integer'],
             [['title', 'db_like', 'size_gb', 'time', 'domain_like', 'service', 'client', 'method', 'server', 'account', 'client', 'classes', 'name', 'ty', 'state', 'object'], 'safe'],
             [['method_label', 'type_label', 'state_label'], 'safe'],
+            [['id'], 'integer', 'on' => ['delete']],
         ];
     }
 
