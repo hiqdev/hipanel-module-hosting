@@ -7,7 +7,8 @@ use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 /**
- * Class Account
+ * Class HdomainCombo
+ * @package hipanel\modules\hosting\widgets\combo
  */
 class HdomainCombo extends Combo
 {
@@ -26,6 +27,11 @@ class HdomainCombo extends Combo
     /** @inheritdoc */
     public $_rename = ['text' => 'domain'];
 
+    /**
+     * @var array used in [[getPluginOptions()]]
+     */
+    public $activeWhen = ['hosting/vhost'];
+
     /** @inheritdoc */
     public function getFilter()
     {
@@ -38,13 +44,13 @@ class HdomainCombo extends Combo
     /** @inheritdoc */
     public function getPluginOptions($options = [])
     {
-        return parent::getPluginOptions([
-            'activeWhen' => ['hosting/vhost'],
+        return parent::getPluginOptions(ArrayHelper::merge([
+            'activeWhen' => $this->activeWhen,
             'select2Options' => [
                 'formatResult' => new JsExpression("function (data) {
                     return data.text + ' - ' + data.server;
                 }")
             ]
-        ]);
+        ], $options));
     }
 }
