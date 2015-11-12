@@ -20,6 +20,11 @@ class BackupController extends \hipanel\base\CrudController
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
             ],
+            'delete' => [
+                'class' => 'hipanel\actions\SmartDeleteAction',
+                'success' => Yii::t('app', 'Backup deleting task has been added to queue'),
+                'error' => Yii::t('app', 'An error occurred when trying to delete backup')
+            ],
         ];
     }
 
@@ -27,7 +32,7 @@ class BackupController extends \hipanel\base\CrudController
     {
         return [
             'hdomain' => Yii::t('app', 'Domain'),
-            'db' => Yii::t('app', 'Data bases'),
+            'db' => Yii::t('app', 'Data Bases'),
         ];
     }
 }

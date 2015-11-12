@@ -29,9 +29,11 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'backup_like',
             ],
             'server' => [
+                'attribute' => 'server_id',
                 'class' => ServerColumn::className(),
             ],
             'account' => [
+                'attribute' => 'account_id',
                 'class' => AccountColumn::className()
             ],
             'object' => [
