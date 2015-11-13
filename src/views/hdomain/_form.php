@@ -150,5 +150,3 @@ JS
     &nbsp;
 <?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
-
-//$this->registerJs("$('#hdomain-proxy_enable').trigger('change');");

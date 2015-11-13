@@ -40,7 +40,7 @@ $form = ActiveForm::begin([
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions'        => [
-                                    'data-field' => 'account'
+                                    'data-attribute' => 'account'
                                 ],
                             ]);
                             print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::className(), ['formElementSelector' => '.form-instance']);
@@ -60,28 +60,28 @@ $form = ActiveForm::begin([
                             ?>
 
                             <div class="alias-subdomain form-inline">
-                                <?= $form->field($model, "[$i]subdomain")->input('text',  ['data-field' => 'subdomain'])->label(false) ?>
+                                <?= $form->field($model, "[$i]subdomain")->input('text',  ['data-attribute' => 'subdomain'])->label(false) ?>
                                 <?= Html::tag('span', '.') ?>
                                 <?= $form->field($model, "[$i]dns_hdomain_id")->widget(HdomainCombo::className(), [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
-                                        'data-field' => 'dns_hdomain_id'
+                                        'data-attribute' => 'dns_hdomain_id'
                                     ],
                                     'pluginOptions' => [
                                         'onChange' => new JsExpression("function () {
-                                                $(this).closest('.form-instance').find('input[data-field=\"sub-with-domain\"]').trigger('update');
+                                                $(this).closest('.form-instance').find('input[data-attribute=\"sub-with-domain\"]').trigger('update');
                                             }
                                         ")
                                     ]
                                 ])->label(false) ?>
                                 <?= $form->field($model, "[$i]domain")->hiddenInput([
                                     'id' => $model->formName() . '-' . $i . '-domain-sub',
-                                    'data-field' => 'sub-with-domain'
+                                    'data-attribute' => 'sub-with-domain'
                                 ])->label(false) ?>
                             </div>
                             <div class="alias-newdomain">
                                 <?= $form->field($model, "[$i]domain")->input('text', [
-                                    'data-field' => 'domain',
+                                    'data-attribute' => 'domain',
                                     'disabled' => true,
                                     'class' => 'form-control collapse'
                                 ])->label(false) ?>
@@ -103,8 +103,8 @@ $this->registerJs(<<<'JS'
     $(this).on('change', '.alias-type', function (e) {
         var $form = $(this).closest('.form-instance');
 
-        var $sub_inputs = $form.find('.alias-subdomain, input[data-field="subdomain"], input[data-field="sub-with-domain"]');
-        var $new_inputs = $form.find('.alias-newdomain, input[data-field="domain"]');
+        var $sub_inputs = $form.find('.alias-subdomain, input[data-attribute="subdomain"], input[data-attribute="sub-with-domain"]');
+        var $new_inputs = $form.find('.alias-newdomain, input[data-attribute="domain"]');
 
         if ($(this).attr('value') == 'subdomain') {
             $sub_inputs.show().prop('disabled', false);
@@ -115,10 +115,10 @@ $this->registerJs(<<<'JS'
         }
     });
 
-    $('#dynamic-form').on('update', 'input[data-field="sub-with-domain"]', function (event) {
+    $('#dynamic-form').on('update', 'input[data-attribute="sub-with-domain"]', function (event) {
         var $form = $(this).closest('.form-instance');
-        var subdomain = $form.find('input[data-field="subdomain"]').val();
-        var domain = $form.find('input[data-field="dns_hdomain_id"]').select2('data');
+        var subdomain = $form.find('input[data-attribute="subdomain"]').val();
+        var domain = $form.find('input[data-attribute="dns_hdomain_id"]').select2('data');
         var value = '';
 
         if (domain && domain.text) {
@@ -127,9 +127,9 @@ $this->registerJs(<<<'JS'
         $(this).val(value).trigger('change');
     });
 
-    $('#dynamic-form').on('change', 'input[data-field="subdomain"]', function () {
+    $('#dynamic-form').on('change', 'input[data-attribute="subdomain"]', function () {
         var $form = $(this).closest('.form-instance');
-        $form.find('input[data-field="sub-with-domain"]').trigger('update');
+        $form.find('input[data-attribute="sub-with-domain"]').trigger('update');
     });
 JS
 );

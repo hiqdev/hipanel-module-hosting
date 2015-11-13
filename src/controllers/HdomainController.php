@@ -15,6 +15,9 @@ class HdomainController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
+            'search' => [
+                'class' => 'hipanel\actions\SearchAction',
+            ],
             'index' => [
                 'class' => 'hipanel\actions\IndexAction',
                 'findOptions' => [
