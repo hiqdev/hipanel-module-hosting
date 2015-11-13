@@ -23,6 +23,8 @@ class MailCombo extends Combo
     /** @inheritdoc */
     public $_rename = ['text' => 'mail'];
 
+    public $activeWhen = ['server/server'];
+
     /** @inheritdoc */
     public function getFilter()
     {
@@ -36,13 +38,13 @@ class MailCombo extends Combo
     /** @inheritdoc */
     public function getPluginOptions($options = [])
     {
-        return parent::getPluginOptions([
-            'activeWhen' => ['server/server'],
+        return parent::getPluginOptions(ArrayHelper::merge([
+            'activeWhen' => $this->activeWhen,
             'select2Options' => [
                 'formatResult' => new JsExpression("function (data) {
                     return data.text;
                 }")
             ]
-        ]);
+        ], $options));
     }
 }
