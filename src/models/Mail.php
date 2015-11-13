@@ -7,7 +7,9 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\modules\hosting\validators\EmailLocalPartValidator;
 use Yii;
+use yii\helpers\StringHelper;
 
 class Mail extends \hipanel\base\Model
 {
@@ -23,6 +25,16 @@ class Mail extends \hipanel\base\Model
             [['type', 'state', 'state_label', 'password', 'spam_forward_mail'], 'safe'],
             [['forwards', 'spam_action', 'autoanswer', 'du_limit'], 'safe'],
             [['is_alias'], 'boolean'],
+            [['server', 'account', 'password'], 'safe', 'on' => ['create', 'update']],
+            [['nick'], EmailLocalPartValidator::className(), 'on' => ['create', 'update']],
+            [['server', 'account'], 'safe', 'on' => ['create', 'update']],
+            [['forwards', 'spam_forward_mail'], 'filter', 'filter' => function ($value) {
+                $res = StringHelper::explode($value, ',', true, true);
+                return $res;
+            }, 'skipOnArray' => true, 'on' => ['create', 'update']],
+            [['forwards', 'spam_forward_mail'], 'each', 'rule' => ['email'], 'on' => ['create', 'update']],
+            [['spam_action'], 'safe', 'on' => ['create', 'update']],
+            [['autoanswer'], 'safe', 'on' => ['create', 'update']],
         ];
     }
 
@@ -36,6 +48,13 @@ class Mail extends \hipanel\base\Model
             'du_limit' => Yii::t('app', 'Disk usage limit'),
             'mail' => Yii::t('app', 'E-mail'),
             'mail_like' => Yii::t('app', 'E-mail'),
+            'autoanswer' => Yii::t('app', 'Auto answer')
         ]);
+    }
+
+    public function attributeHints() {
+        return [
+            'forwards' => Yii::t('app', 'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.'),
+        ];
     }
 }
