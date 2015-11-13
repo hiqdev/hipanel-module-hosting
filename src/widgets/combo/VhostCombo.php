@@ -44,7 +44,7 @@ class VhostCombo extends Combo
             'activeWhen' => ['server/server', 'hosting/account'],
             'select2Options' => [
                 'formatResult' => new JsExpression("function (data) {
-                    return data.domain + ' - ' + data.service + '@' + data.ip + ':' + data.port;
+                    return data.domain + '<br><small>' +  data.service + ' - ' + data.ip + ':' + data.port + '</small>';
                 }")
             ]
         ]);
