@@ -27,6 +27,7 @@ class Backuping extends \hipanel\base\Model
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
 
             [['id', 'type'], 'safe', 'on' => ['update']],
+            [['id'], 'integer', 'on' => ['delete', 'disable', 'enable']],
         ];
     }
 
@@ -44,7 +45,8 @@ class Backuping extends \hipanel\base\Model
             'account_id' => Yii::t('app', 'Account'),
             'server_id' => Yii::t('app', 'Server'),
             'state_label' => Yii::t('app', 'State'),
-
+            'state' => Yii::t('app', 'State'),
+            'type' => Yii::t('app', 'Periodicity'),
         ]);
     }
 }

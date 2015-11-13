@@ -25,7 +25,18 @@ class BackupingController extends \hipanel\base\CrudController
                 },
             ],
             'update' => [
-                'class'   => 'hipanel\actions\SmartUpdateAction',
+                'class' => 'hipanel\actions\SmartUpdateAction',
+            ],
+            'disable' => [
+                'class' => 'hipanel\actions\SmartPerformAction',
+            ],
+            'enable' => [
+                'class' => 'hipanel\actions\SmartPerformAction',
+            ],
+            'delete' => [
+                'class' => 'hipanel\actions\SmartDeleteAction',
+                'success' => Yii::t('app', 'Deleted'),
+                'error' => Yii::t('app', 'Something went wrong.'),
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
@@ -43,11 +54,12 @@ class BackupingController extends \hipanel\base\CrudController
     {
         return Ref::getList('type,backuping');
     }
+
     public function getStateOptions()
     {
         return [
             'ok' => Yii::t('app', 'Ok'),
-            'disabled'=> Yii::t('app', 'Disabled'),
+            'disabled' => Yii::t('app', 'Disabled'),
             'deleted' => Yii::t('app', 'Deleted'),
         ];
     }
