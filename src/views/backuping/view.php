@@ -1,32 +1,30 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\modules\hosting\grid\BackupingGridView;
-use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title                   = Html::encode($model->domain);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Domains'), 'url' => ['index']];
+$this->title = Html::encode($model->id);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Backup settings'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<? Pjax::begin(Yii::$app->params['pjax']) ?>
 <div class="row">
-
-<div class="col-md-4">
-    <?= BackupingGridView::detailView([
-        'model'   => $model,
-        'columns' => [
-            'seller_id','client_id',
-            ['attribute' => 'backuping'],
-        ],
-    ]) ?>
+    <div class="col-md-4">
+        <?= BackupingGridView::detailView([
+            'model' => $model,
+            'columns' => [
+                'name',
+                'client',
+                'account',
+                'server',
+                'object',
+                'backup_count',
+                'type_label',
+                'state_label',
+                'backup_last',
+                'total_du_gb',
+            ],
+        ]) ?>
+    </div>
 </div>
-
-</div>
-<?php Pjax::end() ?>

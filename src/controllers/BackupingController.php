@@ -29,6 +29,12 @@ class BackupingController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
+                'data' => function ($action) {
+                    return [
+                        'stateOptions' => $action->controller->getStateOptions(),
+                        'typeOptions' => $action->controller->getTypeOptions(),
+                    ];
+                },
             ],
         ];
     }

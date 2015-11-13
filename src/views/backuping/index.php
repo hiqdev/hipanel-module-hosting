@@ -57,6 +57,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
         'state_label',
         'backup_last',
         'total_du_gb',
+        'actions',
     ],
 ]) ?>
 <?php $box->endBulkForm() ?>

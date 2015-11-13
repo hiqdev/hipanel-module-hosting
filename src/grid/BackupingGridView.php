@@ -7,11 +7,13 @@
 
 namespace hipanel\modules\hosting\grid;
 
+use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
 use hipanel\modules\server\grid\ServerColumn;
 use hiqdev\xeditable\widgets\XEditable;
+use yii\helpers\Html;
 
 class BackupingGridView extends \hipanel\grid\BoxedGridView
 {
@@ -30,8 +32,11 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
         $typeOptions = self::$typeOptions;
         return [
             'name' => [
-                'class' => MainColumn::className(),
                 'filterAttribute' => 'backuping_like',
+                'format' => 'raw',
+                'value' => function($model) {
+                    return Html::a($model->name, [sprintf('/hosting/%s/view', $model->object), 'id' => $model->id], ['data-pjax' => 0, 'class' => 'bold']);
+                }
             ],
             'account' => [
                 'attribute' => 'account_id',
@@ -81,6 +86,10 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'value' => function($model) {
                     return sprintf('%s&nbsp;GB', $model->total_du_gb);
                 }
+            ],
+            'actions' => [
+                'class' => ActionColumn::className(),
+                'template' => '{view} {delete}',
             ],
         ];
     }
