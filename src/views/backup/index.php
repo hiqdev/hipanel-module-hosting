@@ -11,7 +11,7 @@ use hipanel\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Backups');
 $this->params['breadcrumbs'][] = $this->title;
-$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
+$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('app', 'filtered list') : Yii::t('app', 'full list');
 
 ?>
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
@@ -50,7 +50,8 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
         'server',
         'object',
         'time',
-        'size_gb'
+        'size_gb',
+        'actions',
     ],
 ]) ?>
 <?php $box->endBulkForm() ?>

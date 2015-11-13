@@ -46,11 +46,13 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
                         'icon'    => 'fa-mail',
                         'visible' => function () { return (bool)Yii::getAlias('@mail', false); },
                     ],
-                    'backups' => [
+                    'backup' => [
                         'label'   => Yii::t('app', 'Backups'),
                         'url'     => ['/hosting/backup/index'],
-//                        'icon'    => 'fa-globe',
-                        'visible' => function () { return (bool)Yii::getAlias('@backup', false); },
+                    ],
+                    'backuping' => [
+                        'label'   => Yii::t('app', 'Backup settings'),
+                        'url'     => ['/hosting/backuping/index'],
                     ],
                 ],
             ],

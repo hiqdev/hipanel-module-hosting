@@ -2,7 +2,9 @@
 
 namespace hipanel\modules\hosting\grid;
 
+use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
+use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
 use yii\helpers\Html;
@@ -40,9 +42,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'name',
                 'value' => function($model) {
-                    $labelType = $model->object === 'db' ?
-                        Html::tag('span', Yii::t('app', 'Data Base'), ['class' => 'label label-info']) :
-                        Html::tag('span', Yii::t('app', 'Domain'), ['class' => 'label label-default']);
+                    $labelType = ObjectLabelWidget::widget(compact('model'));
                     return $labelType
                     . '&nbsp;' .
                     Html::a($model->name, [sprintf('/hosting/%s/view', $model->object), 'id' => $model->object_id], ['data-pjax' => 0]);
@@ -61,6 +61,10 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'value' => function($model) {
                     return sprintf('%s GB', $model->size_gb);
                 }
+            ],
+            'actions' => [
+                'class' => ActionColumn::className(),
+                'template' => '{view} {delete}',
             ],
         ];
     }
