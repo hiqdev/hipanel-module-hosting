@@ -26,6 +26,8 @@ class VhostCombo extends Combo
     /** @inheritdoc */
     public $_rename = ['text' => 'domain'];
 
+    public $activeWhen = ['server/server', 'hosting/account'];
+
     /** @inheritdoc */
     public function getFilter()
     {
@@ -41,7 +43,7 @@ class VhostCombo extends Combo
     {
         return parent::getPluginOptions([
             'clearWhen' => ['server/server'],
-            'activeWhen' => ['server/server', 'hosting/account'],
+            'activeWhen' => $this->activeWhen,
             'select2Options' => [
                 'formatResult' => new JsExpression("function (data) {
                     return data.domain + '<br><small>' +  data.service + ' - ' + data.ip + ':' + data.port + '</small>';

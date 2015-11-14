@@ -26,10 +26,16 @@ class MailController extends \hipanel\base\CrudController
                     ];
                 }
             ],
+            'view' => [
+                'class' => 'hipanel\actions\ViewAction'
+            ],
             'create' => [
                 'class' => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('app', 'Mailbox creating task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to create mailbox')
+            ],
+            'update' => [
+                'class' => 'hipanel\actions\SmartUpdateAction'
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',

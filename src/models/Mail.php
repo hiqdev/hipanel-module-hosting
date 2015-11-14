@@ -13,28 +13,35 @@ use yii\helpers\StringHelper;
 
 class Mail extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
+
+    const TYPE_FORWARD_ONLY = 'forward_only';
+    const TYPE_BOX_WITH_FORWARDS = 'mailbox_with_forwards';
+    const TYPE_MAILBOX = 'mailbox';
 
     /** @inheritdoc */
     public function rules()
     {
         return [
-            [['id', 'hdomain_id', 'client_id', 'seller_id', 'account_id', 'server_id'], 'integer'],
+            [['id', 'client_id', 'seller_id', 'account_id', 'server_id'], 'integer'],
             [['mail', 'nick', 'hdomain', 'client', 'seller', 'account', 'server', 'domain'], 'safe'],
             [['type', 'state', 'state_label', 'password', 'spam_forward_mail'], 'safe'],
-            [['forwards', 'spam_action', 'autoanswer', 'du_limit'], 'safe'],
             [['is_alias'], 'boolean'],
-            [['server', 'account', 'password'], 'safe', 'on' => ['create', 'update']],
-            [['nick'], EmailLocalPartValidator::className(), 'on' => ['create', 'update']],
-            [['server', 'account'], 'safe', 'on' => ['create', 'update']],
+            [['hdomain_id'], 'integer', 'on' => ['create']],
+            [['server', 'account'], 'safe', 'on' => ['create']],
+            [['password'], 'safe', 'on' => ['create']],
+            [['password'], 'safe', 'on' => ['update'], 'when' => function ($model) {
+                return !$model->is_alias;
+            }],
+            [['nick'], EmailLocalPartValidator::className(), 'on' => ['create']],
             [['forwards', 'spam_forward_mail'], 'filter', 'filter' => function ($value) {
                 $res = StringHelper::explode($value, ',', true, true);
                 return $res;
             }, 'skipOnArray' => true, 'on' => ['create', 'update']],
             [['forwards', 'spam_forward_mail'], 'each', 'rule' => ['email'], 'on' => ['create', 'update']],
-            [['spam_action'], 'safe', 'on' => ['create', 'update']],
-            [['autoanswer'], 'safe', 'on' => ['create', 'update']],
+            [['spam_action', 'autoanswer', 'du_limit'], 'safe', 'on' => ['create', 'update']],
+            [['id'], 'required', 'on' => ['update', 'delete']],
+            [['hdomain_id', 'server', 'account', 'nick'], 'required', 'on' => ['create']],
         ];
     }
 
@@ -55,6 +62,12 @@ class Mail extends \hipanel\base\Model
     public function attributeHints() {
         return [
             'forwards' => Yii::t('app', 'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.'),
+            'password' => $this->type === static::TYPE_FORWARD_ONLY
+                            ?  Yii::t('app', 'Password change is prohibited on forward-only mailboxes')
+                            : ( $this->isNewRecord
+                                ? Yii::t('app', 'Leave this field empty to create a forward-only mailbox')
+                                : Yii::t('app', 'Fill this field only if you want to change the password')
+                            ),
         ];
     }
 }

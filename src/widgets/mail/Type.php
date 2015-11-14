@@ -2,14 +2,14 @@
 
 namespace hipanel\modules\hosting\widgets\mail;
 
+use hipanel\modules\hosting\models\Mail;
 use hipanel\widgets\Label;
 use Yii;
-use yii\base\Model;
 
 class Type extends Label
 {
     /**
-     * @var Model
+     * @var Mail
      */
     public $model;
 
@@ -20,18 +20,25 @@ class Type extends Label
      */
     public function init()
     {
-        if ($this->model->type == 'forward_only') {
+        $model = $this->model;
+        if ($model->type == $model::TYPE_FORWARD_ONLY) {
             $this->label = Yii::t('app', 'Forward only');
             $this->color = 'primary';
             $this->labelOptions = [
-                'title' => Yii::t('app', 'You can not login ...') // TODO
+                'title' => Yii::t('app', 'You can not login to this mailbox, but all messages will be forwarded to specified addresses')
             ];
-        } elseif ($this->model->type == 'mailbox_with_forwards') {
+        } elseif ($model->type == $model::TYPE_BOX_WITH_FORWARDS) {
             $this->label = Yii::t('app', 'Mailbox with forwards');
             $this->color = 'warning';
+            $this->labelOptions = [
+                'title' => Yii::t('app', 'You can login this mailbox, also all the messages will be forwarded to specified addresses.')
+            ];
         } else {
             $this->label = Yii::t('app', 'Mailbox');
             $this->color = 'default';
+            $this->labelOptions = [
+                'title' => Yii::t('app', 'You can login this mailbox')
+            ];
         }
 
         parent::init();

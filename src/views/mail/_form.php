@@ -46,26 +46,41 @@ use yii\web\JsExpression;
 
                                 <?php
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className(),
-                                        ['formElementSelector' => '.form-instance']);
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className(), [
+                                        'formElementSelector' => '.form-instance',
+                                        'inputOptions' => [
+                                            'readonly' => !$model->isNewRecord
+                                        ]
+                                    ]);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(ServerCombo::className(),
-                                    ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]server")->widget(ServerCombo::className(), [
+                                    'formElementSelector' => '.form-instance',
+                                    'inputOptions' => [
+                                        'readonly' => !$model->isNewRecord
+                                    ]
+                                ]);
 
-                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(),
-                                    ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(),[
+                                    'formElementSelector' => '.form-instance',
+                                    'inputOptions' => [
+                                        'readonly' => !$model->isNewRecord
+                                    ]
+                                ]);
 
                                 print Html::label(Yii::t('app', 'E-mail'), Html::getInputId($model, "[$i]nick"));
                                 ?>
                                 <div class="form-inline">
-                                    <?= $form->field($model, "[$i]nick")->input('text',
-                                        ['data-field' => 'nick'])->label(false) ?>
+                                    <?= $form->field($model, "[$i]nick")->input('text', [
+                                        'data-field' => 'nick',
+                                        'readonly' => !$model->isNewRecord
+                                    ])->label(false) ?>
                                     <?= Html::tag('span', '@') ?>
                                     <?= $form->field($model, "[$i]hdomain_id")->widget(VhostCombo::className(), [
                                         'formElementSelector' => '.form-instance',
                                         'inputOptions' => [
                                             'data-field' => 'dns_hdomain_id',
+                                            'readonly' => !$model->isNewRecord
                                         ],
                                         'pluginOptions' => [
                                             'select2Options' => [
@@ -76,18 +91,27 @@ use yii\web\JsExpression;
                                 </div>
 
                                 <?php
-                                print $form->field($model, "[$i]password")->widget(PasswordInput::className());
+                                print $form->field($model, "[$i]password")->widget(PasswordInput::className(), [
+                                    'inputOptions' => [
+                                        'disabled' => $model->type === $model::TYPE_FORWARD_ONLY
+                                    ]
+                                ]);
+
+                                if ($model->spam_action !== '' && $model->spam_action !== 'delete') {
+                                    $model->spam_forward_mail = $model->spam_action;
+                                    $model->spam_action = 'forward';
+                                }
 
                                 print $form->field($model, "[$i]spam_action")->radioList([
                                     '' => Yii::t('app', 'Do nothing'),
-                                    'remove' => Yii::t('app', 'Remove'),
+                                    'delete' => Yii::t('app', 'Delete'),
                                     'forward' => Yii::t('app', 'Forward to'),
                                 ], [
-                                    'class' => 'spam-action'
+                                    'class' => 'spam-action',
                                 ]);
                                 print $form->field($model, "[$i]spam_forward_mail", [
                                     'options' => [
-                                        'style' => 'display: none'
+                                        'style' => $model->spam_action !== 'forward' ? 'display: none' : ''
                                     ]
                                 ])->widget(MultipleMailCombo::className(), [
                                     'type' => 'hosting/spam-forward',
@@ -151,9 +175,9 @@ $this->registerJs(<<<'JS'
         $forwardInput = $form.find('input[data-attribute=spam_forward_mail]');
 
         if ($(this).find('input[type=radio]:checked').val() == 'forward') {
-            $forwardInput.trigger('change').parent().show();
+            $forwardInput.trigger({type: 'change', 'force': true}).parent().show();
         } else {
-            $forwardInput.trigger('change').parent().hide();
+            $forwardInput.trigger({type: 'change', 'force': true}).parent().hide();
         }
     });
 JS

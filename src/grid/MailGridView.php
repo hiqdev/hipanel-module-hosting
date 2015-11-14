@@ -34,7 +34,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 },
                 'gtype' => 'state,mail',
             ],
-            'server' => [
+            'server_id' => [
                 'class' => ServerColumn::className()
             ],
 //            'sshftp_ips'    => [
@@ -74,6 +74,11 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                             'popoverOptions' => ['html' => true]
                         ],
                     ]);
+                }
+            ],
+            'spam_action' => [
+                'value' => function ($model) {
+                    return $model->spam_action; // TODO
                 }
             ],
             'actions' => [
