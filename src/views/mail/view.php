@@ -1,12 +1,12 @@
 <?php
 
-use hipanel\modules\hosting\grid\DbGridView;
 use hipanel\modules\hosting\grid\MailGridView;
+use hipanel\modules\hosting\models\Mail;
 use hipanel\widgets\Box;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\PasswordInput;
-use yii\bootstrap\Modal;
 use yii\helpers\Html;
+use yii\web\View;
 
 $this->title = $model->mail;
 $this->subtitle = Yii::t('app', 'Mailbox detailed information') . ' #' . $model->id;
@@ -14,6 +14,11 @@ $this->breadcrumbs->setItems([
     ['label' => Yii::t('app', 'Mailboxes'), 'url' => ['index']],
     $this->title,
 ]);
+
+/**
+ * @var $this View
+ * @var $model Mail
+ */
 ?>
 
 <div class="row">
@@ -38,6 +43,33 @@ $this->breadcrumbs->setItems([
         <div class="profile-usermenu">
             <ul class="nav">
                 <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('app', 'Edit'), ['update', 'id' => $model->id]) ?></li>
+                <?php if ($model->canChangePassword()) { ?>
+                    <li>
+                        <?php
+                        $modalButton = ModalButton::begin([
+                            'model' => $model,
+                            'scenario' => 'set-password',
+                            'button' => [
+                                'label' => '<i class="fa fa-lock"></i>' . Yii::t('app', 'Change password'),
+                            ],
+                            'modal' => [
+                                'header' => Html::tag('h4', Yii::t('app', 'Enter a new password')),
+                                'headerOptions' => ['class' => 'label-info'],
+                                'footer' => [
+                                    'label' => Yii::t('app', 'Change'),
+                                    'data-loading-text' => Yii::t('app', 'Changing...'),
+                                    'class' => 'btn btn-warning',
+                                ]
+                            ]
+                        ]);
+                        ?>
+
+                        <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false);
+
+                        ModalButton::end();
+                        ?>
+                    </li>
+                <?php } ?>
                 <li>
                     <?= ModalButton::widget([
                         'model' => $model,
@@ -81,10 +113,11 @@ $this->breadcrumbs->setItems([
                         'client_id',
                         'seller_id',
                         'server_id',
+                        'type',
+                        'domain',
                         'forwards',
                         'spam_action',
                         'state',
-                        'type',
                     ],
                 ]);
                 $box->endBody();

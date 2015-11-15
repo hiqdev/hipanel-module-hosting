@@ -10,10 +10,12 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
+use hipanel\modules\hosting\models\Mail;
 use hipanel\modules\hosting\widgets\mail\State;
 use hipanel\modules\hosting\widgets\mail\Type;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
+use hipanel\widgets\Label;
 use Yii;
 use yii\helpers\Html;
 
@@ -37,16 +39,13 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             'server_id' => [
                 'class' => ServerColumn::className()
             ],
-//            'sshftp_ips'    => [
-//                'attribute'         => 'sshftp_ips',
-//                'format'            => 'raw',
-//                'value'             => function ($model) {
-//                    return ArraySpoiler::widget([
-//                        'data'         => $model->sshftp_ips,
-//                        'visibleCount' => 3
-//                    ]);
-//                }
-//            ],
+            'domain' => [
+                'attribute' => 'hdomain_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->domain, ['@hdomain/view', 'id' => $model->hdomain_id]);
+                }
+            ],
             'type' => [
                 'format' => 'raw',
                 'filter' => function ($column, $model, $attribute) {
@@ -68,6 +67,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
                         'delimiter' => '<br>',
+                        'visibleCount' => 2,
                         'data' => $model->forwards,
                         'button' => [
                             'label' => '+{count}',
@@ -77,8 +77,28 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'spam_action' => [
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->spam_action; // TODO
+                    /** @var $model Mail */
+                    if ($model->spam_action === $model::SPAM_ACTION_DELETE) {
+                        return Label::widget([
+                            'color' => 'danger',
+                            'label' => Yii::t('app', 'Delete')
+                        ]);
+                    } elseif ($model->spam_action === '') {
+                        return Label::widget([
+                            'color' => 'info',
+                            'label' => Yii::t('app', 'Do nothing')
+                        ]);
+                    } else {
+                        return Label::widget([
+                            'color' => 'primary',
+                            'label' => Yii::t('app', 'Forward to')
+                        ]) . ' ' . ArraySpoiler::widget([
+                            'data' => $model->spam_action,
+                            'visibleCount' => 2
+                        ]);
+                    }
                 }
             ],
             'actions' => [

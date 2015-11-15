@@ -19,6 +19,9 @@ class Mail extends \hipanel\base\Model
     const TYPE_BOX_WITH_FORWARDS = 'mailbox_with_forwards';
     const TYPE_MAILBOX = 'mailbox';
 
+    const SPAM_ACTION_NONE = '';
+    const SPAM_ACTION_DELETE = 'delete';
+
     /** @inheritdoc */
     public function rules()
     {
@@ -30,8 +33,8 @@ class Mail extends \hipanel\base\Model
             [['hdomain_id'], 'integer', 'on' => ['create']],
             [['server', 'account'], 'safe', 'on' => ['create']],
             [['password'], 'safe', 'on' => ['create']],
-            [['password'], 'safe', 'on' => ['update'], 'when' => function ($model) {
-                return !$model->is_alias;
+            [['password'], 'safe', 'on' => ['update', 'set-password'], 'when' => function ($model) {
+                return !$model->canChangePassword();
             }],
             [['nick'], EmailLocalPartValidator::className(), 'on' => ['create']],
             [['forwards', 'spam_forward_mail'], 'filter', 'filter' => function ($value) {
@@ -55,8 +58,13 @@ class Mail extends \hipanel\base\Model
             'du_limit' => Yii::t('app', 'Disk usage limit'),
             'mail' => Yii::t('app', 'E-mail'),
             'mail_like' => Yii::t('app', 'E-mail'),
-            'autoanswer' => Yii::t('app', 'Auto answer')
+            'autoanswer' => Yii::t('app', 'Auto answer'),
+            'hdomain_id' => Yii::t('app', 'Domain'),
         ]);
+    }
+
+    public function canChangePassword() {
+        return $this->type !== static::TYPE_FORWARD_ONLY;
     }
 
     public function attributeHints() {
