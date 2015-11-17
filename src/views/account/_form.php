@@ -56,11 +56,11 @@ use yii\helpers\Url;
                                 }
 
                                 print $form->field($model, "[$i]sshftp_ips")
-                                    ->hint(Yii::t('app', 'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))
+                                    ->hint(Yii::t('hipanel/hosting', 'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))
                                     ->input('text', [
                                             'data' => [
-                                                'title' => Yii::t('app', 'IP restrictions'),
-                                                'content' => Yii::t('app', 'Text about IP restrictions'),
+                                                'title' => Yii::t('hipanel/hosting', 'IP restrictions'),
+                                                'content' => Yii::t('hipanel/hosting', 'Text about IP restrictions'), /// TODO
                                             ],
                                             'value' => $model->getSshFtpIpsList()
                                         ]
@@ -73,9 +73,9 @@ use yii\helpers\Url;
             </div>
         <?php } ?>
     </div>
-<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
     &nbsp;
-<?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+<?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
 
 $this->registerJs("$('#account-sshftp_ips').popover({placement: 'top', trigger: 'focus'});");

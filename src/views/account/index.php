@@ -9,7 +9,7 @@ use hipanel\modules\hosting\grid\AccountGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
 
-$this->title = Yii::t('app', 'Accounts');
+$this->title = Yii::t('hipanel/hosting', 'Accounts');
 $this->breadcrumbs->setItems([
     $this->title,
 ]);
@@ -22,13 +22,13 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
     <div class="dropdown">
         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="true">
-            <?= Yii::t('app', 'Create account'); ?>
+            <?= Yii::t('hipanel/hosting', 'Create account'); ?>
             <span class="caret"></span>
         </button>
         <?= \yii\bootstrap\Dropdown::widget([
             'items' => [
-                ['label' => Yii::t('app', 'Create account'), 'url' => ['create']],
-                ['label' => Yii::t('app', 'Create FTP account'), 'url' => ['create-ftponly']],
+                ['label' => Yii::t('hipanel/hosting', 'Create account'), 'url' => ['create']],
+                ['label' => Yii::t('hipanel/hosting', 'Create FTP account'), 'url' => ['create-ftponly']],
             ]
         ]); ?>
         <?= $box->renderSearchButton() ?>

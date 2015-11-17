@@ -3,8 +3,8 @@
 /* @var $model hipanel\modules\hosting\models\Account */
 /* @var $type string */
 
-$this->title                   = Yii::t('app', 'Create account');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Accounts'), 'url' => ['index']];
+$this->title                   = Yii::t('hipanel/hosting', 'Create account');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Accounts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -14,11 +14,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title    = $model->login;
-$this->subtitle = Yii::t('app', 'account mail config') . ' #' . $model->id;
+$this->subtitle = Yii::t('hipanel/hosting', 'account mail config') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
     ['label' => 'Accounts', 'url' => ['index']],
     ['label' => $model->login, 'url' => ['view', 'id' => $model->id]],
-    Yii::t('app', 'Mail config')
+    Yii::t('hipanel/hosting', 'Mail config')
 ]);
 
 
@@ -63,7 +63,7 @@ $form = ActiveForm::begin([
             </div>
         <?php } ?>
     </div>
-<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
     &nbsp;
-<?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+<?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();

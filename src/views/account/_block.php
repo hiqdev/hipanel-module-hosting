@@ -9,23 +9,23 @@ use hipanel\widgets\ModalButton;
     $modalButton = ModalButton::begin([
         'model' => $model,
         'scenario' => 'enable-block',
-        'button' => ['label' => '<i class="ion-locked"></i>' . Yii::t('app', 'Block account')],
+        'button' => ['label' => '<i class="ion-locked"></i>' . Yii::t('hipanel/hosting', 'Block account')],
         'form' => [
             'enableAjaxValidation'   => true,
             'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => 'enable-block']),
         ],
         'modal' => [
-            'header' => Html::tag('h4', Yii::t('app', 'Confirm account blocking')),
+            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm account blocking')),
             'headerOptions' => ['class' => 'label-danger'],
             'footer' => [
-                'label' => Yii::t('app', 'Block'),
-                'data-loading-text' => Yii::t('app', 'Blocking...'),
+                'label' => Yii::t('hipanel', 'Block'),
+                'data-loading-text' => Yii::t('hipanel', 'Blocking...'),
                 'class' => 'btn btn-danger',
             ]
         ]
     ]); ?>
     <div class="callout callout-warning">
-        <h4><?= Yii::t('app', 'This will immediately terminate SSH sessions and reject new SSH and FTP connections!') ?></h4>
+        <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate SSH sessions and reject new SSH and FTP connections!') ?></h4>
     </div>
 
     <?php echo $modalButton->form->field($model, 'type')->dropDownList($blockReasons); ?>
@@ -36,17 +36,17 @@ use hipanel\widgets\ModalButton;
     $modalButton = ModalButton::begin([
         'model' => $model,
         'scenario' => 'disable-block',
-        'button' => ['label' => '<i class="ion-unlocked"></i>' . Yii::t('app', 'Unblock account')],
+        'button' => ['label' => '<i class="ion-unlocked"></i>' . Yii::t('hipanel/hosting', 'Unblock account')],
         'form' => [
             'enableAjaxValidation'   => true,
             'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => 'disable-block']),
         ],
         'modal' => [
-            'header' => Html::tag('h4', Yii::t('app', 'Confirm account unblocking')),
+            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm account unblocking')),
             'headerOptions' => ['class' => 'label-info'],
             'footer' => [
-                'label' => Yii::t('app', 'Unblock'),
-                'data-loading-text' => Yii::t('app', 'Unblocking...'),
+                'label' => Yii::t('hipanel', 'Unblock'),
+                'data-loading-text' => Yii::t('hipanel', 'Unblocking...'),
                 'class' => 'btn btn-info',
             ]
         ]
