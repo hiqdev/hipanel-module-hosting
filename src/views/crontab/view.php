@@ -7,26 +7,43 @@
 
 use hipanel\modules\hosting\grid\CrontabGridView;
 use hipanel\widgets\Pjax;
+use hiqdev\xeditable\widgets\XEditable;
 use yii\helpers\Html;
 
-$this->title                   = Html::encode($model->domain);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Domains'), 'url' => ['index']];
+$this->title = Html::encode($model->id);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Crontabs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$model->scenario = 'update';
 
 ?>
 
-<? Pjax::begin(Yii::$app->params['pjax']) ?>
 <div class="row">
-
-<div class="col-md-4">
-    <?= CrontabGridView::detailView([
-        'model'   => $model,
-        'columns' => [
-            'seller_id','client_id',
-            ['attribute' => 'crontab'],
-        ],
-    ]) ?>
+    <div class="col-md-12">
+        <?= CrontabGridView::detailView([
+            'model' => $model,
+            'columns' => [
+                'account',
+                'server',
+                'client',
+                [
+                    'attribute' => 'crontab',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return XEditable::widget([
+                            'model' => $model,
+                            'attribute' => 'crontab',
+                            'pluginOptions' => [
+                                'mode' => 'inline',
+                                'type' => 'textarea',
+                                'rows' => 20,
+                                'select2Options' => [
+                                    'width' => '50rem',
+                                ],
+                            ]
+                        ]);
+                    }
+                ]
+            ]
+        ]) ?>
+    </div>
 </div>
-
-</div>
-<?php Pjax::end() ?>
