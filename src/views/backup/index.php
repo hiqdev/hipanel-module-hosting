@@ -50,7 +50,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
         'server',
         'object',
         'time',
-        'size_gb',
+        'size',
         'actions',
     ],
 ]) ?>

@@ -41,31 +41,36 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             'object' => [
                 'format' => 'raw',
                 'attribute' => 'name',
+                'filterAttribute' => 'name_like',
                 'value' => function($model) {
                     $labelType = ObjectLabelWidget::widget(compact('model'));
-                    return $labelType
-                    . '&nbsp;' .
-                    Html::a($model->name, [sprintf('/hosting/%s/view', $model->object), 'id' => $model->object_id], ['data-pjax' => 0]);
+                    return $labelType . '&nbsp;' .
+                        Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
                 }
             ],
             'name' => [
                 'format' => 'raw',
                 'attribute' => 'name',
                 'value' => function($model) {
-                    return Html::a($model->name, [sprintf('/hosting/%s/view', $model->object), 'id' => $model->object_id], ['data-pjax' => 0]);
+                    return Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
                 }
             ],
-            'size_gb' => [
-                'attribute' => 'size_gb',
+            'size' => [
                 'filter' => false,
+                'format' => 'raw',
                 'value' => function($model) {
-                    return sprintf('%s GB', $model->size_gb);
+                    return Yii::$app->formatter->asSize($model->size, 2);
                 }
             ],
             'actions' => [
                 'class' => ActionColumn::className(),
                 'template' => '{view} {delete}',
             ],
+            'time' => [
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asDatetime($model->time);
+                }
+            ]
         ];
     }
 }
