@@ -58,6 +58,14 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
                         'label'   => Yii::t('app', 'Crons'),
                         'url'     => ['/hosting/crontab/index'],
                     ],
+                    'ip' => [
+                        'label'   => Yii::t('app', 'IP'),
+                        'url'     => ['/hosting/ip/index'],
+                    ],
+                    'service' => [
+                        'label'   => Yii::t('app', 'Service'),
+                        'url'     => ['/hosting/service/index'],
+                    ],
                 ],
             ],
         ];

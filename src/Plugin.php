@@ -6,11 +6,14 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
 {
     protected $_items = [
         'aliases' => [
-            "@account" => "/hosting/account",
-            "@hdomain" => "/hosting/hdomain",
-            "@db"      => "/hosting/db",
-            "@mail"    => "/hosting/mail",
-            "@backup"  => "/hosting/backup",
+            "@account"      => "/hosting/account",
+            "@hdomain"      => "/hosting/hdomain",
+            "@db"           => "/hosting/db",
+            "@mail"         => "/hosting/mail",
+            "@backup"       => "/hosting/backup",
+            "@backuping"    => "/hosting/backuping",
+            "@service"      => "/hosting/service",
+            "@ip"           => "/hosting/ip",
         ],
         'menus' => [
             'hipanel\modules\hosting\SidebarMenu',
