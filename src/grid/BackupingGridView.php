@@ -13,6 +13,7 @@ use hipanel\helpers\Url;
 use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
 use hipanel\modules\server\grid\ServerColumn;
 use hiqdev\xeditable\widgets\XEditable;
+use Yii;
 use yii\helpers\Html;
 
 class BackupingGridView extends \hipanel\grid\BoxedGridView
@@ -35,7 +36,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'backuping_like',
                 'format' => 'raw',
                 'value' => function($model) {
-                    return Html::a($model->name, [sprintf('/hosting/%s/view', $model->object), 'id' => $model->id], ['data-pjax' => 0, 'class' => 'bold']);
+                    return Html::a($model->name, ["@{$model->object}/view", 'id' => $model->id], ['data-pjax' => 0, 'class' => 'bold']);
                 }
             ],
             'account' => [
@@ -79,12 +80,15 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'backup_last' => [
                 'filter' => false,
+                'value' => function ($model) {
+                    return Yii::$app->formatter->asDatetime($model->backup_last);
+                },
             ],
-            'total_du_gb' => [
+            'total_du' => [
                 'filter' => false,
                 'format' => 'html',
                 'value' => function($model) {
-                    return sprintf('%s&nbsp;GB', $model->total_du_gb);
+                    return Yii::$app->formatter->asShortSize($model->total_du, 2);
                 }
             ],
             'actions' => [

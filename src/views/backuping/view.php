@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'type_label',
                 'state_label',
                 'backup_last',
-                'total_du_gb',
+                'total_du',
             ],
         ]) ?>
     </div>

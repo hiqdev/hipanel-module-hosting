@@ -56,7 +56,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
         'type',
         'state_label',
         'backup_last',
-        'total_du_gb',
+        'total_du',
         'actions',
     ],
 ]) ?>
