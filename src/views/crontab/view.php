@@ -10,11 +10,15 @@ use hipanel\widgets\Pjax;
 use hiqdev\xeditable\widgets\XEditable;
 use yii\helpers\Html;
 
-$this->title = Html::encode($model->id);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Crontabs'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Cron ID:{id}', ['id' => $model->id]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Crons'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $model->scenario = 'update';
-
+$this->registerCss("
+.editableform .form-control {
+    min-width: 600pt;
+}
+");
 ?>
 
 <div class="row">
