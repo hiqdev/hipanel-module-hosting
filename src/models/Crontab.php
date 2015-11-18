@@ -21,7 +21,12 @@ class Crontab extends \hipanel\base\Model
             [['crontab', 'account', 'server', 'client'], 'safe'],
             [['state', 'state_label'], 'safe'],
             [['exists'], 'boolean'],
-            [['id', 'crontab'], 'safe', 'on' => ['update']],
+
+            // Update
+            [['id'], 'integer', 'on' => ['update']],
+            [['crontab'], 'string', 'on' => ['update']],
+
+            [['id'], 'integer', 'on' => ['request-fetch', 'get-request-state']],
         ];
     }
 
