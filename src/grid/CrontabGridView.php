@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
+use hipanel\helpers\StringHelper;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
 use yii\helpers\Html;
@@ -40,6 +41,9 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
             'state' => [
                 'enableSorting' => false,
                 'attribute' => 'state',
+                'value' => function($model) {
+                    return ucfirst(Yii::t('app', $model->state));
+                }
             ],
             'actions' => [
                 'class' => ActionColumn::className(),
