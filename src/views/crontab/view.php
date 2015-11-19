@@ -68,7 +68,7 @@ $this->registerJs(<<<JS
                 url: "request-fetch",
                 dataType: 'json',
                 method: 'post',
-                data: { data: data },
+                data: { id: this.crontab.id },
                 beforeSend: function () {
                     _this._loadingOn();
                 },

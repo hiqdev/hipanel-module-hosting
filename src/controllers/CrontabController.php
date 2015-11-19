@@ -64,19 +64,18 @@ class CrontabController extends \hipanel\base\CrudController
         return $response;
     }
 
-    public function actionGetInfo()
+    public function actionGetInfo($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $response = [];
-        $id = Yii::$app->request->post('id');
         if ($id) {
             try {
                 $response = Crontab::perform('GetInfo', ['id' => $id]);
             } catch (Exception $e) {
-                $response['error'] = $e->errorInfo['response'];
+                $response = $e->errorInfo['response'];
             }
 
         }
-        return $response['crontab'];
+        return $response;
     }
 }

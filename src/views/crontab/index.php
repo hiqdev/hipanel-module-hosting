@@ -9,7 +9,7 @@ use hipanel\modules\hosting\grid\CrontabGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
 
-$this->title = Yii::t('app', 'Crons');
+$this->title = Yii::t('hipanel/hosting', 'Crons');
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
 
