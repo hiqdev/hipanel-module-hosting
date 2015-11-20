@@ -20,7 +20,7 @@ class ServiceController extends \hipanel\base\CrudController
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith('ips');
+                    $dataProvider->query->joinWith('ips')->joinWith('objects_count');
                 },
 
             ],

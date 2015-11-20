@@ -44,7 +44,7 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
             'checkbox',
             'seller_id',
             'client_id',
-            'service',
+            'object',
             'ip',
             'bin',
             'etc',
