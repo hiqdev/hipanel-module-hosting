@@ -7,7 +7,7 @@
 
 use hipanel\modules\hosting\grid\ServiceGridView;
 
-$this->title                    = Yii::t('app', 'Services');
+$this->title                    = Yii::t('hipanel/hosting', 'Services');
 $this->params['breadcrumbs'][]  = $this->title;
 $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
 
@@ -17,9 +17,13 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
     'dataProvider' => $dataProvider,
     'filterModel'  => $model,
     'columns'      => [
-        'checkbox',
-        'seller',
-        'client',
-        'service'
+        'seller_id',
+        'client_id',
+        'service',
+        'ip',
+        'bin',
+        'etc',
+        'soft',
+        'state',
     ],
 ]) ?>

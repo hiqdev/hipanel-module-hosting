@@ -19,7 +19,7 @@ class Service extends \hipanel\base\Model
         return [
             [['id', 'server_id', 'device_id', 'client_id', 'seller_id', 'soft_id'], 'integer'],
             [['name', 'server', 'device', 'client', 'seller', 'soft'], 'safe'],
-            [['ip', 'bin', 'etc'], 'safe'],
+            [['ips', 'bin', 'etc'], 'safe'],
             [['soft_type', 'soft_type_label', 'state', 'state_label'], 'safe'],
         ];
     }
@@ -30,5 +30,9 @@ class Service extends \hipanel\base\Model
             'soft_type'       => Yii::t('app', 'Soft Type'),
             'soft_type_label' => Yii::t('app', 'Soft type label'),
         ]);
+    }
+
+    public function getIps() {
+        return $this->hasMany(Ip::className(), ['service_id', 'id']);
     }
 }

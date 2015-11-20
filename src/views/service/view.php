@@ -22,8 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ServiceGridView::detailView([
         'model'   => $model,
         'columns' => [
-            'seller_id','client_id',
-            ['attribute' => 'service'],
+            'seller_id',
+            'client_id',
+            'service',
+            'ip',
+            'bin',
+            'etc',
+            'soft',
+            'state',
         ],
     ]) ?>
 </div>
