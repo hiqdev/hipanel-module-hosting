@@ -12,6 +12,7 @@ use hipanel\grid\MainColumn;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use kartik\helpers\Html;
+use Yii;
 
 class ServiceGridView extends \hipanel\grid\BoxedGridView
 {
@@ -34,6 +35,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             ],
             'ip' => [
                 'format' => 'raw',
+                'label' => Yii::t('hipanel/hosting', 'IP'),
                 'value' => function ($model) {
                     return ArraySpoiler::widget(['data' => $model->ips]);
                 },

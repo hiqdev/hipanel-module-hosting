@@ -24,5 +24,8 @@ return [
     'This will immediately terminate all sessions of the user!' => 'Это немедленно прервет все сеансы пользователя!',
     'Enter new restrictions' => 'Введите новые ограничения',
     'Enter a new password' => 'Введите новый пароль',
-
+/**
+ * Service
+ */
+    'Soft' => 'ПО',
 ];

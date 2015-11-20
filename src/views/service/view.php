@@ -9,8 +9,8 @@ use hipanel\modules\hosting\grid\ServiceGridView;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title                   = Html::encode($model->domain);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Domains'), 'url' => ['index']];
+$this->title                   = $model->name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Services'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

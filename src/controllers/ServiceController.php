@@ -21,8 +21,12 @@ class ServiceController extends \hipanel\base\CrudController
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
                     $dataProvider->query->joinWith('ips');
-                }
+                },
+
             ],
+            'view' => [
+                'class' => 'hipanel\actions\ViewAction',
+            ]
         ];
     }
 }
