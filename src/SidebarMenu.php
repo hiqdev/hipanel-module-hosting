@@ -66,6 +66,10 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
                         'label'   => Yii::t('app', 'Service'),
                         'url'     => ['/hosting/service/index'],
                     ],
+                    'request' => [
+                        'label'   => Yii::t('app', 'Requests'),
+                        'url'     => ['/hosting/request/index'],
+                    ],
                 ],
             ],
         ];

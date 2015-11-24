@@ -81,6 +81,7 @@ $this->registerJs(<<<JS
                 }
             });
 
+
             return this;
         },
         startQuerier: function () {
