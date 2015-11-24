@@ -12,7 +12,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
 
 <?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
     <?php $box->beginActions() ?>
-        <?= $box->renderCreateButton(Yii::t('app', 'Create {modelClass}', ['modelClass' => 'DB'])) . '&nbsp;' ?>
+        <?= $box->renderCreateButton(Yii::t('hipanel/hosting', 'Create DB')) . '&nbsp;' ?>
         <?= $box->renderSearchButton(); ?>
         <?= $box->renderSorter([
             'attributes' => [
@@ -34,8 +34,8 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
             'columns'      => [
                 'checkbox',
                 'name',
-                'account_id',
-                'server_id',
+                'account',
+                'server',
                 'client_id',
                 'seller_id',
                 'description',

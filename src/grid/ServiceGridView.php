@@ -9,12 +9,15 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
+use hipanel\modules\hosting\models\DbSearch;
+use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\models\Service;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
-use hipanel\widgets\Label;
 use kartik\helpers\Html;
 use Yii;
+use yii\base\InvalidParamException;
+use yii\bootstrap\Button;
 
 class ServiceGridView extends \hipanel\grid\BoxedGridView
 {
@@ -36,23 +39,20 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                     if ($model->objects_count > 0) {
                         $html .= ' ';
                         if ($model->soft_type === Service::SOFT_TYPE_DB) {
-                            $labelOptions = [
-                                'label' => Yii::t('hipanel/hosting', '{0, plural, one{# DB} other{# DBs}}', $model->objects_count),
-                                'color' => 'default',
-                            ];
+                            $html .= Html::a(
+                                Yii::t('hipanel/hosting', '{0, plural, one{# DB} other{# DBs}}', $model->objects_count),
+                                ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
+                                ['class' => 'btn btn-default btn-xs']
+                            );
                         } elseif ($model->soft_type === Service::SOFT_TYPE_WEB) {
-                            $labelOptions = [
-                                'label' => Yii::t('hipanel/hosting', '{0, plural, one{# domain} other{# domains}}', $model->objects_count),
-                                'color' => 'default',
-                            ];
+                            $html .= Html::a(
+                                Yii::t('hipanel/hosting', '{0, plural, one{# domain} other{# domains}}', $model->objects_count),
+                                ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
+                                ['class' => 'btn btn-default btn-xs']
+                            );
                         } else {
-                            $labelOptions = [
-                                'label' => Yii::t('hipanel/hosting', '{0}', $model->objects_count),
-                                'color' => 'default'
-                            ];
+                            throw new InvalidParamException('The object type is not supported', $model);
                         }
-
-                        $html .= Label::widget($labelOptions); /// TODO create search url to search related
                     }
 
                     return $html;

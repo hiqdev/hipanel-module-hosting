@@ -21,7 +21,7 @@ class ServiceCombo extends Combo
     public $url = '/hosting/service/index';
 
     /** @inheritdoc */
-    public $_return = ['id', 'client', 'client_id', 'device', 'device_id', 'seller', 'seller_id'];
+    public $_return = ['id', 'client', 'client_id', 'server', 'server_id', 'seller', 'seller_id'];
 
     /** @inheritdoc */
     public $_rename = ['text' => 'name'];
@@ -45,7 +45,7 @@ class ServiceCombo extends Combo
         'affects'    => [
             'client/seller' => 'seller',
             'client/client' => 'client',
-            'server/server' => 'device',
+            'server/server' => 'server',
         ]
     ];
 

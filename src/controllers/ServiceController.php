@@ -7,6 +7,8 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\Action;
+use Yii;
 use yii\base\Event;
 
 class ServiceController extends \hipanel\base\CrudController
@@ -26,6 +28,20 @@ class ServiceController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
+            ],
+            'create' => [
+                'class' => 'hipanel\actions\SmartCreateAction',
+                'data' => function ($action) {
+                    /** @var Action $action */
+                    return [
+                        'states' => $action->controller /// TODO !!
+                    ];
+                },
+                'success' => Yii::t('hipanel/hosting', 'Service was created successfully'),
+                'error' => Yii::t('app', 'An error occurred when trying to create a service')
+            ],
+            'validate-form' => [
+                'class' => 'hipanel\actions\ValidateFormAction',
             ]
         ];
     }

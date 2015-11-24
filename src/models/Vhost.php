@@ -7,9 +7,6 @@
 
 namespace hipanel\modules\hosting\models;
 
-use hipanel\helpers\StringHelper;
-use hipanel\modules\client\validators\LoginValidator;
-use hipanel\validators\IpValidator;
 use Yii;
 
 class Vhost extends \hipanel\base\Model
@@ -89,7 +86,7 @@ class Vhost extends \hipanel\base\Model
                 'required',
                 'on' => ['advanced-config', 'manage-proxy']
             ],
-            [['ip', 'backend_ip'], IpValidator::className()], /// TODO: replace with core IP validator
+            [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['manage-proxy']],
         ];
     }

@@ -29,7 +29,7 @@ class Db extends Model
             [
                 ['password'],
                 'match',
-                'pattern' => '/^[\x20-\x7f]+$/',
+                'pattern' => '/^[\x20-\x7f]*$/',
                 'message' => \Yii::t('app', '{attribute} should not contain non-latin characters'),
                 'on'      => ['create', 'set-password']
             ],

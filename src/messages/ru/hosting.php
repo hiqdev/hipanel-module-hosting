@@ -1,6 +1,9 @@
 <?php
 
 return [
+/**
+ * Account
+ */
     'Block account' => 'Заблокировать акканут',
     'Confirm account blocking' => 'Подтвердите блокировку аккаунта',
     'This will immediately terminate SSH sessions and reject new SSH and FTP connections' => 'Это приведет к немедленному разрыву активных SSH соединений и запретит установку новых SSH или FTP соединений!',
@@ -28,4 +31,8 @@ return [
  * Service
  */
     'Soft' => 'ПО',
+/**
+ * DB
+ */
+    'Create DB' => 'Создать БД',
 ];

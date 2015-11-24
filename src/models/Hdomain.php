@@ -10,7 +10,6 @@ namespace hipanel\modules\hosting\models;
 use hipanel\modules\client\validators\LoginValidator as ClientLoginValidator;
 use hipanel\modules\hosting\validators\LoginValidator as AccountLoginValidator;
 use hipanel\validators\DomainValidator;
-use hipanel\validators\IpValidator;
 use Yii;
 use yii\web\JsExpression;
 
@@ -82,7 +81,7 @@ class Hdomain extends \hipanel\base\Model
             [['account'], AccountLoginValidator::className()],
             [['dns_on', 'with_www', 'proxy_enable'], 'boolean'],
             [['domain', 'alias'], DomainValidator::className()],
-            [['ip', 'backend_ip'], IpValidator::className()], /// TODO: replace with core IP validator
+            [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['create']],
             [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],
             [
