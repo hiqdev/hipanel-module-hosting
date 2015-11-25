@@ -7,7 +7,7 @@
 
 use hipanel\modules\hosting\grid\IpGridView;
 
-$this->title                    = Yii::t('app', 'Ips');
+$this->title                    = Yii::t('hipanel/hosting', 'IP addresses');
 $this->params['breadcrumbs'][]  = $this->title;
 $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
 
@@ -17,9 +17,10 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
     'dataProvider' => $dataProvider,
     'filterModel'  => $model,
     'columns'      => [
-        'checkbox',
-        'seller',
-        'client',
-        'ip'
+        'ip',
+        'tags',
+        'counters',
+        'devices',
+        'actions',
     ],
 ]) ?>

@@ -21,6 +21,8 @@ class IpSearch extends Ip{
     public function searchAttributes()
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
+            'with_tags',
+            'with_counters',
             'with_expanded_ips',
             'show_only_device_link',
             'with_links',

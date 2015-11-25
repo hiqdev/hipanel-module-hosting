@@ -8,8 +8,11 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\Action;
+use hipanel\models\Ref;
+use hipanel\modules\hosting\models\Soft;
 use Yii;
 use yii\base\Event;
+use yii\helpers\ArrayHelper;
 
 class ServiceController extends \hipanel\base\CrudController
 {
@@ -24,7 +27,6 @@ class ServiceController extends \hipanel\base\CrudController
                     $dataProvider = $action->getDataProvider();
                     $dataProvider->query->joinWith('ips')->joinWith('objects_count');
                 },
-
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
@@ -34,7 +36,8 @@ class ServiceController extends \hipanel\base\CrudController
                 'data' => function ($action) {
                     /** @var Action $action */
                     return [
-                        'states' => $action->controller /// TODO !!
+                        'states' => $action->controller->getStateData(),
+                        'softs' => $action->controller->getSofts(),
                     ];
                 },
                 'success' => Yii::t('hipanel/hosting', 'Service was created successfully'),
@@ -44,5 +47,15 @@ class ServiceController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\ValidateFormAction',
             ]
         ];
+    }
+
+    public function getStateData()
+    {
+        return Ref::getList('state,service');
+    }
+
+    public function getSofts()
+    {
+        return ArrayHelper::map(Soft::find()->all(), 'id', 'name');
     }
 }

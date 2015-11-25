@@ -11,17 +11,16 @@ use Yii;
 
 class Ip extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
 
     public function rules () {
         return [
-            [['id', 'client_id'],                       'integer'],
-            [['ip','objects_count', 'tags', 'client'],  'safe'],
-            [['prefix', 'family'],                      'safe'],
-            [['type', 'state', 'state_label'],          'safe'],
-            [['links', 'expanded_ips', 'ip_normalized'],'safe'],
-            [['is_single'],                             'boolean'],
+            [['id', 'client_id', 'seller_id'],                    'integer'],
+            [['ip', 'objects_count', 'tags', 'client', 'seller'], 'safe'],
+            [['prefix', 'family'],                                'safe'],
+            [['type', 'state', 'state_label'],                    'safe'],
+            [['links', 'expanded_ips', 'ip_normalized'],          'safe'],
+            [['is_single'],                                       'boolean'],
         ];
     }
 

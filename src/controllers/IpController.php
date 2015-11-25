@@ -7,6 +7,8 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use yii\base\Event;
+
 class IpController extends \hipanel\base\CrudController
 {
     public function actions()
@@ -14,6 +16,15 @@ class IpController extends \hipanel\base\CrudController
         return [
             'index' => [
                 'class' => 'hipanel\actions\IndexAction',
+                'on beforePerform' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query
+                        ->andWhere(['with_links' => 1])
+                        ->andWhere(['with_tags' => 1])
+                        ->andWhere(['with_counters' => 1]);
+                },
             ],
         ];
     }

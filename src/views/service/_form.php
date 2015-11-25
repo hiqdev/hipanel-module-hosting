@@ -2,7 +2,8 @@
 
 /* @var $this View */
 /* @var $model hipanel\modules\hosting\models\Service */
-/* @var $type string */
+/* @var $softs array */
+/* @var $states array */
 
 use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
@@ -39,7 +40,7 @@ $form = ActiveForm::begin([
                                 print $form->field($model, "[$i]bin");
                                 print $form->field($model, "[$i]etc");
 
-                                print $form->field($model, "[$i]soft")->dropDownList($soft_types);
+                                print $form->field($model, "[$i]soft")->dropDownList($softs);
                                 print $form->field($model, "[$i]state")->dropDownList($states);
                                 ?>
                             </div>
