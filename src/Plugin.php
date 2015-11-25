@@ -23,14 +23,18 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
                 'class' => 'hipanel\modules\hosting\Module',
             ],
         ],
-        'translations' => [
-            'hipanel/hosting' => [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@hipanel/modules/hosting/messages',
-                'fileMap' => [
-                    'hipanel/hosting' => 'hosting.php',
-                ]
-            ]
-        ]
+        'components' => [
+            'i18n' => [
+                'translations' => [
+                    'hipanel/hosting' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'basePath' => '@hipanel/modules/hosting/messages',
+                        'fileMap' => [
+                            'hipanel/hosting' => 'hosting.php',
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ];
 }
