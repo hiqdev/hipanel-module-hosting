@@ -18,7 +18,7 @@ class RequestController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\IndexAction',
                 'data' => function ($action) {
                     return [
-                        'objectOptions' => $action->controller->getObjectOptions(),
+//                        'objectOptions' => $action->controller->getObjectOptions(),
                     ];
                 },
             ],

@@ -18,8 +18,15 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
     'filterModel'  => $model,
     'columns'      => [
         'checkbox',
-        'seller',
-        'client',
-        'request'
+        'action',
+
+        'server',
+        'account',
+
+        'object',
+        'time',
+        'state',
+
+        'actions',
     ],
 ]) ?>
