@@ -8,16 +8,17 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
-use hipanel\grid\MainColumn;
+use hipanel\grid\RefColumn;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
+use yii\helpers\Html;
 
 class RequestGridView extends \hipanel\grid\BoxedGridView
 {
     static public function defaultColumns()
     {
         return [
-            'action' => [
+            'classes' => [
                 'value' => function ($model) {
                     return sprintf('%s, %s', $model->type, $model->action);
                 },
@@ -30,14 +31,34 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'class' => ServerColumn::className(),
             ],
             'account' => [
-                'sortAttribute' => 'account',
+                'enableSorting' => false,
                 'attribute' => 'account_id',
                 'class' => AccountColumn::className()
             ],
+            'object' => [
+                'enableSorting' => false,
+                'filter' => false,
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('<i class="fa fa-external-link"></i>&nbsp;' . $model->object_name,
+                        ['/hosting/' . $model->object_class . '/view', 'id' => $model->object_id],
+                        ['data-pjax' => 0]
+                    );
+                }
 
+            ],
             'time' => [
+                'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asDatetime($model->time);
+                }
+            ],
+            'state' => [
+                'class' => RefColumn::className(),
+                'gtype' => 'state,request',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->state_label;
                 }
             ],
             'actions' => [

@@ -6,6 +6,8 @@
  */
 
 use hipanel\modules\hosting\grid\RequestGridView;
+use hipanel\widgets\ActionBox;
+use hipanel\widgets\Pjax;
 
 $this->title                    = Yii::t('app', 'Requests');
 $this->params['breadcrumbs'][]  = $this->title;
@@ -13,6 +15,28 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
 
 ?>
 
+<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
+<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
+<?php $box->beginActions() ?>
+
+<?= $box->renderSearchButton() ?>
+<?= $box->renderSorter([
+    'attributes' => [
+        'server',
+        'time',
+        'state',
+    ],
+]) ?>
+<?= $box->renderPerPage() ?>
+<?php $box->endActions() ?>
+<?php $box->renderBulkActions([
+    'items' => [
+        $box->renderDeleteButton(Yii::t('app', 'Delete'))
+    ],
+]) ?>
+<?= $box->renderSearchForm(compact('objectOptions', 'stateOptions', 'typeOptions')) ?>
+<?php $box->end() ?>
+<?php $box->beginBulkForm() ?>
 <?= requestGridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel'  => $model,
@@ -30,3 +54,5 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
         'actions',
     ],
 ]) ?>
+<?php $box->endBulkForm() ?>
+<?php Pjax::end() ?>
