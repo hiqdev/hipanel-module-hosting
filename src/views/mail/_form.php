@@ -6,8 +6,6 @@
 
 use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
-use hipanel\modules\hosting\widgets\combo\HdomainCombo;
-use hipanel\modules\hosting\widgets\combo\MailCombo;
 use hipanel\modules\hosting\widgets\combo\MultipleMailCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\hosting\widgets\combo\VhostCombo;
@@ -162,7 +160,7 @@ HTML
             </div>
         <?php } ?>
     </div>
-<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     &nbsp;
 <?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();

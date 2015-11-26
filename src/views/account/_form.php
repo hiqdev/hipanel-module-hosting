@@ -73,9 +73,8 @@ use yii\helpers\Url;
             </div>
         <?php } ?>
     </div>
-<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
     &nbsp;
 <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-<?php ActiveForm::end();
-
-$this->registerJs("$('#account-sshftp_ips').popover({placement: 'top', trigger: 'focus'});");
+<?php ActiveForm::end(); ?>
+<?php $this->registerJs("$('#account-sshftp_ips').popover({placement: 'top', trigger: 'focus'});"); ?>

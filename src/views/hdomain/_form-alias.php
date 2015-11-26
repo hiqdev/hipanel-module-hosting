@@ -10,7 +10,6 @@ use hipanel\modules\hosting\widgets\combo\HdomainCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\hosting\widgets\combo\VhostCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
-use hiqdev\combo\StaticCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -94,7 +93,7 @@ $form = ActiveForm::begin([
         </div>
     <?php } ?>
 </div>
-<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-default']) ?>
+<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     &nbsp;
 <?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
