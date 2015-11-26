@@ -19,11 +19,12 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'classes' => [
-                'value' => function ($model) {
-                    return sprintf('%s, %s', $model->type, $model->action);
-                },
+                'label' => Yii::t('app', 'Action'),
                 'filter' => false,
                 'enableSorting' => false,
+                'value' => function ($model) {
+                    return sprintf('%s, %s', $model->object_class, $model->action);
+                },
             ],
             'server' => [
                 'sortAttribute' => 'server',

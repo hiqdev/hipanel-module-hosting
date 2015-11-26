@@ -24,6 +24,7 @@ class Request extends \hipanel\base\Model
             [['tries_left', 'pid', 'time_lag'], 'integer'],
             [['object_name'], 'safe'],
             [['time'], 'date'],
+            [['id'], 'integer', 'on' => ['delete']]
         ];
     }
 

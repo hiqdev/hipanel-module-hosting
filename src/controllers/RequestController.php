@@ -30,8 +30,8 @@ class RequestController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => 'hipanel\actions\SmartDeleteAction',
-                'success' => Yii::t('hipanel/hosting', 'Backup deleting task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete backup')
+                'success' => Yii::t('hipanel/hosting', 'Deleted'),
+                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete request.')
             ],
         ];
     }

@@ -42,7 +42,7 @@ $this->params['subtitle']       = array_filter(Yii::$app->request->get($model->f
     'filterModel'  => $model,
     'columns'      => [
         'checkbox',
-        'action',
+        'classes',
 
         'server',
         'account',
