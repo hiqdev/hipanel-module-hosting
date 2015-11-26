@@ -19,7 +19,7 @@ class Ip extends \hipanel\base\Model
             [['ip', 'objects_count', 'tags', 'client', 'seller'], 'safe'],
             [['prefix', 'family'],                                'safe'],
             [['type', 'state', 'state_label'],                    'safe'],
-            [['links', 'expanded_ips', 'ip_normalized'],          'safe'],
+            [['expanded_ips', 'ip_normalized'],          'safe'],
             [['is_single'],                                       'boolean'],
         ];
     }
@@ -32,5 +32,9 @@ class Ip extends \hipanel\base\Model
             'ip_normalized'         => Yii::t('app', 'Normalized IP'),
             'expanded_ips'          => Yii::t('app', 'Expanded IPs'),
         ]);
+    }
+
+    public function getLinks() {
+        return $this->hasMany(Link::className(), ['id' => 'ip_id']);
     }
 }

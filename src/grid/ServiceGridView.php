@@ -12,6 +12,7 @@ use hipanel\grid\MainColumn;
 use hipanel\modules\hosting\models\DbSearch;
 use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\models\Service;
+use hipanel\modules\hosting\models\Soft;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use kartik\helpers\Html;
@@ -38,13 +39,13 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                     $html = $model->name;
                     if ($model->objects_count > 0) {
                         $html .= ' ';
-                        if ($model->soft_type === Service::SOFT_TYPE_DB) {
+                        if ($model->soft_type === Soft::TYPE_DB) {
                             $html .= Html::a(
                                 Yii::t('hipanel/hosting', '{0, plural, one{# DB} other{# DBs}}', $model->objects_count),
                                 ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
                                 ['class' => 'btn btn-default btn-xs']
                             );
-                        } elseif ($model->soft_type === Service::SOFT_TYPE_WEB) {
+                        } elseif ($model->soft_type === Soft::TYPE_WEB) {
                             $html .= Html::a(
                                 Yii::t('hipanel/hosting', '{0, plural, one{# domain} other{# domains}}', $model->objects_count),
                                 ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],

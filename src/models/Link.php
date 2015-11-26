@@ -9,19 +9,14 @@ namespace hipanel\modules\hosting\models;
 
 use Yii;
 
-class Soft extends \hipanel\base\Model
+class Link extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    const TYPE_WEB = 'web';
-    const TYPE_DB = 'db';
-
-    /** @inheritdoc */
-    public function rules()
-    {
+    public function rules () {
         return [
-            [['id', 'no'], 'integer'],
-            [['name', 'type', 'type_label', 'state', 'state_label'], 'safe'],
+            [['id', 'ip_id', 'server_id', 'service_id', 'soft_id'], 'integer'],
+            [['ip', 'server', 'service', 'soft', 'soft_type', 'soft_type_label', 'device_ptype'], 'safe'],
         ];
     }
 }

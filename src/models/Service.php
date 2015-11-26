@@ -12,9 +12,6 @@ use yii\base\InvalidConfigException;
 
 class Service extends \hipanel\base\Model
 {
-    const SOFT_TYPE_WEB = 'web';
-    const SOFT_TYPE_DB = 'db';
-
     use \hipanel\base\ModelTrait;
 
     /** @inheritdoc */

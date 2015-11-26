@@ -8,7 +8,6 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
-use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
 use hipanel\modules\server\grid\ServerColumn;

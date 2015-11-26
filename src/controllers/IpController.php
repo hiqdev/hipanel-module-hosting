@@ -7,6 +7,7 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\models\Ref;
 use yii\base\Event;
 
 class IpController extends \hipanel\base\CrudController
@@ -20,12 +21,24 @@ class IpController extends \hipanel\base\CrudController
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith('links');
+
+                    // TODO: ipModule is not wise yet. Redo
                     $dataProvider->query
                         ->andWhere(['with_links' => 1])
                         ->andWhere(['with_tags' => 1])
                         ->andWhere(['with_counters' => 1]);
                 },
+                'data' => function ($action) {
+                    return [
+                        'ipTags' => $action->controller->getIpTags()
+                    ];
+                }
             ],
         ];
+    }
+
+    public function getIpTags() {
+        return Ref::getList('tag,ip');
     }
 }

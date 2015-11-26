@@ -7,52 +7,108 @@
 
 namespace hipanel\modules\hosting\grid;
 
+use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
+use hipanel\helpers\FontIcon;
+use hipanel\modules\hosting\models\HdomainSearch;
+use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\helpers\Html;
 
 class IpGridView extends \hipanel\grid\BoxedGridView
 {
+    static public $ipTags = [];
+
+    static public function setIpTags($ipTags)
+    {
+        static::$ipTags = $ipTags;
+    }
+
     static public function defaultColumns()
     {
         return [
             'ip' => [
-                'class'                 => MainColumn::className(),
-                'filterAttribute'       => 'ip_like',
+                'class' => MainColumn::className(),
+                'filterAttribute' => 'ip_like',
             ],
             'tags' => [
-                'format' => 'html',
+                'format' => 'raw',
+                'filter' => function ($column, $model, $attribute) {
+                    return Html::activeDropDownList($model, $attribute, static::$ipTags, ['class' => 'form-control']);
+                },
                 'value' => function ($model) {
-                    return ArraySpoiler::widget([
-                        'data' => $model->tags
-                    ]);
+                    $labels = [];
+                    foreach ($model->tags as $tag) {
+                        $labels[] = IpTag::widget(['tag' => $tag]);
+                    }
+                    return implode(' ', $labels);
                 }
             ],
             'counters' => [
                 'format' => 'html',
                 'value' => function ($model) {
                     $html = '';
-                    foreach ($model->objects_count as $class => $count) {
-//                        $html .= Html::a(
-//                            $count['ok'] . '&nbsp;' . Html::tag('i', '', ['class' => 'fa fa-check']),
-//                            ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
-//                            ['class' => 'btn btn-default btn-xs']
-//                        );
+                    foreach ($model->objects_count as $count) {
+                        if ($count['type'] === 'hdomain') {
+                            $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip]];
+                            $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip, 'state' => 'deleted']];
+                        } else {
+                            throw new InvalidParamException('The object type is not supported', $model);
+                        }
+
+                        if ($count['ok']) {
+                            $html .= Html::a(
+                                (int)$count['ok'] . '&nbsp;' . FontIcon::i('fa-check'),
+                                $url['ok'],
+                                ['class' => 'btn btn-success btn-xs']
+                            );
+                        }
+                        $html .= ' ';
+                        if ($count['deleted'] > 0) {
+                            $html .= Html::a(
+                                (int)$count['deleted'] . '&nbsp;' . FontIcon::i('fa-trash'),
+                                $url['deleted'],
+                                ['class' => 'btn btn-xs btn-warning']
+                            );
+                        }
                     }
+
+                    return $html;
                 }
-            ]
+            ],
+            'links' => [
+                'format' => 'html',
+                'value' => function ($model) {
+                    $items = [];
+                    foreach ($model->links as $link) {
+                        $item = Html::a($link->server, ['@server/view', 'id' => $link->server_id]);
+                        if ($link->service_id) {
+                            $item .= '&nbsp;' . FontIcon::i('fa-long-arrow-right');
+                            $item .= '&nbsp;' . Html::a($link->service ?: $link->soft, ['@service/update', 'id' => $link->service_id]);
+                            $items[] = $item;
+                        }
+                    }
+                    return ArraySpoiler::widget(['data' => $items, 'visibleCount' => 3]);
+                }
+            ],
+            'actions' => [
+                'class' => ActionColumn::className(),
+                'template' => '{view} {expand} {delete}',
+                'buttons' => [
+                    'expand' => function ($url, $model, $key) {
+                        $options = array_merge([
+                            'title' => Yii::t('hipanel/hosting', 'Expand'),
+                            'aria-label' => Yii::t('hipanel/hosting', 'Expand'),
+                            'data-pjax' => '0',
+                        ]);
+
+                        return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel/hosting', 'Expand'), $url, $options);
+                    }
+                ]
+            ],
+
         ];
     }
 }
-
-
-/*
-    foreach ($v['objects_count'] as $class => $stat) {
-        $url = "/panel/{$class}s/?ip_like={$v['ip']}"; ?>
-        <a href="<?= $url ?>" class="fa fa-check good-count"><?= $stat['ok'] ?></a>
-        <? if ($stat['deleted']) { $url .= "&states=deleted"; ?>
-            <a href="<?= $url ?>" class="fa fa-trash"><?= $stat['deleted'] ?></a>
-        <? } ?>
-    <? } ?>
- */
