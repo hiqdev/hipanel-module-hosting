@@ -17,9 +17,9 @@ class Service extends \hipanel\base\Model
     /** @inheritdoc */
     public function rules () {
         return [
-            [['id', 'server_id', 'device_id', 'client_id', 'seller_id', 'soft_id', 'objects_count'], 'integer'],
+            [['id', 'server_id', 'device_id', 'client_id', 'seller_id', 'soft_id'], 'integer'],
             [['name', 'server', 'device', 'client', 'seller', 'soft'], 'safe'],
-            [['ips', 'bin', 'etc'], 'safe'],
+            [['ips', 'bin', 'etc', 'objects_count'], 'safe'],
             [['soft_type', 'soft_type_label', 'state', 'state_label'], 'safe'],
         ];
     }

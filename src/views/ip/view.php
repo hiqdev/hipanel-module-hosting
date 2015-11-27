@@ -6,27 +6,31 @@
  */
 
 use hipanel\modules\hosting\grid\IpGridView;
+use hipanel\modules\hosting\models\Ip;
 use hipanel\widgets\Pjax;
-use yii\helpers\Html;
 
-$this->title                   = Html::encode($model->domain);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Domains'), 'url' => ['index']];
+/**
+ * @var $model Ip
+ */
+
+$this->title = $model->ip;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'IP addresses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
 <? Pjax::begin(Yii::$app->params['pjax']) ?>
 <div class="row">
-
-<div class="col-md-4">
-    <?= IpGridView::detailView([
-        'model'   => $model,
-        'columns' => [
-            'seller_id','client_id',
-            ['attribute' => 'ip'],
-        ],
-    ]) ?>
-</div>
-
+    <div class="col-md-4">
+        <?= IpGridView::detailView([
+            'model' => $model,
+            'columns' => [
+                'ip',
+                'tags',
+                'counters',
+                'links',
+            ],
+        ]) ?>
+    </div>
 </div>
 <?php Pjax::end() ?>

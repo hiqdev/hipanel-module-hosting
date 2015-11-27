@@ -35,6 +35,21 @@ class IpController extends \hipanel\base\CrudController
                     ];
                 }
             ],
+            'view' => [
+                'class' => 'hipanel\actions\ViewAction',
+                'on beforeSave' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith('links');
+
+                    // TODO: ipModule is not wise yet. Redo
+                    $dataProvider->query
+                        ->andWhere(['with_links' => 1])
+                        ->andWhere(['with_tags' => 1])
+                        ->andWhere(['with_counters' => 1]);
+                }
+            ]
         ];
     }
 

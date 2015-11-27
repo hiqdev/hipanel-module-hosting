@@ -35,8 +35,9 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             ],
             'tags' => [
                 'format' => 'raw',
+                'attribute' => 'tag',
                 'filter' => function ($column, $model, $attribute) {
-                    return Html::activeDropDownList($model, $attribute, static::$ipTags, ['class' => 'form-control']);
+                    return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('app', '---')], static::$ipTags), ['class' => 'form-control']);
                 },
                 'value' => function ($model) {
                     $labels = [];

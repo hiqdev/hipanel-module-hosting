@@ -16,10 +16,10 @@ class Ip extends \hipanel\base\Model
     public function rules () {
         return [
             [['id', 'client_id', 'seller_id'],                    'integer'],
-            [['ip', 'objects_count', 'tags', 'client', 'seller'], 'safe'],
-            [['prefix', 'family'],                                'safe'],
+            [['ip', 'objects_count', 'client', 'seller'],         'safe'],
+            [['prefix', 'family', 'tags'],                        'safe'],
             [['type', 'state', 'state_label'],                    'safe'],
-            [['expanded_ips', 'ip_normalized'],          'safe'],
+            [['expanded_ips', 'ip_normalized'],                   'safe'],
             [['is_single'],                                       'boolean'],
         ];
     }
