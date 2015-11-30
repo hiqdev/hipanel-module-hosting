@@ -41,7 +41,7 @@ class ServiceController extends \hipanel\base\CrudController
                     ];
                 },
                 'success' => Yii::t('hipanel/hosting', 'Service was created successfully'),
-                'error' => Yii::t('app', 'An error occurred when trying to create a service')
+                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create a service')
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',

@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\widgets\combo;
 
 use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
+use yii\web\JsExpression;
 
 
 /**
@@ -21,7 +22,7 @@ class ServiceCombo extends Combo
     public $url = '/hosting/service/index';
 
     /** @inheritdoc */
-    public $_return = ['id', 'client', 'client_id', 'server', 'server_id', 'seller', 'seller_id'];
+    public $_return = ['id', 'client', 'client_id', 'server', 'server_id', 'seller', 'seller_id', 'soft'];
 
     /** @inheritdoc */
     public $_rename = ['text' => 'name'];
