@@ -13,16 +13,17 @@ class Ip extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
+    protected $links = [];
+
     public function rules () {
         return [
             [['id', 'client_id', 'seller_id'],                    'integer'],
             [['objects_count', 'client', 'seller'],               'safe'],
             [['prefix', 'family', 'tags'],                        'safe'],
             [['type', 'state', 'state_label'],                    'safe'],
-            [['expanded_ips', 'ip_normalized'],                   'safe'],
+            [['expanded_ips', 'ip_normalized', 'links'],          'safe'],
             [['is_single'],                                       'boolean'],
             [['ip'], 'ip', 'subnet' => null, 'on' => ['create']],
-
         ];
     }
 
@@ -38,5 +39,9 @@ class Ip extends \hipanel\base\Model
 
     public function getLinks() {
         return $this->hasMany(Link::className(), ['ip_id' => 'id']);
+    }
+
+    public function addLink(array $link) {
+        $this->links[] = $link;
     }
 }

@@ -11,8 +11,10 @@ use hipanel\base\Response;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\modules\hosting\models\Link;
+use hiqdev\hiart\Collection;
 use Yii;
 use yii\base\Event;
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
 class IpController extends \hipanel\base\CrudController
@@ -74,13 +76,46 @@ class IpController extends \hipanel\base\CrudController
         /**
          * @var Ip $model
          */
-        $model = $this->newModel(['scenario' => 'create']);
-        $links = [new Link()];
+        $ipModel = $this->newModel(['scenario' => 'create']);
+        $linkModel = new Link(['scenario' => 'create']);
+
+        $ipModels = [$ipModel];
+        for($i = 1; $i < count(Yii::$app->request->post($ipModel->formName(), [])); $i++) {
+            $ipModels[] = $ipModel;
+        }
+
+        $linkModels = [$linkModel];
+        for($i = 1; $i < count(Yii::$app->request->post($ipModel->formName(), [])); $i++) {
+            $linkModels[] = $linkModel;
+        }
+
+        if (Ip::loadMultiple($ipModels, Yii::$app->request->post())) {
+            Link::loadMultiple($linkModels, Yii::$app->request->post());
+
+            /** @var Ip $ip */
+            foreach ($ipModels as $i => $ip) {
+                /** @var Link $link */
+                foreach ($linkModels as $k => $link) {
+                    if ($i === $k && $link->validate()) {
+                        $ip->addLink(ArrayHelper::toArray($link, ['server', 'service_id']));
+                    }
+                }
+            }
+
+            $collection = new Collection();
+            $collection->set($ipModels);
+            if ($collection->save()) {
+                Yii::$app->session->addFlash('success', 'Created');
+//                return $this->redirect('index');
+            } else {
+                Yii::$app->session->addFlash('error', 'Error');
+            }
+        }
 
         return $this->render('create', [
-            'model' => $model,
-            'models' => [$model],
-            'links' => $links,
+            'model' => $ipModel,
+            'models' => $ipModels,
+            'links' => $linkModels,
             'tags' => $this->getIpTags()
         ]);
 //        'success' => Yii::t('hipanel/hosting', 'IP address was created successfully'),

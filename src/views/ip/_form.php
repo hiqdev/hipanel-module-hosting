@@ -23,13 +23,13 @@ $form = ActiveForm::begin([
 ]);
 
 DynamicFormWidget::begin([
-    'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
-    'widgetBody' => '.container-items', // required: css class selector
-    'widgetItem' => '.item', // required: css class
+    'widgetContainer' => 'dynamicform_wrapper',
+    'widgetBody' => '.container-items',
+    'widgetItem' => '.item',
     'limit' => 20,
-    'min' => 1, // 0 or 1 (default 1)
-    'insertButton' => '.add-item', // css class
-    'deleteButton' => '.remove-item', // css class
+    'min' => 1,
+    'insertButton' => '.add-item',
+    'deleteButton' => '.remove-item',
     'model' => reset($models),
     'formId' => 'dynamic-form',
     'formFields' => [
@@ -49,13 +49,13 @@ DynamicFormWidget::begin([
                                 print $form->field($model, "[$i]ip")->textInput(['readonly' => !$model->isNewRecord]);
 
                                 DynamicFormWidget::begin([
-                                    'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
-                                    'widgetBody' => '.container-ips', // required: css class selector
-                                    'widgetItem' => '.item', // required: css class
+                                    'widgetContainer' => 'dynamicform_wrapper',
+                                    'widgetBody' => '.container-ips',
+                                    'widgetItem' => '.item',
                                     'limit' => 20,
-                                    'min' => 1, // 0 or 1 (default 1)
-                                    'insertButton' => '.add-item', // css class
-                                    'deleteButton' => '.remove-item', // css class
+                                    'min' => 1,
+                                    'insertButton' => '.add-item',
+                                    'deleteButton' => '.remove-item',
                                     'model' => $links[0],
                                     'formId' => 'dynamic-form',
                                     'formFields' => [
@@ -67,12 +67,12 @@ DynamicFormWidget::begin([
                                 <div class="container-ips">
                                     <?php foreach ($links as $link) {
                                         $link_id = $link->id ?: 0;
-                                        echo Html::activeHiddenInput($link, "[$i][$link_id]id", ['value' => $link->server]);
-                                        echo Html::activeHiddenInput($link, "[$i][$link_id]ip_id", ['value' => $link->server]) ?>
+                                        echo Html::activeHiddenInput($link, "[$link_id]id", ['value' => $link->server]);
+                                        echo Html::activeHiddenInput($link, "[$link_id]ip_id", ['value' => $link->server]) ?>
                                         <div class="item">
                                             <div class="row" style="margin-bottom: 5pt">
                                                 <div class="col-md-5">
-                                                    <?= $form->field($link, "[$i][$link_id]server")->widget(ServerCombo::className(), [
+                                                    <?= $form->field($link, "[$link_id]server")->widget(ServerCombo::className(), [
                                                         'pluginOptions' => [],
                                                         'formElementSelector' => '.item',
                                                         'inputOptions' => [
@@ -93,7 +93,7 @@ DynamicFormWidget::begin([
                                                             }
                                                         }
                                                     ");
-                                                    echo $form->field($link, "[$i][$link_id]service_id")->widget(ServiceCombo::className(), [
+                                                    echo $form->field($link, "[$link_id]service_id")->widget(ServiceCombo::className(), [
                                                         'pluginOptions' => [
                                                             'activeWhen' => [
                                                                 'server/server',

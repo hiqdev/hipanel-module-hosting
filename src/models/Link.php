@@ -25,7 +25,11 @@ class Link extends \hipanel\base\Model
     public function rules () {
         return [
             [['id', 'ip_id', 'server_id', 'service_id', 'soft_id'], 'integer'],
-            [['ip', 'server', 'service', 'soft', 'soft_type', 'soft_type_label', 'device_ptype'], 'safe'],
+            [['ip', 'service', 'soft', 'soft_type', 'soft_type_label', 'device_ptype'], 'safe'],
+            [['server'], 'safe', 'on' => ['create', 'update']],
+            [['service_id'], 'integer', 'on' => ['create', 'update']],
+            [['id'], 'required', 'on' => ['update', 'delete']],
+            [['server'], 'required', 'on' => ['create', 'update']],
         ];
     }
 }
