@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\models;
 
 use Yii;
+use yii\web\JsExpression;
 
 class Link extends \hipanel\base\Model
 {
@@ -24,12 +25,16 @@ class Link extends \hipanel\base\Model
 
     public function rules () {
         return [
-            [['id', 'ip_id', 'server_id', 'service_id', 'soft_id'], 'integer'],
+            [['id', 'ip_id', 'device_id', 'service_id', 'soft_id'], 'integer'],
             [['ip', 'service', 'soft', 'soft_type', 'soft_type_label', 'device_ptype'], 'safe'],
-            [['server'], 'safe', 'on' => ['create', 'update']],
-            [['service_id'], 'integer', 'on' => ['create', 'update']],
+            [['device'], 'safe', 'on' => ['create', 'update']],
+            [['service_id', 'ip_id', 'id'], 'integer', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update', 'delete']],
-            [['server'], 'required', 'on' => ['create', 'update']],
+            [['service_id'], 'required', 'when' => function ($model) {
+                return !empty($this->server);
+            }, 'whenClient' => new JsExpression("function (attribute, value) {
+                return $(attribute).parent('.item').find('[data-attribute=server]').val();
+            }"), 'on' => ['create', 'update']]
         ];
     }
 }

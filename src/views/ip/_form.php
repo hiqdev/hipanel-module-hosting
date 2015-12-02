@@ -34,7 +34,6 @@ DynamicFormWidget::begin([
     'formId' => 'dynamic-form',
     'formFields' => [
         'ip',
-        'server',
     ],
 ]); ?>
     <div class="container-items"><!-- widgetContainer -->
@@ -60,23 +59,25 @@ DynamicFormWidget::begin([
                                     'formId' => 'dynamic-form',
                                     'formFields' => [
                                         'id',
-                                        'server',
+                                        'ip_id',
+                                        'device',
                                         'service_id',
                                     ],
                                 ]) ?>
                                 <div class="container-ips">
                                     <?php foreach ($links as $link) {
                                         $link_id = $link->id ?: 0;
-                                        echo Html::activeHiddenInput($link, "[$link_id]id", ['value' => $link->server]);
-                                        echo Html::activeHiddenInput($link, "[$link_id]ip_id", ['value' => $link->server]) ?>
+                                        echo Html::activeHiddenInput($link, "[$link_id]id", ['value' => $link->id]);
+                                        echo Html::activeHiddenInput($link, "[$link_id]ip_id", ['value' => $i]) ?>
                                         <div class="item">
                                             <div class="row" style="margin-bottom: 5pt">
                                                 <div class="col-md-5">
-                                                    <?= $form->field($link, "[$link_id]server")->widget(ServerCombo::className(), [
+                                                    <?= $form->field($link, "[$link_id]device")->widget(ServerCombo::className(), [
+                                                        // TODO: Change to DeviceCombo when will be implemented
                                                         'pluginOptions' => [],
                                                         'formElementSelector' => '.item',
                                                         'inputOptions' => [
-                                                            'data-combo-field' => 'server'
+                                                            'data-combo-field' => 'device'
                                                         ]
                                                     ])->label(false) ?>
                                                 </div>

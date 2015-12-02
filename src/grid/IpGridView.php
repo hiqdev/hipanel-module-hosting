@@ -84,7 +84,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     $items = [];
                     foreach ($model->links as $link) {
-                        $item = Html::a($link->server, ['@server/view', 'id' => $link->server_id]);
+                        $item = Html::a($link->device, ['@server/view', 'id' => $link->device_id]);
                         if ($link->service_id) {
                             $item .= '&nbsp;' . FontIcon::i('fa-long-arrow-right');
                             $item .= '&nbsp;' . Html::a($link->service ?: $link->soft, ['@service/update', 'id' => $link->service_id]);
@@ -96,7 +96,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             ],
             'actions' => [
                 'class' => ActionColumn::className(),
-                'template' => '{view} {expand} {delete}',
+                'template' => '{view} {expand} {update} {delete}',
                 'buttons' => [
                     'expand' => function ($url, $model, $key) {
                         $options = array_merge([

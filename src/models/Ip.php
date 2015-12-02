@@ -7,13 +7,28 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\helpers\ArrayHelper;
 use Yii;
 
 class Ip extends \hipanel\base\Model
 {
-    use \hipanel\base\ModelTrait;
+    use \hipanel\base\ModelTrait {
+        attributes as defaultAttributes;
+    }
 
-    protected $links = [];
+    /**
+     * @var Link[] Array of links to be inserted/updated.
+     * Do not mix up with [[getLinks]]
+     * @see getAddedLinks
+     */
+    private $_links = [];
+
+    public function attributes()
+    {
+        $attributes = $this->defaultAttributes();
+        unset($attributes[array_search('links', $attributes)]);
+        return $attributes;
+    }
 
     public function rules () {
         return [
@@ -21,9 +36,10 @@ class Ip extends \hipanel\base\Model
             [['objects_count', 'client', 'seller'],               'safe'],
             [['prefix', 'family', 'tags'],                        'safe'],
             [['type', 'state', 'state_label'],                    'safe'],
-            [['expanded_ips', 'ip_normalized', 'links'],          'safe'],
+            [['expanded_ips', 'ip_normalized'],                   'safe'],
             [['is_single'],                                       'boolean'],
             [['ip'], 'ip', 'subnet' => null, 'on' => ['create']],
+            [['links'], 'safe', 'on' => ['create', 'update']],
         ];
     }
 
@@ -38,10 +54,19 @@ class Ip extends \hipanel\base\Model
     }
 
     public function getLinks() {
-        return $this->hasMany(Link::className(), ['ip_id' => 'id']);
+        return in_array($this->scenario, ['create', 'update'])
+            ? ArrayHelper::toArray($this->_links)
+            : $this->hasMany(Link::className(), ['ip_id' => 'id']);
     }
 
-    public function addLink(array $link) {
-        $this->links[] = $link;
+    public function getAddedLinks() {
+        return $this->_links;
+    }
+
+    /**
+     * @param Link $link
+     */
+    public function addLink(Link $link) {
+        $this->_links[] = $link;
     }
 }
