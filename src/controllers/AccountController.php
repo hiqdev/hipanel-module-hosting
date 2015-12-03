@@ -7,6 +7,13 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SearchAction;
+use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
 use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use Yii;
@@ -17,7 +24,7 @@ class AccountController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'data' => function ($action) {
                     return [
                         'stateData' => $action->controller->getStateData(),
@@ -26,7 +33,7 @@ class AccountController extends \hipanel\base\CrudController
                 }
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
                 'findOptions' => [
                     'with_mail_settings' => true
                 ],
@@ -37,50 +44,50 @@ class AccountController extends \hipanel\base\CrudController
                 }
             ],
             'create' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'success' => Yii::t('app', 'Account creating task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to create account')
             ],
             'create-ftponly' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'success' => Yii::t('app', 'Account creating task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to create account')
             ],
             'set-password' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'Password changed'),
                 'error' => Yii::t('app', 'Failed to change password'),
             ],
             'set-allowed-ips' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'Allowed IPs changing task has been successfully added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to change allowed IPs'),
             ],
             'set-mail-settings' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'Mail settings where changed'),
                 'error' => Yii::t('app', 'An error occurred when trying to change mail settings'),
             ],
             'enable-block' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => 'Account was blocked successfully',
                 'error' => 'Error during the account blocking',
             ],
             'disable-block' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => 'Account was unblocked successfully',
                 'error' => 'Error during the account unblocking',
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ],
             'delete' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'success' => Yii::t('app', 'Account deleting task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to delete account')
             ],
             'get-directories-list' => [
-                'class' => 'hipanel\actions\SearchAction',
+                'class' => SearchAction::class,
                 'findOptions' => ['with_directories' => true],
                 'ajaxResponseFormatter' => function ($action) {
                     $results = [];

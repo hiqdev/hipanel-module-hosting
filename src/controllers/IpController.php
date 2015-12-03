@@ -7,6 +7,11 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\modules\hosting\models\Link;
@@ -21,7 +26,7 @@ class IpController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
@@ -41,7 +46,7 @@ class IpController extends \hipanel\base\CrudController
                 }
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
                 'on beforeSave' => function (Event $event) {
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
@@ -56,7 +61,7 @@ class IpController extends \hipanel\base\CrudController
                 }
             ],
             'create' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'success' => Yii::t('hipanel/hosting', 'IP address was created successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create an IP address'),
                 'data' => function ($action, $data) {
@@ -76,7 +81,7 @@ class IpController extends \hipanel\base\CrudController
                 },
             ],
             'update' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel/hosting', 'IP address was updated successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update an IP address'),
                 'data' => function ($action, $data = []) {
@@ -111,7 +116,7 @@ class IpController extends \hipanel\base\CrudController
                 },
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ]
         ];
     }

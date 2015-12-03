@@ -2,6 +2,9 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\ViewAction;
 use Yii;
 
 class BackupController extends \hipanel\base\CrudController
@@ -10,7 +13,7 @@ class BackupController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'data' => function ($action) {
                     return [
                         'objectOptions' => $action->controller->getObjectOptions(),
@@ -18,10 +21,10 @@ class BackupController extends \hipanel\base\CrudController
                 },
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
             ],
             'delete' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel/hosting', 'Backup deleting task has been added to queue'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete backup')
             ],
