@@ -88,8 +88,8 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         if ($link->service_id) {
                             $item .= '&nbsp;' . FontIcon::i('fa-long-arrow-right');
                             $item .= '&nbsp;' . Html::a($link->service ?: $link->soft, ['@service/update', 'id' => $link->service_id]);
-                            $items[] = $item;
                         }
+                        $items[] = $item;
                     }
                     return ArraySpoiler::widget(['data' => $items, 'visibleCount' => 3]);
                 }

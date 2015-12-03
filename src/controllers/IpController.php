@@ -11,7 +11,6 @@ use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\modules\hosting\models\Link;
 use hiqdev\hiart\Collection;
-use hiqdev\hiart\ErrorResponseException;
 use Yii;
 use yii\base\Event;
 use yii\helpers\ArrayHelper;
@@ -60,19 +59,15 @@ class IpController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\SmartCreateAction',
                 'success' => Yii::t('hipanel/hosting', 'IP address was created successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create an IP address'),
-                'data' => function ($action) {
-                    $linkModels = [];
+                'data' => function ($action, $data) {
                     /** @var Ip $model */
-                    foreach ($action->collection->models as $model) {
-                        if (($links = $model->getAddedLinks()) !== []) {
-                            foreach ($links as $link) {
-                                $linkModels[] = $link;
-                            }
+                    foreach ($data['models'] as $model) {
+                        if (empty($model->getAddedLinks())) {
+                            $model->addLink(new Link(['scenario' => 'create']));
                         }
                     }
 
                     return [
-                        'links' => empty($linkModels) ? [new Link(['scenario' => $action->scenario])] : $linkModels,
                         'tags' => $this->getIpTags()
                     ];
                 },
@@ -84,19 +79,19 @@ class IpController extends \hipanel\base\CrudController
                 'class' => 'hipanel\actions\SmartUpdateAction',
                 'success' => Yii::t('hipanel/hosting', 'IP address was updated successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update an IP address'),
-                'data' => function ($action) {
-                    $linkModels = [];
+                'data' => function ($action, $data = []) {
                     /** @var Ip $model */
-                    foreach ($action->collection->models as $model) {
-                        if (($links = $model->getAddedLinks()) !== []) {
-                            foreach ($links as $link) {
-                                $linkModels[] = $link;
+                    foreach ($data['models'] as $model) {
+                        if (empty($model->getAddedLinks())) {
+                            if (empty($model->links)) {
+                                $model->addLink(new Link(['scenario' => 'create']));
+                            } else {
+                                $model->setAddedLinks($model->links);
                             }
                         }
                     }
 
                     return [
-                        'links' => empty($linkModels) ? [new Link(['scenario' => $action->scenario])] : $linkModels,
                         'tags' => $this->getIpTags()
                     ];
                 },
@@ -113,7 +108,7 @@ class IpController extends \hipanel\base\CrudController
                     $dataProvider->query
                         ->andWhere(['with_links' => 1])
                         ->andWhere(['with_tags' => 1]);
-                }
+                },
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',
@@ -135,19 +130,19 @@ class IpController extends \hipanel\base\CrudController
             $ipModels[] = clone $ipModel;
         }
 
-        $linkModels = [$linkModel];
-        for ($i = 1; $i < count(Yii::$app->request->post($linkModel->formName(), [])); $i++) {
-            $linkModels[] = clone $linkModel;
-        }
-
         if (Ip::loadMultiple($ipModels, Yii::$app->request->post())) {
-            Link::loadMultiple($linkModels, Yii::$app->request->post());
-
             /** @var Ip $ip */
             foreach ($ipModels as $i => $ip) {
+                $ipLinkModels = [$linkModel];
+                $ipLinks = ArrayHelper::getValue(Yii::$app->request->post($linkModel->formName(), []), $i, []);
+                for ($i = 1; $i < count($ipLinks); $i++) {
+                    $ipLinkModels[] = clone $linkModel;
+                }
+                Link::loadMultiple($ipLinkModels, [$linkModel->formName() => $ipLinks]);
+
                 /** @var Link $link */
-                foreach ($linkModels as $k => $link) {
-                    if ($link->ip_id == $i && $link->validate()) {
+                foreach ($ipLinkModels as $link) {
+                    if ($link->ip_id == $ip->id && $link->validate()) {
                         $ip->addLink($link);
                     }
                 }
