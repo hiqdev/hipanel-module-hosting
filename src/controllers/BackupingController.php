@@ -7,6 +7,11 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartPerformAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use Yii;
 
@@ -16,7 +21,7 @@ class BackupingController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'data' => function ($action) {
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),
@@ -25,21 +30,21 @@ class BackupingController extends \hipanel\base\CrudController
                 },
             ],
             'update' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
             ],
             'disable' => [
-                'class' => 'hipanel\actions\SmartPerformAction',
+                'class' => SmartPerformAction::class,
             ],
             'enable' => [
-                'class' => 'hipanel\actions\SmartPerformAction',
+                'class' => SmartPerformAction::class,
             ],
             'delete' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'success' => Yii::t('app', 'Deleted'),
                 'error' => Yii::t('app', 'Something went wrong.'),
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
                 'data' => function ($action) {
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),

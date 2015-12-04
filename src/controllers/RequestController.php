@@ -7,6 +7,9 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use Yii;
 
@@ -16,7 +19,7 @@ class RequestController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'data' => function ($action) {
                     return [
                         'objectOptions' => $action->controller->getObjectOptions(),
@@ -26,10 +29,10 @@ class RequestController extends \hipanel\base\CrudController
                 },
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
             ],
             'delete' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel/hosting', 'Deleted'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete request.')
             ],

@@ -7,6 +7,10 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\RedirectAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
 use hipanel\helpers\ArrayHelper;
 use Yii;
 
@@ -16,14 +20,14 @@ class VhostController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
             ],
             'view' => [
-                'class' => 'hipanel\actions\RedirectAction',
+                'class' => RedirectAction::class,
                 'url' => ArrayHelper::merge(['@hdomain/view'], Yii::$app->request->get())
             ],
             'advanced-config' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'findOptions' => [
                     'select' => 'advanced',
                 ],
@@ -31,7 +35,7 @@ class VhostController extends \hipanel\base\CrudController
                 'error'   => Yii::t('app', 'Error while advanced settings update'),
             ],
             'manage-proxy' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'findOptions' => [
                     'select' => 'advanced',
                     'with_backends' => true
@@ -40,7 +44,7 @@ class VhostController extends \hipanel\base\CrudController
                 'error' => Yii::t('app', 'Error while changing domain proxy settings'),
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ],
         ];
     }

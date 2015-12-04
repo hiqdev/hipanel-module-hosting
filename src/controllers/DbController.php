@@ -7,6 +7,12 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartPerformAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
 use hipanel\models\Ref;
 use Yii;
@@ -17,7 +23,7 @@ class DbController extends CrudController
     {
         return [
             'index' => [
-                'class'     => 'hipanel\actions\IndexAction',
+                'class'     => IndexAction::class,
                 'data'  => function ($action) {
                     return [
                         'stateData' => $action->controller->getStateData(),
@@ -25,33 +31,33 @@ class DbController extends CrudController
                 }
             ],
             'view' => [
-                'class'     => 'hipanel\actions\ViewAction'
+                'class'   => ViewAction::class
             ],
             'create'          => [
-                'class'   => 'hipanel\actions\SmartCreateAction',
+                'class'   => SmartCreateAction::class,
                 'success' => Yii::t('app', 'DB create task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while creating DB'),
             ],
             'set-password'    => [
-                'class'   => 'hipanel\actions\SmartUpdateAction',
+                'class'   => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'DB password change task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while DB password changing'),
             ],
             'truncate'        => [
-                'class'   => 'hipanel\actions\SmartUpdateAction',
+                'class'   => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'DB truncate task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while truncating DB'),
             ],
             'set-description' => [
-                'class'   => 'hipanel\actions\SmartUpdateAction',
+                'class'   => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'DB description set successfully'),
                 'error'   => Yii::t('app', 'Failed to set DB description'),
             ],
             'validate-form'   => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class'   => ValidateFormAction::class,
             ],
             'delete'          => [
-                'class'   => 'hipanel\actions\SmartPerformAction',
+                'class'   => SmartPerformAction::class,
                 'success' => Yii::t('app', 'DB delete task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while deleting DB'),
             ],

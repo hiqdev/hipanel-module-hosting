@@ -8,6 +8,10 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\Action;
+use hipanel\actions\IndexAction;
+use hipanel\actions\SmartCreateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Soft;
 use Yii;
@@ -20,7 +24,7 @@ class ServiceController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
@@ -29,10 +33,10 @@ class ServiceController extends \hipanel\base\CrudController
                 },
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
             ],
             'create' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'data' => function ($action) {
                     /** @var Action $action */
                     return [
@@ -44,7 +48,7 @@ class ServiceController extends \hipanel\base\CrudController
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create a service')
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ]
         ];
     }

@@ -7,6 +7,14 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SearchAction;
+use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartPerformAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use Yii;
 
@@ -16,10 +24,10 @@ class HdomainController extends \hipanel\base\CrudController
     {
         return [
             'search' => [
-                'class' => 'hipanel\actions\SearchAction',
+                'class' => SearchAction::class,
             ],
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'findOptions' => [
                     'with_vhosts' => true,
                     'with_aliases' => true,
@@ -33,7 +41,7 @@ class HdomainController extends \hipanel\base\CrudController
                 }
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction',
+                'class' => ViewAction::class,
                 'findOptions' => [
                     'with_vhosts' => true,
                     'with_aliases' => true,
@@ -48,44 +56,44 @@ class HdomainController extends \hipanel\base\CrudController
                 }
             ],
             'create' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'success' => Yii::t('app', 'Domain create task has been created successfully'),
                 'error' => Yii::t('app', 'Error while creating domain'),
             ],
             'create-alias' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'view' => 'create-alias',
                 'success' => Yii::t('app', 'Domain alias create task has been created successfully'),
                 'error' => Yii::t('app', 'Error while creating domain'),
             ],
             'enable-block' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => 'Hosting domain was blocked successfully',
                 'error' => 'Error during the hosting domain blocking',
             ],
             'disable-block' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => 'Hosting domain was unblocked successfully',
                 'error' => 'Error during the hosting domain unblocking',
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ],
             'enable-paid-feature-autorenewal' => [
-                'class' => 'hipanel\actions\SmartPerformAction',
+                'class' => SmartPerformAction::class,
                 'success' => Yii::t('app', 'Premium autorenewal has been enabled'),
             ],
             'disable-paid-feature-autorenewal' => [
-                'class' => 'hipanel\actions\SmartPerformAction',
+                'class' => SmartPerformAction::class,
                 'success' => Yii::t('app', 'Premium autorenewal has been disabled'),
             ],
             'delete' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'success' => Yii::t('app', 'Domain delete task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while deleting domain'),
             ],
             'delete-alias' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'scenario' => 'delete',
                 'success' => Yii::t('app', 'Alias delete task has been created successfully'),
                 'error'   => Yii::t('app', 'Error while deleting alias'),

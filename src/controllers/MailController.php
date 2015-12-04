@@ -7,6 +7,13 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\IndexAction;
+use hipanel\actions\SearchAction;
+use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
+use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use Yii;
 
@@ -15,10 +22,10 @@ class MailController extends \hipanel\base\CrudController
     public function actions() {
         return [
             'search' => [
-                'class' => 'hipanel\actions\SearchAction'
+                'class' => SearchAction::class
             ],
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
                 'data' => function ($action) {
                     return [
                         'stateData' => $action->controller->getStateData(),
@@ -27,30 +34,30 @@ class MailController extends \hipanel\base\CrudController
                 }
             ],
             'view' => [
-                'class' => 'hipanel\actions\ViewAction'
+                'class' => ViewAction::class
             ],
             'create' => [
-                'class' => 'hipanel\actions\SmartCreateAction',
+                'class' => SmartCreateAction::class,
                 'success' => Yii::t('app', 'Mailbox creating task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to create mailbox')
             ],
             'update' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'Mailbox updating task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to update mailbox')
             ],
             'set-password' => [
-                'class' => 'hipanel\actions\SmartUpdateAction',
+                'class' => SmartUpdateAction::class,
                 'success' => Yii::t('app', 'Mailbox password change task has been added to queue'),
                 'error' => Yii::t('app', 'An error occurred when trying to change mailbox password')
             ],
             'delete' => [
-                'class' => 'hipanel\actions\SmartDeleteAction',
+                'class' => SmartDeleteAction::class,
                 'success' => Yii::t('app', 'Mailbox delete task has been created successfully'),
                 'error' => Yii::t('app', 'An error occurred when trying to delete mailbox')
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ],
         ];
     }
