@@ -36,6 +36,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             'tags' => [
                 'format' => 'raw',
                 'attribute' => 'tag',
+                'header' => Yii::t('hipanel/hosting', 'Tags'),
                 'filter' => function ($column, $model, $attribute) {
                     return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('app', '---')], static::$ipTags), ['class' => 'form-control']);
                 },
@@ -49,6 +50,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             ],
             'counters' => [
                 'format' => 'html',
+                'header' => Yii::t('hipanel/hosting', 'Counters'),
                 'value' => function ($model) {
                     $html = '';
                     foreach ($model->objects_count as $count) {
@@ -103,6 +105,8 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                             'title' => Yii::t('hipanel/hosting', 'Expand'),
                             'aria-label' => Yii::t('hipanel/hosting', 'Expand'),
                             'data-pjax' => '0',
+                            'data-id' => $model->id,
+                            'class' => 'btn-expand-ip',
                         ]);
 
                         return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel/hosting', 'Expand'), $url, $options);

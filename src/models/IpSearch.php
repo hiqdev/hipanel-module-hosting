@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\base\SearchModelTrait;
+use Yii;
 use yii\helpers\ArrayHelper;
 
 class IpSearch extends Ip
@@ -39,8 +40,8 @@ class IpSearch extends Ip
     public function attributeLabels()
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
-            'server_in' => \Yii::t('hipanel/hosting', 'Servers'),
-            'tag_in' => \Yii::t('hipanel/hosting', 'Tags'),
+            'server_in' => Yii::t('hipanel/hosting', 'Servers'),
+            'tag_in' => Yii::t('hipanel/hosting', 'Tags'),
         ]);
     }
 }

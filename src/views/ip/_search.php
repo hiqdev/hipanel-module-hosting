@@ -11,7 +11,7 @@ use yii\web\View;
 ?>
 
 <div class="col-md-6">
-    <?= $search->field('ip_like') ?>
+    <?= $search->field('ip_like')->label(Yii::t('hipanel/hosting', 'IP')) ?>
     <?= $search->field('server_in')->widget(ServerCombo::className(), ['formElementSelector' => '.form-group']) ?>
 </div>
 

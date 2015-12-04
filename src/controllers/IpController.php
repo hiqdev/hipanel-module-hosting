@@ -8,8 +8,11 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\PerformAction;
+use hipanel\actions\RenderAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\SwitchAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
@@ -117,13 +120,19 @@ class IpController extends \hipanel\base\CrudController
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
-            ]
+            ],
         ];
     }
 
     public function getIpTags()
     {
         return Ref::getList('tag,ip');
+    }
+
+    public function actionExpand($id)
+    {
+        $ips = Ip::perform('Expand', ['id' => $id, 'with_existing' => true]);
+        return $this->renderAjax('expand', ['ips' => $ips]);
     }
 
     public function collectionLoader ($scenario, Collection $collection) {

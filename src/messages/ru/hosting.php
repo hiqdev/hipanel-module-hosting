@@ -35,4 +35,19 @@ return [
  * DB
  */
     'Create DB' => 'Создать БД',
+/**
+ * IP
+ */
+    'IP addresses' => 'IP адреса',
+    'Create IP' => 'Cоздать IP',
+    'Count of objects' => 'Количество объектов',
+    'Single' => 'Единичный',
+    'Normalized IP' => 'Нормализированный IP',
+    'Expanded IPs' => 'Развернутые IP',
+    'Servers' => 'Сервера',
+    'Tags' => 'Теги',
+    'Tag' => 'Тег',
+    'Counters' => 'Счетчики',
+    'Links' => 'Связи',
+    'Expand' => 'Развернуть',
 ];

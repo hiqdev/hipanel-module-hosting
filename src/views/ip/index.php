@@ -7,7 +7,11 @@
 
 use hipanel\modules\hosting\grid\IpGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\AjaxModal;
 use hipanel\widgets\Pjax;
+use yii\bootstrap\Modal;
+use yii\helpers\Html;
+use yii\web\JsExpression;
 
 $this->title = Yii::t('hipanel/hosting', 'IP addresses');
 $this->params['breadcrumbs'][] = $this->title;
@@ -17,7 +21,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
 <?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
     <?php $box->beginActions() ?>
-        <?= $box->renderCreateButton(Yii::t('app', 'Create IP')) ?>
+        <?= $box->renderCreateButton(Yii::t('hipanel/hosting', 'Create IP')) ?>
         <?= $box->renderSearchButton() ?>
         <?= $box->renderSorter([
             'attributes' => [
@@ -46,4 +50,25 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
         ],
     ]) ?>
 <?php $box->endBulkForm() ?>
+<?= AjaxModal::widget([
+    'id' => 'expand-ip',
+    'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Expanded range'), ['class' => 'modal-title']),
+    'scenario' => 'expand',
+    'actionUrl' => ['expand'],
+    'size' => Modal::SIZE_LARGE,
+    'toggleButton' => false,
+    'clientEvents' => [
+        'show.bs.modal' => function ($widget) {
+            return new JsExpression("function() {
+                $.get('{$widget->actionUrl}', {'id': $('#{$widget->id}').data('ip_id')}).done(function (data) {
+                    $('#{$widget->id} .modal-body').html(data);
+                });;
+            }");
+        }
+    ]
+]) ?>
+<?php $this->registerJs("$('.btn-expand-ip').click(function (event) {
+    $('#expand-ip').data('ip_id', $(this).data('id')).modal('show');
+    event.preventDefault();
+});"); ?>
 <?php Pjax::end();

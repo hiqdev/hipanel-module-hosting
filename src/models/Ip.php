@@ -18,6 +18,11 @@ class Ip extends \hipanel\base\Model
     }
 
     /**
+     * @var string
+     */
+    public static $i18nDictionary = 'hipanel/hosting';
+
+    /**
      * @var Link[] Array of links to be inserted/updated.
      * Do not mix up with [[getLinks]]
      * @see getAddedLinks
@@ -56,17 +61,19 @@ class Ip extends \hipanel\base\Model
                 'skipOnArray' => true, 'on' => ['create', 'update']
             ],
             [['id'], 'required', 'on' => ['update', 'delete']],
-            [['id'], 'integer', 'on' => ['update', 'delete']],
+            [['id'], 'integer', 'on' => ['update', 'delete', 'expand']],
+            [['with_existing'], 'boolean', 'on' => ['expand']],
         ];
     }
 
     /** @inheritdoc */
     public function attributeLabels () {
         return $this->mergeAttributeLabels([
-            'objects_count'         => Yii::t('app', 'Count of objects'),
-            'is_single'             => Yii::t('app', 'Single'),
-            'ip_normalized'         => Yii::t('app', 'Normalized IP'),
-            'expanded_ips'          => Yii::t('app', 'Expanded IPs'),
+            'links'                 => Yii::t(static::$i18nDictionary, 'Links'),
+            'objects_count'         => Yii::t(static::$i18nDictionary, 'Count of objects'),
+            'is_single'             => Yii::t(static::$i18nDictionary, 'Single'),
+            'ip_normalized'         => Yii::t(static::$i18nDictionary, 'Normalized IP'),
+            'expanded_ips'          => Yii::t(static::$i18nDictionary, 'Expanded IPs'),
         ]);
     }
 
