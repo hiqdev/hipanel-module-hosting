@@ -19,6 +19,7 @@ use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\modules\hosting\models\Link;
 use hiqdev\hiart\Collection;
+use hiqdev\hiart\ErrorResponseException;
 use Yii;
 use yii\base\Event;
 use yii\helpers\ArrayHelper;
@@ -131,7 +132,14 @@ class IpController extends \hipanel\base\CrudController
 
     public function actionExpand($id)
     {
-        $ips = Ip::perform('Expand', ['id' => $id, 'with_existing' => true]);
+        try {
+            $ips = Ip::perform('Expand', ['id' => $id, 'with_existing' => true]);
+        } catch (ErrorResponseException $e) {
+            if ($e->getMessage() == 'result is too long') {
+                return Yii::t('hipanel/hosting', 'Too many IP addresses in the network');
+            }
+            throw $e;
+        }
         return $this->renderAjax('expand', ['ips' => $ips]);
     }
 
