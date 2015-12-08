@@ -10,6 +10,7 @@ namespace hipanel\modules\hosting\controllers;
 use hipanel\actions\IndexAction;
 use hipanel\actions\PerformAction;
 use hipanel\actions\RenderAction;
+use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\SwitchAction;
@@ -31,38 +32,48 @@ class IpController extends \hipanel\base\CrudController
         return [
             'index' => [
                 'class' => IndexAction::class,
-                'on beforePerform' => function (Event $event) {
-                    /** @var \hipanel\actions\SearchAction $action */
-                    $action = $event->sender;
-                    $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith('links');
-
-                    // TODO: ipModule is not wise yet. Redo
-                    $dataProvider->query
-                        ->andWhere(['with_links' => 1])
-                        ->andWhere(['with_tags' => 1])
-                        ->andWhere(['with_counters' => 1]);
-                },
+                'on beforePerform' => $this->getDataProviderOptions(),
                 'data' => function ($action) {
                     return [
                         'ipTags' => $action->controller->getIpTags()
                     ];
                 }
             ],
+            'search-service-edit' => [
+                'class' => SearchAction::class,
+                'on beforePerform' => $this->getDataProviderOptions(),
+                'ajaxResponseFormatter' => function ($action) {
+                    /** @var SearchAction $action */
+                    $data = [];
+                    $results = [];
+
+                    foreach ($action->collection->models as $k => $v) {
+                        $data[$k] = ArrayHelper::toArray($v, $action->parent->getReturnOptions());
+                    }
+
+                    $device = Yii::$app->request->post('server');
+
+                    foreach ($data as $item) {
+                        if ($device && $item['links']) {
+                            foreach ($item['links'] as $link) {
+                                if ($link['device'] == $device) {
+                                    $results[] = ArrayHelper::merge($item, [
+                                        'service' => $link['service'],
+                                        'device' => $link['device'],
+                                    ]);
+                                }
+                            }
+                        } else {
+                            $results[] = $item;
+                        }
+                    }
+
+                    return $results;
+                }
+            ],
             'view' => [
                 'class' => ViewAction::class,
-                'on beforeSave' => function (Event $event) {
-                    /** @var \hipanel\actions\SearchAction $action */
-                    $action = $event->sender;
-                    $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith('links');
-
-                    // TODO: ipModule is not wise yet. Redo
-                    $dataProvider->query
-                        ->andWhere(['with_links' => 1])
-                        ->andWhere(['with_tags' => 1])
-                        ->andWhere(['with_counters' => 1]);
-                }
+                'on beforePerform' => $this->getDataProviderOptions(),
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
@@ -107,17 +118,7 @@ class IpController extends \hipanel\base\CrudController
                 'collectionLoader' => function ($action, $data) {
                     $this->collectionLoader($action->scenario, $action->collection);
                 },
-                'on beforeFetch' => function (Event $event) {
-                    /** @var \hipanel\actions\SearchAction $action */
-                    $action = $event->sender;
-                    $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith('links');
-
-                    // TODO: ipModule is not wise yet. Redo
-                    $dataProvider->query
-                        ->andWhere(['with_links' => 1])
-                        ->andWhere(['with_tags' => 1]);
-                },
+                'on beforeFetch' => $this->getDataProviderOptions(),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -143,7 +144,8 @@ class IpController extends \hipanel\base\CrudController
         return $this->renderAjax('expand', ['ips' => $ips]);
     }
 
-    public function collectionLoader ($scenario, Collection $collection) {
+    public function collectionLoader($scenario, Collection $collection)
+    {
         $ipModel = $this->newModel(['scenario' => $scenario]);
         $linkModel = new Link(['scenario' => $scenario]);
 
@@ -172,5 +174,23 @@ class IpController extends \hipanel\base\CrudController
 
             $collection->set($ipModels);
         }
+    }
+
+    /**
+     * @return \Closure
+     */
+    public function getDataProviderOptions() {
+        return function (Event $event) {
+            /** @var \hipanel\actions\SearchAction $action */
+            $action = $event->sender;
+            $dataProvider = $action->getDataProvider();
+            $dataProvider->query->joinWith('links');
+
+            // TODO: ipModule is not wise yet. Redo
+            $dataProvider->query
+                ->andWhere(['with_links' => 1])
+                ->andWhere(['with_tags' => 1])
+                ->andWhere(['with_counters' => 1]);
+        };
     }
 }

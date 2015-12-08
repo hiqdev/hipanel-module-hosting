@@ -7,8 +7,8 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\helpers\StringHelper;
 use Yii;
-use yii\base\InvalidConfigException;
 
 class Service extends \hipanel\base\Model
 {
@@ -19,8 +19,19 @@ class Service extends \hipanel\base\Model
         return [
             [['id', 'server_id', 'device_id', 'client_id', 'seller_id', 'soft_id'], 'integer'],
             [['name', 'server', 'device', 'client', 'seller', 'soft'], 'safe'],
-            [['ips', 'bin', 'etc', 'objects_count'], 'safe'],
+            [['ip', 'ips', 'bin', 'etc', 'objects_count'], 'safe'],
             [['soft_type', 'soft_type_label', 'state', 'state_label'], 'safe'],
+            [['server'], 'safe', 'on' => ['create']],
+            [['bin', 'etc', 'soft', 'state'], 'safe', 'on' => ['create', 'update']],
+            [['ips'], 'filter',
+                'filter' => function ($value) {
+                    return StringHelper::explode($value);
+                },
+                'skipOnArray' => true, 'on' => ['create', 'update']
+            ],
+            [['ips'], 'each', 'rule' => ['ip'], 'on' => ['create', 'update']],
+            [['id'], 'integer', 'on' => ['update']],
+            [['id'], 'required', 'on' => ['update']],
         ];
     }
 

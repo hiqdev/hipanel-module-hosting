@@ -7,6 +7,7 @@
 
 use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
+use hipanel\modules\hosting\widgets\ip\ServiceIpCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -28,6 +29,10 @@ $form = ActiveForm::begin([
                         <div class="box-body">
                             <div class="form-instance" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
                                 <?php
+                                if (!$model->isNewRecord) {
+                                    print Html::activeHiddenInput($model, "[$i]id");
+                                }
+
                                 if (Yii::$app->user->can('support')) {
                                     print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
                                 }
@@ -35,7 +40,12 @@ $form = ActiveForm::begin([
                                 print $form->field($model, "[$i]server")->widget(ServerCombo::className(), ['formElementSelector' => '.form-instance']);
 
                                 print $form->field($model, "[$i]name");
-                                print $form->field($model, "[$i]ips");
+                                print $form->field($model, "[$i]ips")->widget(ServiceIpCombo::class, [
+                                    'formElementSelector' => '.form-instance',
+                                    'inputOptions' => [
+                                        'value' => implode(',', array_unique(array_merge((array)$model->ip, (array)$model->ips)))
+                                    ]
+                                ]);
 
                                 print $form->field($model, "[$i]bin");
                                 print $form->field($model, "[$i]etc");

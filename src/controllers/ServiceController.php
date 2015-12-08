@@ -10,6 +10,8 @@ namespace hipanel\modules\hosting\controllers;
 use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
 use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
@@ -34,6 +36,12 @@ class ServiceController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
+                'on beforeSave' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith('ips')->joinWith('object_count');
+                }
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
@@ -46,6 +54,21 @@ class ServiceController extends \hipanel\base\CrudController
                 },
                 'success' => Yii::t('hipanel/hosting', 'Service was created successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create a service')
+            ],
+            'update' => [
+                'class' => SmartUpdateAction::class,
+                'data' => function ($action) {
+                    /** @var Action $action */
+                    return [
+                        'states' => $action->controller->getStateData(),
+                        'softs' => $action->controller->getSofts(),
+                    ];
+                },
+                'success' => Yii::t('hipanel/hosting', 'Service was updated successfully'),
+                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update a service')
+            ],
+            'delete' => [
+                'class' => SmartDeleteAction::class
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -60,6 +83,6 @@ class ServiceController extends \hipanel\base\CrudController
 
     public function getSofts()
     {
-        return ArrayHelper::map(Soft::find()->all(), 'id', 'name');
+        return ArrayHelper::map(Soft::find()->all(), 'name', 'name');
     }
 }

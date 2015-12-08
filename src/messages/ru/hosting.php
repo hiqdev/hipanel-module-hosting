@@ -31,6 +31,16 @@ return [
  * Service
  */
     'Soft' => 'ПО',
+    'Services' => 'Сервисы',
+    'Create service' => 'Создать сервис',
+    'Object' => 'Объект',
+    'Actions' => 'Действия',
+    'Update service' => 'Редактирование сервиса',
+    'Service was updated successfully' => 'Сервис был успешно отредактирован',
+    'An error occurred when trying to update a service' => 'Произошла ошибка при редактировании сервиса',
+    'Service was created successfully' => 'Сервис был успешно создан',
+    'An error occurred when trying to create a service' => 'Произошла ошибка при создании сервиса',
+    'Service information' => 'Информация о сервисе',
 /**
  * DB
  */

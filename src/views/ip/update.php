@@ -4,8 +4,11 @@
 /* @var $tags array */
 
 $this->title = Yii::t('hipanel/hosting', 'Update IP');
-$this->breadcrumbs->setItems([['label' => Yii::t('hipanel/hosting', 'IP addresses'), 'url' => ['index']]]);
-$this->breadcrumbs->setItems([$model->ip]);
+$this->breadcrumbs->setItems([
+    ['label' => Yii::t('hipanel/hosting', 'IP addresses'), 'url' => ['index']],
+    ['label' => $model->ip, 'url' => ['view', 'id' => $model->id]],
+    ['label' => $this->title]
+]);
 ?>
 
 <div class="ip-update">

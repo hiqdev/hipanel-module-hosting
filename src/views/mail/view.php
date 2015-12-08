@@ -32,7 +32,7 @@ $this->breadcrumbs->setItems([
             ]
         ]); ?>
         <div class="profile-user-img text-center">
-            <i class="fa fa-database fa-5x"></i>
+            <i class="fa fa-envelope-o fa-5x"></i>
         </div>
         <p class="text-center">
             <span class="profile-user-role"><?= $model->mail ?></span>
