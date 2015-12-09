@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<? Pjax::begin(Yii::$app->params['pjax']) ?>
+<?php Pjax::begin(Yii::$app->params['pjax']) ?>
 <div class="row">
     <div class="col-md-3">
         <?php Box::begin([
