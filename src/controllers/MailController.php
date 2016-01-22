@@ -31,7 +31,16 @@ class MailController extends \hipanel\base\CrudController
                         'stateData' => $action->controller->getStateData(),
                         'typeData' => $action->controller->getTypeData(),
                     ];
-                }
+                },
+                'filterStorageMap' => [
+                    'mail_like' => 'hosting.mail.mail_like',
+                    'type' => 'hosting.mail.type',
+                    'state' => 'hosting.mail.state',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                    'seller_id' => 'client.client.seller_id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class

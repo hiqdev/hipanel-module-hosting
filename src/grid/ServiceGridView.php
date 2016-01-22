@@ -9,12 +9,14 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
+use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\models\DbSearch;
 use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\models\Service;
 use hipanel\modules\hosting\models\Soft;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
+use hipanel\widgets\State;
 use kartik\helpers\Html;
 use Yii;
 use yii\base\InvalidParamException;
@@ -30,7 +32,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'attribute' => 'name',
                 'filterAttribute' => 'service_like',
             ],
-            'server_id' => [
+            'server' => [
                 'class' => ServerColumn::className(),
             ],
             'object' => [
@@ -85,9 +87,12 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'state' => [
+                'class' => RefColumn::className(),
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->state_label;
-                }
+                    return State::widget(compact('model'));
+                },
+                'gtype' => 'state,service',
             ],
             'actions' => [
                 'class' => ActionColumn::className(),

@@ -28,7 +28,15 @@ class DbController extends CrudController
                     return [
                         'stateData' => $action->controller->getStateData(),
                     ];
-                }
+                },
+                'filterStorageMap' => [
+                    'name_like' => 'hosting.db.name_like',
+                    'state' => 'hosting.db.state',
+                    'account' => 'hosting.account.login',
+                    'server' => 'server.server.name',
+                    'client_id' => 'client.client.id',
+                    'seller_id' => 'client.client.seller_id',
+                ]
             ],
             'view' => [
                 'class'   => ViewAction::class

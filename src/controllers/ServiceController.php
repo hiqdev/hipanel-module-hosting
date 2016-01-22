@@ -33,6 +33,13 @@ class ServiceController extends \hipanel\base\CrudController
                     $dataProvider = $action->getDataProvider();
                     $dataProvider->query->joinWith('ips')->joinWith('objects_count');
                 },
+                'filterStorageMap' => [
+                    'ip' => 'hosting.ip.ip',
+                    'state' => 'hosting.service.state',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class,

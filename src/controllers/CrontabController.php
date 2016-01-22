@@ -23,6 +23,11 @@ class CrontabController extends \hipanel\base\CrudController
         return [
             'index' => [
                 'class' => IndexAction::class,
+                'filterStorageMap' => [
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class,

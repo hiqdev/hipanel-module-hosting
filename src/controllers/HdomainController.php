@@ -38,7 +38,18 @@ class HdomainController extends \hipanel\base\CrudController
                         'stateData' => $action->controller->getStateData(),
                         'typeData' => $action->controller->getTypeData(),
                     ];
-                }
+                },
+                'filterStorageMap' => [
+                    'domain_like' => [
+                        'domain.hdomain.domain_like | hosting.hdomain.domain_like',
+                        'hosting.hdomain.domain_like'
+                    ],
+                    'state' => 'hosting.hdomain.state',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                    'seller_id' => 'client.client.seller_id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class,

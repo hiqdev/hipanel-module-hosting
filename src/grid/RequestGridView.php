@@ -33,7 +33,6 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             ],
             'account' => [
                 'enableSorting' => false,
-                'attribute' => 'account_id',
                 'class' => AccountColumn::className()
             ],
             'object' => [

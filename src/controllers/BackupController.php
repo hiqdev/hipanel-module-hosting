@@ -19,6 +19,14 @@ class BackupController extends \hipanel\base\CrudController
                         'objectOptions' => $action->controller->getObjectOptions(),
                     ];
                 },
+                'filterStorageMap' => [
+                    'name_like' => 'hosting.backup.name_like',
+                    'type' => 'hosting.backup.type',
+                    'state' => 'hosting.backup.state',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class,

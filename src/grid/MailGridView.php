@@ -36,7 +36,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 },
                 'gtype' => 'state,mail',
             ],
-            'server_id' => [
+            'server' => [
                 'class' => ServerColumn::className()
             ],
             'domain' => [

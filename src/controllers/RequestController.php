@@ -27,6 +27,12 @@ class RequestController extends \hipanel\base\CrudController
                         'typeOptions' => $action->controller->getTypeOptions(),
                     ];
                 },
+                'filterStorageMap' => [
+                    'state' => 'hosting.request.state',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class,

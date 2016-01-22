@@ -30,7 +30,15 @@ class AccountController extends \hipanel\base\CrudController
                         'stateData' => $action->controller->getStateData(),
                         'typeData' => $action->controller->getTypeData(),
                     ];
-                }
+                },
+                'filterStorageMap' => [
+                    'login_like' => 'hosting.account.login',
+                    'server' => 'server.server.name',
+                    'state' => 'hosting.account.state',
+                    'type' => 'hosting.account.type',
+                    'client_id' => 'client.client.id',
+                    'seller_id' => 'client.client.seller_id',
+                ]
             ],
             'view' => [
                 'class' => ViewAction::class,

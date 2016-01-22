@@ -28,6 +28,12 @@ class BackupingController extends \hipanel\base\CrudController
                         'typeOptions' => $action->controller->getTypeOptions(),
                     ];
                 },
+                'filterStorageMap' => [
+                    'state' => 'hosting.backuping.state',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                    'client_id' => 'client.client.id',
+                ]
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
