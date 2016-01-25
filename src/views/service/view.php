@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'columns' => [
                                 'seller_id',
                                 'client_id',
-                                'server_id',
+                                'server',
                                 'service',
                                 'ip',
                                 'bin',

@@ -4,6 +4,7 @@
 use hipanel\modules\hosting\widgets\ip\BackIpCombo;
 use hipanel\modules\hosting\widgets\ip\FrontIpCombo;
 use hipanel\modules\hosting\widgets\ip\HdomainIpCombo;
+use yii\helpers\Html;
 use yii\web\JsExpression;
 
 print $form->field($model, "[$i]proxy_enabled")->checkbox([
@@ -15,6 +16,9 @@ $proxyEnabled = $model->proxy_enabled;
 print $form->field($model, "[$i]ip", ['options' => ['class' => 'not-proxied-ip ' . ($proxyEnabled ? 'hidden' : '')]])
     ->widget(HdomainIpCombo::className(), [
         'formElementSelector' => '.form-instance',
+        'inputOptions' => [
+            'readonly' => $proxyEnabled ? 'readonly' : false,
+        ],
         'pluginOptions' => [
             'activeWhen' => [
                 new JsExpression("function (self) {
@@ -28,6 +32,8 @@ print $form->field($model, "[$i]ip", ['options' => ['class' => 'frontend_ip ' . 
     ->widget(FrontIpCombo::className(), [
         'formElementSelector' => '.form-instance',
         'inputOptions' => [
+            'id' => Html::getInputId($model, "[$i]ip") . '_frontend',
+            'readonly' => !$proxyEnabled ? 'readonly' : false,
             'data-attribute' => 'frontend_ip',
         ],
         'pluginOptions' => [
@@ -43,6 +49,7 @@ print $form->field($model, "[$i]backend_ip", ['options' => ['class' => 'backend_
     ->widget(BackIpCombo::className(), [
         'formElementSelector' => '.form-instance',
         'inputOptions' => [
+            'readonly' => !$proxyEnabled ? 'readonly' : false,
             'data-attribute' => 'backend_ip',
         ],
         'pluginOptions' => [
