@@ -71,6 +71,12 @@ class ServiceController extends \hipanel\base\CrudController
                         'softs' => $action->controller->getSofts(),
                     ];
                 },
+                'on beforeFetchLoad' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith('ips');
+                },
                 'success' => Yii::t('hipanel/hosting', 'Service was updated successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update a service')
             ],
