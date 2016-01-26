@@ -12,7 +12,7 @@ use yii\bootstrap\Html;
 $this->title = $model->domain;
 $this->subtitle = Yii::t('app', 'Hosting domain proxy settings') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => Yii::t('app', 'Domains'), 'url' => ['index']],
+    ['label' => Yii::t('app', 'Domains'), 'url' => ['@hdomain/index']],
     ['label' => $this->title, 'url' => ['@hdomain/view', 'id' => $model->id]],
     Yii::t('app', 'Hosting domain proxy settings')
 ]);
