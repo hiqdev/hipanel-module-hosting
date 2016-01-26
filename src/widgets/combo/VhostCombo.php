@@ -18,7 +18,7 @@ class VhostCombo extends Combo
     public $name = 'domain';
 
     /** @inheritdoc */
-    public $url = '/hosting/vhost/index';
+    public $url = '/hosting/vhost/search';
 
     /** @inheritdoc */
     public $_return = ['id', 'domain', 'account', 'server', 'service', 'ip', 'port'];
