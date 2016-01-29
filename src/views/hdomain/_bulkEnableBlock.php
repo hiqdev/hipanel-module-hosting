@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 ?>
 <?php $form = ActiveForm::begin([
-    'id' => 'bulk-block-form',
+    'id' => 'bulk-enable-block-form',
     'action' => Url::toRoute('bulk-enable-block'),
     'enableAjaxValidation' => false,
 ]) ?>
@@ -46,6 +46,6 @@ use yii\helpers\Html;
     </div>
 
     <hr>
-<?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Block'), ['class' => 'btn btn-danger']) ?>
 
 <?php ActiveForm::end() ?>

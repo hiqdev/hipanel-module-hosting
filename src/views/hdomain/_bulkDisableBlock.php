@@ -6,8 +6,8 @@ use yii\helpers\Html;
 
 ?>
 <?php $form = ActiveForm::begin([
-    'id' => 'bulk-block-form',
-    'action' => Url::toRoute('bulk-enable-block'),
+    'id' => 'bulk-disable-block-form',
+    'action' => Url::toRoute('bulk-disable-block'),
     'enableAjaxValidation' => false,
 ]) ?>
 
@@ -31,13 +31,7 @@ use yii\helpers\Html;
 <?php endforeach; ?>
 
     <div class="row">
-            <div class="col-sm-6">
-                <?= $form->field($model, 'type')->dropDownList($blockReasons, [
-                    'id' => 'domain-block-type',
-                    'name' => 'type'
-                ]); ?>
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <?= $form->field($model, 'comment')->textInput([
                     'id' => 'domain-block-comment',
                     'name' => 'comment'
@@ -46,6 +40,6 @@ use yii\helpers\Html;
     </div>
 
     <hr>
-<?= Html::submitButton('Send', ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Unblock'), ['class' => 'btn btn-success']) ?>
 
 <?php ActiveForm::end() ?>
