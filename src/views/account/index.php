@@ -17,7 +17,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
 
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
+<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
 <?php $box->beginActions() ?>
     <div class="dropdown">
         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"

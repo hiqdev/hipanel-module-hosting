@@ -19,7 +19,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
 ?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
+<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
     <?php $box->beginActions() ?>
         <?= $box->renderCreateButton(Yii::t('hipanel/hosting', 'Create IP')) ?>
         <?= $box->renderSearchButton() ?>
