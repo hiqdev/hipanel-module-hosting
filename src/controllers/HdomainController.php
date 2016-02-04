@@ -47,10 +47,7 @@ class HdomainController extends \hipanel\base\CrudController
                     ];
                 },
                 'filterStorageMap' => [
-                    'domain_like' => [
-                        'domain.hdomain.domain_like | hosting.hdomain.domain_like',
-                        'hosting.hdomain.domain_like'
-                    ],
+                    'domain_like' => 'domain.hdomain.domain_like',
                     'state' => 'hosting.hdomain.state',
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
