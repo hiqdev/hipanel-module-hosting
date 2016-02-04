@@ -8,6 +8,8 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\PrepareBulkAction;
+use hipanel\actions\RedirectAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
@@ -17,6 +19,7 @@ use hipanel\actions\ViewAction;
 use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use Yii;
+use yii\base\Event;
 
 class AccountController extends \hipanel\base\CrudController
 {
@@ -107,7 +110,71 @@ class AccountController extends \hipanel\base\CrudController
 
                     return $results;
                 }
-            ]
+            ],
+            'bulk-enable-block' => [
+                'class' => SmartUpdateAction::class,
+                'scenario' => 'enable-block',
+                'success' => Yii::t('hipanel/hosting', 'Hosting accounts were blocked successfully'),
+                'error' => Yii::t('hipanel/hosting', 'Error during the hosting accounts blocking'),
+                'POST html' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => RedirectAction::class,
+                    ],
+                ],
+                'on beforeSave' => function (Event $event) {
+                    /** @var \hipanel\actions\Action $action */
+                    $action = $event->sender;
+                    $type = Yii::$app->request->post('type');
+                    $comment = Yii::$app->request->post('comment');
+                    if (!empty($type)) {
+                        foreach ($action->collection->models as $model) {
+                            $model->setAttributes([
+                                'type' => $type,
+                                'comment' => $comment
+                            ]);
+
+                        }
+                    }
+                },
+            ],
+            'bulk-enable-block-modal' => [
+                'class' => PrepareBulkAction::class,
+                'scenario' => 'enable-block',
+                'view' => '_bulkEnableBlock',
+                'data' => function ($action, $data) {
+                    return array_merge($data, [
+                        'blockReasons' => $this->getBlockReasons()
+                    ]);
+                }
+            ],
+            'bulk-disable-block' => [
+                'class' => SmartUpdateAction::class,
+                'scenario' => 'disable-block',
+                'success' => Yii::t('hipanel/hosting', 'Hosting accounts were unblocked successfully'),
+                'error' => Yii::t('hipanel/hosting', 'Error during the hosting accounts unblocking'),
+                'POST html' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => RedirectAction::class,
+                    ],
+                ],
+                'on beforeSave' => function (Event $event) {
+                    /** @var \hipanel\actions\Action $action */
+                    $action = $event->sender;
+                    $comment = Yii::$app->request->post('comment');
+                    if (!empty($type)) {
+                        foreach ($action->collection->models as $model) {
+                            $model->setAttribute('comment', $comment);
+                        }
+                    }
+                },
+            ],
+            'bulk-disable-block-modal' => [
+                'class' => PrepareBulkAction::class,
+                'scenario' => 'disable-block',
+                'view' => '_bulkDisableBlock',
+            ],
         ];
     }
 

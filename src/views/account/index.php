@@ -7,7 +7,11 @@
 
 use hipanel\modules\hosting\grid\AccountGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\AjaxModal;
 use hipanel\widgets\Pjax;
+use yii\bootstrap\Dropdown;
+use yii\bootstrap\Modal;
+use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel/hosting', 'Accounts');
 $this->breadcrumbs->setItems([
@@ -46,7 +50,51 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
     </div>
 <?php $box->endActions() ?>
 <?php $box->beginBulkActions() ?>
-
+<?php if (Yii::$app->user->can('support')) : ?>
+    <div class="dropdown" style="display: inline-block">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?= Yii::t('app', 'Block') ?>
+            <span class="caret"></span>
+        </button>
+        <?= Dropdown::widget([
+            'encodeLabels' => false,
+            'items' => [
+                [
+                    'label' => '<i class="fa fa-toggle-on"></i> ' . Yii::t('app', 'Enable'),
+                    'linkOptions' => ['data-toggle' => 'modal'],
+                    'url' => '#bulk-enable-block-modal',
+                ],
+                [
+                    'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('app', 'Disable'),
+                    'url' => '#bulk-disable-block-modal',
+                    'linkOptions' => ['data-toggle' => 'modal'],
+                ],
+            ],
+        ]); ?>
+        <div>
+            <?= AjaxModal::widget([
+                'id' => 'bulk-enable-block-modal',
+                'bulkPage' => true,
+                'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Block accounts'), ['class' => 'modal-title']),
+                'scenario' => 'bulk-enable-block',
+                'actionUrl' => ['bulk-enable-block-modal'],
+                'size' => Modal::SIZE_LARGE,
+                'handleSubmit' => false,
+                'toggleButton' => false,
+            ]) ?>
+            <?= AjaxModal::widget([
+                'id' => 'bulk-disable-block-modal',
+                'bulkPage' => true,
+                'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Unblock accounts'), ['class' => 'modal-title']),
+                'scenario' => 'bulk-disable-block',
+                'actionUrl' => ['bulk-disable-block-modal'],
+                'size' => Modal::SIZE_LARGE,
+                'handleSubmit' => false,
+                'toggleButton' => false,
+            ]) ?>
+        </div>
+    </div>
+<?php endif; ?>
 <?= $box->renderDeleteButton() ?>
 <?php $box->endBulkActions() ?>
 <?= $box->renderSearchForm(['stateData' => $stateData, 'typeData' => $typeData]) ?>

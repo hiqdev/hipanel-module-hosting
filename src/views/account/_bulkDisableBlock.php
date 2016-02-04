@@ -12,13 +12,13 @@ use yii\helpers\Html;
 ]) ?>
 
     <div class="panel panel-default">
-        <div class="panel-heading"><?= Yii::t('hipanel/hosting', 'Affected domains') ?></div>
+        <div class="panel-heading"><?= Yii::t('hipanel/hosting', 'Affected accounts') ?></div>
         <div class="panel-body">
             <?= ArraySpoiler::widget([
                 'data' => $models,
                 'visibleCount' => count($models),
                 'formatter' => function ($model) {
-                    return $model->domain;
+                    return $model->login;
                 },
                 'delimiter' => ',&nbsp; '
             ]); ?>
@@ -27,13 +27,13 @@ use yii\helpers\Html;
 
 <?php foreach ($models as $item) : ?>
     <?= Html::activeHiddenInput($item, "[$item->id]id") ?>
-    <?= Html::activeHiddenInput($item, "[$item->id]domain") ?>
+    <?= Html::activeHiddenInput($item, "[$item->id]login") ?>
 <?php endforeach; ?>
 
     <div class="row">
             <div class="col-sm-12">
                 <?= $form->field($model, 'comment')->textInput([
-                    'id' => 'domain-unblock-comment',
+                    'id' => 'account-unblock-comment',
                     'name' => 'comment'
                 ]); ?>
             </div>

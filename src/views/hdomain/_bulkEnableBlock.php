@@ -11,8 +11,12 @@ use yii\helpers\Html;
     'enableAjaxValidation' => false,
 ]) ?>
 
+    <div class="callout callout-warning">
+        <h4><?= Yii::t('hipanel/hosting', 'This will block access to the website from the world!') ?></h4>
+    </div>
+
     <div class="panel panel-default">
-        <div class="panel-heading"><?= Yii::t('app', 'Affected domains') ?></div>
+        <div class="panel-heading"><?= Yii::t('hipanel/hosting', 'Affected domains') ?></div>
         <div class="panel-body">
             <?= ArraySpoiler::widget([
                 'data' => $models,
