@@ -48,7 +48,7 @@ class Ip extends \hipanel\base\Model
             [['client_id', 'seller_id'],                          'integer'],
             [['objects_count', 'client', 'seller'],               'safe'],
             [['prefix', 'family', 'tags'],                        'safe'],
-            [['type', 'state', 'state_label'],                    'safe'],
+            [['type', 'state', 'state_label', 'ptr'],             'safe'],
             [['expanded_ips', 'ip_normalized'],                   'safe'],
             [['is_single'],                                       'boolean'],
             [['ip'], 'ip', 'subnet' => null, 'on' => ['create']],
