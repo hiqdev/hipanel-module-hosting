@@ -7,11 +7,13 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
 use hipanel\actions\PerformAction;
 use hipanel\actions\RenderAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\SwitchAction;
 use hipanel\actions\ValidateFormAction;
@@ -123,6 +125,10 @@ class IpController extends \hipanel\base\CrudController
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
+            'set-ptr' => [
+                'class' => SmartUpdateAction::class,
+                'scenario' => 'set-ptr',
+            ]
         ];
     }
 
@@ -185,11 +191,13 @@ class IpController extends \hipanel\base\CrudController
             $action = $event->sender;
             $dataProvider = $action->getDataProvider();
             $dataProvider->query->joinWith('links');
+            $dataProvider->query->joinWith('ptr');
 
             // TODO: ipModule is not wise yet. Redo
             $dataProvider->query
                 ->andWhere(['with_links' => 1])
                 ->andWhere(['with_tags' => 1])
+                ->andWhere(['with_ptr' => 1])
                 ->andWhere(['with_counters' => 1]);
         };
     }

@@ -86,6 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'tags',
                                 'counters',
                                 'links',
+                                'ptr',
                             ],
                         ]);
                     $box->endBody();

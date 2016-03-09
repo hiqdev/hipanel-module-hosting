@@ -10,6 +10,7 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\FontIcon;
+use hipanel\helpers\Url;
 use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
@@ -112,6 +113,25 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel/hosting', 'Expand'), $url, $options);
                     }
                 ]
+            ],
+            'ptr' => [
+                'options' => [
+                    'style' => 'width: 40%',
+                ],
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if ($model->canSetPtr()) {
+                        return \hipanel\widgets\XEditable::widget([
+                            'model' => $model,
+                            'attribute' => 'ptr',
+                            'pluginOptions' => [
+                                'url'       => Url::to('set-ptr')
+                            ]
+                        ]);
+                    }
+
+                    return null;
+                }
             ],
 
         ];
