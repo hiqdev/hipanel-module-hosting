@@ -8,8 +8,10 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\ArrayHelper;
+use hipanel\validators\DomainValidator;
 use Yii;
 use yii\helpers\StringHelper;
+use yii\validators\IpValidator;
 
 class Ip extends \hipanel\base\Model
 {
@@ -60,9 +62,10 @@ class Ip extends \hipanel\base\Model
                 },
                 'skipOnArray' => true, 'on' => ['create', 'update']
             ],
-            [['id'], 'required', 'on' => ['update', 'delete']],
+            [['id'], 'required', 'on' => ['update', 'delete', 'set-ptr']],
             [['id'], 'integer', 'on' => ['update', 'delete', 'expand']],
             [['with_existing'], 'boolean', 'on' => ['expand']],
+            [['ptr'], DomainValidator::class, 'on' => ['set-ptr']],
         ];
     }
 
@@ -74,6 +77,7 @@ class Ip extends \hipanel\base\Model
             'is_single'             => Yii::t(static::$i18nDictionary, 'Single'),
             'ip_normalized'         => Yii::t(static::$i18nDictionary, 'Normalized IP'),
             'expanded_ips'          => Yii::t(static::$i18nDictionary, 'Expanded IPs'),
+            'ptr'                   => Yii::t(static::$i18nDictionary, 'PTR')
         ]);
     }
 
@@ -114,5 +118,16 @@ class Ip extends \hipanel\base\Model
      */
     public function addLink(Link $link) {
         $this->_links[] = $link;
+    }
+
+    /**
+     * Checks, whether it is possible to set a PTR record on the IP address
+     *
+     * @return bool
+     */
+    public function canSetPtr()
+    {
+        return !in_array('aux', (array) $this->tags)
+            && (new IpValidator(['ranges' => ['!system', 'any']]))->validate($this->ip);
     }
 }
