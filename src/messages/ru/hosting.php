@@ -60,4 +60,8 @@ return [
     'Counters' => 'Счетчики',
     'Links' => 'Связи',
     'Expand' => 'Развернуть',
+/**
+ * Domains
+ */
+    '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}'
 ];

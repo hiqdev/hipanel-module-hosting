@@ -58,13 +58,16 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         if ($count['type'] === 'hdomain') {
                             $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip]];
                             $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip, 'state' => 'deleted']];
+                            $type = function ($count) {
+                                return Yii::t('hipanel/hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
+                            };
                         } else {
                             throw new InvalidParamException('The object type is not supported', $model);
                         }
 
                         if ($count['ok']) {
                             $html .= Html::a(
-                                (int)$count['ok'] . '&nbsp;' . FontIcon::i('fa-check'),
+                                (int)$count['ok'] . '&nbsp;' . FontIcon::i('fa-check') . ' ' . $type($count['ok']),
                                 $url['ok'],
                                 ['class' => 'btn btn-success btn-xs']
                             );
@@ -72,7 +75,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         $html .= ' ';
                         if ($count['deleted'] > 0) {
                             $html .= Html::a(
-                                (int)$count['deleted'] . '&nbsp;' . FontIcon::i('fa-trash'),
+                                (int)$count['deleted'] . '&nbsp;' . FontIcon::i('fa-trash') . ' ' . $type($count['deleted']),
                                 $url['deleted'],
                                 ['class' => 'btn btn-xs btn-warning']
                             );
