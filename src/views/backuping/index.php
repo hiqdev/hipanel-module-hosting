@@ -4,7 +4,7 @@ use hipanel\modules\hosting\grid\BackupingGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
 
-$this->title = Yii::t('app', 'Backup settings');
+$this->title = Yii::t('hipanel/hosting', 'Backup settings');
 $this->params['breadcrumbs'][] = $this->title;
 $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 
@@ -19,22 +19,16 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
         'client',
         'account',
         'server',
-        'object',
         'name',
-
-//        'backupcount',
-//        'type',
-//        'backuplast',
-//        'disk',
     ],
 ]) ?>
 <?= $box->renderPerPage() ?>
 <?php $box->endActions() ?>
 <?php $box->renderBulkActions([
     'items' => [
-        $box->renderBulkButton(Yii::t('app', 'Enable'), 'enable'),
-        $box->renderBulkButton(Yii::t('app', 'Disable'), 'disable'),
-        $box->renderDeleteButton(Yii::t('app', 'Delete')),
+        $box->renderBulkButton(Yii::t('hipanel', 'Enable'), 'enable'),
+        $box->renderBulkButton(Yii::t('hipanel', 'Disable'), 'disable'),
+        $box->renderDeleteButton(Yii::t('hipanel', 'Delete')),
     ],
 ]) ?>
 <?= $box->renderSearchForm(compact('stateOptions')) ?>

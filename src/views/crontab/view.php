@@ -14,8 +14,8 @@ use yii\helpers\Html;
 AutosizeAsset::register($this);
 \hipanel\modules\hosting\assets\CrontabFetchAsset::register($this);
 
-$this->title = Yii::t('app', 'Cron ID:{id}', ['id' => $model->id]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Crons'), 'url' => ['index']];
+$this->title = Yii::t('hipanel/hosting', 'Cron ID: {id}', ['id' => $model->id]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Crons'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $model->scenario = 'update';
 
@@ -55,7 +55,7 @@ JS
                 <h3 class="box-title"><?= Yii::t('app', 'Crontab'); ?></h3>
 
                 <div class="box-tools pull-right">
-                    <?= Html::button('<i class="fa fa-refresh"></i> ' . Yii::t('app', 'Refresh'), [
+                    <?= Html::button('<i class="fa fa-refresh"></i> ' . Yii::t('hipanel', 'Refresh'), [
                         'id' => 'refresh-crontab-field',
                         'class' => 'btn btn-default btn-xs',
 

@@ -37,7 +37,7 @@ class Backuping extends \hipanel\base\Model
         return $this->mergeAttributeLabels([
             'day' => Yii::t('app', 'Date'),
             'hour' => Yii::t('app', 'Time'),
-            'backup_last' => Yii::t('app', 'Last'),
+            'backup_last' => Yii::t('hipanel/hosting', 'Last backup'),
             'backup_count' => Yii::t('app', 'Count'),
             'total_du' => Yii::t('app', 'Total of backup uses'),
             'total_du_gb' => Yii::t('app', 'Disk'),
@@ -46,7 +46,8 @@ class Backuping extends \hipanel\base\Model
             'server_id' => Yii::t('app', 'Server'),
             'state_label' => Yii::t('app', 'State'),
             'state' => Yii::t('app', 'State'),
-            'type' => Yii::t('app', 'Periodicity'),
+            'type' => Yii::t('hipanel/hosting', 'Periodicity'),
+            'object' => Yii::t('hipanel/hosting', 'Object'),
         ]);
     }
 }

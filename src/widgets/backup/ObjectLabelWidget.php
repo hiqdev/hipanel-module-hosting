@@ -14,10 +14,10 @@ class ObjectLabelWidget extends Label
         $object = $this->model->object;
         if ($object === 'db') {
             $class = 'info';
-            $label = Yii::t('app', 'Database');
+            $label = Yii::t('hipanel/hosting', 'Database');
         } else {
             $class = 'default';
-            $label = Yii::t('app', 'Domain');
+            $label = Yii::t('hipanel/hosting', 'Domain');
         }
 
         $this->color = $class;

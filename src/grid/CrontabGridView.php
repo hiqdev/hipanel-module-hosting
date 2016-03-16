@@ -23,7 +23,7 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'html',
                 'enableSorting' => false,
                 'value' => function($model, $key, $index) {
-                    $label = Yii::t('app', '{0, plural, one{# record} other{# records}}', $model->cronRecordCount);
+                    $label = Yii::t('hipanel/hosting', '{0, plural, one{# record} other{# records}}', $model->cronRecordCount);
                     return Html::a($label, ['view', 'id' => $key], ['class' => 'bold', 'data-pjax' => 0]);
                 }
             ],
@@ -42,7 +42,7 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 'enableSorting' => false,
                 'attribute' => 'state',
                 'value' => function($model) {
-                    return ucfirst(Yii::t('app', $model->state));
+                    return Yii::t('hipanel/hosting/cron/states', $model->state);
                 }
             ],
             'actions' => [

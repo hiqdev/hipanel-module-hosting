@@ -1,9 +1,11 @@
 <?php
 
 return [
+    'Hosting' => 'Хостинг',
 /**
  * Account
  */
+    'Accounts' => 'Аккаунты',
     'Block account' => 'Заблокировать акканут',
     'Confirm account blocking' => 'Подтвердите блокировку аккаунта',
     'This will immediately terminate SSH sessions and reject new SSH and FTP connections' => 'Это приведет к немедленному разрыву активных SSH соединений и запретит установку новых SSH или FTP соединений!',
@@ -13,7 +15,6 @@ return [
     'IP restrictions' => 'Ограничения по IP',
     'Create FTP account' => 'Создать FTP аккаунт',
     'Create account' => 'Создать аккаунт',
-    'Accounts' => 'Аккаунты',
     'account mail config' => 'найстройки почты аккаунта',
     'Mail config' => 'Настройки почты',
     'Account creating task has been added to queue' => 'Задача создания аккаунта была добавлена в очередь',
@@ -44,6 +45,8 @@ return [
 /**
  * DB
  */
+    'Database' => 'База данных',
+    'Databases' => 'Базы данных',
     'Create DB' => 'Создать БД',
 /**
  * IP
@@ -63,5 +66,28 @@ return [
 /**
  * Domains
  */
-    '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}'
+    'Domain' => 'Домен',
+    'Domains' => 'Домены',
+    '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}',
+/**
+ * Mailboxes
+ */
+    'Mailboxes' => 'Почтовые ящики',
+/**
+ * Backups
+ */
+    'Backups' => 'Бэкапы',
+    'Backup settings' => 'Настройки бэкапов',
+    'Size' => 'Объем',
+    'Periodicity' => 'Переодичность',
+    'Last backup' => 'Последняя копия',
+/**
+ * Crons
+ */
+    'Crons' => 'Планировщик задач',
+    '{0, plural, one{# record} other{# records}}' => '{0, plural, one{# запись} few{# записи} other{# записей}}',
+/**
+ * Requests
+ */
+    'Requests' => 'Запросы',
 ];

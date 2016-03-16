@@ -6,7 +6,6 @@ use Yii;
 
 class Backup extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
 
     /** @inheritdoc */
@@ -36,6 +35,7 @@ class Backup extends \hipanel\base\Model
             'id' => Yii::t('app', 'Object ID'),
             'method_label' => Yii::t('app', 'Method label'),
             'object_id' => Yii::t('app', 'Backup ID'),
+            'size' => Yii::t('hipanel/hosting', 'Size'),
         ]);
     }
 }

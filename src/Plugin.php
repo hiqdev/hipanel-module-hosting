@@ -26,11 +26,13 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
         'components' => [
             'i18n' => [
                 'translations' => [
-                    'hipanel/hosting' => [
+                    'hipanel/hosting*' => [
                         'class' => 'yii\i18n\PhpMessageSource',
                         'basePath' => '@hipanel/modules/hosting/messages',
                         'fileMap' => [
                             'hipanel/hosting' => 'hosting.php',
+                            'hipanel/hosting/backuping/periodicity' => 'backuping_periodicity.php',
+                            'hipanel/hosting/cron/states' => 'cron_states.php',
                         ],
                     ],
                 ],

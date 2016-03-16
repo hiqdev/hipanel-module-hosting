@@ -11,8 +11,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="row">
     <div class="col-md-4">
-        <?= BackupingGridView::detailView([
+        <?php echo BackupingGridView::detailView([
             'model' => $model,
+            'gridOptions' => [
+                'typeOptions' => $typeOptions,
+            ],
             'columns' => [
                 'name',
                 'client',
@@ -20,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'server',
                 'object',
                 'backup_count',
-                'type_label',
+                'type',
                 'state_label',
                 'backup_last',
                 'total_du',
