@@ -11,7 +11,7 @@ use hipanel\widgets\Pjax;
 
 $this->title                    = Yii::t('hipanel/hosting', 'Services');
 $this->params['breadcrumbs'][]  = $this->title;
-$this->params['subtitle']       = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list';
+$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 ?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
