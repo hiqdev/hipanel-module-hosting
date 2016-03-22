@@ -8,7 +8,7 @@ return [
     'Accounts' => 'Аккаунты',
     'Block account' => 'Заблокировать акканут',
     'Confirm account blocking' => 'Подтвердите блокировку аккаунта',
-    'This will immediately terminate SSH sessions and reject new SSH and FTP connections' => 'Это приведет к немедленному разрыву активных SSH соединений и запретит установку новых SSH или FTP соединений!',
+    'This will immediately terminate SSH sessions and reject new SSH and FTP connections!' => 'Это приведет к немедленному разрыву активных SSH соединений и запретит установку новых SSH или FTP соединений!',
     'Unblock account' => 'Разблокировать аккаунт',
     'Confirm account unblocking' => 'Подтвердите разблокировку аккаунта',
     'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted' => 'Доступ к аккаунту открыт по умолчанию. Пожалуйста, введите IP-адреса, для которых доступ к серверу будет предоставлен',
@@ -28,6 +28,9 @@ return [
     'This will immediately terminate all sessions of the user!' => 'Это немедленно прервет все сеансы пользователя!',
     'Enter new restrictions' => 'Введите новые ограничения',
     'Enter a new password' => 'Введите новый пароль',
+    'Affected accounts' => 'Аккаунты',
+    'Block accounts' => 'Заблокировать аккаунты',
+    'Unblock accounts' => 'Разблокировать аккаунты',
 /**
  * Service
  */
