@@ -18,8 +18,8 @@ use hipanel\widgets\ModalButton;
             'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm hosting domain blocking')),
             'headerOptions' => ['class' => 'label-danger'],
             'footer' => [
-                'label' => Yii::t('app', 'Block'),
-                'data-loading-text' => Yii::t('app', 'Blocking...'),
+                'label' => Yii::t('hipanel', 'Block'),
+                'data-loading-text' => Yii::t('hipanel', 'Blocking...'),
                 'class' => 'btn btn-danger',
             ]
         ]
@@ -45,8 +45,8 @@ use hipanel\widgets\ModalButton;
             'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm hosting domain unblocking')),
             'headerOptions' => ['class' => 'label-info'],
             'footer' => [
-                'label' => Yii::t('app', 'Unblock'),
-                'data-loading-text' => Yii::t('app', 'Unblocking...'),
+                'label' => Yii::t('hipanel', 'Unblock'),
+                'data-loading-text' => Yii::t('hipanel', 'Unblocking...'),
                 'class' => 'btn btn-info',
             ]
         ]

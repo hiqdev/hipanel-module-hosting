@@ -8,7 +8,7 @@ use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\DbServiceCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
-use hipanel\modules\server\widgets\combo\ServerCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -35,7 +35,7 @@ $form = ActiveForm::begin([
                                 print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
                             }
 
-                            print $form->field($model, "[$i]server")->widget(ServerCombo::className(), ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), ['formElementSelector' => '.form-instance']);
                             print $form->field($model, "[$i]service_id")->widget(DbServiceCombo::className(), ['formElementSelector' => '.form-instance']);
 

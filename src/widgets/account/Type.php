@@ -15,7 +15,7 @@ class Type extends Label
         else $class = 'warning';
 
         $this->color = $class;
-        $this->label = Yii::t('app', $this->model->type_label);
+        $this->label = Yii::t('hipanel/hosting', $this->model->type_label);
         parent::init();
     }
 }

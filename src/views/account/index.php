@@ -54,7 +54,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 <?php if (Yii::$app->user->can('support')) : ?>
     <div class="dropdown" style="display: inline-block">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?= Yii::t('app', 'Block') ?>
+            <?= Yii::t('hipanel', 'Block') ?>
             <span class="caret"></span>
         </button>
         <?= Dropdown::widget([

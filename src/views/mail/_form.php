@@ -9,7 +9,7 @@ use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\MultipleMailCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\hosting\widgets\combo\VhostCombo;
-use hipanel\modules\server\widgets\combo\ServerCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -52,7 +52,7 @@ use yii\web\JsExpression;
                                     ]);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(ServerCombo::className(), [
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'readonly' => !$model->isNewRecord

@@ -8,7 +8,7 @@
 use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\ip\ServiceIpCombo;
-use hipanel\modules\server\widgets\combo\ServerCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
@@ -37,7 +37,7 @@ $form = ActiveForm::begin([
                                     print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(ServerCombo::className(), ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
 
                                 print $form->field($model, "[$i]name");
                                 print $form->field($model, "[$i]ips")->widget(ServiceIpCombo::class, [
