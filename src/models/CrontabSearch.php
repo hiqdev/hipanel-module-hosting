@@ -7,6 +7,7 @@
 
 namespace hipanel\modules\hosting\models;
 
-class CrontabSearch extends Crontab{
+class CrontabSearch extends Crontab
+{
     use \hipanel\base\SearchModelTrait;
 }
