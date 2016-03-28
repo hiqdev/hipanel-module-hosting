@@ -31,6 +31,8 @@ return [
     'Affected accounts' => 'Аккаунты',
     'Block accounts' => 'Заблокировать аккаунты',
     'Unblock accounts' => 'Разблокировать аккаунты',
+    'Manage IP restrictions' => 'Управление ограничением по IP',
+    'Maximum letters per hour' => 'Максимум писем в час',
 /**
  * Service
  */

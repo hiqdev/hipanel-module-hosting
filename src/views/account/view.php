@@ -67,8 +67,7 @@ $this->breadcrumbs->setItems([
                         <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
                     </div>
 
-                    <?php echo $modalButton->form->field($model,
-                        'password')->widget(PasswordInput::className())->label(false);
+                    <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false);
                     echo Html::activeHiddenInput($model, 'login');
 
                     ModalButton::end();
@@ -91,7 +90,12 @@ $this->breadcrumbs->setItems([
                                 'data-loading-text' => Yii::t('hipanel', 'Changing...'),
                                 'class' => 'btn btn-warning',
                             ]
-                        ]
+                        ],
+                        'form' => [
+                            'enableAjaxValidation' => true,
+                            'enableClientValidation' => true,
+                            'validationUrl' => ['single-validate-form', 'scenario' => 'set-allowed-ips']
+                        ],
                     ]);
                     ?>
 
@@ -100,7 +104,6 @@ $this->breadcrumbs->setItems([
                     </div>
 
                     <?php echo $modalButton->form->field($model, 'sshftp_ips');
-
                     echo Html::activeHiddenInput($model, 'login');
 
                     ModalButton::end();

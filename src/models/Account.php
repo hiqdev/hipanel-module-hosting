@@ -97,7 +97,7 @@ class Account extends \hipanel\base\Model
             'allowed_ips' => Yii::t('app', 'Allowed IPs'),
             'sshftp_ips' => Yii::t('app', 'IP to access on the server via SSH or FTP'),
             'block_send' => Yii::t('app', 'Block outgoing post'),
-            'per_hour_limit' => Yii::t('app', 'Maximum letters per hour'),
+            'per_hour_limit' => Yii::t('hipanel/hosting', 'Maximum letters per hour'),
             'comment' => Yii::t('app', 'Comment'),
         ]);
     }

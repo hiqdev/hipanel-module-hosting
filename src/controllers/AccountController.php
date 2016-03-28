@@ -16,10 +16,10 @@ use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
-use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use Yii;
 use yii\base\Event;
+use yii\helpers\Html;
 
 class AccountController extends \hipanel\base\CrudController
 {
@@ -91,6 +91,10 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
+            ],
+            'single-validate-form' => [
+                'class' => ValidateFormAction::class,
+                'validatedInputId' => false
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
