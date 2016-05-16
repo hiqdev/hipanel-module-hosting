@@ -24,7 +24,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
 <?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
     <?php $box->beginActions() ?>
             <div class="dropdown">
-                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <button class="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <?= Yii::t('app', 'Create domain'); ?>
                     <span class="caret"></span>
                 </button>
@@ -51,7 +51,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
     <?php $box->beginBulkActions() ?>
         <?php if (Yii::$app->user->can('support')) : ?>
             <div class="dropdown" style="display: inline-block">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?= Yii::t('hipanel', 'Block') ?>
                     <span class="caret"></span>
                 </button>
