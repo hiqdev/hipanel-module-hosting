@@ -39,9 +39,9 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "2.*",
-        "hiqdev/hipanel-core": "*",
-        "hiqdev/hipanel-module-client": "*"
+        "yiisoft/yii2": "^2.0",
+        "hiqdev/hipanel-core": "<2.0 || dev-master",
+        "hiqdev/hipanel-module-client": "<2.0 || dev-master"
     },
     "require-dev": {
         "hiqdev/hidev-php": "<2.0",
