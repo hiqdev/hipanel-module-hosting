@@ -9,6 +9,7 @@ namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use hipanel\actions\PerformAction;
 use hipanel\actions\RenderAction;
 use hipanel\actions\SearchAction;
@@ -32,6 +33,12 @@ class IpController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '/hosting/ip/index'
+                ]
+            ],
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => $this->getDataProviderOptions(),

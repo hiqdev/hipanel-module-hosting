@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
@@ -21,6 +22,12 @@ class MailController extends \hipanel\base\CrudController
 {
     public function actions() {
         return [
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '/hosting/mail/index'
+                ]
+            ],
             'search' => [
                 'class' => SearchAction::class
             ],

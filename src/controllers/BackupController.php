@@ -3,6 +3,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
 use Yii;
@@ -12,6 +13,12 @@ class BackupController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '/hosting/backup/index'
+                ]
+            ],
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {

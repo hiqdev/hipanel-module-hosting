@@ -2,6 +2,8 @@
 
 use hipanel\modules\hosting\grid\BackupingGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\IndexLayoutSwitcher;
+use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 
 $this->title = Yii::t('hipanel/hosting', 'Backup settings');
@@ -10,49 +12,56 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 
 ?>
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
-<?php $box->beginActions() ?>
+    <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-<?= $box->renderSearchButton() ?>
-<?= $box->renderSorter([
-    'attributes' => [
-        'client',
-        'account',
-        'server',
-        'name',
-    ],
-]) ?>
-<?= $box->renderPerPage() ?>
-<?php $box->endActions() ?>
-<?php $box->renderBulkActions([
-    'items' => [
-        $box->renderBulkButton(Yii::t('hipanel', 'Enable'), 'enable'),
-        $box->renderBulkButton(Yii::t('hipanel', 'Disable'), 'disable'),
-        $box->renderDeleteButton(Yii::t('hipanel', 'Delete')),
-    ],
-]) ?>
-<?= $box->renderSearchForm(compact('stateOptions')) ?>
-<?php $box->end() ?>
-<?php $box->beginBulkForm() ?>
+        <?= $page->setSearchFormData(compact([])) ?>
 
-<?= BackupingGridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $model,
-    'typeOptions' => $typeOptions,
-    'columns' => [
-        'checkbox',
-        'name',
-        'client',
-        'account',
-        'server',
-        'object',
-        'backup_count',
-        'type',
-        'state_label',
-        'backup_last',
-        'total_du',
-        'actions',
-    ],
-]) ?>
-<?php $box->endBulkForm() ?>
+        <?php $page->beginContent('main-actions') ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('show-actions') ?>
+        <?= IndexLayoutSwitcher::widget() ?>
+        <?= $page->renderSorter([
+            'attributes' => [
+                'client',
+                'account',
+                'server',
+                'name',
+            ],
+        ]) ?>
+        <?= $page->renderPerPage() ?>
+        <?= $page->renderRepresentation() ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('bulk-actions') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Enable'), 'enable') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Disable'), 'disable') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger')?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('table') ?>
+        <?php $page->beginBulkForm() ?>
+            <?= BackupingGridView::widget([
+                'boxed' => false,
+                'dataProvider' => $dataProvider,
+                'filterModel' => $model,
+                'typeOptions' => $typeOptions,
+                'columns' => [
+                    'checkbox',
+                    'name',
+                    'client',
+                    'account',
+                    'server',
+                    'object',
+                    'backup_count',
+                    'type',
+                    'state_label',
+                    'backup_last',
+                    'total_du',
+                    'actions',
+                ],
+            ]) ?>
+        <?php $page->endBulkForm() ?>
+        <?php $page->endContent() ?>
+    <?php $page->end() ?>
 <?php Pjax::end() ?>

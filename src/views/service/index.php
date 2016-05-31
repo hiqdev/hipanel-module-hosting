@@ -7,20 +7,28 @@
 
 use hipanel\modules\hosting\grid\ServiceGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\IndexLayoutSwitcher;
+use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
+use yii\helpers\Html;
 
 $this->title                    = Yii::t('hipanel/hosting', 'Services');
 $this->params['breadcrumbs'][]  = $this->title;
 $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 ?>
 
-<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
+<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
+    <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
-    <?php $box->beginActions() ?>
-        <?= $box->renderCreateButton(Yii::t('app', 'Create service')) ?>
-        <?= $box->renderSearchButton() ?>
-        <?= $box->renderSorter([
+        <?= $page->setSearchFormData(compact(['stateData', 'typeData'])) ?>
+
+        <?php $page->beginContent('main-actions') ?>
+            <?= Html::a(Yii::t('hipanel/hosting', 'Create service'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('show-actions') ?>
+        <?= IndexLayoutSwitcher::widget() ?>
+        <?= $page->renderSorter([
             'attributes' => [
                 'client',
                 'seller',
@@ -28,31 +36,33 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                 'soft',
             ],
         ]) ?>
-        <?= $box->renderPerPage() ?>
-    <?php $box->endActions() ?>
-    <?php $box->beginBulkActions() ?>
-        <?= $box->renderDeleteButton() ?>
-    <?php $box->endBulkActions() ?>
-    <?= $box->renderSearchForm(['stateData' => $stateData, 'typeData' => $typeData]) ?>
-<?php $box->end(); ?>
+        <?= $page->renderPerPage() ?>
+        <?= $page->renderRepresentation() ?>
+        <?php $page->endContent() ?>
 
-<?php $box->beginBulkForm() ?>
-    <?= ServiceGridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel'  => $model,
-        'columns'      => [
-            'checkbox',
-            'seller_id',
-            'client_id',
-            'server',
-            'object',
-            'ip',
-            'soft',
-            'state',
-            'actions',
-        ],
-    ]) ?>
-<?php $box->endBulkForm() ?>
-<?php Pjax::end();
+        <?php $page->beginContent('bulk-actions') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel/hosting', 'Delete'), 'delete', 'danger')?>
+        <?php $page->endContent() ?>
 
-
+        <?php $page->beginContent('table') ?>
+        <?php $page->beginBulkForm() ?>
+            <?= ServiceGridView::widget([
+                'dataProvider' => $dataProvider,
+                'boxed' => false,
+                'filterModel'  => $model,
+                'columns'      => [
+                    'checkbox',
+                    'seller_id',
+                    'client_id',
+                    'server',
+                    'object',
+                    'ip',
+                    'soft',
+                    'state',
+                    'actions',
+                ],
+            ]) ?>
+        <?php $page->endBulkForm() ?>
+        <?php $page->endContent() ?>
+    <?php $page->end() ?>
+<?php Pjax::end() ?>

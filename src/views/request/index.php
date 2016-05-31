@@ -7,7 +7,10 @@
 
 use hipanel\modules\hosting\grid\RequestGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\IndexLayoutSwitcher;
+use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
+use yii\helpers\Html;
 
 $this->title                    = Yii::t('app', 'Requests');
 $this->params['breadcrumbs'][]  = $this->title;
@@ -16,43 +19,51 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 ?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
-<?php $box->beginActions() ?>
+    <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-<?= $box->renderSearchButton() ?>
-<?= $box->renderSorter([
-    'attributes' => [
-        'server',
-        'time',
-        'state',
-    ],
-]) ?>
-<?= $box->renderPerPage() ?>
-<?php $box->endActions() ?>
-<?php $box->renderBulkActions([
-    'items' => [
-        $box->renderDeleteButton(Yii::t('app', 'Delete'))
-    ],
-]) ?>
-<?= $box->renderSearchForm(compact('objectOptions', 'stateOptions', 'typeOptions')) ?>
-<?php $box->end() ?>
-<?php $box->beginBulkForm() ?>
-<?= requestGridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel'  => $model,
-    'columns'      => [
-        'checkbox',
-        'classes',
+        <?= $page->setSearchFormData(compact('objectOptions', 'stateOptions', 'typeOptions')) ?>
 
-        'server',
-        'account',
+        <?php $page->beginContent('main-actions') ?>
+        <?php $page->endContent() ?>
 
-        'object',
-        'time',
-        'state',
+        <?php $page->beginContent('show-actions') ?>
+        <?= IndexLayoutSwitcher::widget() ?>
+        <?= $page->renderSorter([
+            'attributes' => [
+                'server',
+                'time',
+                'state',
+            ],
+        ]) ?>
+        <?= $page->renderPerPage() ?>
+        <?= $page->renderRepresentation() ?>
+        <?php $page->endContent() ?>
 
-        'actions',
-    ],
-]) ?>
-<?php $box->endBulkForm() ?>
+        <?php $page->beginContent('bulk-actions') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger') ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('table') ?>
+        <?php $page->beginBulkForm() ?>
+            <?= RequestGridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel'  => $model,
+                'boxed' => false,
+                'columns'      => [
+                    'checkbox',
+                    'classes',
+
+                    'server',
+                    'account',
+
+                    'object',
+                    'time',
+                    'state',
+
+                    'actions',
+                ],
+            ]) ?>
+        <?php $page->endBulkForm() ?>
+        <?php $page->endContent() ?>
+    <?php $page->end() ?>
 <?php Pjax::end() ?>

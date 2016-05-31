@@ -7,7 +7,10 @@
 
 use hipanel\modules\hosting\grid\MailGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\IndexLayoutSwitcher;
+use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
+use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'Mailboxes');
 $this->breadcrumbs->setItems([
@@ -15,46 +18,53 @@ $this->breadcrumbs->setItems([
 ]);
 $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list'); ?>
 
-<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
+<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
+    <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => true]) ?>
-<?php $box->beginActions() ?>
-    <?= $box->renderCreateButton(Yii::t('app', 'Create mailbox')) . '&nbsp;' ?>
-    <?= $box->renderSearchButton() ?>
-    <?= $box->renderSorter([
-        'attributes' => [
-            'client',
-            'seller',
-            'account',
-            'state',
-            'server',
-            'mail',
-        ],
-    ]) ?>
-    <?= $box->renderPerPage() ?>
-<?php $box->endActions() ?>
-<?php $box->beginBulkActions() ?>
+        <?= $page->setSearchFormData(compact(['stateData', 'typeData'])) ?>
 
-<?= $box->renderDeleteButton() ?>
-<?php $box->endBulkActions() ?>
-<?= $box->renderSearchForm(['stateData' => $stateData, 'typeData' => $typeData]) ?>
-<?php $box->end() ?>
+        <?php $page->beginContent('main-actions') ?>
+        <?= Html::a(Yii::t('hipanel/hosting', 'Create mailbox'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+        <?php $page->endContent() ?>
 
-<?php $box->beginBulkForm() ?>
-<?= MailGridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $model,
-    'columns' => [
-        'checkbox',
-        'mail',
-        'type',
-        'forwards',
-        'client',
-        'seller',
-        'server',
-        'state',
-        'actions',
-    ],
-]) ?>
-<?php $box->endBulkForm() ?>
-<?php Pjax::end();
+        <?php $page->beginContent('show-actions') ?>
+        <?= IndexLayoutSwitcher::widget() ?>
+        <?= $page->renderSorter([
+            'attributes' => [
+                'client',
+                'seller',
+                'account',
+                'state',
+                'server',
+                'mail',
+            ],
+        ]) ?>
+        <?= $page->renderPerPage() ?>
+        <?= $page->renderRepresentation() ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('bulk-actions') ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('table') ?>
+        <?php $page->beginBulkForm() ?>
+            <?= MailGridView::widget([
+                'boxed' => false,
+                'dataProvider' => $dataProvider,
+                'filterModel' => $model,
+                'columns' => [
+                    'checkbox',
+                    'mail',
+                    'type',
+                    'forwards',
+                    'client',
+                    'seller',
+                    'server',
+                    'state',
+                    'actions',
+                ],
+            ]) ?>
+        <?php $page->endBulkForm() ?>
+        <?php $page->endContent() ?>
+    <?php $page->end() ?>
+<?php Pjax::end() ?>

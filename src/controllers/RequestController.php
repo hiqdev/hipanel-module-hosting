@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
@@ -18,6 +19,12 @@ class RequestController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '/hosting/request/index'
+                ]
+            ],
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {

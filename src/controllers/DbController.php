@@ -8,6 +8,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
@@ -22,6 +23,12 @@ class DbController extends CrudController
     public function actions()
     {
         return [
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '/hosting/db/index'
+                ]
+            ],
             'index' => [
                 'class'     => IndexAction::class,
                 'data'  => function ($action) {

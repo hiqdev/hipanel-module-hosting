@@ -9,6 +9,7 @@ namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
@@ -25,6 +26,12 @@ class ServiceController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '/hosting/service/index'
+                ]
+            ],
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {

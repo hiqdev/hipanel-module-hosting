@@ -7,6 +7,8 @@
 
 use hipanel\modules\hosting\grid\CrontabGridView;
 use hipanel\widgets\ActionBox;
+use hipanel\widgets\IndexLayoutSwitcher;
+use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 
 $this->title = Yii::t('hipanel/hosting', 'Crons');
@@ -14,36 +16,48 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 
 ?>
+
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
-<?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider, 'bulk' => false]) ?>
-<?php $box->beginActions() ?>
+    <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-<?= $box->renderSearchButton() ?>
-<?= $box->renderSorter([
-    'attributes' => [
-        'account',
-        'client',
-        'server',
-    ],
-]) ?>
-<?= $box->renderPerPage() ?>
-<?php $box->endActions() ?>
+        <?= $page->setSearchFormData(compact([])) ?>
 
-<?= $box->renderSearchForm(compact('objectOptions')) ?>
-<?php $box->end() ?>
-<?php $box->beginBulkForm() ?>
-<?= CrontabGridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
-    'columns' => [
-//        'checkbox',
-        'crontab',
-        'account',
-        'server',
-        'client',
-        'state',
-        'actions',
-    ],
-]) ?>
-<?php $box->endBulkForm() ?>
+        <?php $page->beginContent('main-actions') ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('show-actions') ?>
+            <?= IndexLayoutSwitcher::widget() ?>
+        <?= $page->renderSorter([
+            'attributes' => [
+                'account',
+                'client',
+                'server',
+            ],
+        ]) ?>
+        <?= $page->renderPerPage() ?>
+        <?= $page->renderRepresentation() ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('bulk-actions') ?>
+        <?php $page->endContent() ?>
+
+        <?php $page->beginContent('table') ?>
+        <?php $page->beginBulkForm() ?>
+            <?= CrontabGridView::widget([
+                'boxed' => false,
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+            //        'checkbox',
+                    'crontab',
+                    'account',
+                    'server',
+                    'client',
+                    'state',
+                    'actions',
+                ],
+            ]) ?>
+        <?php $page->endBulkForm() ?>
+        <?php $page->endContent() ?>
+    <?php $page->end() ?>
 <?php Pjax::end() ?>
