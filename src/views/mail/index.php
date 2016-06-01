@@ -40,7 +40,6 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
             ],
         ]) ?>
         <?= $page->renderPerPage() ?>
-        <?= $page->renderRepresentation() ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
