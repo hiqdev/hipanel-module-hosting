@@ -9,6 +9,7 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\base\Lang;
 use hipanel\grid\ActionColumn;
+use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
 use hipanel\modules\server\grid\ServerColumn;
@@ -39,11 +40,10 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
 
         return [
             'name' => [
-                'filterAttribute' => 'backuping_like',
-                'format' => 'raw',
-                'value' => function($model) {
-                    return Html::a($model->name, ["@{$model->object}/view", 'id' => $model->id], ['data-pjax' => 0, 'class' => 'bold']);
-                }
+                'class' => MainColumn::className(),
+                'filterAttribute' => 'name',
+                'attribute' => 'name',
+
             ],
             'account' => [
                 'attribute' => 'account_id',

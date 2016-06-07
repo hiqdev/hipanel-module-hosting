@@ -50,14 +50,9 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
                             return (bool)Yii::getAlias('@mail', false);
                         },
                     ],
-                    'backup' => [
+                    'backuping' => [
                         'label' => Yii::t('hipanel/hosting', 'Backups'),
                         'icon' => 'fa-archive',
-                        'url' => ['/hosting/backup/index'],
-                    ],
-                    'backuping' => [
-                        'label' => Yii::t('hipanel/hosting', 'Backup settings'),
-                        'icon' => 'fa-cogs',
                         'url' => ['/hosting/backuping/index'],
                     ],
                     'crontab' => [

@@ -7,6 +7,6 @@
 
 namespace hipanel\modules\hosting\models;
 
-class BackupSearch extends Backup{
+class BackupSearch extends Backup {
     use \hipanel\base\SearchModelTrait;
 }

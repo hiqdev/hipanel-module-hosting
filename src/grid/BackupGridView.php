@@ -55,12 +55,12 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             ],
             'size' => [
                 'filter' => false,
-                'format' => 'raw',
                 'value' => function($model) {
                     return Yii::$app->formatter->asShortSize($model->size, 2);
                 }
             ],
             'time' => [
+                'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asDatetime($model->time);
                 }
@@ -68,6 +68,13 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             'actions' => [
                 'class' => ActionColumn::className(),
                 'template' => '{view} {delete}',
+            ],
+            'inner_actions' => [
+                'class' => ActionColumn::className(),
+                'template' => '{delete}',
+                'buttonOptions' => [
+                    'class' => 'btn btn-danger btn-xs',
+                ]
             ],
         ];
     }

@@ -14,6 +14,8 @@ use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
+use hipanel\modules\hosting\models\Backup;
+use hipanel\modules\hosting\models\BackupSearch;
 use Yii;
 
 class BackupingController extends \hipanel\base\CrudController
@@ -59,9 +61,12 @@ class BackupingController extends \hipanel\base\CrudController
             'view' => [
                 'class' => ViewAction::class,
                 'data' => function ($action) {
+                    $backupSearch = new BackupSearch();
+                    $backupsDataProvider = $backupSearch->search([$backupSearch->formName() => ['object_id' => $action->getId()]]);
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),
                         'typeOptions' => $action->controller->getTypeOptions(),
+                        'backupsDataProvider' => $backupsDataProvider
                     ];
                 },
             ],
