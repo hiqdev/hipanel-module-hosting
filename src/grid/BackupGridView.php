@@ -71,9 +71,19 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             ],
             'inner_actions' => [
                 'class' => ActionColumn::className(),
-                'template' => '{delete}',
-                'buttonOptions' => [
-                    'class' => 'btn btn-danger btn-xs',
+                'template' => '{deleteBackup}',
+                'buttons' => [
+                    'deleteBackup' => function ($url, $model, $key) {
+                        return Html::a('<i class="fa fa-trash-o"></i>&nbsp;' . Yii::t('hipanel', 'Delete'), ['/hosting/backup/delete', 'id' => $model->id], [
+                            'aria-label'   => Yii::t('hipanel', 'Delete'),
+                            'class' => 'btn btn-danger btn-xs',
+                            'data' => [
+                                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                                'method'  => 'POST',
+                                'data-pjax' => '0',
+                            ],
+                        ]);
+                    }
                 ]
             ],
         ];

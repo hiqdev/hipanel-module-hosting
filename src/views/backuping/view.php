@@ -2,11 +2,9 @@
 
 use hipanel\modules\hosting\grid\BackupGridView;
 use hipanel\modules\hosting\grid\BackupingGridView;
-use hipanel\modules\hosting\models\Backup;
 use yii\helpers\Html;
-use yii\helpers\Inflector;
 
-$this->title = 'ID: ' . Html::encode($model->id);
+$this->title = Yii::t('app', 'Backup: ') . Html::encode($model->name);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Backups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -36,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'typeOptions' => $typeOptions,
                     ],
                     'columns' => [
+                        'id',
                         'name',
                         'client',
                         'account',
@@ -52,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="col-md-9">
-        <?= Html::beginForm('/hosting/backup/index', 'POST') ?>
+        <?= Html::beginForm('/hosting/backup/delete', 'POST') ?>
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title"><?= Yii::t('hipanel', 'Backups')?></h3>
@@ -66,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $backupsDataProvider,
                     'filterModel' => $model,
                     'tableOptions' => [
-                        'class' => 'table table-striped'
+                        'class' => 'table table-striped table-bordered'
                     ],
                     'filterRowOptions' => ['style' => 'display: none;'],
                     'columns' => [

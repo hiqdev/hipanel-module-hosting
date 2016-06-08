@@ -63,6 +63,8 @@ class BackupingController extends \hipanel\base\CrudController
                 'data' => function ($action) {
                     $backupSearch = new BackupSearch();
                     $backupsDataProvider = $backupSearch->search([$backupSearch->formName() => ['object_id' => $action->getId()]]);
+                    $backupsDataProvider->setSort(['defaultOrder' => ['time' => SORT_DESC]]);
+
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),
                         'typeOptions' => $action->controller->getTypeOptions(),
