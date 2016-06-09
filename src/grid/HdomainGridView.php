@@ -121,6 +121,13 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                     ]);
                 }
             ],
+            'backups_link' => [
+                'label' => Yii::t('hipanel/hosting', 'Backups'),
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a('<i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;&nbsp;' . Yii::t('hipanel/hosting', 'Backups'), ['/hosting/backuping/view', 'id' => $model->id]);
+                }
+            ],
             'actions' => [
                 'class' => ActionColumn::className(),
                 'template' => '{view} {delete}'
