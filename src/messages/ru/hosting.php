@@ -82,10 +82,12 @@ return [
  * Backups
  */
     'Backups' => 'Бэкапы',
+    'Backup' => 'Бэкап',
     'Backup settings' => 'Настройки бэкапов',
     'Size' => 'Объем',
     'Periodicity' => 'Переодичность',
     'Last backup' => 'Последняя копия',
+    'Disk usage' => 'Использование диска',
 /**
  * Crons
  */

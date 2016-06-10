@@ -39,7 +39,7 @@ class Backuping extends \hipanel\base\Model
             'hour' => Yii::t('app', 'Time'),
             'backup_last' => Yii::t('hipanel/hosting', 'Last backup'),
             'backup_count' => Yii::t('app', 'Count'),
-            'total_du' => Yii::t('app', 'Disk usage'),
+            'total_du' => Yii::t('hipanel/hosting', 'Disk usage'),
             'total_du_gb' => Yii::t('app', 'Disk'),
             'method_label' => Yii::t('app', 'Method label'),
             'account_id' => Yii::t('app', 'Account'),

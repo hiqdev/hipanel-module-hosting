@@ -4,7 +4,7 @@ use hipanel\modules\hosting\grid\BackupGridView;
 use hipanel\modules\hosting\grid\BackupingGridView;
 use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Backup: ') . Html::encode($model->name);
+$this->title = Yii::t('hipanel/hosting', 'Backup') . ': ' . Html::encode($model->name);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Backups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::beginForm('/hosting/backup/delete', 'POST') ?>
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title"><?= Yii::t('hipanel', 'Backups')?></h3>
+                <h3 class="box-title"><?= Yii::t('hipanel/hosting', 'Backups')?></h3>
                 <div class="box-tools pull-right">
                     <?= Html::submitButton(Yii::t('hipanel', 'Delete'), ['class' => 'btn btn-sm btn-danger'])?>
                 </div>
