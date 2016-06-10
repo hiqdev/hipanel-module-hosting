@@ -4,6 +4,7 @@ use hipanel\modules\dns\widgets\DnsZoneEditWidget;
 use hipanel\modules\hosting\grid\HdomainGridView;
 use hipanel\modules\hosting\models\Hdomain;
 use hipanel\widgets\Box;
+use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use yii\helpers\Html;
 use yii\web\JsExpression;
@@ -38,7 +39,7 @@ $this->breadcrumbs->setItems([
         <p class="text-center">
             <span class="profile-user-role"><?= $model->domain ?></span>
             <br>
-            <span class="profile-user-name"><?= $model->client . ' / ' . $model->seller; ?></span>
+            <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
         </p>
 
         <div class="profile-usermenu">

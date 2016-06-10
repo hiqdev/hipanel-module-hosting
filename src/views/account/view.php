@@ -6,6 +6,7 @@
  */
 
 use hipanel\modules\hosting\grid\AccountGridView;
+use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\Box;
 use hipanel\widgets\PasswordInput;
@@ -37,7 +38,7 @@ $this->breadcrumbs->setItems([
         <p class="text-center">
             <span class="profile-user-role"><?= $model->login ?></span>
             <br>
-            <span class="profile-user-name"><?= $model->client . ' / ' . $model->seller; ?></span>
+            <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
         </p>
 
         <div class="profile-usermenu">
