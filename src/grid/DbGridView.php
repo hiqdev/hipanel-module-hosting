@@ -13,6 +13,7 @@ use hipanel\grid\MainColumn;
 use hipanel\grid\EditableColumn;
 use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
+use hipanel\modules\hosting\widgets\backup\BackupGridRow;
 use hipanel\modules\hosting\widgets\db\State;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
@@ -63,6 +64,11 @@ class DbGridView extends BoxedGridView
                 'value'   => function () {
                     return Yii::t('app', 'Change password');
                 }
+            ],
+            'backups_widget' => [
+                'label' => Yii::t('hipanel/hosting', 'Backups'),
+                'format' => 'raw',
+                'value' => function ($model) { return BackupGridRow::widget(['model' => $model]); }
             ],
             'actions'     => [
                 'class'    => ActionColumn::className(),

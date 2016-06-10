@@ -10,6 +10,9 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
+use hipanel\modules\hosting\models\Backup;
+use hipanel\modules\hosting\models\Backuping;
+use hipanel\modules\hosting\widgets\backup\BackupGridRow;
 use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
@@ -121,12 +124,10 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                     ]);
                 }
             ],
-            'backups_link' => [
+            'backups_widget' => [
                 'label' => Yii::t('hipanel/hosting', 'Backups'),
                 'format' => 'raw',
-                'value' => function ($model) {
-                    return Html::a('<i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;&nbsp;' . Yii::t('hipanel/hosting', 'Backups'), ['/hosting/backuping/view', 'id' => $model->id]);
-                }
+                'value' => function ($model) { return BackupGridRow::widget(['model' => $model]); }
             ],
             'actions' => [
                 'class' => ActionColumn::className(),

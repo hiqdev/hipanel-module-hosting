@@ -154,7 +154,7 @@ $this->breadcrumbs->setItems([
                                     return implode("\n", $html);
                                 }
                             ],
-                            'backups_link',
+                            'backups_widget',
                         ],
                     ]); ?>
                 </div>

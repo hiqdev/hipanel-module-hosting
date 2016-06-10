@@ -133,6 +133,7 @@ $this->breadcrumbs->setItems([
                                 ['attribute' => 'name'],
                                 'service_ip',
                                 'description',
+                                'backups_widget',
                             ],
                         ]);
                     $box->endBody();

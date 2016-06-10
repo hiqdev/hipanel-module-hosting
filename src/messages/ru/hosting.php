@@ -71,6 +71,7 @@ return [
 /**
  * Domains
  */
+    'Block domain' => 'Блокировать домен',
     'Domain' => 'Домен',
     'Domains' => 'Домены',
     '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}',
@@ -83,6 +84,7 @@ return [
  */
     'Backups' => 'Бэкапы',
     'Backup' => 'Бэкап',
+    'Show backups' => 'Показать бэкапы',
     'Backup settings' => 'Настройки бэкапов',
     'Size' => 'Объем',
     'Periodicity' => 'Переодичность',
