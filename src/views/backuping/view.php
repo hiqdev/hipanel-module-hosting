@@ -2,6 +2,7 @@
 
 use hipanel\modules\hosting\grid\BackupGridView;
 use hipanel\modules\hosting\grid\BackupingGridView;
+use hipanel\widgets\ClientSellerLink;
 use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel/hosting', 'Backup') . ': ' . Html::encode($model->name);
@@ -22,9 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $this->title ?>
                     </span>
                     <br>
-                    <span class="profile-user-name">
-                        <?= $model->client; ?>
-                    </span>
+                    <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
                 </p>
 
                 <?= BackupingGridView::detailView([
@@ -33,19 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'gridOptions' => [
                         'typeOptions' => $typeOptions,
                     ],
-                    'columns' => [
-                        'id',
-                        'name',
-                        'client',
-                        'account',
-                        'server',
-                        'object',
-                        'backup_count',
-                        'type',
-                        'state_label',
-                        'backup_last',
-                        'total_du',
-                    ],
+                    'columns' => array_filter([
+                        Yii::$app->user->can('support') ? 'id' : null,
+                        'object', 'name',
+                        Yii::$app->user->can('support') ? 'client' : null,
+                        Yii::$app->user->can('support') ? 'seller' : null,
+                        'account', 'server',
+                        'backup_count', 'type', 'state_label',
+                        'backup_last', 'total_du',
+                    ]),
                 ]) ?>
             </div>
         </div>

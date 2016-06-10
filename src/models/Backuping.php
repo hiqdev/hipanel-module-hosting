@@ -18,10 +18,11 @@ class Backuping extends \hipanel\base\Model
     public function rules()
     {
         return [
-            [['id', 'service_id', 'server_id', 'account_id', 'client_id'], 'integer'],
+            [['id', 'service_id', 'server_id', 'account_id', 'client_id', 'seller_id'], 'integer'],
+            [['client', 'seller'], 'safe'],
             [['skip_lock'], 'boolean'],
             [['day', 'hour', 'path', 'include', 'exclude'], 'safe'],
-            [['method', 'method_label', 'server', 'account', 'client', 'name', 'object', 'service'], 'safe'],
+            [['method', 'method_label', 'server', 'account', 'name', 'object', 'service'], 'safe'],
             [['backup_last'], 'date'],
             [['backup_count', 'total_du', 'total_du_gb',], 'integer'],
             [['type', 'type_label', 'state', 'state_label'], 'safe'],

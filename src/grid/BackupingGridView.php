@@ -40,18 +40,26 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
 
         return [
             'name' => [
-                'class' => MainColumn::className(),
-                'filterAttribute' => 'name',
+                'class' => MainColumn::class,
+                'filterAttribute' => 'name_like',
                 'attribute' => 'name',
-
+            ],
+            'main' => [
+                'attribute' => 'name',
+                'filterAttribute' => 'name_like',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->name, ['view', 'id' => $model->id], ['class' => 'bold']) . ' '.
+                            ObjectLabelWidget::widget(compact('model'));
+                },
             ],
             'account' => [
                 'attribute' => 'account_id',
-                'class' => AccountColumn::className(),
+                'class' => AccountColumn::class,
             ],
             'server' => [
                 'attribute' => 'server_id',
-                'class' => ServerColumn::className(),
+                'class' => ServerColumn::class,
             ],
             'object' => [
                 'filter' => false,
@@ -86,8 +94,10 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'backup_last' => [
                 'filter' => false,
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return Yii::$app->formatter->asDatetime($model->backup_last);
+                    return Html::tag('nobr', Yii::$app->formatter->asDate($model->backup_last)) . ' ' .
+                           Html::tag('nobr', Yii::$app->formatter->asTime($model->backup_last));
                 },
             ],
             'total_du' => [
@@ -98,7 +108,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view} {delete}',
             ],
         ];
