@@ -12,7 +12,7 @@ use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Mailboxes');
+$this->title = Yii::t('hipanel/hosting', 'Mailboxes');
 $this->breadcrumbs->setItems([
     $this->title,
 ]);

@@ -191,11 +191,11 @@ class AccountController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return Ref::getList('state,account');
+        return Ref::getList('state,account', [], 'hipanel/hosting');
     }
 
     public function getTypeData()
     {
-        return Ref::getList('type,account');
+        return Ref::getList('type,account', [], 'hipanel/hosting');
     }
 }

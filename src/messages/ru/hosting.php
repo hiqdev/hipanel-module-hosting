@@ -33,6 +33,15 @@ return [
     'Unblock accounts' => 'Разблокировать аккаунты',
     'Manage IP restrictions' => 'Управление ограничением по IP',
     'Maximum letters per hour' => 'Максимум писем в час',
+    'New' => 'Новый',
+    'Ok' => 'ОК',
+    'Blocked' => 'Заблокирован',
+    'Deleted' => 'Новый',
+    'Disabled' => 'Новый',
+    'User account' => 'Обычный',
+    'FTP-only account' => 'FTP аккаунт',
+    'System account' => 'Системный аккаунт',
+    'New' => 'Новый',
 /**
  * Service
  */
@@ -79,6 +88,7 @@ return [
  * Mailboxes
  */
     'Mailboxes' => 'Почтовые ящики',
+    'Create mailbox' => 'Создать ящикршз',
 /**
  * Backups
  */
@@ -99,4 +109,5 @@ return [
  * Requests
  */
     'Requests' => 'Запросы',
+    'Object Name' => 'Имя объекта',
 ];

@@ -11,7 +11,6 @@ use Yii;
 
 class Request extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
 
     /** @inheritdoc */
@@ -32,9 +31,10 @@ class Request extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'object_name' => Yii::t('app', 'Object Name'),
-            'classes' => Yii::t('app', 'Object'),
-            'type_ids' => Yii::t('app', 'Types'),
+            'object_name' => Yii::t('hipanel/hosting', 'Object Name'),
+            'object' => Yii::t('hipanel/hosting', 'Object'),
+            'classes' => Yii::t('hipanel/hosting', 'Object'),
+            'type_ids' => Yii::t('hipanel', 'Types'),
         ]);
     }
 }

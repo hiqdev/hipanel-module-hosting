@@ -12,7 +12,7 @@ use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title                    = Yii::t('app', 'Requests');
+$this->title                    = Yii::t('hipanel/hosting', 'Requests');
 $this->params['breadcrumbs'][]  = $this->title;
 $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 
