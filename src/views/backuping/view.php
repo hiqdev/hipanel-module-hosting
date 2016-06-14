@@ -38,8 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         Yii::$app->user->can('support') ? 'client' : null,
                         Yii::$app->user->can('support') ? 'seller' : null,
                         'account', 'server',
-                        'backup_count', 'type', 'state_label',
-                        'backup_last', 'total_du',
+                        $model->type ? 'backup_count' : null,
+                        $model->type ? 'type' : null,
+                        $model->type ? 'state_label' : null,
+                        $model->type ? 'backup_last' : null,
+                        $model->type ? 'total_du' : null,
                     ]),
                 ]) ?>
             </div>

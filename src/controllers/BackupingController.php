@@ -17,6 +17,7 @@ use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Backup;
 use hipanel\modules\hosting\models\BackupSearch;
 use Yii;
+use yii\base\Event;
 
 class BackupingController extends \hipanel\base\CrudController
 {
@@ -60,6 +61,7 @@ class BackupingController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
+                'findOptions' => ['show_deleted' => true],
                 'data' => function ($action) {
                     $backupSearch = new BackupSearch();
                     $backupsDataProvider = $backupSearch->search([$backupSearch->formName() => ['object_id' => $action->getId()]]);

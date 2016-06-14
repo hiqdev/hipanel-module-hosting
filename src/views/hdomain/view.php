@@ -101,11 +101,8 @@ $this->breadcrumbs->setItems([
                         'boxed' => false,
                         'model' => $model,
                         'columns' => [
-                            'client_id',
-                            'seller_id',
-                            'account',
-                            'server',
-                            'service',
+                            'client_id', 'seller_id',
+                            'account', 'server', 'service',
                             'ip',
                             'state',
                             'dns_on',

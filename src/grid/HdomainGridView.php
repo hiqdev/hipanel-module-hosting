@@ -127,7 +127,9 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'backups_widget' => [
                 'label' => Yii::t('hipanel/hosting', 'Backups'),
                 'format' => 'raw',
-                'value' => function ($model) { return BackupGridRow::widget(['model' => $model]); }
+                'value' => function ($model) {
+                    return BackupGridRow::widget(['model' => $model]);
+                },
             ],
             'actions' => [
                 'class' => ActionColumn::className(),
