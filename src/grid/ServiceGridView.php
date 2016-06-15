@@ -17,10 +17,10 @@ use hipanel\modules\hosting\models\Soft;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\State;
-use kartik\helpers\Html;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\bootstrap\Button;
+use yii\helpers\Html;
 
 class ServiceGridView extends \hipanel\grid\BoxedGridView
 {
