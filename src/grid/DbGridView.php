@@ -10,7 +10,6 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\BoxedGridView;
 use hipanel\grid\MainColumn;
-use hipanel\grid\EditableColumn;
 use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
 use hipanel\modules\hosting\widgets\backup\BackupGridRow;
