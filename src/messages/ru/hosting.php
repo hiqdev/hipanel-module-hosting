@@ -41,7 +41,6 @@ return [
     'User account' => 'Обычный',
     'FTP-only account' => 'FTP аккаунт',
     'System account' => 'Системный аккаунт',
-    'New' => 'Новый',
 /**
  * Service
  */
@@ -97,9 +96,14 @@ return [
     'Show backups' => 'Показать бэкапы',
     'Backup settings' => 'Настройки бэкапов',
     'Size' => 'Объем',
-    'Periodicity' => 'Переодичность',
+    'Periodicity' => 'Периодичность',
     'Last backup' => 'Последняя копия',
     'Disk usage' => 'Использование диска',
+    'Backup: {0} {1}' => 'Бэкап: {0} {1}',
+    'domain' => 'домен',
+    'database' => 'база данных',
+    'Enable backup' => 'Включить бэкапы',
+    'Backup is not enabled' => 'Бэкапы не включены',
 /**
  * Crons
  */

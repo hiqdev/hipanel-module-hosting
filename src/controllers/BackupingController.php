@@ -15,6 +15,7 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ViewAction;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Backup;
+use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\BackupSearch;
 use Yii;
 use yii\base\Event;
@@ -70,7 +71,8 @@ class BackupingController extends \hipanel\base\CrudController
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),
                         'typeOptions' => $action->controller->getTypeOptions(),
-                        'backupsDataProvider' => $backupsDataProvider
+                        'backupsDataProvider' => $backupsDataProvider,
+                        'hasBackup' => Backuping::find()->where(['id' => $action->getId()])->exists(),
                     ];
                 },
             ],

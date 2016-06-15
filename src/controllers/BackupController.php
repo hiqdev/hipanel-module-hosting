@@ -4,6 +4,8 @@ namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
+use hipanel\actions\ProxyAction;
+use hipanel\actions\RedirectAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
 use Yii;
@@ -41,7 +43,13 @@ class BackupController extends \hipanel\base\CrudController
             'delete' => [
                 'class' => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel/hosting', 'Backup deleting task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete backup')
+                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete backup'),
+                'POST html | POST pjax' => [
+                    'save' => true,
+                    'success' => [
+                        'class' => RedirectAction::class
+                    ],
+                ],
             ],
         ];
     }
