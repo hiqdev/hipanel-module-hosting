@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -113,7 +123,7 @@ class Account extends \hipanel\base\Model
     public function isOperable()
     {
         /// TODO: all is operable for admin
-        if (!in_array($this->state, $this->goodStates())) {
+        if (!in_array($this->state, $this->goodStates(), true)) {
             return false;
         }
 
@@ -130,11 +140,13 @@ class Account extends \hipanel\base\Model
         return [static::TYPE_FTP, static::TYPE_SSH];
     }
 
-    public function getIsBlocked() {
-        return $this->state == self::STATE_BLOCKED;
+    public function getIsBlocked()
+    {
+        return $this->state === self::STATE_BLOCKED;
     }
 
-    public function canSetMailSettings() {
+    public function canSetMailSettings()
+    {
         return $this->type === self::TYPE_SSH && Yii::$app->user->can('support');
     }
 
@@ -148,15 +160,16 @@ class Account extends \hipanel\base\Model
 
     public function onBeforeValidate()
     {
-        if ($this->scenario == 'create') {
+        if ($this->scenario === 'create') {
             $this->type = static::TYPE_SSH;
-        } elseif ($this->scenario == 'create-ftponly') {
+        } elseif ($this->scenario === 'create-ftponly') {
             $this->type = static::TYPE_FTP;
         }
         return true;
     }
 
-    public function onAfterFind() {
+    public function onAfterFind()
+    {
         if (!empty($this->mail_settings)) {
             foreach ($this->mail_settings as $k => $v) {
                 $this->{$k} = $v;

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -15,7 +25,8 @@ class Service extends \hipanel\base\Model
     use \hipanel\base\ModelTrait;
 
     /** @inheritdoc */
-    public function rules () {
+    public function rules()
+    {
         return [
             [['id', 'server_id', 'device_id', 'client_id', 'seller_id', 'soft_id'], 'integer'],
             [['name', 'server', 'device', 'client', 'seller', 'soft'], 'safe'],
@@ -36,7 +47,8 @@ class Service extends \hipanel\base\Model
     }
 
     /** @inheritdoc */
-    public function attributeLabels () {
+    public function attributeLabels()
+    {
         return $this->mergeAttributeLabels([
             'soft_type'       => Yii::t('app', 'Soft Type'),
             'soft_type_label' => Yii::t('app', 'Soft type label'),
@@ -46,11 +58,13 @@ class Service extends \hipanel\base\Model
         ]);
     }
 
-    public function getIps() {
+    public function getIps()
+    {
         return $this->hasMany(Ip::className(), ['service_id', 'id']);
     }
 
-    public function getObjects_count() {
+    public function getObjects_count()
+    {
         return null; // This relation is not available separately from search query.
     }
 }

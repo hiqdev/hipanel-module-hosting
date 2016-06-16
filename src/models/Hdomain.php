@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -136,7 +146,7 @@ class Hdomain extends \hipanel\base\Model
         ];
     }
 
-    function getIsProxied()
+    public function getIsProxied()
     {
         return isset($this->getAttribute('vhost')['backend']);
     }
@@ -170,7 +180,7 @@ class Hdomain extends \hipanel\base\Model
     {
         $result = [];
 
-        if (in_array($this->scenario, ['create', 'update'])) {
+        if (in_array($this->scenario, ['create', 'update'], true)) {
             $result['create'] = ['vhosts', ucfirst($this->scenario)]; // Create should be send to vhost module
         }
         $result['create-alias'] = 'create';

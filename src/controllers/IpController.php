@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -65,7 +75,7 @@ class IpController extends \hipanel\base\CrudController
                     foreach ($data as $item) {
                         if ($device && $item['links']) {
                             foreach ($item['links'] as $link) {
-                                if ($link['device'] == $device) {
+                                if ($link['device'] === $device) {
                                     $results[] = ArrayHelper::merge($item, [
                                         'service' => $link['service'],
                                         'device' => $link['device'],
@@ -149,7 +159,7 @@ class IpController extends \hipanel\base\CrudController
         try {
             $ips = Ip::perform('Expand', ['id' => $id, 'with_existing' => true]);
         } catch (ErrorResponseException $e) {
-            if ($e->getMessage() == 'result is too long') {
+            if ($e->getMessage() === 'result is too long') {
                 return Yii::t('hipanel/hosting', 'Too many IP addresses in the network');
             }
             throw $e;
@@ -163,7 +173,7 @@ class IpController extends \hipanel\base\CrudController
         $linkModel = new Link(['scenario' => $scenario]);
 
         $ipModels = [$ipModel];
-        for ($i = 1; $i < count(Yii::$app->request->post($ipModel->formName(), [])); $i++) {
+        for ($i = 1; $i < count(Yii::$app->request->post($ipModel->formName(), [])); ++$i) {
             $ipModels[] = clone $ipModel;
         }
 
@@ -172,14 +182,14 @@ class IpController extends \hipanel\base\CrudController
             foreach ($ipModels as $i => $ip) {
                 $ipLinkModels = [$linkModel];
                 $ipLinks = ArrayHelper::getValue(Yii::$app->request->post($linkModel->formName(), []), $i, []);
-                for ($i = 1; $i < count($ipLinks); $i++) {
+                for ($i = 1; $i < count($ipLinks); ++$i) {
                     $ipLinkModels[] = clone $linkModel;
                 }
                 Link::loadMultiple($ipLinkModels, [$linkModel->formName() => $ipLinks]);
 
                 /** @var Link $link */
                 foreach ($ipLinkModels as $link) {
-                    if ($link->ip_id == $ip->id && $link->validate()) {
+                    if ($link->ip_id === $ip->id && $link->validate()) {
                         $ip->addLink($link);
                     }
                 }
@@ -192,7 +202,8 @@ class IpController extends \hipanel\base\CrudController
     /**
      * @return \Closure
      */
-    public function getDataProviderOptions() {
+    public function getDataProviderOptions()
+    {
         return function (Event $event) {
             /** @var \hipanel\actions\SearchAction $action */
             $action = $event->sender;

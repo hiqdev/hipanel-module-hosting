@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -9,9 +19,8 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\DataColumn;
 use hipanel\modules\hosting\widgets\combo\AccountCombo;
-use yii\helpers\Url;
 use yii\helpers\Html;
-
+use yii\helpers\Url;
 use yii\web\JsExpression;
 
 class AccountColumn extends DataColumn
@@ -22,7 +31,8 @@ class AccountColumn extends DataColumn
 
     public $format = 'html';
 
-    public function init () {
+    public function init()
+    {
         parent::init();
 
         if (!empty($this->grid->filterModel)) {

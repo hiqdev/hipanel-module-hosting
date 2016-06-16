@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -17,7 +27,8 @@ class Db extends Model
     use ModelTrait;
 
     /** @inheritdoc */
-    public function rules () {
+    public function rules()
+    {
         return [
             [['id', 'account_id', 'client_id', 'seller_id', 'service_id', 'device_id', 'server_id'], 'integer'],
             [['name', 'account', 'client', 'seller', 'service', 'device', 'server'], 'safe'],
@@ -39,7 +50,8 @@ class Db extends Model
     }
 
     /** @inheritdoc */
-    public function attributeLabels () {
+    public function attributeLabels()
+    {
         return $this->mergeAttributeLabels([
             'name'                 => Yii::t('app', 'DB name'),
             'service_ip'           => Yii::t('app', 'Service IP'),

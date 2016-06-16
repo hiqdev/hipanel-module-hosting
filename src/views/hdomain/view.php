@@ -57,11 +57,11 @@ $this->breadcrumbs->setItems([
                     <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('app', 'Proxy settings'),
                         ['/hosting/vhost/manage-proxy', 'id' => $model->id]); ?>
                 </li>
-                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id != $model->client_id) { ?>
+                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id !== $model->client_id) : ?>
                     <li>
-                        <?= $this->render('_block', compact(['model', 'blockReasons'])); ?>
+                        <?= $this->render('_block', compact(['model', 'blockReasons'])) ?>
                     </li>
-                <?php } ?>
+                <?php endif ?>
                 <li>
                     <?= ModalButton::widget([
                         'model' => $model,

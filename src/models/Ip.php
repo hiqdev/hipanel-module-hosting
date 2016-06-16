@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -34,7 +44,7 @@ class Ip extends \hipanel\base\Model
     public function attributes()
     {
         $attributes = $this->defaultAttributes();
-        unset($attributes[array_search('links', $attributes)]);
+        unset($attributes[array_search('links', $attributes, true)]);
         return $attributes;
     }
 
@@ -45,7 +55,8 @@ class Ip extends \hipanel\base\Model
         }
     }
 
-    public function rules () {
+    public function rules()
+    {
         return [
             [['client_id', 'seller_id'],                          'integer'],
             [['objects_count', 'client', 'seller'],               'safe'],
@@ -70,7 +81,8 @@ class Ip extends \hipanel\base\Model
     }
 
     /** @inheritdoc */
-    public function attributeLabels () {
+    public function attributeLabels()
+    {
         return $this->mergeAttributeLabels([
             'links'                 => Yii::t(static::$i18nDictionary, 'Links'),
             'objects_count'         => Yii::t(static::$i18nDictionary, 'Count of objects'),
@@ -84,8 +96,9 @@ class Ip extends \hipanel\base\Model
     /**
      * @return array|\hiqdev\hiart\ActiveQuery
      */
-    public function getLinks() {
-        return in_array($this->scenario, ['create', 'update'])
+    public function getLinks()
+    {
+        return in_array($this->scenario, ['create', 'update'], true)
             ? ArrayHelper::toArray($this->_links)
             : $this->hasMany(Link::className(), ['ip_id' => 'id']);
     }
@@ -93,21 +106,24 @@ class Ip extends \hipanel\base\Model
     /**
      * @return \hiqdev\hiart\ActiveQuery
      */
-    public function getRelatedLinks() {
+    public function getRelatedLinks()
+    {
         return $this->hasMany(Link::className(), ['ip_id' => 'id']);
     }
 
     /**
      * @return Link[]
      */
-    public function getAddedLinks() {
+    public function getAddedLinks()
+    {
         return $this->_links;
     }
 
     /**
      * @param array $links
      */
-    public function setAddedLinks (array $links) {
+    public function setAddedLinks(array $links)
+    {
         foreach ($links as $link) {
             $this->addLink($link);
         }
@@ -116,7 +132,8 @@ class Ip extends \hipanel\base\Model
     /**
      * @param Link $link
      */
-    public function addLink(Link $link) {
+    public function addLink(Link $link)
+    {
         $this->_links[] = $link;
     }
 
@@ -127,7 +144,7 @@ class Ip extends \hipanel\base\Model
      */
     public function canSetPtr()
     {
-        return !in_array('aux', (array) $this->tags)
+        return !in_array('aux', (array) $this->tags, true)
             && (new IpValidator(['ranges' => ['!system', 'any']]))->validate($this->ip);
     }
 }

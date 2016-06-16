@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -11,7 +21,8 @@ use hipanel\base\SearchModelTrait;
 use hipanel\helpers\StringHelper;
 use yii\helpers\ArrayHelper;
 
-class HdomainSearch extends Hdomain {
+class HdomainSearch extends Hdomain
+{
     use SearchModelTrait {
         searchAttributes as defaultSearchAttributes;
         rules as defaultRules;
@@ -20,7 +31,8 @@ class HdomainSearch extends Hdomain {
     /**
      * {@inheritdoc}
      */
-    public function rules() {
+    public function rules()
+    {
         return ArrayHelper::merge(self::defaultRules(), [
             [
                 ['domain_in'],

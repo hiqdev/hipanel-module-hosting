@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -11,13 +20,13 @@ use yii\helpers\Html;
 
 class BackupGridView extends \hipanel\grid\BoxedGridView
 {
-    static public function defaultColumns()
+    public static function defaultColumns()
     {
         return [
             'id' => [
                 'format' => 'html',
                 'attribute' => 'id',
-                'value' => function($model) {
+                'value' => function ($model) {
                     return Html::tag('span', $model->id, ['class' => 'bold']);
                 },
             ],
@@ -40,7 +49,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'name',
                 'filterAttribute' => 'name_like',
-                'value' => function($model) {
+                'value' => function ($model) {
                     $labelType = ObjectLabelWidget::widget(compact('model'));
                     return $labelType . '&nbsp;' .
                         Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
@@ -49,13 +58,13 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             'name' => [
                 'format' => 'raw',
                 'attribute' => 'name',
-                'value' => function($model) {
+                'value' => function ($model) {
                     return Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
                 }
             ],
             'size' => [
                 'filter' => false,
-                'value' => function($model) {
+                'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->size, 2);
                 }
             ],

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -63,16 +73,18 @@ class Mail extends \hipanel\base\Model
         ]);
     }
 
-    public function canChangePassword() {
+    public function canChangePassword()
+    {
         return $this->type !== static::TYPE_FORWARD_ONLY;
     }
 
-    public function attributeHints() {
+    public function attributeHints()
+    {
         return [
             'forwards' => Yii::t('app', 'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.'),
             'password' => $this->type === static::TYPE_FORWARD_ONLY
                             ?  Yii::t('app', 'Password change is prohibited on forward-only mailboxes')
-                            : ( $this->isNewRecord
+                            : ($this->isNewRecord
                                 ? Yii::t('app', 'Leave this field empty to create a forward-only mailbox')
                                 : Yii::t('app', 'Fill this field only if you want to change the password')
                             ),

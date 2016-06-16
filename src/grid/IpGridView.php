@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -20,14 +30,14 @@ use yii\helpers\Html;
 
 class IpGridView extends \hipanel\grid\BoxedGridView
 {
-    static public $ipTags = [];
+    public static $ipTags = [];
 
-    static public function setIpTags($ipTags)
+    public static function setIpTags($ipTags)
     {
         static::$ipTags = $ipTags;
     }
 
-    static public function defaultColumns()
+    public static function defaultColumns()
     {
         return [
             'ip' => [

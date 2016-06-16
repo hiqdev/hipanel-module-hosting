@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\hosting\widgets\mail;
 
 use hipanel\modules\hosting\models\Mail;
@@ -21,13 +30,13 @@ class Type extends Label
     public function init()
     {
         $model = $this->model;
-        if ($model->type == $model::TYPE_FORWARD_ONLY) {
+        if ($model->type === $model::TYPE_FORWARD_ONLY) {
             $this->label = Yii::t('app', 'Forward only');
             $this->color = 'primary';
             $this->labelOptions = [
                 'title' => Yii::t('app', 'You can not login to this mailbox, but all messages will be forwarded to specified addresses')
             ];
-        } elseif ($model->type == $model::TYPE_BOX_WITH_FORWARDS) {
+        } elseif ($model->type === $model::TYPE_BOX_WITH_FORWARDS) {
             $this->label = Yii::t('app', 'Mailbox with forwards');
             $this->color = 'warning';
             $this->labelOptions = [

@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -31,10 +41,9 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
         }
 
         self::$typeOptions = $typeOptions;
-
     }
 
-    static public function defaultColumns()
+    public static function defaultColumns()
     {
         $typeOptions = self::$typeOptions;
 
@@ -52,7 +61,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'name_like',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return  Html::a($model->name, ['@' . $model->object . '/view', 'id' => $model->id], ['class' => 'bold']) . ' '.
+                    return  Html::a($model->name, ['@' . $model->object . '/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
                             ObjectLabelWidget::widget(compact('model'));
                 },
             ],
@@ -79,7 +88,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'filter' => false,
                 'enableSorting' => false,
-                'value' => function($model) use ($typeOptions) {
+                'value' => function ($model) use ($typeOptions) {
                     return XEditable::widget([
                         'model' => $model,
                         'attribute' => 'type',
@@ -106,7 +115,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             'total_du' => [
                 'filter' => false,
                 'format' => 'html',
-                'value' => function($model) {
+                'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->total_du, 2);
                 }
             ],

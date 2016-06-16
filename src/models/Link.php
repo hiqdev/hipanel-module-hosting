@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 /**
  * @link    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
@@ -14,7 +24,8 @@ class Link extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    public static function index() {
+    public static function index()
+    {
         return 'ips';
     }
 
@@ -23,7 +34,8 @@ class Link extends \hipanel\base\Model
         return 'ip';
     }
 
-    public function rules () {
+    public function rules()
+    {
         return [
             [['id', 'ip_id', 'device_id', 'service_id', 'soft_id'], 'integer'],
             [['ip', 'service', 'soft', 'soft_type', 'soft_type_label', 'device_ptype'], 'safe'],

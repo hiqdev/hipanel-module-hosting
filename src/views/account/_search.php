@@ -4,6 +4,7 @@ use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\client\widgets\combo\SellerCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 use hiqdev\combo\StaticCombo;
+
 /**
  * @var \hipanel\widgets\AdvancedSearch $search
  * @var array $stateData

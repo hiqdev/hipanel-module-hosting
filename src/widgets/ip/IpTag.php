@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\hosting\widgets\ip;
 
 use hipanel\widgets\Label;
@@ -13,15 +22,15 @@ class IpTag extends Label
     {
         $tag = $this->tag;
 
-        if ($tag == 'static') {
+        if ($tag === 'static') {
             $class = 'success';
-        } elseif ($tag == 'aux') {
+        } elseif ($tag === 'aux') {
             $class = 'default';
-        } elseif ($tag == 'gateway') {
+        } elseif ($tag === 'gateway') {
             $class = 'primary';
-        } elseif ($tag == 'movement') {
+        } elseif ($tag === 'movement') {
             $class = 'danger';
-        } elseif ($tag == 'anycast') {
+        } elseif ($tag === 'anycast') {
             $class = 'info';
         } else {
             $class = 'default';

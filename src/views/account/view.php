@@ -1,14 +1,9 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\modules\hosting\grid\AccountGridView;
+use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
-use hipanel\widgets\Box;
 use hipanel\widgets\PasswordInput;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
@@ -44,8 +39,7 @@ $this->breadcrumbs->setItems([
         <div class="profile-usermenu">
             <ul class="nav">
                 <li>
-                    <?php
-                    $modalButton = ModalButton::begin([
+                    <?php $modalButton = ModalButton::begin([
                         'model' => $model,
                         'scenario' => 'set-password',
                         'button' => [
@@ -61,22 +55,17 @@ $this->breadcrumbs->setItems([
                                 'class' => 'btn btn-warning',
                             ]
                         ]
-                    ]);
-                    ?>
+                    ]) ?>
+                        <div class="callout callout-warning">
+                            <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
+                        </div>
 
-                    <div class="callout callout-warning">
-                        <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
-                    </div>
-
-                    <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false);
-                    echo Html::activeHiddenInput($model, 'login');
-
-                    ModalButton::end();
-                    ?>
+                        <?= $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false) ?>
+                        <?= Html::activeHiddenInput($model, 'login') ?>
+                    <?php ModalButton::end() ?>
                 </li>
                 <li>
-                    <?php
-                    $modalButton = ModalButton::begin([
+                    <?php $modalButton = ModalButton::begin([
                         'model' => $model,
                         'scenario' => 'set-allowed-ips',
                         'button' => [
@@ -97,23 +86,18 @@ $this->breadcrumbs->setItems([
                             'enableClientValidation' => true,
                             'validationUrl' => ['single-validate-form', 'scenario' => 'set-allowed-ips']
                         ],
-                    ]);
-                    ?>
+                    ]) ?>
+                        <div class="callout callout-warning">
+                            <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
+                        </div>
 
-                    <div class="callout callout-warning">
-                        <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
-                    </div>
-
-                    <?php echo $modalButton->form->field($model, 'sshftp_ips');
-                    echo Html::activeHiddenInput($model, 'login');
-
-                    ModalButton::end();
-                    ?>
+                        <?= $modalButton->form->field($model, 'sshftp_ips') ?>
+                        <?= Html::activeHiddenInput($model, 'login') ?>
+                    <?php ModalButton::end() ?>
                 </li>
-                <?php if ($model->canSetMailSettings()) { ?>
+                <?php if ($model->canSetMailSettings()) : ?>
                     <li>
-                        <?php
-                        $modalButton = ModalButton::begin([
+                        <?php $modalButton = ModalButton::begin([
                             'model' => $model,
                             'scenario' => 'set-mail-settings',
                             'button' => [
@@ -129,20 +113,17 @@ $this->breadcrumbs->setItems([
                                     'class' => 'btn btn-info',
                                 ]
                             ]
-                        ]);
-
-                        echo $modalButton->form->field($model, 'per_hour_limit');
-                        echo $modalButton->form->field($model, 'block_send')->checkbox();
-
-                        ModalButton::end();
-                        ?>
+                        ]) ?>
+                            <?= $modalButton->form->field($model, 'per_hour_limit') ?>
+                            <?= $modalButton->form->field($model, 'block_send')->checkbox() ?>
+                        <?php ModalButton::end() ?>
                     </li>
-                <?php } ?>
-                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id != $model->client_id) { ?>
+                <?php endif ?>
+                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id !== $model->client_id) : ?>
                     <li>
-                        <?= $this->render('_block', compact(['model', 'blockReasons'])); ?>
+                        <?= $this->render('_block', compact(['model', 'blockReasons'])) ?>
                     </li>
-                <?php } ?>
+                <?php endif ?>
                 <li>
                     <?= ModalButton::widget([
                         'model'    => $model,
@@ -164,7 +145,7 @@ $this->breadcrumbs->setItems([
                 </li>
             </ul>
         </div>
-        <?php Box::end(); ?>
+        <?php Box::end() ?>
     </div>
 
     <div class="col-md-9">
