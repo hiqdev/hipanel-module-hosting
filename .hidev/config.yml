@@ -1,12 +1,21 @@
 package:
-    name:           hipanel-module-hosting
-    namespace:      hipanel\modules\hosting
-    label:          HiPanel HostingModule
-    title:          Hosting Plugin for HiPanel
     type:           yii2-extension
+    name:           hipanel-module-hosting
+    title:          Hosting Plugin for HiPanel
+    headline:       HiPanel Hosting Module
     keywords:       hosting, hipanel, plugin
-    year:           2014
+    namespace:      hipanel\modules\hosting
+    description:    |
+        [![Logo](https://raw.githubusercontent.com/hiqdev/hipanel-core/master/docs/logo.png)](https://hipanel.com/)
 
-require:
-    hiqdev/hidev-config:        "*"
-    hiqdev/hidev-config-php:    "*"
+        [HiPanel](http://hipanel.com) is next generation control panel for hosting, domains and more.
+
+        This package provides hosting management for HiPanel:
+
+        - accounts
+        - virtual hosts and aliases
+        - dns
+        - databases
+        - backups
+        - services and ips
+
