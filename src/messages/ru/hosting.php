@@ -45,11 +45,12 @@ return [
     'New' => 'Новый',
     'Ok' => 'ОК',
     'Blocked' => 'Заблокирован',
-    'Deleted' => 'Новый',
-    'Disabled' => 'Новый',
+    'Deleted' => 'Удалён',
+    'Disabled' => 'Отключён',
     'User account' => 'Обычный',
     'FTP-only account' => 'FTP аккаунт',
     'System account' => 'Системный аккаунт',
+
 /**
  * Service
  */
@@ -74,7 +75,7 @@ return [
  * IP
  */
     'IP addresses' => 'IP адреса',
-    'Create IP' => 'Cоздать IP',
+    'Create IP' => 'Создать IP',
     'Count of objects' => 'Количество объектов',
     'Single' => 'Единичный',
     'Normalized IP' => 'Нормализированный IP',
@@ -92,12 +93,34 @@ return [
     'Domain' => 'Домен',
     'Domains' => 'Домены',
     '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}',
+    'Temporary' => 'Временный',
+    'Proxy enabled' => 'Проксирование',
+    'Path' => 'Путь',
 /**
  * Mailboxes
  */
+    'Mailbox' => 'Почтовый ящик',
     'Mailboxes' => 'Почтовые ящики',
-    'Create mailbox' => 'Создать ящикршз',
-/**
+    'Create mailbox' => 'Создать ящик',
+    'Forward only' => 'Только пересылка',
+    'Mailbox with forwards' => 'Почтовый ящик с пересылкой',
+    'You can not login to this mailbox, but all messages will be forwarded to specified addresses' => 'Вы не можете войти в этот почтовый ящик, все сообщения пересылаются на указанный адрес',
+    'You can login this mailbox, also all the messages will be forwarded to specified addresses' => 'В почтовый ящик можно войти, вся почта пересылается на указанный адрес',
+    'You can login this mailbox' => 'Вы можете войти в этот почтовый ящик',
+    'Password change is prohibited on forward-only mailboxes' => 'Смена пароля невозможна, так как этот адрес используется только для пересылки',
+    'Leave this field empty to create a forward-only mailbox' => 'Не заполняйте это поле, если вам ящик нужен только для пересылки',
+    'Fill this field only if you want to change the password' => 'Заполните это поле, только если хотите сменить пароль',
+    'Mailbox creating task has been added to queue' => 'Задача создания почтового ящика была добавлена в очередь',
+    'An error occurred when trying to create mailbox' => 'Произошла ошибка при попытке создать почтовый ящик',
+    'Mailbox updating task has been added to queue' => 'Задача редактирования почтового ящика была добавлена в очередь',
+    'An error occurred when trying to update mailbox' => 'Произошла ошибка при попытке отредактировать почтовый ящик',
+    'Mailbox password change task has been added to queue' => 'Задача смены пароля почтового ящика была добавлена в очередь',
+    'An error occurred when trying to change mailbox password' => 'Произошла ошибка при попытке сменить пароль почтового ящика',
+    'Mailbox delete task has been created successfully' => 'Задача удаления почтового ящика была добавлена в очередь',
+    'An error occurred when trying to delete mailbox' => 'Произошла ошибка при попытке удалить почтовый ящик',
+    'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.' => 'Все письма будут перенаправлены на указанные адреса. Вы можете выбрать email из списка существующих, или вписать нужный адрес самостоятельно.',
+
+    /**
  * Backups
  */
     'Backups' => 'Бэкапы',
