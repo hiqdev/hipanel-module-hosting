@@ -101,6 +101,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::className(),
+                'i18nDictionary' => 'hipanel/hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
                     $html = '';

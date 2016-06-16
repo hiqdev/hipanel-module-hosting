@@ -30,7 +30,7 @@ class State extends Label
         }
 
         $this->color = $class;
-        $this->label = Yii::t('app', $this->model->state_label);
+        $this->label = Yii::t('hipanel/hosting', $this->model->state_label);
         parent::init();
     }
 }

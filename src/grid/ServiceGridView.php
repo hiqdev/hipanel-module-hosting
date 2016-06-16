@@ -98,6 +98,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::className(),
+                'i18nDictionary' => 'hipanel/hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return State::widget(compact('model'));

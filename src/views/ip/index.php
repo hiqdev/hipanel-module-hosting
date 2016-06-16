@@ -23,7 +23,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-        <?= $page->setSearchFormData(compact(['ipTags'])) ?>
+        <?php $page->setSearchFormData(compact(['ipTags'])) ?>
 
         <?php $page->beginContent('main-actions') ?>
             <?= Html::a(Yii::t('hipanel/hosting', 'Create IP'), 'create', ['class' => 'btn btn-sm btn-success']) ?>

@@ -17,19 +17,13 @@
 
 namespace hipanel\modules\hosting\controllers;
 
-use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
-use hipanel\actions\PerformAction;
-use hipanel\actions\RenderAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
-use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
-use hipanel\actions\SwitchAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
-use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\modules\hosting\models\Link;
 use hiqdev\hiart\Collection;
@@ -151,7 +145,7 @@ class IpController extends \hipanel\base\CrudController
 
     public function getIpTags()
     {
-        return Ref::getList('tag,ip');
+        return $this->getRefs('tag,ip', 'hipanel/hosting');
     }
 
     public function actionExpand($id)

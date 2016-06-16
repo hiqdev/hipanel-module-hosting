@@ -27,10 +27,8 @@ use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
-use hipanel\models\Ref;
 use Yii;
 use yii\base\Event;
-use yii\helpers\Html;
 
 class AccountController extends \hipanel\base\CrudController
 {
@@ -200,11 +198,11 @@ class AccountController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return Ref::getList('state,account', [], 'hipanel/hosting');
+        return $this->getRefs('state,account', 'hipanel/hosting');
     }
 
     public function getTypeData()
     {
-        return Ref::getList('type,account', [], 'hipanel/hosting');
+        return $this->getRefs('type,account', 'hipanel/hosting');
     }
 }

@@ -21,7 +21,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-        <?= $page->setSearchFormData(compact(['stateData', 'typeData'])) ?>
+        <?php $page->setSearchFormData(compact(['stateData', 'typeData'])) ?>
 
         <?php $page->beginContent('main-actions') ?>
         <?= Html::a(Yii::t('hipanel/hosting', 'Create mailbox'), 'create', ['class' => 'btn btn-sm btn-success']) ?>

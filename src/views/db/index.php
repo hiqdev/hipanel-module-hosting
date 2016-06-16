@@ -14,7 +14,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-        <?= $page->setSearchFormData(compact(['stateData'])) ?>
+        <?php $page->setSearchFormData(compact(['stateData'])) ?>
 
         <?php $page->beginContent('main-actions') ?>
             <?= Html::a(Yii::t('hipanel/hosting', 'Create DB'), 'create', ['class' => 'btn btn-sm btn-success']) ?>

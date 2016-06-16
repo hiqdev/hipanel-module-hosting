@@ -21,7 +21,6 @@ use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
-use hipanel\models\Ref;
 use Yii;
 
 class RequestController extends \hipanel\base\CrudController
@@ -64,12 +63,12 @@ class RequestController extends \hipanel\base\CrudController
 
     public function getTypeOptions()
     {
-        return Ref::getList('type,request', ['limit' => 'ALL', 'with_recursive' => true, 'select' => 'id']);
+        return $this->getRefs('type,request', 'hipanel/hosting', ['limit' => 'ALL', 'with_recursive' => true, 'select' => 'id']);
     }
 
     public function getStateOptions()
     {
-        return Ref::getList('state,request');
+        return $this->getRefs('state,request', 'hipanel/hosting');
     }
 
     public function getObjectOptions()

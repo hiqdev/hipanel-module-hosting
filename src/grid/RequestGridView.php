@@ -65,6 +65,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::className(),
+                'i18nDictionary' => 'hipanel/hosting',
                 'gtype' => 'state,request',
                 'format' => 'raw',
                 'value' => function ($model) {

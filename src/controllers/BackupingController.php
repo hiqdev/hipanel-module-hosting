@@ -23,12 +23,9 @@ use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ViewAction;
-use hipanel\models\Ref;
-use hipanel\modules\hosting\models\Backup;
 use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\BackupSearch;
 use Yii;
-use yii\base\Event;
 
 class BackupingController extends \hipanel\base\CrudController
 {
@@ -91,7 +88,7 @@ class BackupingController extends \hipanel\base\CrudController
 
     public function getTypeOptions()
     {
-        return Ref::getList('type,backuping');
+        return $this->getRefs('type,backuping', 'hipanel/hosting');
     }
 
     public function getStateOptions()

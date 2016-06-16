@@ -118,6 +118,8 @@ class Vhost extends \hipanel\base\Model
             'enable_suexec' => Yii::t('app', 'Enable suexec'),
             'enable_scripts' => Yii::t('app', 'Allow scripts execution'),
             'enable_ssi' => Yii::t('app', 'Enable SSI'),
+            'proxy_enabled' => Yii::t('hipanel/hosting', 'Proxy enabled'),
+            'path' => Yii::t('hipanel/hosting', 'Path'),
         ]);
     }
 

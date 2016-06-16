@@ -25,7 +25,6 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
-use hipanel\models\Ref;
 use Yii;
 
 class DbController extends CrudController
@@ -91,6 +90,6 @@ class DbController extends CrudController
 
     public function getStateData()
     {
-        return Ref::getList('state,db');
+        return $this->getRefs('state,db', 'hipanel/hosting');
     }
 }

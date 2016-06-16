@@ -163,6 +163,8 @@ class Hdomain extends \hipanel\base\Model
             'dns_on' => Yii::t('app', 'DNS'),
             'vhost_id' => Yii::t('app', 'Alias for'),
             'comment' => Yii::t('app', 'Comment'),
+            'proxy_enabled' => Yii::t('hipanel/hosting', 'Proxy enabled'),
+            'path' => Yii::t('hipanel/hosting', 'Path'),
         ]);
     }
 

@@ -25,7 +25,6 @@ use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
-use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Soft;
 use Yii;
 use yii\base\Event;
@@ -56,7 +55,13 @@ class ServiceController extends \hipanel\base\CrudController
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
                     'client_id' => 'client.client.id',
-                ]
+                ],
+                'data' => function ($action) {
+                    return [
+                        'stateData' => $this->getStateData(),
+                        'softData' => $this->getSofts(),
+                    ];
+                }
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -108,11 +113,12 @@ class ServiceController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return Ref::getList('state,service');
+        return $this->getRefs('state,service', 'hipanel/hosting');
     }
 
     public function getSofts()
     {
-        return ArrayHelper::map(Soft::find()->all(), 'name', 'name');
+        $softs = Soft::find()->all();
+        return ArrayHelper::map($softs, 'name', 'name');
     }
 }

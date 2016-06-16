@@ -40,6 +40,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::className(),
+                'i18nDictionary' => 'hipanel/hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
@@ -59,12 +60,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             'type' => [
                 'format' => 'raw',
                 'filter' => function ($column, $model, $attribute) {
-                    return Html::activeDropDownList($model, $attribute, [
-                        '' => Yii::t('app', '---'),
-                        'mailbox' => Yii::t('app', 'Mailbox'),
-                        'forward_only' => Yii::t('app', 'Forward only'),
-                        'mailbox_with_forwards' => Yii::t('app', 'Mailbox with forwards'),
-                    ], [
+                    return Html::activeDropDownList($model, $attribute, ['' => '----------'] + Mail::getTypes(), [
                         'class' => 'form-control',
                     ]);
                 },

@@ -28,11 +28,6 @@ use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
-use hipanel\helpers\ArrayHelper;
-use hipanel\models\Ref;
-use hipanel\modules\hosting\models\Hdomain;
-use hipanel\modules\hosting\models\HdomainSearch;
-use hiqdev\hiart\Collection;
 use Yii;
 use yii\base\Event;
 
@@ -198,7 +193,7 @@ class HdomainController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return Ref::getList('state,hdomain');
+        return $this->getRefs('state,hdomain', 'hipanel/hosting');
     }
 
     public function getTypeData()
