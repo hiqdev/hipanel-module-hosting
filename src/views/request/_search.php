@@ -21,7 +21,7 @@ use hiqdev\combo\StaticCombo;
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('state')->widget(StaticCombo::classname(), [
-        'data' => $stateOptions,
+        'data' => $states,
         'hasId' => true,
         'pluginOptions' => [
             'select2Options' => [
@@ -32,7 +32,7 @@ use hiqdev\combo\StaticCombo;
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('classes')->widget(StaticCombo::classname(), [
-        'data' => $objectOptions,
+        'data' => $objects,
         'hasId' => true,
         'pluginOptions' => [
             'select2Options' => [
@@ -43,15 +43,4 @@ use hiqdev\combo\StaticCombo;
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('client_id')->widget(ClientCombo::classname(), ['formElementSelector' => '.form-group']) ?>
-</div>
-<div class="col-md-4">
-    <?= $search->field('type_ids')->widget(StaticCombo::classname(), [
-        'data' => $typeOptions,
-        'hasId' => true,
-        'pluginOptions' => [
-            'select2Options' => [
-                'multiple' => true,
-            ]
-        ],
-    ]) ?>
 </div>

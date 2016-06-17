@@ -29,7 +29,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'classes' => [
-                'label' => Yii::t('app', 'Action'),
+                'label' => Yii::t('hipanel/hosting', 'Action'),
                 'filter' => false,
                 'enableSorting' => false,
                 'value' => function ($model) {
@@ -69,7 +69,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,request',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->state_label;
+                    return Yii::t('hipanel/hosting', $model->state_label);
                 }
             ],
             'actions' => [

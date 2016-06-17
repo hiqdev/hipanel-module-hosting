@@ -38,9 +38,8 @@ class RequestController extends \hipanel\base\CrudController
                 'class' => IndexAction::class,
                 'data' => function ($action) {
                     return [
-                        'objectOptions' => $action->controller->getObjectOptions(),
-                        'stateOptions' => $action->controller->getStateOptions(),
-                        'typeOptions' => $action->controller->getTypeOptions(),
+                        'objects' => $action->controller->getObjects(),
+                        'states' => $action->controller->getStates(),
                     ];
                 },
                 'filterStorageMap' => [
@@ -61,24 +60,18 @@ class RequestController extends \hipanel\base\CrudController
         ];
     }
 
-    public function getTypeOptions()
-    {
-        return $this->getRefs('type,request', 'hipanel/hosting', ['limit' => 'ALL', 'with_recursive' => true, 'select' => 'id']);
-    }
-
-    public function getStateOptions()
+    public function getStates()
     {
         return $this->getRefs('state,request', 'hipanel/hosting');
     }
 
-    public function getObjectOptions()
+    public function getObjects()
     {
         return [
-            ' '         => Yii::t('app', 'All'),
-            'db'        => Yii::t('app', 'Database'),
-            'hdomain'   => Yii::t('app', 'Domain'),
-            'device'    => Yii::t('app', 'Server'),
-            'service'   => Yii::t('app', 'Service'),
+            'db'        => Yii::t('hipanel/hosting', 'Database'),
+            'hdomain'   => Yii::t('hipanel/hosting', 'Domain'),
+            'device'    => Yii::t('hipanel/hosting', 'Server'),
+            'service'   => Yii::t('hipanel/hosting', 'Service'),
         ];
     }
 }

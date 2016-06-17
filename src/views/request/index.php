@@ -21,7 +21,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-        <?php $page->setSearchFormData(compact('objectOptions', 'stateOptions', 'typeOptions')) ?>
+        <?php $page->setSearchFormData(compact('objects', 'states')) ?>
 
         <?php $page->beginContent('main-actions') ?>
         <?php $page->endContent() ?>
