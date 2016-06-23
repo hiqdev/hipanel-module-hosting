@@ -61,8 +61,8 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'name_like',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return  Html::a($model->name, ['@' . $model->object . '/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
-                            ObjectLabelWidget::widget(compact('model'));
+                    return  Html::a($model->name, ['@backuping/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
+                            Html::a(ObjectLabelWidget::widget(compact('model')), ['@' . $model->object . '/view', 'id' => $model->id]);
                 },
             ],
             'account' => [
