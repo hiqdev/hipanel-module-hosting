@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -24,12 +18,15 @@ use hipanel\helpers\Url;
 use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
+use hipanel\widgets\XEditable;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
 
 class IpGridView extends \hipanel\grid\BoxedGridView
 {
+    public $controllerUrl = '@ip';
+
     public static $ipTags = [];
 
     public static function setIpTags($ipTags)
@@ -41,14 +38,14 @@ class IpGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'ip' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'filterAttribute' => 'ip_like',
             ],
             'tags' => [
                 'format' => 'raw',
                 'attribute' => 'tag',
                 'header' => Yii::t('hipanel/hosting', 'Tags'),
-                'filter' => function ($column, $model, $attribute) {
+                'filter' => function ($column, $model) {
                     return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('app', '---')], static::$ipTags), ['class' => 'form-control']);
                 },
                 'value' => function ($model) {
@@ -110,11 +107,28 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                     return ArraySpoiler::widget(['data' => $items, 'visibleCount' => 3]);
                 }
             ],
+            'services' => [
+                'attribute' => 'links',
+                'format' => 'html',
+                'label' => Yii::t('hipanel/server', 'Services'),
+                'value' => function ($model) {
+                    return ArraySpoiler::widget([
+                        'data' => $model->links,
+                        'formatter' => function ($link) {
+                            if (Yii::$app->user->can('support') && Yii::getAlias('@service', false)) {
+                                return Html::a($link->service, ['@service/view', 'id' => $link->service_id]);
+                            }
+
+                            return $link->service;
+                        },
+                    ]);
+                },
+            ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view} {expand} {update} {delete}',
                 'buttons' => [
-                    'expand' => function ($url, $model, $key) {
+                    'expand' => function ($url, $model) {
                         $options = array_merge([
                             'title' => Yii::t('hipanel/hosting', 'Expand'),
                             'aria-label' => Yii::t('hipanel/hosting', 'Expand'),
@@ -124,8 +138,8 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         ]);
 
                         return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel/hosting', 'Expand'), $url, $options);
-                    }
-                ]
+                    },
+                ],
             ],
             'ptr' => [
                 'options' => [
@@ -134,19 +148,18 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'value' => function ($model) {
                     if ($model->canSetPtr()) {
-                        return \hipanel\widgets\XEditable::widget([
+                        return XEditable::widget([
                             'model' => $model,
                             'attribute' => 'ptr',
                             'pluginOptions' => [
-                                'url'       => Url::to('set-ptr')
-                            ]
+                                'url' => Url::to('@ip/set-ptr')
+                            ],
                         ]);
                     }
 
                     return null;
                 }
             ],
-
         ];
     }
 }
