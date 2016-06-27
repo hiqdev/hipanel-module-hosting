@@ -74,7 +74,7 @@ class Ip extends \hipanel\base\Model
                 'skipOnArray' => true, 'on' => ['create', 'update']
             ],
             [['id'], 'required', 'on' => ['update', 'delete', 'set-ptr']],
-            [['id'], 'integer', 'on' => ['update', 'delete', 'expand']],
+            [['id'], 'integer', 'on' => ['create', 'update', 'delete', 'expand']],
             [['with_existing'], 'boolean', 'on' => ['expand']],
             [['ptr'], DomainValidator::class, 'on' => ['set-ptr']],
         ];

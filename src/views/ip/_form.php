@@ -43,8 +43,10 @@ DynamicFormWidget::begin([
                     <div class="box box-danger">
                         <div class="box-body">
                             <div class="form-instance" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-
                                 <?php
+                                if ($model->isNewRecord) {
+                                    $model->id = $i;
+                                }
                                 echo $form->field($model, "[$i]id")->hiddenInput(['data-attribute' => 'id'])->label(false);
                                 echo $form->field($model, "[$i]ip")->textInput(['readonly' => !$model->isNewRecord]);
 
@@ -68,6 +70,10 @@ DynamicFormWidget::begin([
                                     <?php foreach ($model->getAddedLinks() as $link_id => $link) { ?>
                                         <div class="item">
                                             <?php
+                                            if ($link->isNewRecord && empty($link->ip_id)) {
+                                                $link->ip_id = $i;
+                                            }
+
                                             echo Html::activeHiddenInput($link, "[$i][$link_id]id", ['value' => $link->id]);
                                             echo Html::activeHiddenInput($link, "[$i][$link_id]ip_id", ['data-attribute' => 'ip_id', 'value' => $model->id]); ?>
                                             <div class="row" style="margin-bottom: 5pt">
