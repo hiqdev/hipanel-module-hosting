@@ -21,7 +21,7 @@ class State extends Label
     public function init()
     {
         $state = $this->model->state;
-        if ($state === 'ok') {
+        if ($state === 'ok' || $state === 'active') {
             $class = 'info';
         } elseif ($state === 'blocked') {
             $class = 'danger';
