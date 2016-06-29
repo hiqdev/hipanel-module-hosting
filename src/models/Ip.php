@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\ArrayHelper;
@@ -100,7 +94,7 @@ class Ip extends \hipanel\base\Model
     {
         return in_array($this->scenario, ['create', 'update'], true)
             ? ArrayHelper::toArray($this->_links)
-            : $this->hasMany(Link::className(), ['ip_id' => 'id']);
+            : $this->hasMany(Link::class, ['ip_id' => 'id']);
     }
 
     /**
@@ -108,7 +102,7 @@ class Ip extends \hipanel\base\Model
      */
     public function getRelatedLinks()
     {
-        return $this->hasMany(Link::className(), ['ip_id' => 'id']);
+        return $this->hasMany(Link::class, ['ip_id' => 'id']);
     }
 
     /**
