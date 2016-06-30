@@ -17,7 +17,6 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\base\Lang;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
@@ -37,7 +36,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
     public static function setTypeOptions($typeOptions)
     {
         foreach ($typeOptions as $key => &$value) {
-            $value = Yii::t('hipanel/hosting/backuping/periodicity', Lang::lang($value));
+            $value = Yii::t('hipanel/hosting/backuping/periodicity', $value);
         }
 
         self::$typeOptions = $typeOptions;
