@@ -4,7 +4,8 @@
 /* @var $model hipanel\modules\hosting\models\Db */
 /* @var $type string */
 
-use hipanel\base\View;
+
+use hipanel\components\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\DbServiceCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;

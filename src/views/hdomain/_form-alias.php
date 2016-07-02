@@ -4,12 +4,13 @@
 /* @var $model hipanel\modules\hosting\models\Hdomain */
 /* @var $type string */
 
-use hipanel\base\View;
+
+use hipanel\components\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\HdomainCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\hosting\widgets\combo\VhostCombo;
-use hipanel\modules\server\widgets\combo\ServerCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -35,7 +36,7 @@ $form = ActiveForm::begin([
                                 print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
                             }
 
-                            print $form->field($model, "[$i]server")->widget(ServerCombo::className(), ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions'        => [

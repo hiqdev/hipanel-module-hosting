@@ -8,7 +8,7 @@ use hipanel\base\View;
 use hipanel\helpers\Url;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
-use hipanel\modules\server\widgets\combo\ServerCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -46,7 +46,7 @@ $form = ActiveForm::begin([
                                         </div>
                                     <?php } ?>
                                     <div class="col-md-4">
-                                        <?= $form->field($model, "[$i]server")->widget(ServerCombo::className(), ['inputOptions' => ['readonly' => true]]) ?>
+                                        <?= $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['inputOptions' => ['readonly' => true]]) ?>
                                     </div>
                                     <div class="col-md-4">
                                         <?= $form->field($model, "[$i]login")->widget(SshAccountCombo::className(), ['inputOptions' => ['readonly' => true]]) ?>

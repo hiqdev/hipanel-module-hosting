@@ -3,7 +3,7 @@
 use hipanel\helpers\Url;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
-use hipanel\modules\server\widgets\combo\ServerCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 
@@ -42,7 +42,7 @@ $this->breadcrumbs->setItems([
                                         'inputOptions' => ['readonly' => true]
                                     ]);
                                 }
-                                print $form->field($model, "[$i]server")->widget(ServerCombo::className(), [
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => ['readonly' => true]
                                 ]);
