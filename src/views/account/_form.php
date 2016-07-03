@@ -8,6 +8,7 @@ use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\AccountPathCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
+use hipanel\modules\server\models\Server;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
@@ -43,7 +44,9 @@ use yii\helpers\Url;
                                     print $form->field($model, "[$i]client")->widget(ClientCombo::className());
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className());
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), [
+                                    'state' => Server::STATE_OK
+                                ]);
                                 if ($model->scenario === 'create-ftponly') {
                                     print $form->field($model, "[$i]account")->widget(SshAccountCombo::className());
                                 }
