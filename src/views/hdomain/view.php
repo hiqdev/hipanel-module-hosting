@@ -46,7 +46,7 @@ $this->breadcrumbs->setItems([
             <ul class="nav">
                 <li>
                     <?php $url = 'http://' . $model->domain . '/' ?>
-                    <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('app', 'Go to site ') . $url, $url,
+                    <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('hipanel/hosting', 'Go to site {link}', ['link' => $url]), $url,
                         ['target' => '_blank']); ?>
                 </li>
                 <li>

@@ -111,6 +111,7 @@ return [
     'Temporary' => 'Временный',
     'Proxy enabled' => 'Проксирование',
     'Path' => 'Путь',
+    'Go to site {link}' => 'Перейти на сайт {link}',
 /**
  * Mailboxes
  */
