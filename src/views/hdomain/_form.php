@@ -131,6 +131,10 @@ JS
                             }
                             print $form->field($model, "[$i]path", $fieldOptions);
                             print $form->field($model, "[$i]with_www")->checkbox();
+                            print $form->field($model, "[$i]dns_on")->checkbox()
+                                ->label(Yii::t('hipanel/hosting', 'DNS is enabled'))
+                                ->hint(Yii::t('hipanel/hosting', 'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately'));
+
 
                             print $this->render('_form_ip_proxy', compact('model', 'form', 'i'));
 

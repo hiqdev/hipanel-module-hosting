@@ -20,6 +20,8 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
+use hipanel\grid\XEditableColumn;
+use hipanel\helpers\Url;
 use hipanel\modules\hosting\models\Backup;
 use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\widgets\backup\BackupGridRow;
@@ -27,6 +29,7 @@ use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\Label;
+use hiqdev\bootstrap_switch\BootstrapSwitchColumn;
 use Yii;
 use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Html;
@@ -121,8 +124,21 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'dns_on' => [
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->dns_on ? Yii::t('app', 'Enabled') : Yii::t('app', 'Disabled');
+                    return $model->dns_on ? Yii::t('hipanel', 'Enabled') : Yii::t('hipanel', 'Disabled');
                 }
+            ],
+            'dns_switch' => [
+                'class'         => XEditableColumn::class,
+                'attribute'     => 'dns_on',
+                'label'         => Yii::t('hipanel/hosting', 'DNS'),
+                'filter'        => true,
+                'popover'       => Yii::t('hipanel/hosting', 'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately'),
+                'pluginOptions' => [
+                    'type' => 'select',
+                    'url' => Url::to('set-dns-on'),
+                    'source' => ['' => Yii::t('hipanel', 'Disabled'), 1 => Yii::t('hipanel', 'Enabled')],
+                    'placement' => 'bottom',
+                ]
             ],
             'aliases' => [
                 'label' => Yii::t('app', 'Aliases'),

@@ -31,7 +31,7 @@ $this->breadcrumbs->setItems([
             <i class="fa fa-user fa-5x"></i>
         </div>
         <p class="text-center">
-            <span class="profile-user-role"><?= $model->login ?></span>
+            <span class="profile-user-name"><?= $model->login ?></span>
             <br>
             <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
         </p>

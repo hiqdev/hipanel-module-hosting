@@ -89,7 +89,8 @@ class Hdomain extends \hipanel\base\Model
             ],
             [['client', 'seller'], ClientLoginValidator::className()],
             [['account'], AccountLoginValidator::className()],
-            [['dns_on', 'with_www', 'proxy_enable'], 'boolean'],
+            [['with_www'], 'boolean', 'on' => ['create-alias']],
+            [['dns_on', 'with_www', 'proxy_enable'], 'boolean', 'on' => ['create']],
             [['domain', 'alias'], DomainValidator::className()],
             [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['create']],
@@ -99,7 +100,6 @@ class Hdomain extends \hipanel\base\Model
                     'server',
                     'account',
                     'domain',
-                    'with_www',
                     'path',
                     'ip',
                 ],
@@ -118,7 +118,6 @@ class Hdomain extends \hipanel\base\Model
                     'server',
                     'account',
                     'vhost_id',
-                    'with_www',
                 ],
                 'required',
                 'on' => ['create-alias']
@@ -143,6 +142,7 @@ class Hdomain extends \hipanel\base\Model
             ],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
+            [['id', 'dns_on'], 'safe', 'on' => ['set-dns-on']],
         ];
     }
 
@@ -160,7 +160,7 @@ class Hdomain extends \hipanel\base\Model
             'with_www' => Yii::t('app', 'Create www alias'),
             'proxy_enable' => Yii::t('app', 'Enable proxy (NEED MANUAL)'),
             'backuping_type' => Yii::t('app', 'Backup periodicity'),
-            'dns_on' => Yii::t('app', 'DNS'),
+            'dns_on' => Yii::t('hipanel/hosting', 'DNS'),
             'vhost_id' => Yii::t('app', 'Alias for'),
             'comment' => Yii::t('app', 'Comment'),
             'proxy_enabled' => Yii::t('hipanel/hosting', 'Proxy enabled'),
@@ -183,9 +183,10 @@ class Hdomain extends \hipanel\base\Model
         $result = [];
 
         if (in_array($this->scenario, ['create', 'update'], true)) {
-            $result['create'] = ['vhosts', ucfirst($this->scenario)]; // Create should be send to vhost module
+            $result['create'] = ['vhosts', ucfirst($this->scenario)]; // Create must be sent to vhost module
         }
         $result['create-alias'] = 'create';
+        $result['set-dns-on'] = 'update';
         return $result;
     }
 }

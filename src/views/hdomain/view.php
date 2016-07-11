@@ -105,7 +105,7 @@ $this->breadcrumbs->setItems([
                             'account', 'server', 'service',
                             'ip',
                             'state',
-                            'dns_on',
+                            'dns_switch',
                             [
                                 'attribute' => 'aliases',
                                 'label' => Yii::t('app', 'Aliases'),

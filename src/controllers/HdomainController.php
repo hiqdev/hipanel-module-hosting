@@ -188,6 +188,17 @@ class HdomainController extends \hipanel\base\CrudController
                 'scenario' => 'disable-block',
                 'view' => '_bulkDisableBlock',
             ],
+            'set-dns-on' => [
+                'class' => SmartUpdateAction::class,
+                'success' => Yii::t('hipanel/hosting', 'DNS settings were changed'),
+                'error' => Yii::t('hipanel/hosting', 'Failed to change DNS settings'),
+                'POST html' => [
+                    'save'    => true,
+                    'success' => [
+                        'class' => RedirectAction::class,
+                    ],
+                ],
+            ]
         ];
     }
 
