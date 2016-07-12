@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -40,12 +34,12 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
             'server' => [
                 'sortAttribute' => 'server',
                 'attribute' => 'server_id',
-                'class' => ServerColumn::className(),
+                'class' => ServerColumn::class,
             ],
             'account' => [
                 'sortAttribute' => 'account',
                 'attribute' => 'account_id',
-                'class' => AccountColumn::className()
+                'class' => AccountColumn::class
             ],
             'client',
             'state' => [
@@ -56,7 +50,7 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view}',
             ],
         ];

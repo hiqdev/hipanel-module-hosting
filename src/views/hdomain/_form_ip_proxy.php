@@ -22,7 +22,7 @@ print $form->field($model, "[$i]proxy_enabled")->checkbox([
 $proxyEnabled = $model->proxy_enabled;
 
 print $form->field($model, "[$i]ip", ['options' => ['class' => 'not-proxied-ip ' . ($proxyEnabled ? 'hidden' : '')]])
-    ->widget(HdomainIpCombo::className(), [
+    ->widget(HdomainIpCombo::class, [
         'formElementSelector' => '.form-instance',
         'pluginOptions' => [
             'activeWhen' => [
@@ -34,7 +34,7 @@ print $form->field($model, "[$i]ip", ['options' => ['class' => 'not-proxied-ip '
     ]);
 
 print $form->field($model, "[$i]ip", ['options' => ['class' => 'frontend_ip ' . (!$proxyEnabled ? 'hidden' : '')]])
-    ->widget(FrontIpCombo::className(), [
+    ->widget(FrontIpCombo::class, [
         'formElementSelector' => '.form-instance',
         'inputOptions' => [
             'id' => Html::getInputId($model, "[$i]ip") . '_frontend',
@@ -50,7 +50,7 @@ print $form->field($model, "[$i]ip", ['options' => ['class' => 'frontend_ip ' . 
     ])->label('Frontend IP');
 
 print $form->field($model, "[$i]backend_ip", ['options' => ['class' => 'backend_ip ' . (!$proxyEnabled ? 'hidden' : '')]])
-    ->widget(BackIpCombo::className(), [
+    ->widget(BackIpCombo::class, [
         'formElementSelector' => '.form-instance',
         'inputOptions' => [
             'data-attribute' => 'backend_ip',

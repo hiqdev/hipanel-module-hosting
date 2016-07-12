@@ -60,7 +60,7 @@ $this->breadcrumbs->setItems([
                             <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
                         </div>
 
-                        <?= $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false) ?>
+                        <?= $modalButton->form->field($model, 'password')->widget(PasswordInput::class)->label(false) ?>
                         <?= Html::activeHiddenInput($model, 'login') ?>
                     <?php ModalButton::end() ?>
                 </li>

@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -38,12 +32,12 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'service' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'attribute' => 'name',
                 'filterAttribute' => 'service_like',
             ],
             'server' => [
-                'class' => ServerColumn::className(),
+                'class' => ServerColumn::class,
             ],
             'object' => [
                 'format' => 'raw',
@@ -97,7 +91,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'state' => [
-                'class' => RefColumn::className(),
+                'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel/hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -106,7 +100,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,service',
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view}',
                 'header' => Yii::t('hipanel/hosting', 'Actions'),
             ],

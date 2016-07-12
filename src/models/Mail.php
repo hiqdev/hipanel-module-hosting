@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use hipanel\modules\hosting\validators\EmailLocalPartValidator;
@@ -46,7 +40,7 @@ class Mail extends \hipanel\base\Model
             [['password'], 'safe', 'on' => ['update', 'set-password'], 'when' => function ($model) {
                 return !$model->canChangePassword();
             }],
-            [['nick'], EmailLocalPartValidator::className(), 'on' => ['create']],
+            [['nick'], EmailLocalPartValidator::class, 'on' => ['create']],
             [['forwards', 'spam_forward_mail'], 'filter', 'filter' => function ($value) {
                 $res = StringHelper::explode($value, ',', true, true);
                 return $res;

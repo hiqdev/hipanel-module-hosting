@@ -41,21 +41,21 @@ use yii\helpers\Url;
 
                                 <?php
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className());
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), [
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                     'state' => Server::STATE_OK
                                 ]);
                                 if ($model->scenario === 'create-ftponly') {
-                                    print $form->field($model, "[$i]account")->widget(SshAccountCombo::className());
+                                    print $form->field($model, "[$i]account")->widget(SshAccountCombo::class);
                                 }
 
                                 print $form->field($model, "[$i]login");
-                                print $form->field($model, "[$i]password")->widget(PasswordInput::className());
+                                print $form->field($model, "[$i]password")->widget(PasswordInput::class);
 
                                 if ($model->scenario === 'create-ftponly') {
-                                    print $form->field($model, "[$i]path")->widget(AccountPathCombo::className());
+                                    print $form->field($model, "[$i]path")->widget(AccountPathCombo::class);
                                 }
 
                                 print $form->field($model, "[$i]sshftp_ips")

@@ -44,7 +44,7 @@ use yii\web\JsExpression;
 
                                 <?php
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className(), [
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
                                         'formElementSelector' => '.form-instance',
                                         'inputOptions' => [
                                             'readonly' => !$model->isNewRecord
@@ -52,14 +52,14 @@ use yii\web\JsExpression;
                                     ]);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), [
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'readonly' => !$model->isNewRecord
                                     ]
                                 ]);
 
-                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(),[
+                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class,[
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'readonly' => !$model->isNewRecord
@@ -74,7 +74,7 @@ use yii\web\JsExpression;
                                         'readonly' => !$model->isNewRecord
                                     ])->label(false) ?>
                                     <?= Html::tag('span', '@') ?>
-                                    <?= $form->field($model, "[$i]hdomain_id")->widget(VhostCombo::className(), [
+                                    <?= $form->field($model, "[$i]hdomain_id")->widget(VhostCombo::class, [
                                         'formElementSelector' => '.form-instance',
                                         'inputOptions' => [
                                             'data-field' => 'dns_hdomain_id',
@@ -89,7 +89,7 @@ use yii\web\JsExpression;
                                 </div>
 
                                 <?php
-                                print $form->field($model, "[$i]password")->widget(PasswordInput::className(), [
+                                print $form->field($model, "[$i]password")->widget(PasswordInput::class, [
                                     'inputOptions' => [
                                         'disabled' => $model->type === $model::TYPE_FORWARD_ONLY
                                     ]
@@ -111,7 +111,7 @@ use yii\web\JsExpression;
                                     'options' => [
                                         'style' => $model->spam_action !== 'forward' ? 'display: none' : ''
                                     ]
-                                ])->widget(MultipleMailCombo::className(), [
+                                ])->widget(MultipleMailCombo::class, [
                                     'type' => 'hosting/spam-forward',
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
@@ -129,7 +129,7 @@ use yii\web\JsExpression;
                                     ]
                                 ])->label(false);
 
-                                print $form->field($model, "[$i]forwards")->widget(MultipleMailCombo::className(), [
+                                print $form->field($model, "[$i]forwards")->widget(MultipleMailCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'data-attribute' => 'forwards',

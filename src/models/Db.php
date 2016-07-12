@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use hipanel\base\Model;
@@ -36,12 +30,12 @@ class Db extends Model
             [['type', 'state', 'backuping_type', 'type_label', 'state_label', 'backuping_type_label'], 'safe'],
             /// Create
             [['server', 'account', 'service_id', 'name', 'password'], 'required', 'on' => ['create']],
-            [['name'], DbNameValidator::className(), 'on' => ['create']],
+            [['name'], DbNameValidator::class, 'on' => ['create']],
             [
                 ['password'],
                 'match',
                 'pattern' => '/^[\x20-\x7f]*$/',
-                'message' => \Yii::t('app', '{attribute} should not contain non-latin characters'),
+                'message' => Yii::t('app', '{attribute} should not contain non-latin characters'),
                 'on'      => ['create', 'set-password']
             ],
             [['password'], 'required', 'on' => ['set-password']],

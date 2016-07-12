@@ -33,15 +33,15 @@ $form = ActiveForm::begin([
                              xmlns="http://www.w3.org/1999/html">
                             <?php
                             if (Yii::$app->user->can('support')) {
-                                print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
                             }
 
-                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
-                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), ['formElementSelector' => '.form-instance']);
-                            print $form->field($model, "[$i]service_id")->widget(DbServiceCombo::className(), ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]service_id")->widget(DbServiceCombo::class, ['formElementSelector' => '.form-instance']);
 
                             print $form->field($model, "[$i]name");
-                            print $form->field($model, "[$i]password")->widget(PasswordInput::className());
+                            print $form->field($model, "[$i]password")->widget(PasswordInput::class);
 
                             print $form->field($model, "[$i]description");
                             ?>

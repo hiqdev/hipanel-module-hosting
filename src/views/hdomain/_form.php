@@ -91,12 +91,12 @@ $form = ActiveForm::begin([
                             <?php
                             if (Yii::$app->user->can('support')) {
                                 print $form->field($model, "[$i]client")
-                                    ->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
+                                    ->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
                             }
 
                             print $form->field($model, "[$i]server")
-                                ->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
-                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
+                                ->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions' => [
                                     'data-attribute' => 'account',
@@ -138,7 +138,7 @@ JS
 
                             print $this->render('_form_ip_proxy', compact('model', 'form', 'i'));
 
-                            print $form->field($model, "[$i]backuping_type")->widget(StaticCombo::className(), [
+                            print $form->field($model, "[$i]backuping_type")->widget(StaticCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'hasId' => true,
                                 'data' => Ref::getList('type,backuping', 'hipanel/hosting'),

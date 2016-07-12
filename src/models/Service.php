@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\StringHelper;
@@ -60,7 +54,7 @@ class Service extends \hipanel\base\Model
 
     public function getIps()
     {
-        return $this->hasMany(Ip::className(), ['service_id', 'id']);
+        return $this->hasMany(Ip::class, ['service_id', 'id']);
     }
 
     public function getObjects_count()

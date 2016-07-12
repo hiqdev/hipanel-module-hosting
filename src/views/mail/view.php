@@ -64,7 +64,7 @@ $this->breadcrumbs->setItems([
                         ]);
                         ?>
 
-                        <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::className())->label(false);
+                        <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::class)->label(false);
 
                         ModalButton::end();
                         ?>

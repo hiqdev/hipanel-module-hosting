@@ -39,13 +39,13 @@ $form = ActiveForm::begin([
 
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <?= $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance', 'inputOptions' => ['readonly' => true]]) ?>
+                                        <?= $form->field($model, "[$i]client")->widget(ClientCombo::class, ['formElementSelector' => '.form-instance', 'inputOptions' => ['readonly' => true]]) ?>
                                     </div>
                                     <div class="col-md-4">
-                                        <?= $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance', 'inputOptions' => ['readonly' => true]]) ?>
+                                        <?= $form->field($model, "[$i]server")->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance', 'inputOptions' => ['readonly' => true]]) ?>
                                     </div>
                                     <div class="col-md-4">
-                                        <?= $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
+                                        <?= $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                             'formElementSelector' => '.form-instance',
                                             'inputOptions'        => [
                                                 'data-field' => 'account',

@@ -42,14 +42,14 @@ $form = ActiveForm::begin([
                                 <div class="row">
                                     <?php if (Yii::$app->user->can('support')) { ?>
                                         <div class="col-md-4">
-                                            <?= $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['inputOptions' => ['readonly' => true]]) ?>
+                                            <?= $form->field($model, "[$i]client")->widget(ClientCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
                                         </div>
                                     <?php } ?>
                                     <div class="col-md-4">
-                                        <?= $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['inputOptions' => ['readonly' => true]]) ?>
+                                        <?= $form->field($model, "[$i]server")->widget(PanelServerCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
                                     </div>
                                     <div class="col-md-4">
-                                        <?= $form->field($model, "[$i]login")->widget(SshAccountCombo::className(), ['inputOptions' => ['readonly' => true]]) ?>
+                                        <?= $form->field($model, "[$i]login")->widget(SshAccountCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
                                     </div>
                                 </div>
                                 <?php

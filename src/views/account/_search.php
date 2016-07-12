@@ -15,10 +15,10 @@ use hiqdev\combo\StaticCombo;
     <?= $search->field('login_like') ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('server')->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-group']) ?>
+    <?= $search->field('server')->widget(PanelServerCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('state')->widget(StaticCombo::classname(), [
+    <?= $search->field('state')->widget(StaticCombo::class, [
         'data' => $stateData,
         'hasId' => true,
         'pluginOptions' => [
@@ -29,13 +29,13 @@ use hiqdev\combo\StaticCombo;
     ]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('client_id')->widget(ClientCombo::classname(), ['formElementSelector' => '.form-group']) ?>
+    <?= $search->field('client_id')->widget(ClientCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('seller_id')->widget(SellerCombo::classname(), ['formElementSelector' => '.form-group']) ?>
+    <?= $search->field('seller_id')->widget(SellerCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('type')->widget(StaticCombo::classname(), [
+    <?= $search->field('type')->widget(StaticCombo::class, [
         'data' => $typeData,
         'hasId' => true,
         'pluginOptions' => [

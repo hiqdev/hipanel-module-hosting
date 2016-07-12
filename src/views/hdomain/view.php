@@ -114,7 +114,7 @@ $this->breadcrumbs->setItems([
                                     $html = [];
                                     foreach ((array)$model->getAttribute('aliases') as $id => $alias) {
                                         $aliasModel = Yii::createObject([
-                                            'class' => Hdomain::className(),
+                                            'class' => Hdomain::class,
                                             'id' => $id,
                                             'domain' => $alias
                                         ]);

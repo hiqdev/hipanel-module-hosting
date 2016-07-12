@@ -33,17 +33,17 @@ $form = ActiveForm::begin([
                         <div class="form-instance" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
                             <?php
                             if (Yii::$app->user->can('support')) {
-                                print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
                             }
 
-                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
-                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
+                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions'        => [
                                     'data-attribute' => 'account'
                                 ],
                             ]);
-                            print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::className(), ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::class, ['formElementSelector' => '.form-instance']);
 
                             $model->alias_type = 'subdomain';
                             print $form->field($model, "[$i]alias_type")->radio([
@@ -62,7 +62,7 @@ $form = ActiveForm::begin([
                             <div class="alias-subdomain form-inline">
                                 <?= $form->field($model, "[$i]subdomain")->input('text',  ['data-attribute' => 'subdomain'])->label(false) ?>
                                 <?= Html::tag('span', '.') ?>
-                                <?= $form->field($model, "[$i]dns_hdomain_id")->widget(HdomainCombo::className(), [
+                                <?= $form->field($model, "[$i]dns_hdomain_id")->widget(HdomainCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'data-attribute' => 'dns_hdomain_id'

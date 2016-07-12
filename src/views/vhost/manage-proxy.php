@@ -37,16 +37,16 @@ $this->breadcrumbs->setItems([
 
                                 <?php
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className(), [
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
                                         'formElementSelector' => '.form-instance',
                                         'inputOptions' => ['readonly' => true]
                                     ]);
                                 }
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), [
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => ['readonly' => true]
                                 ]);
-                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::className(), [
+                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => ['data-attribute' => 'account', 'readonly' => true]
                                 ]);

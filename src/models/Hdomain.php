@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use hipanel\modules\client\validators\LoginValidator as ClientLoginValidator;
@@ -87,11 +81,11 @@ class Hdomain extends \hipanel\base\Model
                 ],
                 'safe'
             ],
-            [['client', 'seller'], ClientLoginValidator::className()],
-            [['account'], AccountLoginValidator::className()],
+            [['client', 'seller'], ClientLoginValidator::class],
+            [['account'], AccountLoginValidator::class],
             [['with_www'], 'boolean', 'on' => ['create-alias']],
             [['dns_on', 'with_www', 'proxy_enable'], 'boolean', 'on' => ['create']],
-            [['domain', 'alias'], DomainValidator::className()],
+            [['domain', 'alias'], DomainValidator::class],
             [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['create']],
             [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],

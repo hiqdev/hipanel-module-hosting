@@ -78,7 +78,7 @@ DynamicFormWidget::begin([
                                             echo Html::activeHiddenInput($link, "[$i][$link_id]ip_id", ['data-attribute' => 'ip_id', 'value' => $model->id]); ?>
                                             <div class="row" style="margin-bottom: 5pt">
                                                 <div class="col-md-5">
-                                                    <?= $form->field($link, "[$i][$link_id]device")->widget(ServerCombo::className(), [
+                                                    <?= $form->field($link, "[$i][$link_id]device")->widget(ServerCombo::class, [
                                                         // TODO: Change to DeviceCombo when will be implemented
                                                         'pluginOptions' => [],
                                                         'formElementSelector' => '.item',
@@ -100,7 +100,7 @@ DynamicFormWidget::begin([
                                                             }
                                                         }
                                                     ");
-                                                    echo $form->field($link, "[$i][$link_id]service_id")->widget(ServiceCombo::className(), [
+                                                    echo $form->field($link, "[$i][$link_id]service_id")->widget(ServiceCombo::class, [
                                                         'pluginOptions' => [
                                                             'activeWhen' => [
                                                                 'server/server',
@@ -127,7 +127,7 @@ DynamicFormWidget::begin([
                                     <?php } ?>
                                 </div>
                                 <?php DynamicFormWidget::end();
-                                print $form->field($model, "[$i]tags")->widget(StaticCombo::className(), [
+                                print $form->field($model, "[$i]tags")->widget(StaticCombo::class, [
                                     'data' => $tags,
                                     'hasId' => true,
                                     'inputOptions' => [

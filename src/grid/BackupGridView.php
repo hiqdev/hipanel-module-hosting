@@ -31,19 +31,19 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'object_id' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'filterAttribute' => 'id',
                 'attribute' => 'object_id'
             ],
             'backup' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'filterAttribute' => 'backup_like',
             ],
             'server' => [
-                'class' => ServerColumn::className(),
+                'class' => ServerColumn::class,
             ],
             'account' => [
-                'class' => AccountColumn::className()
+                'class' => AccountColumn::class
             ],
             'object' => [
                 'format' => 'raw',
@@ -75,11 +75,11 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view} {delete}',
             ],
             'inner_actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{deleteBackup}',
                 'buttons' => [
                     'deleteBackup' => function ($url, $model, $key) {

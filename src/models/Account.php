@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\StringHelper;
@@ -61,7 +55,7 @@ class Account extends \hipanel\base\Model
                 'operator' => '!=',
                 'on' => ['create', 'create-ftponly', 'update', 'set-password'],
             ],
-            [['login'], LoginValidator::className(), 'on' => ['create', 'create-ftponly', 'set-password']],
+            [['login'], LoginValidator::class, 'on' => ['create', 'create-ftponly', 'set-password']],
             [
                 ['login'],
                 'in',

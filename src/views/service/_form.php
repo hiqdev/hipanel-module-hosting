@@ -34,10 +34,10 @@ $form = ActiveForm::begin([
                                 }
 
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::className(), ['formElementSelector' => '.form-instance']);
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::className(), ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance']);
 
                                 print $form->field($model, "[$i]name");
                                 print $form->field($model, "[$i]ips")->widget(ServiceIpCombo::class, [

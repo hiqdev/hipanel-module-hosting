@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -40,7 +34,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'hdomain' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'filterAttribute' => 'domain_like',
                 'attribute' => 'domain'
             ],
@@ -70,10 +64,10 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'account' => [
-                'class' => AccountColumn::className()
+                'class' => AccountColumn::class
             ],
             'server' => [
-                'class' => ServerColumn::className()
+                'class' => ServerColumn::class
             ],
             'ip' => [
                 'enableSorting' => false,
@@ -103,7 +97,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'state' => [
-                'class' => RefColumn::className(),
+                'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel/hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -159,7 +153,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view} {delete}'
             ],
         ];

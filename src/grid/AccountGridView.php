@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -32,13 +26,13 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'account'       => [
-                'class'             => MainColumn::className(),
+                'class'             => MainColumn::class,
                 'label'             => Yii::t('app', 'Account'),
                 'attribute'         => 'login',
                 'filterAttribute'   => 'login_like',
             ],
             'state'         => [
-                'class'             => RefColumn::className(),
+                'class'             => RefColumn::class,
                 'format'            => 'raw',
                 'i18nDictionary'    => 'hipanel/hosting',
                 'value'             => function ($model) {
@@ -47,7 +41,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 'gtype'             => 'state,account',
             ],
             'server'        => [
-                'class'             => ServerColumn::className()
+                'class'             => ServerColumn::class
             ],
             'sshftp_ips'    => [
                 'attribute'         => 'sshftp_ips',
@@ -60,11 +54,11 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'actions'       => [
-                'class'             => ActionColumn::className(),
+                'class'             => ActionColumn::class,
                 'template'          => '{view} {delete}'
             ],
             'type'          => [
-                'class'             => RefColumn::className(),
+                'class'             => RefColumn::class,
                 'i18nDictionary'    => 'hipanel/hosting',
                 'format'            => 'raw',
                 'value'             => function ($model) {

@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
@@ -39,11 +33,11 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             'server' => [
                 'sortAttribute' => 'server',
                 'attribute' => 'server_id',
-                'class' => ServerColumn::className(),
+                'class' => ServerColumn::class,
             ],
             'account' => [
                 'enableSorting' => false,
-                'class' => AccountColumn::className()
+                'class' => AccountColumn::class
             ],
             'object' => [
                 'enableSorting' => false,
@@ -64,7 +58,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'state' => [
-                'class' => RefColumn::className(),
+                'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel/hosting',
                 'gtype' => 'state,request',
                 'format' => 'raw',
@@ -73,7 +67,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{view} {delete}',
             ],
         ];
