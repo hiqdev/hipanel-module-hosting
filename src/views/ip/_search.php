@@ -15,19 +15,15 @@ use yii\web\View;
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('ip_like')->label(Yii::t('hipanel/hosting', 'IP')) ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('server_in')->widget(ServerCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('tag_in')->widget(StaticCombo::class, [
         'data' => array_merge(['' => Yii::t('app', '---')], $ipTags),
         'hasId' => true,
-        'pluginOptions' => [
-            'select2Options' => [
-                'multiple' => true,
-            ]
-        ],
+        'multiple' => true,
     ]) ?>
 </div>
-
-

@@ -133,11 +133,7 @@ DynamicFormWidget::begin([
                                     'inputOptions' => [
                                         'value' => implode(',', (array)$model->tags)
                                     ],
-                                    'pluginOptions' => [
-                                        'select2Options' => [
-                                            'multiple' => true
-                                        ]
-                                    ]
+                                    'multiple' => true,
                                 ]);
                                 ?>
                             </div>

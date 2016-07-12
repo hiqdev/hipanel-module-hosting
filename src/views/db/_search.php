@@ -14,26 +14,27 @@ use hiqdev\combo\StaticCombo;
 <div class="col-md-6">
     <?= $search->field('name') ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('server')->widget(PanelServerCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('description') ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('client_id')->widget(ClientCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('seller_id')->widget(SellerCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
+
 <div class="col-md-6">
     <?= $search->field('state')->widget(StaticCombo::class, [
-        'data' => $stateData,
+        'data' => $this->context->getRefs('state,db', 'hipanel/hosting'),
         'hasId' => true,
-        'pluginOptions' => [
-            'select2Options' => [
-                'multiple' => true,
-            ]
-        ],
+        'multiple' => true,
     ]) ?>
 </div>
