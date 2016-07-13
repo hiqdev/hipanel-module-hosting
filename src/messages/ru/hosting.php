@@ -118,8 +118,12 @@ return [
     'Error when updating advanced settings' => 'Ошибка при изменении расширенных настроек',
     'Domain proxy setting settings were changed' => 'Настройки проксирования домена изменеы',
     'Error when changing domain proxy settings' => 'Ошибка при изменении настроек проксирования',
-    
-/**
+    'hosting domain advanced config' => 'Расширенная конфигурация хостинг домена',
+    'Advanced config' => 'Расширенная конфигурация',
+    'Hosting domain proxy settings' => 'Настройки проксирования хостингового домена',
+
+
+    /**
  * Mailboxes
  */
     'Mailbox' => 'Почтовый ящик',

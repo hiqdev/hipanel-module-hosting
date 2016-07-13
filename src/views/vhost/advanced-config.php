@@ -14,11 +14,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title    = $model->domain;
-$this->subtitle = Yii::t('app', 'hosting domain advanced config') . ' #' . $model->id;
+$this->subtitle = Yii::t('hipanel/hosting', 'hosting domain advanced config') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => 'Domains', 'url' => ['@hdomain/index']],
+    ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['@hdomain/index']],
     ['label' => $model->domain, 'url' => ['@hdomain/view', 'id' => $model->id]],
-    Yii::t('app', 'Advanced config')
+    Yii::t('hipanel/hosting', 'Advanced config')
 ]);
 
 

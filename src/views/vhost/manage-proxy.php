@@ -10,11 +10,11 @@ use yii\bootstrap\Html;
 /* @var $type string */
 
 $this->title = $model->domain;
-$this->subtitle = Yii::t('app', 'Hosting domain proxy settings') . ' #' . $model->id;
+$this->subtitle = Yii::t('hipanel/hosting', 'Hosting domain proxy settings') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => Yii::t('app', 'Domains'), 'url' => ['@hdomain/index']],
+    ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['@hdomain/index']],
     ['label' => $this->title, 'url' => ['@hdomain/view', 'id' => $model->id]],
-    Yii::t('app', 'Hosting domain proxy settings')
+    Yii::t('hipanel/hosting', 'Hosting domain proxy settings')
 ]);
 ?>
 
