@@ -16,16 +16,13 @@ use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
 use hipanel\helpers\Url;
-use hipanel\modules\hosting\models\Backup;
-use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\widgets\backup\BackupGridRow;
 use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\Label;
-use hiqdev\bootstrap_switch\BootstrapSwitchColumn;
+use hipanel\widgets\XEditable;
 use Yii;
-use yii\filters\auth\HttpBasicAuth;
 use yii\helpers\Html;
 
 class HdomainGridView extends \hipanel\grid\BoxedGridView
@@ -102,7 +99,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'value' => function ($model) {
                     $html = '';
-                    if ($model->dns_on) {
+                    if ($model->dns_on && empty($model->dns_hdomain_id)) {
                         $html .= Label::widget([
                             'color' => 'success',
                             'label' => Yii::t('app', 'DNS'),
@@ -122,17 +119,32 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'dns_switch' => [
-                'class'         => XEditableColumn::class,
-                'attribute'     => 'dns_on',
-                'label'         => Yii::t('hipanel/hosting', 'DNS'),
-                'filter'        => true,
-                'popover'       => Yii::t('hipanel/hosting', 'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately'),
-                'pluginOptions' => [
-                    'type' => 'select',
-                    'url' => Url::to('set-dns-on'),
-                    'source' => ['' => Yii::t('hipanel', 'Disabled'), 1 => Yii::t('hipanel', 'Enabled')],
-                    'placement' => 'bottom',
-                ]
+                'attribute' => 'dns_on',
+                'label' => Yii::t('hipanel/hosting', 'DNS'),
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if (empty($model->dns_hdomain_id)) {
+                        return Yii::createObject([
+                            'class' => XEditable::className(),
+                            'model' => $model,
+                            'attribute' => 'dns_on',
+                            'pluginOptions' => [
+                                'type' => 'select',
+                                'title' => Yii::t('hipanel/hosting', 'Toggles DNS records upload on NS server'),
+                                'source' => ['' => Yii::t('hipanel', 'Disabled'), '1' => Yii::t('hipanel', 'Enabled')],
+                                'url' => Url::to('set-dns-on'),
+                                'placement' => 'bottom',
+                            ],
+                            'linkOptions' => [
+                                'style' => ['word-break' => 'break-all'],
+                            ],
+                        ])->run();
+                    } else {
+                        return Yii::t('hipanel/hosting', 'Belongs to {link}', [
+                            'link' => Html::a($model->dns_hdomain_domain, Url::to(['@hdomain/view', 'id' => $model->dns_hdomain_id]))
+                        ]);
+                    }
+                }
             ],
             'aliases' => [
                 'label' => Yii::t('app', 'Aliases'),

@@ -113,6 +113,7 @@ return [
     'Path' => 'Путь',
     'Go to site {link}' => 'Перейти на сайт {link}',
     'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately' => 'Эта опция создаст A записи для домена и его алиасов. Изменения будут немедленно загружены на NS серверы',
+    'Toggles DNS records upload on NS server' => 'Включение загрузки DNS записей на NS серверы',
     'DNS is enabled' => 'DNS включён',
     'Advanced settings were updated successfully' => 'Расширенные настройки были успешно изменеы',
     'Error when updating advanced settings' => 'Ошибка при изменении расширенных настроек',
@@ -121,9 +122,10 @@ return [
     'hosting domain advanced config' => 'Расширенная конфигурация хостинг домена',
     'Advanced config' => 'Расширенная конфигурация',
     'Hosting domain proxy settings' => 'Настройки проксирования хостингового домена',
+    'Belongs to {link}' => 'Относится к {link}',
 
 
-    /**
+/**
  * Mailboxes
  */
     'Mailbox' => 'Почтовый ящик',

@@ -78,6 +78,7 @@ class Hdomain extends \hipanel\base\Model
                     'state_label',
                     'alias_type',
                     'proxy_enabled',
+                    'dns_hdomain_domain',
                 ],
                 'safe'
             ],
