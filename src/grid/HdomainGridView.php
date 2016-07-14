@@ -124,8 +124,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'value' => function ($model) {
                     if (empty($model->dns_hdomain_id)) {
-                        return Yii::createObject([
-                            'class' => XEditable::className(),
+                        return XEditable::widget([
                             'model' => $model,
                             'attribute' => 'dns_on',
                             'pluginOptions' => [
@@ -138,7 +137,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                             'linkOptions' => [
                                 'style' => ['word-break' => 'break-all'],
                             ],
-                        ])->run();
+                        ]);
                     } else {
                         return Yii::t('hipanel/hosting', 'Belongs to {link}', [
                             'link' => Html::a($model->dns_hdomain_domain, Url::to(['@hdomain/view', 'id' => $model->dns_hdomain_id]))
