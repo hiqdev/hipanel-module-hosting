@@ -123,7 +123,12 @@ return [
     'Advanced config' => 'Расширенная конфигурация',
     'Hosting domain proxy settings' => 'Настройки проксирования хостингового домена',
     'Belongs to {link}' => 'Относится к {link}',
-
+    'Hosting domain alias detailed information' => 'Подробная информация об алиасе',
+    'Hosting domain detailed information' => 'Подробная информация о хостинговом домене',
+    'Advanced settings' => 'Расширенные настройки',
+    'Proxy settings' => 'Настройки проксирования',
+    'Confirm hosting domain blocking' => 'Подтвердите блокирование хостингового домена',
+    'This will block access to the website from the world' => 'Это действие приведет к блокированию доступа к сайту!',
 
 /**
  * Mailboxes

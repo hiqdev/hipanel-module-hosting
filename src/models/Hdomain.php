@@ -173,6 +173,11 @@ class Hdomain extends \hipanel\base\Model
         return $this->dns_hdomain_id ?: $this->id;
     }
 
+    public function isAlias()
+    {
+        return isset($this->vhost_id);
+    }
+
     public function scenarioCommands()
     {
         $result = [];

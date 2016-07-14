@@ -16,9 +16,14 @@ use yii\web\View;
  */
 
 $this->title = $model->domain;
-$this->subtitle = Yii::t('app', 'Hosting domain detailed information') . ' #' . $model->id;
+$this->subtitle =
+    (
+        $model->isAlias()
+        ? Yii::t('hipanel/hosting', 'Hosting domain alias detailed information')
+        : Yii::t('hipanel/hosting', 'Hosting domain detailed information')
+    ) . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => Yii::t('app', 'Domains'), 'url' => ['index']],
+    ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['index']],
     $this->title,
 ]);
 ?>
@@ -49,15 +54,19 @@ $this->breadcrumbs->setItems([
                     <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('hipanel/hosting', 'Go to site {link}', ['link' => $url]), $url,
                         ['target' => '_blank']); ?>
                 </li>
+                <?php if (!$model->isAlias()) { ?>
+                    <li>
+                        <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel/hosting', 'Advanced settings'),
+                            ['/hosting/vhost/advanced-config', 'id' => $model->id]); ?>
+                    </li>
+                <?php } ?>
+                <?php if (!$model->isAlias()) { ?>
                 <li>
-                    <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('app', 'Advanced settings'),
-                        ['/hosting/vhost/advanced-config', 'id' => $model->id]); ?>
-                </li>
-                <li>
-                    <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('app', 'Proxy settings'),
+                    <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('hipanel/hosting', 'Proxy settings'),
                         ['/hosting/vhost/manage-proxy', 'id' => $model->id]); ?>
                 </li>
-                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id !== $model->client_id) : ?>
+                <?php } ?>
+                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id !== $model->client_id && !$model->isAlias()) : ?>
                     <li>
                         <?= $this->render('_block', compact(['model', 'blockReasons'])) ?>
                     </li>

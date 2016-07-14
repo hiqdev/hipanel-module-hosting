@@ -25,7 +25,7 @@ use hipanel\widgets\ModalButton;
         ]
     ]); ?>
     <div class="callout callout-warning">
-        <h4><?= Yii::t('hipanel/hosting', 'This will block access to the website from the world!') ?></h4>
+        <h4><?= Yii::t('hipanel/hosting', 'This action will block access to the website from the world!') ?></h4>
     </div>
 
     <?php echo $modalButton->form->field($model, 'type')->dropDownList($blockReasons); ?>
