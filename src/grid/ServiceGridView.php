@@ -58,8 +58,6 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                                 ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
                                 ['class' => 'btn btn-default btn-xs']
                             );
-                        } else {
-                            throw new InvalidParamException('The object type is not supported', $model);
                         }
                     }
 

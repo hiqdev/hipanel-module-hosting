@@ -25,6 +25,7 @@ class Soft extends \hipanel\base\Model
 
     const TYPE_WEB = 'web';
     const TYPE_DB = 'db';
+    const TYPE_LOGIN = 'login';
 
     /** @inheritdoc */
     public function rules()
