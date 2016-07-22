@@ -28,10 +28,27 @@ use hipanel\actions\ViewAction;
 use hipanel\modules\hosting\models\Soft;
 use Yii;
 use yii\base\Event;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
 class ServiceController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'manage-access' => [
+                'class' => AccessControl::class,
+                'only'  => ['create', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'allow'   => true,
+                        'roles'   => ['admin'],
+                    ],
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return [
@@ -103,7 +120,8 @@ class ServiceController extends \hipanel\base\CrudController
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update a service')
             ],
             'delete' => [
-                'class' => SmartDeleteAction::class
+                'class' => SmartDeleteAction::class,
+                'success' => Yii::t('hipanel/hosting', 'Service was deleted successfully'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,

@@ -80,6 +80,11 @@ return [
     'Service was created successfully' => 'Сервис был успешно создан',
     'An error occurred when trying to create a service' => 'Произошла ошибка при создании сервиса',
     'Service information' => 'Информация о сервисе',
+    'Service was deleted successfully' => 'Сервис был успешно удалён',
+    'Confirm service deleting' => '',
+    'Delete service' => 'Удалить сервис',
+    'Deleting service' => 'Сервис удаляется...',
+    'Are you sure, that you want to delete service {name}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить сервис {name}? Все связанные объкты могут быть также удалены!',
 /**
  * DB
  */
@@ -105,6 +110,8 @@ return [
     'Delete IP address' => 'Удалить IP адрес',
     'Deleting IP address...' => 'Удаление IP адреса...',
     'Are you sure, that you want to delete IP address {ip}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить IP адрес {ip}? Все связанные объекты могут быть также удалены!',
+    'IP address was deleted successfully' => 'IP адрес был успешно удалён',
+
 /**
  * Domains
  */

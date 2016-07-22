@@ -41,7 +41,7 @@ class IpController extends \hipanel\base\CrudController
         return ArrayHelper::merge(parent::behaviors(), [
             'manage-access' => [
                 'class' => AccessControl::class,
-                'only'  => ['create', 'update'],
+                'only'  => ['create', 'update', 'delete'],
                 'rules' => [
                     [
                         'allow'   => true,
@@ -153,6 +153,7 @@ class IpController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
+                'success' => Yii::t('hipanel/hosting', 'IP address was deleted successfully')
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,

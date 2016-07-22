@@ -22,7 +22,9 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
 
         <?php $page->setSearchFormData(compact(['stateData', 'softData'])) ?>
         <?php $page->beginContent('main-actions') ?>
-            <?= Html::a(Yii::t('hipanel/hosting', 'Create service'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+            <?php if (Yii::$app->user->can('admin')) : ?>
+                <?= Html::a(Yii::t('hipanel/hosting', 'Create service'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+            <?php endif; ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('show-actions') ?>
@@ -39,7 +41,9 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel/hosting', 'Delete'), 'delete', 'danger')?>
+        <?php if (Yii::$app->user->can('admin')) : ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger') ?>
+        <?php endif; ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
