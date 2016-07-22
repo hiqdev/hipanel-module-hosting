@@ -26,7 +26,9 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
         <?php $page->setSearchFormData(compact(['ipTags'])) ?>
 
         <?php $page->beginContent('main-actions') ?>
-            <?= Html::a(Yii::t('hipanel/hosting', 'Create IP'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+            <?php if (Yii::$app->user->can('support')) : ?>
+                <?= Html::a(Yii::t('hipanel/hosting', 'Create IP'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+            <?php endif; ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('show-actions') ?>
@@ -37,10 +39,6 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
             ],
         ]) ?>
         <?= $page->renderPerPage() ?>
-        <?php $page->endContent() ?>
-
-        <?php $page->beginContent('bulk-actions') ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger')?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>

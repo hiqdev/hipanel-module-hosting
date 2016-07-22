@@ -45,6 +45,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'tag',
                 'header' => Yii::t('hipanel/hosting', 'Tags'),
+                'visible' => Yii::$app->user->can('admin'),
                 'filter' => function ($column, $model) {
                     return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('app', '---')], static::$ipTags), ['class' => 'form-control']);
                 },
@@ -100,7 +101,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         $item = Html::a($link->device, ['@server/view', 'id' => $link->device_id]);
                         if ($link->service_id) {
                             $item .= '&nbsp;' . FontIcon::i('fa-long-arrow-right');
-                            $item .= '&nbsp;' . Html::a($link->service ?: $link->soft, ['@service/update', 'id' => $link->service_id]);
+                            $item .= '&nbsp;' . Html::a($link->service ?: $link->soft, ['@service/view', 'id' => $link->service_id]);
                         }
                         $items[] = $item;
                     }

@@ -21,6 +21,7 @@ use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
@@ -30,10 +31,27 @@ use hiqdev\hiart\Collection;
 use hiqdev\hiart\ErrorResponseException;
 use Yii;
 use yii\base\Event;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
 class IpController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'manage-access' => [
+                'class' => AccessControl::class,
+                'only'  => ['create', 'update'],
+                'rules' => [
+                    [
+                        'allow'   => true,
+                        'roles'   => ['admin'],
+                    ],
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return [
@@ -132,6 +150,9 @@ class IpController extends \hipanel\base\CrudController
                     $this->collectionLoader($action->scenario, $action->collection);
                 },
                 'on beforeFetch' => $this->getDataProviderOptions(),
+            ],
+            'delete' => [
+                'class' => SmartDeleteAction::class,
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,

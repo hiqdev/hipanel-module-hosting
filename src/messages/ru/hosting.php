@@ -101,6 +101,10 @@ return [
     'Counters' => 'Счетчики',
     'Links' => 'Связи',
     'Expand' => 'Развернуть',
+    'Confirm IP address deleting' => 'Подтвердите удаление IP адреса',
+    'Delete IP address' => 'Удалить IP адрес',
+    'Deleting IP address...' => 'Удаление IP адреса...',
+    'Are you sure, that you want to delete IP address {ip}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить IP адрес {ip}? Все связанные объекты могут быть также удалены!',
 /**
  * Domains
  */
