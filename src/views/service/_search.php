@@ -3,6 +3,7 @@
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\client\widgets\combo\SellerCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
+use hipanel\modules\server\widgets\combo\ServerCombo;
 use hiqdev\combo\StaticCombo;
 
 /**
@@ -18,7 +19,7 @@ use hiqdev\combo\StaticCombo;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('server')->widget(PanelServerCombo::class, ['formElementSelector' => '.form-group']) ?>
+    <?= $search->field('server')->widget(ServerCombo::class, ['formElementSelector' => '.form-group']) ?>
 </div>
 
 <?php if (Yii::$app->user->can('support')) { ?>

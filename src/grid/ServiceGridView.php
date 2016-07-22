@@ -19,6 +19,7 @@ use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\models\Service;
 use hipanel\modules\hosting\models\Soft;
 use hipanel\modules\server\grid\ServerColumn;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\State;
 use Yii;
