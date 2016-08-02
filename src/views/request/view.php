@@ -1,16 +1,11 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\modules\hosting\grid\RequestGridView;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title = Html::encode(Yii::t('app', 'Request') . ' #' . $model->id);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Requests'), 'url' => ['index']];
+$this->title = Html::encode(Yii::t('hipanel', 'Request') . ' #' . $model->id);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Requests'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

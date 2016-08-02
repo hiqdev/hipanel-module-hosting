@@ -9,9 +9,9 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
 $this->title = $model->name;
-$this->subtitle = Yii::t('app', 'Database detailed information') . ' #' . $model->id;
+$this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => Yii::t('app', 'Databases'), 'url' => ['index']],
+    ['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']],
     $this->title,
 ]);
 ?>
@@ -43,14 +43,14 @@ $this->breadcrumbs->setItems([
                         'model' => $model,
                         'scenario' => 'set-password',
                         'button' => [
-                            'label' => '<i class="fa fa-lock"></i>' . Yii::t('app', 'Change password'),
+                            'label' => '<i class="fa fa-lock"></i>' . Yii::t('hipanel', 'Change password'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('app', 'Enter new database password')),
+                            'header' => Html::tag('h4', Yii::t('hipanel', 'New password')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('app', 'Change'),
-                                'data-loading-text' => Yii::t('app', 'Changing...'),
+                                'label' => Yii::t('hipanel', 'Change'),
+                                'data-loading-text' => Yii::t('hipanel', 'Changing...'),
                                 'class' => 'btn btn-info',
                             ]
                         ]
@@ -58,7 +58,7 @@ $this->breadcrumbs->setItems([
                     ?>
 
                     <div class="callout callout-warning">
-                        <h4><?= Yii::t('app', 'This will immediately terminate all sessions of the user!') ?></h4>
+                        <h4><?= Yii::t('hipanel', 'This will immediately terminate all sessions of the user!') ?></h4>
                     </div>
 
                     <?php
@@ -72,19 +72,19 @@ $this->breadcrumbs->setItems([
                         'model' => $model,
                         'scenario' => 'truncate',
                         'button' => [
-                            'label' => '<i class="fa fa-file-o"></i>' . Yii::t('app', 'Truncate'),
+                            'label' => '<i class="fa fa-file-o"></i>' . Yii::t('hipanel/hosting', 'Truncate'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('app', 'Confirm database truncating')),
+                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm database truncating')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('app', 'Truncate database'),
-                                'data-loading-text' => Yii::t('app', 'Truncating database...'),
+                                'label' => Yii::t('hipanel/hosting', 'Truncate database'),
+                                'data-loading-text' => Yii::t('hipanel', 'Performing...'),
                                 'class' => 'btn btn-warning',
                             ]
                         ],
-                        'body' => Yii::t('app',
-                            'Are you sure that you want to truncate database {name}? All tables will be dropped, including data and structure!',
+                        'body' => Yii::t('hipanel/hosting',
+                            'Are you sure that to truncate database {name}? All tables will be dropped, all data will be lost!',
                             ['name' => $model->name]
                         )
                     ]) ?>
@@ -94,19 +94,18 @@ $this->breadcrumbs->setItems([
                         'model' => $model,
                         'scenario' => 'delete',
                         'button' => [
-                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete'),
+                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('app', 'Confirm database deleting')),
+                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm database deleting')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('app', 'Delete database'),
-                                'data-loading-text' => Yii::t('app', 'Deleting database...'),
+                                'label' => Yii::t('hipanel/hosting', 'Delete database'),
+                                'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                 'class' => 'btn btn-danger',
                             ]
                         ],
-                        'body' => Yii::t('app',
-                            'Are you sure, that you want to delete database {name}? All tables will be dropped, all data will be lost.',
+                        'body' => Yii::t('hipanel/hosting', 'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!',
                             ['name' => $model->name]
                         )
                     ]) ?>
@@ -122,7 +121,7 @@ $this->breadcrumbs->setItems([
                 <?php
                 $box = Box::begin(['renderBody' => false]);
                     $box->beginHeader();
-                        echo $box->renderTitle(Yii::t('app', 'Database information'));
+                        echo $box->renderTitle(Yii::t('hipanel', 'Detailed information'));
                     $box->endHeader();
                     $box->beginBody();
                         echo DbGridView::detailView([

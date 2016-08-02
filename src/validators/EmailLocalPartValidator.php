@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\validators;
 
 use yii\validators\RegularExpressionValidator;
@@ -47,7 +41,7 @@ class EmailLocalPartValidator extends RegularExpressionValidator
      */
     public function init()
     {
-        $this->message = \Yii::t('app', '{attribute} is not a valid local part of email');
+        $this->message = \Yii::t('hipanel/hosting', '{attribute} is not a valid local part of email');
 
         if ($this->pattern === null) {
             $this->pattern = $this->allowWildCard ? $this->defaultWildPattern : $this->defaultPattern;

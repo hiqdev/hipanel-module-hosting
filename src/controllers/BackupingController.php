@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
@@ -64,8 +58,8 @@ class BackupingController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('app', 'Deleted'),
-                'error' => Yii::t('app', 'Something went wrong.'),
+                'success' => Yii::t('hipanel', 'Deleted'),
+                'error' => Yii::t('hipanel', 'An error occurred. Try again please.'),
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -94,9 +88,9 @@ class BackupingController extends \hipanel\base\CrudController
     public function getStateOptions()
     {
         return [
-            'ok' => Yii::t('app', 'Ok'),
-            'disabled' => Yii::t('app', 'Disabled'),
-            'deleted' => Yii::t('app', 'Deleted'),
+            'ok' => Yii::t('hipanel', 'Ok'),
+            'disabled' => Yii::t('hipanel', 'Disabled'),
+            'deleted' => Yii::t('hipanel', 'Deleted'),
         ];
     }
 }

@@ -7,7 +7,7 @@ use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
-$this->title                   = Yii::t('app', 'Databases');
+$this->title = Yii::t('hipanel', 'Databases');
 $this->breadcrumbs->setItems([$this->title]);
 $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list'); ?>
 

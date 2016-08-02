@@ -1,9 +1,4 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\modules\hosting\grid\HdomainGridView;
 use hipanel\widgets\ActionBox;
@@ -15,7 +10,7 @@ use yii\bootstrap\Dropdown;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'Domains');
+$this->title = Yii::t('hipanel', 'Domains');
 $this->breadcrumbs->setItems([
     $this->title,
 ]);
@@ -29,13 +24,13 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
         <?php $page->beginContent('main-actions') ?>
             <div class="dropdown">
                 <a class="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <?= Yii::t('app', 'Create domain'); ?>
+                    <?= Yii::t('hipanel/hosting', 'Create domain'); ?>
                     <span class="caret"></span>
                 </a>
                 <?= Dropdown::widget([
                     'items' => [
-                        ['label' => Yii::t('app', 'Create domain'), 'url' => ['create']],
-                        ['label' => Yii::t('app', 'Create alias for domain'), 'url' => ['create-alias']],
+                        ['label' => Yii::t('hipanel/hosting', 'Create domain'), 'url' => ['create']],
+                        ['label' => Yii::t('hipanel/hosting', 'Create alias'), 'url' => ['create-alias']],
                     ]
                 ]); ?>
             </div>
@@ -68,12 +63,12 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                         'options' => ['class' => 'pull-right'],
                         'items' => [
                             [
-                                'label' => '<i class="fa fa-toggle-on"></i> ' . Yii::t('app', 'Enable'),
+                                'label' => '<i class="fa fa-toggle-on"></i> ' . Yii::t('hipanel', 'Enable'),
                                 'linkOptions' => ['data-toggle' => 'modal'],
                                 'url' => '#bulk-enable-block-modal',
                             ],
                             [
-                                'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('app', 'Disable'),
+                                'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('hipanel', 'Disable'),
                                 'url' => '#bulk-disable-block-modal',
                                 'linkOptions' => ['data-toggle' => 'modal'],
                             ],
@@ -83,7 +78,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                         <?= AjaxModal::widget([
                             'id' => 'bulk-enable-block-modal',
                             'bulkPage' => true,
-                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Block hosting domains'), ['class' => 'modal-title']),
+                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Block domains'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-enable-block',
                             'actionUrl' => ['bulk-enable-block-modal'],
                             'size' => Modal::SIZE_LARGE,
@@ -93,7 +88,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                         <?= AjaxModal::widget([
                             'id' => 'bulk-disable-block-modal',
                             'bulkPage' => true,
-                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Unblock hosting domains'), ['class' => 'modal-title']),
+                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Unblock domains'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-disable-block',
                             'actionUrl' => ['bulk-disable-block-modal'],
                             'size' => Modal::SIZE_LARGE,

@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\validators;
 
 /**
@@ -32,6 +26,6 @@ class LoginValidator extends \yii\validators\RegularExpressionValidator
      */
     public function init()
     {
-        $this->message = \Yii::t('app', '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length');
+        $this->message = \Yii::t('hipanel/hosting', '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length');
     }
 }

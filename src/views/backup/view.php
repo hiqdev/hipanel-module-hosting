@@ -4,7 +4,7 @@ use hipanel\modules\hosting\grid\BackupGridView;
 use yii\helpers\Html;
 
 $this->title = Html::encode('ID: ' . $model->object_id);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Backups'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Backups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

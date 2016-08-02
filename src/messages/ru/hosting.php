@@ -91,6 +91,17 @@ return [
     'Database' => 'База данных',
     'Databases' => 'Базы данных',
     'Create DB' => 'Создать БД',
+    'Create database' => 'Создать базу данных',
+    'DB has been created successfully' => 'БД была создана успешно',
+    'DB has been deleted successfully' => 'БД была удалена успешно',
+    'DB has been truncated successfully' => 'БД была очищена успешно',
+    'Truncate' => 'Очистить',
+    'Truncate database' => 'Очистить базу данных',
+    'Confirm database truncation' => 'Подтвердите очистку базы данных',
+    'Are you sure to truncate database {name}? All tables will be dropped, including data and structure!' => 'Вы уверены, что хотите очистить базу данных {name}? Все таблицы будут удалены, все данные будут утеряны!',
+    'Confirm database deleting' => 'Подтвердите удалени базы данных',
+    'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!' => 'Вы уверены, что хотите удалить базу данных {name}? Все таблицы будут удалены, все данные будут утеряны!',
+
 /**
  * IP
  */
@@ -115,9 +126,14 @@ return [
 /**
  * Domains
  */
-    'Block domain' => 'Блокировать домен',
     'Domain' => 'Домен',
     'Domains' => 'Домены',
+    'Create domain' => 'Создать домен',
+    'Create alias' => 'Создать алиас',
+    'Block domain' => 'Заблокировать домен',
+    'Block domains' => 'Заблокировать домены',
+    'Unblock domain' => 'Разблокировать домен',
+    'Unblock domains' => 'Разблокировать домены',
     '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}',
     'Temporary' => 'Временный',
     'Proxy enabled' => 'Проксирование',
@@ -140,6 +156,15 @@ return [
     'Proxy settings' => 'Настройки проксирования',
     'Confirm hosting domain blocking' => 'Подтвердите блокирование хостингового домена',
     'This will block access to the website from the world' => 'Это действие приведет к блокированию доступа к сайту!',
+    'Domain has been created successfully' => 'Домен был создан успешно',
+    'Domain has been deleted successfully' => 'Домен был удалён успешно',
+    'Domain has been blocked successfully' => 'Домен был заблокирован успешно',
+    'Domain has been unblocked successfully' => 'Домен был разблокирован успешно',
+    'Domains have been blocked successfully' => 'Домены были заблокированы успешно',
+    'Domains have been unblocked successfully' => 'Домены были разблокированы успешно',
+    'DNS settings have been changed successfully' => 'Настройки ДНС были изменены успешно',
+    'Premium autorenewal has been enabled' => 'Автопродление премиума включено',
+    'Premium autorenewal has been disabled' => 'Автопродление премиума выключено',
 
 /**
  * Mailboxes
@@ -164,6 +189,9 @@ return [
     'Mailbox delete task has been created successfully' => 'Задача удаления почтового ящика была добавлена в очередь',
     'An error occurred when trying to delete mailbox' => 'Произошла ошибка при попытке удалить почтовый ящик',
     'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.' => 'Все письма будут перенаправлены на указанные адреса. Вы можете выбрать email из списка существующих, или вписать нужный адрес самостоятельно.',
+    '{attribute} is not a valid local part of email' => '{attribute} не валидная часть e-mail адреса',
+    '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length' => '{attribute} должны начинаться с буквы, содержать только буквы, цифры или подчеркивания и по меньшей мере 2 символов длиной',
+    '{attribute} should contain only letters, digits, underscores or hyphens and be at least 2 symbols length' => '{attribute} должен содержать только буквы, цифры, подчёркивание, тире и быть как минимум 2 символов длины',
 
 /**
  * Backups

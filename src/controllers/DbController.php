@@ -41,9 +41,9 @@ class DbController extends CrudController
                 },
                 'filterStorageMap' => [
                     'name_like' => 'hosting.db.name_like',
-                    'state' => 'hosting.db.state',
-                    'account' => 'hosting.account.login',
-                    'server' => 'server.server.name',
+                    'state'     => 'hosting.db.state',
+                    'account'   => 'hosting.account.login',
+                    'server'    => 'server.server.name',
                     'client_id' => 'client.client.id',
                     'seller_id' => 'client.client.seller_id',
                 ]
@@ -51,33 +51,28 @@ class DbController extends CrudController
             'view' => [
                 'class'   => ViewAction::class
             ],
-            'create'          => [
+            'create' => [
                 'class'   => SmartCreateAction::class,
-                'success' => Yii::t('app', 'DB create task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while creating DB'),
+                'success' => Yii::t('hipanel/hosting', 'DB has been created successfully'),
             ],
-            'set-password'    => [
+            'set-password' => [
                 'class'   => SmartUpdateAction::class,
-                'success' => Yii::t('app', 'DB password change task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while DB password changing'),
+                'success' => Yii::t('hipanel', 'Password been changed successfully'),
             ],
-            'truncate'        => [
+            'truncate' => [
                 'class'   => SmartUpdateAction::class,
-                'success' => Yii::t('app', 'DB truncate task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while truncating DB'),
+                'success' => Yii::t('hipanel/hosting', 'DB has been truncated successfully'),
             ],
             'set-description' => [
                 'class'   => SmartUpdateAction::class,
-                'success' => Yii::t('app', 'DB description set successfully'),
-                'error'   => Yii::t('app', 'Failed to set DB description'),
+                'success' => Yii::t('hipanel/hosting', 'Description has been changed successfully'),
             ],
-            'validate-form'   => [
+            'validate-form' => [
                 'class'   => ValidateFormAction::class,
             ],
-            'delete'          => [
+            'delete' => [
                 'class'   => SmartPerformAction::class,
-                'success' => Yii::t('app', 'DB delete task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while deleting DB'),
+                'success' => Yii::t('hipanel/hosting', 'DB has been deleted successfully'),
             ],
         ];
     }

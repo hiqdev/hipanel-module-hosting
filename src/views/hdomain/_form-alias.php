@@ -4,7 +4,6 @@
 /* @var $model hipanel\modules\hosting\models\Hdomain */
 /* @var $type string */
 
-
 use hipanel\components\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\HdomainCombo;

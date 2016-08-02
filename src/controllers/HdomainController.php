@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
@@ -60,17 +54,17 @@ class HdomainController extends \hipanel\base\CrudController
                 },
                 'filterStorageMap' => [
                     'domain_like' => 'domain.hdomain.domain_like',
-                    'state' => 'hosting.hdomain.state',
-                    'server' => 'server.server.name',
-                    'account' => 'hosting.account.login',
-                    'client_id' => 'client.client.id',
-                    'seller_id' => 'client.client.seller_id',
+                    'state'       => 'hosting.hdomain.state',
+                    'server'      => 'server.server.name',
+                    'account'     => 'hosting.account.login',
+                    'client_id'   => 'client.client.id',
+                    'seller_id'   => 'client.client.seller_id',
                 ]
             ],
             'view' => [
                 'class' => ViewAction::class,
                 'findOptions' => [
-                    'with_vhosts' => true,
+                    'with_vhosts'  => true,
                     'with_aliases' => true,
                     'with_request' => true,
                     'show_deleted' => true,
@@ -84,52 +78,45 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
-                'success' => Yii::t('app', 'Domain create task has been created successfully'),
-                'error' => Yii::t('app', 'Error while creating domain'),
+                'success' => Yii::t('hipanel/hosting', 'Domain has been created successfully'),
             ],
             'create-alias' => [
                 'class' => SmartCreateAction::class,
                 'view' => 'create-alias',
-                'success' => Yii::t('app', 'Domain alias create task has been created successfully'),
-                'error' => Yii::t('app', 'Error while creating domain'),
+                'success' => Yii::t('hipanel/hosting', 'Domain has been created successfully'),
             ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,
-                'success' => 'Hosting domain was blocked successfully',
-                'error' => 'Error during the hosting domain blocking',
+                'success' => Yii::t('hipanel/hosting', 'Domain has been blocked successfully'),
             ],
             'disable-block' => [
                 'class' => SmartUpdateAction::class,
-                'success' => 'Hosting domain was unblocked successfully',
-                'error' => 'Error during the hosting domain unblocking',
+                'success' => Yii::t('hipanel/hosting', 'Domain has been unblocked successfully'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
             'enable-paid-feature-autorenewal' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('app', 'Premium autorenewal has been enabled'),
+                'success' => Yii::t('hipanel/hosting', 'Premium autorenewal has been enabled'),
             ],
             'disable-paid-feature-autorenewal' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('app', 'Premium autorenewal has been disabled'),
+                'success' => Yii::t('hipanel/hosting', 'Premium autorenewal has been disabled'),
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('app', 'Domain delete task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while deleting domain'),
+                'success' => Yii::t('hipanel/hosting', 'Domain has been deleted successfully'),
             ],
             'delete-alias' => [
                 'class' => SmartDeleteAction::class,
                 'scenario' => 'delete',
-                'success' => Yii::t('app', 'Alias delete task has been created successfully'),
-                'error'   => Yii::t('app', 'Error while deleting alias'),
+                'success' => Yii::t('hipanel/hosting', 'Domain has been deleted successfully'),
             ],
             'bulk-enable-block' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'enable-block',
-                'success' => Yii::t('hipanel/hosting', 'Hosting domains were blocked successfully'),
-                'error' => Yii::t('hipanel/hosting', 'Error during the hosting domains blocking'),
+                'success' => Yii::t('hipanel/hosting', 'Domains have been blocked successfully'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -164,8 +151,7 @@ class HdomainController extends \hipanel\base\CrudController
             'bulk-disable-block' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'disable-block',
-                'success' => Yii::t('hipanel/hosting', 'Hosting domains were unblocked successfully'),
-                'error' => Yii::t('hipanel/hosting', 'Error during the hosting domains unblocking'),
+                'success' => Yii::t('hipanel/hosting', 'Domains have been unblocked successfully'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -191,7 +177,6 @@ class HdomainController extends \hipanel\base\CrudController
             'set-dns-on' => [
                 'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel/hosting', 'DNS settings were changed'),
-                'error' => Yii::t('hipanel/hosting', 'Failed to change DNS settings'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -210,8 +195,8 @@ class HdomainController extends \hipanel\base\CrudController
     public function getTypeData()
     {
         return [
-            0 => Yii::t('app', 'Domain'),
-            1 => Yii::t('app', 'Alias'),
+            0 => Yii::t('hipanel', 'Domain'),
+            1 => Yii::t('hipanel', 'Alias'),
         ];
     }
 }
