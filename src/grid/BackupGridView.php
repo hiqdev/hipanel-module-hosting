@@ -87,7 +87,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                             'aria-label'   => Yii::t('hipanel', 'Delete'),
                             'class' => 'btn btn-danger btn-xs',
                             'data' => [
-                                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                                'confirm' => Yii::t('hipanel', 'Are you sure you want to delete this item?'),
                                 'method'  => 'POST',
                                 'data-pjax' => '0',
                             ],

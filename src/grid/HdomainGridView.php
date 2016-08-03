@@ -48,7 +48,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         'visibleCount' => 0,
                         'delimiter' => '<br />',
                         'button' => [
-                            'label' => Yii::t('app', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
+                            'label' => Yii::t('hipanel', '+{0, plural, one{# alias} other{# aliases}}', count($aliases)),
                             'class' => 'badge progress-bar-info',
                             'popoverOptions' => ['html' => true],
                         ],
@@ -88,7 +88,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'service' => [
-                'label' => Yii::t('app', 'Service'),
+                'label' => Yii::t('hipanel', 'Service'),
                 'value' => function ($model) {
                     return $model->getAttribute('vhost')['service'];
                 }
@@ -102,9 +102,9 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                     if ($model->dns_on && empty($model->dns_hdomain_id)) {
                         $html .= Label::widget([
                             'color' => 'success',
-                            'label' => Yii::t('app', 'DNS'),
+                            'label' => Yii::t('hipanel', 'DNS'),
                             'tag' => 'span',
-                            'labelOptions' => ['title' => Yii::t('app', 'DNS is enabled')],
+                            'labelOptions' => ['title' => Yii::t('hipanel/hosting', 'DNS is enabled')],
                         ]);
                     }
                     $html .= ' ' . State::widget(compact('model'));
@@ -146,7 +146,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'aliases' => [
-                'label' => Yii::t('app', 'Aliases'),
+                'label' => Yii::t('hipanel', 'Aliases'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([

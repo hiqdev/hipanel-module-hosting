@@ -1,10 +1,11 @@
 <?php
+
 /* @var $this yii\web\View */
 /* @var $model hipanel\modules\hosting\models\Mail */
 /* @var $type string */
 
-$this->title                   = Yii::t('app', 'Create mailbox');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mailboxes'), 'url' => ['index']];
+$this->title                   = Yii::t('hipanel/hosting', 'Create mailbox');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

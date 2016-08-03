@@ -56,14 +56,10 @@ class Mail extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'hdomain' => Yii::t('app', 'Domain Name'),
-            'domain' => Yii::t('app', 'Domain Name'),
-            'forwards' => Yii::t('app', 'Forwarding'),
-            'du_limit' => Yii::t('app', 'Disk usage limit'),
-            'mail' => Yii::t('app', 'E-mail'),
-            'mail_like' => Yii::t('app', 'E-mail'),
-            'autoanswer' => Yii::t('app', 'Auto answer'),
-            'hdomain_id' => Yii::t('app', 'Domain'),
+            'forwards'      => Yii::t('hipanel/hosting', 'Forwarding'),
+            'du_limit'      => Yii::t('hipanel/hosting', 'Disk usage limit'),
+            'autoanswer'    => Yii::t('hipanel/hosting', 'Auto answer'),
+            'mail'          => Yii::t('hipanel', 'E-mail'),
         ]);
     }
 

@@ -25,13 +25,13 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
     public static function defaultColumns()
     {
         return [
-            'account'       => [
+            'account' => [
                 'class'             => MainColumn::class,
-                'label'             => Yii::t('app', 'Account'),
+                'label'             => Yii::t('hipanel', 'Account'),
                 'attribute'         => 'login',
                 'filterAttribute'   => 'login_like',
             ],
-            'state'         => [
+            'state' => [
                 'class'             => RefColumn::class,
                 'format'            => 'raw',
                 'i18nDictionary'    => 'hipanel/hosting',
@@ -40,10 +40,10 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 },
                 'gtype'             => 'state,account',
             ],
-            'server'        => [
+            'server' => [
                 'class'             => ServerColumn::class
             ],
-            'sshftp_ips'    => [
+            'sshftp_ips' => [
                 'attribute'         => 'sshftp_ips',
                 'format'            => 'raw',
                 'value'             => function ($model) {
@@ -53,11 +53,11 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                     ]);
                 }
             ],
-            'actions'       => [
+            'actions' => [
                 'class'             => ActionColumn::class,
                 'template'          => '{view} {delete}'
             ],
-            'type'          => [
+            'type' => [
                 'class'             => RefColumn::class,
                 'i18nDictionary'    => 'hipanel/hosting',
                 'format'            => 'raw',

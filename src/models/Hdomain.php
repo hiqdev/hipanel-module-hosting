@@ -105,7 +105,7 @@ class Hdomain extends \hipanel\base\Model
                 ['subdomain'],
                 'match',
                 'pattern' => '/^(\*|[a-z0-9][a-z0-9-]*)$/i',
-                'message' => \Yii::t('app', '{attribute} does not look like a domain part'),
+                'message' => Yii::t('hipanel', '{attribute} does not look like a domain part'),
                 'on' => ['create-alias']
             ],
             [
@@ -150,16 +150,15 @@ class Hdomain extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'domain' => Yii::t('app', 'Domain Name'),
-            'backend_ip' => Yii::t('app', 'Backend IP'),
-            'with_www' => Yii::t('app', 'Create www alias'),
-            'proxy_enable' => Yii::t('app', 'Enable proxy (NEED MANUAL)'),
-            'backuping_type' => Yii::t('app', 'Backup periodicity'),
-            'dns_on' => Yii::t('hipanel/hosting', 'DNS'),
-            'vhost_id' => Yii::t('app', 'Alias for'),
-            'comment' => Yii::t('app', 'Comment'),
-            'proxy_enabled' => Yii::t('hipanel/hosting', 'Proxy enabled'),
-            'path' => Yii::t('hipanel/hosting', 'Path'),
+            'backend_ip'        => Yii::t('hipanel/hosting', 'Backend IP'),
+            'with_www'          => Yii::t('hipanel/hosting', 'Create www alias'),
+            'proxy_enable'      => Yii::t('hipanel/hosting', 'Enable proxy'),
+            'backuping_type'    => Yii::t('hipanel/hosting', 'Backup periodicity'),
+            'vhost_id'          => Yii::t('hipanel/hosting', 'Alias for'),
+            'proxy_enabled'     => Yii::t('hipanel/hosting', 'Proxy enabled'),
+            'path'              => Yii::t('hipanel/hosting', 'Path'),
+            'dns_on'            => Yii::t('hipanel', 'DNS'),
+            'comment'           => Yii::t('hipanel', 'Comment'),
         ]);
     }
 

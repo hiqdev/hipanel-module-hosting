@@ -68,12 +68,12 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                         'options' => ['class' => 'pull-right'],
                         'items' => [
                             [
-                                'label' => '<i class="fa fa-toggle-on"></i> ' . Yii::t('app', 'Enable'),
+                                'label' => '<i class="fa fa-toggle-on"></i> ' . Yii::t('hipanel', 'Enable'),
                                 'linkOptions' => ['data-toggle' => 'modal'],
                                 'url' => '#bulk-enable-block-modal',
                             ],
                             [
-                                'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('app', 'Disable'),
+                                'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('hipanel', 'Disable'),
                                 'url' => '#bulk-disable-block-modal',
                                 'linkOptions' => ['data-toggle' => 'modal'],
                             ],

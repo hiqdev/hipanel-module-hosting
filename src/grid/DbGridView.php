@@ -56,7 +56,7 @@ class DbGridView extends BoxedGridView
                     'url' => 'set-description',
                 ],
                 'filter'  => true,
-                'popover' => Yii::t('app', 'Make any notes for your convenience'),
+                'popover' => Yii::t('hipanel', 'Make any notes for your convenience'),
             ],
             'password' => [
                 'class' => XEditableColumn::class,
@@ -64,9 +64,9 @@ class DbGridView extends BoxedGridView
                     'url' => 'set-password',
                 ],
                 'filter'  => true,
-                'popover' => Yii::t('app', 'Change the DB password'),
+                'popover' => Yii::t('hipanel', 'Change password'),
                 'value'   => function () {
-                    return Yii::t('app', 'Change password');
+                    return Yii::t('hipanel', 'Change password');
                 }
             ],
             'backups_widget' => [

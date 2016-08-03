@@ -9,12 +9,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\models;
 
 use Yii;
@@ -46,19 +40,19 @@ class Backuping extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'day' => Yii::t('app', 'Date'),
-            'hour' => Yii::t('app', 'Time'),
-            'backup_last' => Yii::t('hipanel/hosting', 'Last backup'),
-            'backup_count' => Yii::t('app', 'Count'),
-            'total_du' => Yii::t('hipanel/hosting', 'Disk usage'),
-            'total_du_gb' => Yii::t('app', 'Disk'),
-            'method_label' => Yii::t('app', 'Method label'),
-            'account_id' => Yii::t('app', 'Account'),
-            'server_id' => Yii::t('app', 'Server'),
-            'state_label' => Yii::t('app', 'State'),
-            'state' => Yii::t('app', 'State'),
-            'type' => Yii::t('hipanel/hosting', 'Periodicity'),
-            'object' => Yii::t('hipanel/hosting', 'Object'),
+            'day'           => Yii::t('hipanel', 'Date'),
+            'hour'          => Yii::t('hipanel', 'Time'),
+            'backup_last'   => Yii::t('hipanel/hosting', 'Last backup'),
+            'backup_count'  => Yii::t('hipanel', 'Count'),
+            'total_du'      => Yii::t('hipanel/hosting', 'Disk usage'),
+            'total_du_gb'   => Yii::t('hipanel/hosting', 'Disk'),
+            'method_label'  => Yii::t('hipanel/hosting', 'Method'),
+            'account_id'    => Yii::t('hipanel', 'Account'),
+            'server_id'     => Yii::t('hipanel', 'Server'),
+            'state_label'   => Yii::t('hipanel', 'State'),
+            'state'         => Yii::t('hipanel', 'State'),
+            'type'          => Yii::t('hipanel/hosting', 'Periodicity'),
+            'object'        => Yii::t('hipanel/hosting', 'Object'),
         ]);
     }
 }

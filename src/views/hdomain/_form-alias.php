@@ -48,13 +48,13 @@ $form = ActiveForm::begin([
                             print $form->field($model, "[$i]alias_type")->radio([
                                 'value' => 'subdomain',
                                 'class' => 'alias-type',
-                                'label' => Yii::t('app', 'Subdomain of existing domain'),
+                                'label' => Yii::t('hipanel/hosting', 'Subdomain of existing domain'),
                             ]);
                             print $form->field($model, "[$i]alias_type")->radio([
                                 'id' => $model->formName() . '-' . $i . '-alias_type-new',
                                 'value' => 'new',
                                 'class' => 'alias-type',
-                                'label' => Yii::t('app', 'New domain')
+                                'label' => Yii::t('hipanel/hosting', 'New domain')
                             ]);
                             ?>
 
@@ -93,9 +93,9 @@ $form = ActiveForm::begin([
         </div>
     <?php } ?>
 </div>
-<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
     &nbsp;
-<?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+<?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
 
 $this->registerJs(<<<'JS'

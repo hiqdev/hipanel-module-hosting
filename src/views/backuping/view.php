@@ -10,7 +10,7 @@ use yii\bootstrap\Html;
 
 /* @var $hasBackup bool */
 $this->title = Yii::t('hipanel/hosting', 'Backup: {0} {1}', [$model->object === 'hdomain' ? Yii::t('hipanel/hosting', 'domain') : Yii::t('hipanel/hosting', 'database'), $model->name]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Backups'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Backups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

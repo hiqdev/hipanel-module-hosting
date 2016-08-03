@@ -1,4 +1,5 @@
 <?php
+
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\client\widgets\combo\SellerCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
@@ -15,11 +16,11 @@ use Yii;
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?php /// TODO: line below - `implode` should be replaced with something more architectural ?>
     <?= $search->field('domain_in')->input('text',
-        ['value' => implode(',', $search->model->domain_in)])->label(Yii::t('app', 'Domain')) ?>
+        ['value' => implode(',', $search->model->domain_in)])->label(Yii::t('hipanel', 'Domain')) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('domain_like')->label(Yii::t('app', 'Domain (partial match)')) ?>
+    <?= $search->field('domain_like') ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -39,7 +40,7 @@ use Yii;
         'data' => $typeData,
         'hasId' => true,
         'multiple' => false,
-    ])->label(Yii::t('app', 'Type')); ?>
+    ])->label(Yii::t('hipanel', 'Type')); ?>
 </div>
 
 <?php if (Yii::$app->user->can('support')) { ?>

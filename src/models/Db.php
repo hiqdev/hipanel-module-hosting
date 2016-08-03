@@ -35,7 +35,7 @@ class Db extends Model
                 ['password'],
                 'match',
                 'pattern' => '/^[\x20-\x7f]*$/',
-                'message' => Yii::t('app', '{attribute} should not contain non-latin characters'),
+                'message' => Yii::t('hipanel', '{attribute} should not contain non-latin characters'),
                 'on'      => ['create', 'set-password']
             ],
             [['password'], 'required', 'on' => ['set-password']],
@@ -47,10 +47,9 @@ class Db extends Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'name'                 => Yii::t('app', 'DB name'),
-            'service_ip'           => Yii::t('app', 'Service IP'),
-            'backuping_type'       => Yii::t('app', 'Type of backuping'),
-            'backuping_type_label' => Yii::t('app', 'Backuping type label'),
+            'name'                 => Yii::t('hipanel/hosting', 'DB name'),
+            'service_ip'           => Yii::t('hipanel/hosting', 'Service IP'),
+            'backuping_type'       => Yii::t('hipanel/hosting', 'Backup type'),
         ]);
     }
 }

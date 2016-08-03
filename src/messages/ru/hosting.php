@@ -52,6 +52,8 @@ return [
     'System account' => 'Системный аккаунт',
     'An error occurred when trying to create account' => 'Ошибка при создании аккаунта',
     'Password has been changed' => 'Пароль был изменен',
+    'Allowed IPs' => 'Разрешенные IP-адреса',
+    'IP to access on the server via SSH or FTP' => 'IP для доступа на сервере через SSH или FTP',
     'Allowed IPs changing task has been successfully added to queue' => 'Задача изменения списска разрешенных IP адресов была добавлена в очередь',
     'An error occurred when trying to change allowed IPs' => 'Ошибка при изменении разрешенных IP адресов',
     'Mail settings where changed' => 'Настройки почты были изменены',
@@ -65,6 +67,7 @@ return [
     'Error during the hosting accounts unblocking' => 'Ошибка при разблокировании аккаунтов',
     'Error during the hosting accounts blocking' => 'Ошибка при блокировании аккаунтов',
     'Hosting accounts were blocked successfully' => 'Аккаунты были заблокированы',
+    'You can not use this login' => 'Вы не можете использовать этот логин',
 
 /**
  * Service
@@ -90,6 +93,7 @@ return [
  */
     'Database' => 'База данных',
     'Databases' => 'Базы данных',
+    'DB name' => 'Имя БД',
     'Create DB' => 'Создать БД',
     'Create database' => 'Создать базу данных',
     'DB has been created successfully' => 'БД была создана успешно',
@@ -99,8 +103,10 @@ return [
     'Truncate database' => 'Очистить базу данных',
     'Confirm database truncation' => 'Подтвердите очистку базы данных',
     'Are you sure to truncate database {name}? All tables will be dropped, including data and structure!' => 'Вы уверены, что хотите очистить базу данных {name}? Все таблицы будут удалены, все данные будут утеряны!',
+    'Delete database' => 'Удалить базу данных',
     'Confirm database deleting' => 'Подтвердите удалени базы данных',
     'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!' => 'Вы уверены, что хотите удалить базу данных {name}? Все таблицы будут удалены, все данные будут утеряны!',
+    'Service IP' => 'IP сервиса',
 
 /**
  * IP
@@ -128,16 +134,28 @@ return [
  */
     'Domain' => 'Домен',
     'Domains' => 'Домены',
+    'New domain' => 'Новый домен',
+    'Subdomain of existing domain' => 'Субдомен существующего домена',
     'Create domain' => 'Создать домен',
     'Create alias' => 'Создать алиас',
+    'Delete domain' => 'Удалить домен',
+    'Delete alias' => 'Удалить алиас',
+    'Confirm domain deleting' => 'Подствердите удаление домена',
+    'Confirm alias deleting' => 'Подствердите удаление алиаса',
+    'Are you sure to delete alias {name}?' => 'Вы уверены что хотите удалить алиас {name}',
+    'Are you sure to delete domain {name}? All files under domain root on the server will stay untouched. You can delete them manually later.' => 'Вы уверены, что вы хотите удалить домен {name}? Все файлы в корневой папке домена на сервере останутся нетронутыми. Вы можете удалить их вручную позже.',
     'Block domain' => 'Заблокировать домен',
     'Block domains' => 'Заблокировать домены',
     'Unblock domain' => 'Разблокировать домен',
     'Unblock domains' => 'Разблокировать домены',
     '{0, plural, one{domain} other{domains}}' => '{0, plural, one{домен} few{домена} many{доменов} other{доменов}}',
     'Temporary' => 'Временный',
-    'Proxy enabled' => 'Проксирование',
+    'Proxy enabled' => 'Проксирование включено',
     'Path' => 'Путь',
+    'Backend IP' => 'IP бекэнда',
+    'Create www alias' => 'Создать www алиас',
+    'Enable proxy' => 'Включить проксирование',
+    'Alias for' => 'Алиас для',
     'Go to site {link}' => 'Перейти на сайт {link}',
     'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately' => 'Эта опция создаст A записи для домена и его алиасов. Изменения будут немедленно загружены на NS серверы',
     'Toggles DNS records upload on NS server' => 'Включение загрузки DNS записей на NS серверы',
@@ -154,7 +172,7 @@ return [
     'Hosting domain detailed information' => 'Подробная информация о хостинговом домене',
     'Advanced settings' => 'Расширенные настройки',
     'Proxy settings' => 'Настройки проксирования',
-    'Confirm hosting domain blocking' => 'Подтвердите блокирование хостингового домена',
+    'Confirm domain blocking' => 'Подтвердите блокирование хостингового домена',
     'This will block access to the website from the world' => 'Это действие приведет к блокированию доступа к сайту!',
     'Domain has been created successfully' => 'Домен был создан успешно',
     'Domain has been deleted successfully' => 'Домен был удалён успешно',
@@ -166,6 +184,17 @@ return [
     'Premium autorenewal has been enabled' => 'Автопродление премиума включено',
     'Premium autorenewal has been disabled' => 'Автопродление премиума выключено',
 
+    'Domain directory prefix' => 'Префикс каталога домена',
+    'DocumentRoot directory postfix' => 'Постфикс каталога DocumentRoot',
+    'CGI-BIN directory postfix' => 'Постфикс директории CGI-BIN',
+    'Additional Apache config' => 'Дополнительная конфигурации Apache',
+    'Additional NGINX config' => 'Дополнительная конфигурации NGINX',
+    'Enable access log' => 'Включить журнал доступа',
+    'Enable error log' => 'Включить журнал ошибок',
+    'Enable suexec' => 'Включить Suexec',
+    'Allow scripts execution' => 'Разрешить выполнение скриптов',
+    'Enable SSI' => 'Включить SSI',
+
 /**
  * Mailboxes
  */
@@ -173,7 +202,10 @@ return [
     'Mailboxes' => 'Почтовые ящики',
     'Create mailbox' => 'Создать ящик',
     'Forward only' => 'Только пересылка',
+    'Forwarding' => 'Пересылка',
+    'Auto answer' => 'Автоответ',
     'Mailbox with forwards' => 'Почтовый ящик с пересылкой',
+    'Mailbox editing' => 'Редактирование почтового ящика',
     'You can not login to this mailbox, but all messages will be forwarded to specified addresses' => 'Вы не можете войти в этот почтовый ящик, все сообщения пересылаются на указанный адрес',
     'You can login this mailbox, also all the messages will be forwarded to specified addresses' => 'В почтовый ящик можно войти, вся почта пересылается на указанный адрес',
     'You can login this mailbox' => 'Вы можете войти в этот почтовый ящик',
@@ -192,6 +224,12 @@ return [
     '{attribute} is not a valid local part of email' => '{attribute} не валидная часть e-mail адреса',
     '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length' => '{attribute} должны начинаться с буквы, содержать только буквы, цифры или подчеркивания и по меньшей мере 2 символов длиной',
     '{attribute} should contain only letters, digits, underscores or hyphens and be at least 2 symbols length' => '{attribute} должен содержать только буквы, цифры, подчёркивание, тире и быть как минимум 2 символов длины',
+    'Do nothing' => 'Ничего не делать',
+    'Delete' => 'Удалять',
+    'Forward to' => 'Пересылать',
+    'Delete mailbox' => 'Удалить базу данных',
+    'Confirm mailbox deleting' => 'Подтвердите удалени базы данных',
+    'Are you sure to delete mailbox {name}? All data will be lost!' => 'Вы уверены, что хотите удалить почту {name}? Все данные будут утеряны!',
 
 /**
  * Backups
@@ -200,10 +238,15 @@ return [
     'Backup' => 'Бэкап',
     'Show backups' => 'Показать бэкапы',
     'Backup settings' => 'Настройки бэкапов',
+    'Backup periodicity' => 'Периодичность бэкапа',
+    'Backup type' => 'Тип бэкапа',
+    'Method' => 'Метод',
     'Size' => 'Объем',
     'Periodicity' => 'Периодичность',
     'Last backup' => 'Последняя копия',
+    'Disk' => 'Диск',
     'Disk usage' => 'Использование диска',
+    'Disk usage limit' => 'Лимит использования диска',
     'Backup: {0} {1}' => 'Бэкап: {0} {1}',
     'domain' => 'домен',
     'database' => 'база данных',

@@ -76,19 +76,19 @@ $this->breadcrumbs->setItems([
                         'model' => $model,
                         'scenario' => 'delete',
                         'button' => [
-                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete'),
+                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('app', 'Confirm domain deleting')),
+                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm domain deleting')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('app', 'Delete domain'),
-                                'data-loading-text' => Yii::t('app', 'Deleting domain...'),
+                                'label' => Yii::t('hipanel/hosting', 'Delete domain'),
+                                'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                 'class' => 'btn btn-danger',
                             ]
                         ],
-                        'body' => Yii::t('app',
-                            'Are you sure, that you want to delete hosting domain {name}? All files under domain root on the server will stay untouched. You can delete them manually later.',
+                        'body' => Yii::t('hipanel/hosting',
+                            'Are you sure to delete domain {name}? All files under domain root on the server will stay untouched. You can delete them manually later.',
                             ['name' => $model->domain]
                         )
                     ]) ?>
@@ -101,8 +101,8 @@ $this->breadcrumbs->setItems([
     <div class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#hdomain-details" data-toggle="tab"><?= Yii::t('app', 'Details') ?></a></li>
-                <li><a href="#hdomain-dns" data-toggle="tab"><?= Yii::t('app', 'DNS records') ?></a></li>
+                <li class="active"><a href="#hdomain-details" data-toggle="tab"><?= Yii::t('hipanel', 'Details') ?></a></li>
+                <li><a href="#hdomain-dns" data-toggle="tab"><?= Yii::t('hipanel', 'DNS records') ?></a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="hdomain-details">
@@ -117,7 +117,7 @@ $this->breadcrumbs->setItems([
                             'dns_switch',
                             [
                                 'attribute' => 'aliases',
-                                'label' => Yii::t('app', 'Aliases'),
+                                'label' => Yii::t('hipanel', 'Aliases'),
                                 'format' => 'raw',
                                 'value' => function ($model) {
                                     $html = [];
@@ -136,16 +136,16 @@ $this->breadcrumbs->setItems([
                                                 'label' => '<i class="fa fa-trash-o"></i>',
                                             ],
                                             'modal' => [
-                                                'header' => Html::tag('h4', Yii::t('app', 'Confirm alias deleting')),
+                                                'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm alias deleting')),
                                                 'headerOptions' => ['class' => 'label-info'],
                                                 'footer' => [
-                                                    'label' => Yii::t('app', 'Delete alias'),
-                                                    'data-loading-text' => Yii::t('app', 'Deleting alias...'),
+                                                    'label' => Yii::t('hipanel/hosting', 'Delete alias'),
+                                                    'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                                     'class' => 'btn btn-danger',
                                                 ]
                                             ],
-                                            'body' => Yii::t('app',
-                                                'Are you sure, that you want to delete alias {name}?',
+                                            'body' => Yii::t('hipanel/hosting',
+                                                'Are you sure to delete alias {name}?',
                                                 ['name' => $aliasModel->domain]
                                             ),
                                             'ajaxOptions' => [

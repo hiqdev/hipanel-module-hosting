@@ -83,17 +83,17 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                     if ($model->spam_action === $model::SPAM_ACTION_DELETE) {
                         return Label::widget([
                             'color' => 'danger',
-                            'label' => Yii::t('app', 'Delete')
+                            'label' => Yii::t('hipanel', 'Delete')
                         ]);
                     } elseif ($model->spam_action === '') {
                         return Label::widget([
                             'color' => 'info',
-                            'label' => Yii::t('app', 'Do nothing')
+                            'label' => Yii::t('hipanel/hosting', 'Do nothing')
                         ]);
                     } else {
                         return Label::widget([
                             'color' => 'primary',
-                            'label' => Yii::t('app', 'Forward to')
+                            'label' => Yii::t('hipanel/hosting', 'Forward to')
                         ]) . ' ' . ArraySpoiler::widget([
                             'data' => $model->spam_action,
                             'visibleCount' => 2

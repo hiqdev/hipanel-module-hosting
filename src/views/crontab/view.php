@@ -1,9 +1,4 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\CrontabGridView;
@@ -52,7 +47,7 @@ JS
 
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title"><?= Yii::t('app', 'Crontab'); ?></h3>
+                <h3 class="box-title"><?= Yii::t('hipanel', 'Crontab'); ?></h3>
 
                 <div class="box-tools pull-right">
                     <?= Html::button('<i class="fa fa-refresh"></i> ' . Yii::t('hipanel', 'Refresh'), [
@@ -73,7 +68,7 @@ JS
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-default']) ?>
+                <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
             </div>
             <!-- box-footer -->
             <div class="overlay" style="display: none;">

@@ -66,7 +66,7 @@ use yii\web\JsExpression;
                                     ]
                                 ]);
 
-                                print Html::label(Yii::t('app', 'E-mail'), Html::getInputId($model, "[$i]nick"));
+                                print Html::label(Yii::t('hipanel', 'E-mail'), Html::getInputId($model, "[$i]nick"));
                                 ?>
                                 <div class="form-inline">
                                     <?= $form->field($model, "[$i]nick")->input('text', [
@@ -101,9 +101,9 @@ use yii\web\JsExpression;
                                 }
 
                                 print $form->field($model, "[$i]spam_action")->radioList([
-                                    '' => Yii::t('app', 'Do nothing'),
-                                    'delete' => Yii::t('app', 'Delete'),
-                                    'forward' => Yii::t('app', 'Forward to'),
+                                    ''        => Yii::t('hipanel/hosting', 'Do nothing'),
+                                    'delete'  => Yii::t('hipanel/hosting', 'Delete'),
+                                    'forward' => Yii::t('hipanel/hosting', 'Forward to'),
                                 ], [
                                     'class' => 'spam-action',
                                 ]);
@@ -160,9 +160,9 @@ HTML
             </div>
         <?php } ?>
     </div>
-<?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
     &nbsp;
-<?= Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+<?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
 <?php ActiveForm::end();
 
 $this->registerJs(<<<'JS'

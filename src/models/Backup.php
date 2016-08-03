@@ -41,10 +41,8 @@ class Backup extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'id' => Yii::t('app', 'Object ID'),
-            'method_label' => Yii::t('app', 'Method label'),
-            'object_id' => Yii::t('app', 'Backup ID'),
-            'size' => Yii::t('hipanel/hosting', 'Size'),
+            'method'    => Yii::t('hipanel/hosting', 'Method'),
+            'size'      => Yii::t('hipanel/hosting', 'Size'),
         ]);
     }
 }

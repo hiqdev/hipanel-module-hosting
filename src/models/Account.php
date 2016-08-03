@@ -51,7 +51,7 @@ class Account extends \hipanel\base\Model
                 ['password'],
                 'compare',
                 'compareAttribute' => 'login',
-                'message' => Yii::t('app', 'Password must not be equal to login'),
+                'message' => Yii::t('hipanel', 'Password must not be equal to login'),
                 'operator' => '!=',
                 'on' => ['create', 'create-ftponly', 'update', 'set-password'],
             ],
@@ -62,7 +62,7 @@ class Account extends \hipanel\base\Model
                 'range' => ['root', 'toor'],
                 'not' => true,
                 'on' => ['create', 'create-ftponly'],
-                'message' => Yii::t('app', 'You can not use this login')
+                'message' => Yii::t('hipanel/hosting', 'You can not use this login')
             ],
             [
                 ['sshftp_ips'],
@@ -97,12 +97,10 @@ class Account extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'login_like' => Yii::t('app', 'Login'),
-            'allowed_ips' => Yii::t('app', 'Allowed IPs'),
-            'sshftp_ips' => Yii::t('app', 'IP to access on the server via SSH or FTP'),
-            'block_send' => Yii::t('app', 'Block outgoing post'),
+            'allowed_ips'    => Yii::t('hipanel/hosting', 'Allowed IPs'),
+            'sshftp_ips'     => Yii::t('hipanel/hosting', 'IP to access on the server via SSH or FTP'),
+            'block_send'     => Yii::t('hipanel/hosting', 'Block outgoing post'),
             'per_hour_limit' => Yii::t('hipanel/hosting', 'Maximum letters per hour'),
-            'comment' => Yii::t('app', 'Comment'),
         ]);
     }
 

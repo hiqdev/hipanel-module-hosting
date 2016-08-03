@@ -9,9 +9,9 @@ use yii\helpers\Html;
 use yii\web\View;
 
 $this->title = $model->mail;
-$this->subtitle = Yii::t('app', 'Mailbox detailed information') . ' #' . $model->id;
+$this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
 $this->breadcrumbs->setItems([
-    ['label' => Yii::t('app', 'Mailboxes'), 'url' => ['index']],
+    ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']],
     $this->title,
 ]);
 
@@ -42,7 +42,7 @@ $this->breadcrumbs->setItems([
 
         <div class="profile-usermenu">
             <ul class="nav">
-                <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('app', 'Edit'), ['update', 'id' => $model->id]) ?></li>
+                <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Edit'), ['update', 'id' => $model->id]) ?></li>
                 <?php if ($model->canChangePassword()) { ?>
                     <li>
                         <?php
@@ -50,14 +50,14 @@ $this->breadcrumbs->setItems([
                             'model' => $model,
                             'scenario' => 'set-password',
                             'button' => [
-                                'label' => '<i class="fa fa-lock"></i>' . Yii::t('app', 'Change password'),
+                                'label' => '<i class="fa fa-lock"></i>' . Yii::t('hipanel', 'Change password'),
                             ],
                             'modal' => [
-                                'header' => Html::tag('h4', Yii::t('app', 'Enter a new password')),
+                                'header' => Html::tag('h4', Yii::t('hipanel', 'New password')),
                                 'headerOptions' => ['class' => 'label-info'],
                                 'footer' => [
-                                    'label' => Yii::t('app', 'Change'),
-                                    'data-loading-text' => Yii::t('app', 'Changing...'),
+                                    'label' => Yii::t('hipanel', 'Change password'),
+                                    'data-loading-text' => Yii::t('hipanel', 'Changing...'),
                                     'class' => 'btn btn-warning',
                                 ]
                             ]
@@ -75,19 +75,19 @@ $this->breadcrumbs->setItems([
                         'model' => $model,
                         'scenario' => 'delete',
                         'button' => [
-                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('app', 'Delete'),
+                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('app', 'Confirm database deleting')),
+                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm mailbox deleting')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('app', 'Delete database'),
-                                'data-loading-text' => Yii::t('app', 'Deleting database...'),
+                                'label' => Yii::t('hipanel/hosting', 'Delete mailbox'),
+                                'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                 'class' => 'btn btn-danger',
                             ]
                         ],
-                        'body' => Yii::t('app',
-                            'Are you sure, that you want to delete database {name}? All tables will be dropped, all data will be lost.',
+                        'body' => Yii::t('hipanel/hosting',
+                            'Are you sure to delete database {name}? All data will be lost.',
                             ['name' => $model->mail]
                         )
                     ]) ?>
@@ -103,7 +103,7 @@ $this->breadcrumbs->setItems([
                 <?php
                 $box = Box::begin(['renderBody' => false]);
                 $box->beginHeader();
-                echo $box->renderTitle(Yii::t('app', 'Mailbox information'));
+                echo $box->renderTitle(Yii::t('hipanel', 'Detailed information'));
                 $box->endHeader();
                 $box->beginBody();
                 echo MailGridView::detailView([
