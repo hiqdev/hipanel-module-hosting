@@ -32,9 +32,12 @@ class IpSearch extends Ip
      */
     public function searchAttributes()
     {
-        return ArrayHelper::merge($this->defaultSearchAttributes(),
+        return ArrayHelper::merge(
+            $this->defaultSearchAttributes(),
             $this->buildAttributeConditions('server'),
             $this->buildAttributeConditions('tag'),
+            $this->buildAttributeConditions('soft'),
+            $this->buildAttributeConditions('soft_type'),
             [
                 'with_tags',
                 'with_counters',
@@ -42,7 +45,6 @@ class IpSearch extends Ip
                 'show_only_device_link',
                 'with_links',
                 'not_tags',
-                'soft_type',
             ]
         );
     }
