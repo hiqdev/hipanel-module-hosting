@@ -1,10 +1,5 @@
 <?php
 
-/* @var $this View */
-/* @var $model hipanel\modules\hosting\models\Hdomain */
-/* @var $type string */
-
-use hipanel\components\View;
 use hipanel\models\Ref;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
@@ -13,6 +8,10 @@ use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+
+/* @var $this yii\web\View */
+/* @var $model hipanel\modules\hosting\models\Hdomain */
+/* @var $type string */
 
 if (Yii::$app->user->can('support')) {
     $this->registerJs(<<<'JS'
@@ -78,10 +77,10 @@ $form = ActiveForm::begin([
     'validateOnBlur' => true,
     'enableAjaxValidation' => true,
     'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->isNewRecord ? $model->scenario : 'update']),
-]); ?>
+]) ?>
 
 <div class="container-items">
-    <?php foreach ($models as $i => $model) { ?>
+    <?php foreach ($models as $i => $model) : ?>
         <div class="row">
             <div class="col-md-4">
                 <div class="box box-danger">
@@ -149,9 +148,9 @@ JS
                 </div>
             </div>
         </div>
-    <?php } ?>
+    <?php endforeach ?>
 </div>
 <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
 &nbsp;
 <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-<?php ActiveForm::end(); ?>
+<?php ActiveForm::end() ?>

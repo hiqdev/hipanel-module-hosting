@@ -1,11 +1,5 @@
 <?php
 
-/* @var $this View */
-/* @var $model hipanel\modules\hosting\models\Db */
-/* @var $type string */
-
-
-use hipanel\components\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\DbServiceCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
@@ -14,6 +8,10 @@ use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+
+/* @var $this yii\web\View */
+/* @var $model hipanel\modules\hosting\models\Db */
+/* @var $type string */
 
 $form = ActiveForm::begin([
     'id' => 'dynamic-form',

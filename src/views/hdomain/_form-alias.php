@@ -1,10 +1,5 @@
 <?php
 
-/* @var $this View */
-/* @var $model hipanel\modules\hosting\models\Hdomain */
-/* @var $type string */
-
-use hipanel\components\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\HdomainCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
@@ -15,6 +10,10 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 
+/* @var $this yii\web\View */
+/* @var $model hipanel\modules\hosting\models\Hdomain */
+/* @var $type string */
+
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
     'enableClientValidation' => true,
@@ -24,7 +23,7 @@ $form = ActiveForm::begin([
 ]); ?>
 
 <div class="container-items">
-    <?php foreach ($models as $i => $model) { ?>
+    <?php foreach ($models as $i => $model) : ?>
         <div class="row">
             <div class="col-md-4">
                 <div class="box box-danger">
@@ -91,7 +90,7 @@ $form = ActiveForm::begin([
                 </div>
             </div>
         </div>
-    <?php } ?>
+    <?php endforeach ?>
 </div>
 <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
     &nbsp;
