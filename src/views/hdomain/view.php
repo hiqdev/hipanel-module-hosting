@@ -16,16 +16,13 @@ use yii\web\View;
  */
 
 $this->title = $model->domain;
-$this->subtitle =
-    (
-        $model->isAlias()
-        ? Yii::t('hipanel/hosting', 'Hosting domain alias detailed information')
-        : Yii::t('hipanel/hosting', 'Hosting domain detailed information')
-    ) . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['index']],
-    $this->title,
-]);
+$this->subtitle = ($model->isAlias()
+    ? Yii::t('hipanel/hosting', 'Hosting domain alias detailed information')
+    : Yii::t('hipanel/hosting', 'Hosting domain detailed information')
+) . ' #' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="row">
@@ -37,7 +34,7 @@ $this->breadcrumbs->setItems([
             'bodyOptions' => [
                 'class' => 'no-padding'
             ]
-        ]); ?>
+        ]) ?>
         <div class="profile-user-img text-center">
             <img class="img-thumbnail" src="//mini.s-shot.ru/1024x768/PNG/200/Z100/?<?= $model->domain ?>"/>
         </div>
@@ -52,18 +49,18 @@ $this->breadcrumbs->setItems([
                 <li>
                     <?php $url = 'http://' . $model->domain . '/' ?>
                     <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('hipanel/hosting', 'Go to site {link}', ['link' => $url]), $url,
-                        ['target' => '_blank']); ?>
+                        ['target' => '_blank']) ?>
                 </li>
                 <?php if (!$model->isAlias()) { ?>
                     <li>
                         <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel/hosting', 'Advanced settings'),
-                            ['/hosting/vhost/advanced-config', 'id' => $model->id]); ?>
+                            ['/hosting/vhost/advanced-config', 'id' => $model->id]) ?>
                     </li>
                 <?php } ?>
                 <?php if (!$model->isAlias()) { ?>
                 <li>
                     <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('hipanel/hosting', 'Proxy settings'),
-                        ['/hosting/vhost/manage-proxy', 'id' => $model->id]); ?>
+                        ['/hosting/vhost/manage-proxy', 'id' => $model->id]) ?>
                 </li>
                 <?php } ?>
                 <?php if (Yii::$app->user->can('support') && Yii::$app->user->id !== $model->client_id && !$model->isAlias()) : ?>
@@ -95,7 +92,7 @@ $this->breadcrumbs->setItems([
                 </li>
             </ul>
         </div>
-        <?php Box::end(); ?>
+        <?php Box::end() ?>
     </div>
 
     <div class="col-md-9">
@@ -163,7 +160,7 @@ $this->breadcrumbs->setItems([
                             ],
                             'backups_widget',
                         ],
-                    ]); ?>
+                    ]) ?>
                 </div>
                 <div class="tab-pane" id="hdomain-dns">
                     <?php echo DnsZoneEditWidget::widget([
@@ -177,7 +174,7 @@ $this->breadcrumbs->setItems([
                                 });
                             ");
                         }
-                    ]); ?>
+                    ]) ?>
                 </div>
             </div>
         </div>

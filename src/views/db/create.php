@@ -5,8 +5,9 @@
 /* @var $type string */
 
 $this->title = Yii::t('hipanel/hosting', 'Create database');
-$this->breadcrumbs->setItems([['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']]]);
-$this->breadcrumbs->setItems([$this->title]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="db-create">

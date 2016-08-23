@@ -13,14 +13,11 @@ use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title    = $model->login;
+$this->title = $model->login;
 $this->subtitle = Yii::t('hipanel/hosting', 'account mail config') . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => 'Accounts', 'url' => ['index']],
-    ['label' => $model->login, 'url' => ['view', 'id' => $model->id]],
-    Yii::t('hipanel/hosting', 'Mail config')
-]);
-
+$this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->login, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('hipanel/hosting', 'Mail config');
 
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
@@ -28,10 +25,10 @@ $form = ActiveForm::begin([
     'validateOnBlur'         => true,
     'enableAjaxValidation'   => true,
     'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
-]); ?>
+]) ?>
 
     <div class="container-items">
-        <?php foreach ($models as $i => $model) { ?>
+        <?php foreach ($models as $i => $model) : ?>
             <div class="row">
                 <div class="col-md-9">
                     <div class="box box-danger">
@@ -52,18 +49,18 @@ $form = ActiveForm::begin([
                                         <?= $form->field($model, "[$i]login")->widget(SshAccountCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
                                     </div>
                                 </div>
-                                <?php
-                                echo $form->field($model, 'per_hour_limit');
-                                echo $form->field($model, 'block_send')->checkbox();
-                                ?>
+                                <?= $form->field($model, 'per_hour_limit') ?>
+                                <?= $form->field($model, 'block_send')->checkbox() ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php endforeach ?>
     </div>
-<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
-    &nbsp;
-<?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+
+    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
+        &nbsp;
+    <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+
 <?php ActiveForm::end();

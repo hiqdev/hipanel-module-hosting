@@ -11,10 +11,10 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel', 'Domains');
-$this->breadcrumbs->setItems([
-    $this->title,
-]);
-$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list'); ?>
+$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
+$this->params['breadcrumbs'][] = $this->title;
+
+?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
@@ -24,7 +24,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
         <?php $page->beginContent('main-actions') ?>
             <div class="dropdown">
                 <a class="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <?= Yii::t('hipanel/hosting', 'Create domain'); ?>
+                    <?= Yii::t('hipanel/hosting', 'Create domain') ?>
                     <span class="caret"></span>
                 </a>
                 <?= Dropdown::widget([
@@ -32,7 +32,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                         ['label' => Yii::t('hipanel/hosting', 'Create domain'), 'url' => ['create']],
                         ['label' => Yii::t('hipanel/hosting', 'Create alias'), 'url' => ['create-alias']],
                     ]
-                ]); ?>
+                ]) ?>
             </div>
         <?php $page->endContent() ?>
 
@@ -73,7 +73,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                                 'linkOptions' => ['data-toggle' => 'modal'],
                             ],
                         ],
-                    ]); ?>
+                    ]) ?>
                     <div>
                         <?= AjaxModal::widget([
                             'id' => 'bulk-enable-block-modal',
@@ -97,7 +97,7 @@ $this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) 
                         ]) ?>
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php endif ?>
             <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger')?>
         <?php $page->endContent() ?>
 

@@ -10,10 +10,9 @@ use yii\helpers\Html;
 
 $this->title = $model->name;
 $this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']],
-    $this->title,
-]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="row">
@@ -25,7 +24,7 @@ $this->breadcrumbs->setItems([
             'bodyOptions' => [
                 'class' => 'no-padding'
             ]
-        ]); ?>
+        ]) ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-database fa-5x"></i>
         </div>
@@ -38,8 +37,7 @@ $this->breadcrumbs->setItems([
         <div class="profile-usermenu">
             <ul class="nav">
                 <li>
-                    <?php
-                    $modalButton = ModalButton::begin([
+                    <?php $modalButton = ModalButton::begin([
                         'model' => $model,
                         'scenario' => 'set-password',
                         'button' => [
@@ -54,18 +52,14 @@ $this->breadcrumbs->setItems([
                                 'class' => 'btn btn-info',
                             ]
                         ]
-                    ]);
-                    ?>
+                    ]) ?>
 
                     <div class="callout callout-warning">
                         <h4><?= Yii::t('hipanel', 'This will immediately terminate all sessions of the user!') ?></h4>
                     </div>
 
-                    <?php
-                    echo $modalButton->form->field($model,
-                        'password')->widget(PasswordInput::class)->label(false);
-                    ModalButton::end();
-                    ?>
+                    <?= $modalButton->form->field($model, 'password')->widget(PasswordInput::class)->label(false) ?>
+                    <?php ModalButton::end() ?>
                 </li>
                 <li>
                     <?= ModalButton::widget([
@@ -112,7 +106,7 @@ $this->breadcrumbs->setItems([
                 </li>
             </ul>
         </div>
-        <?php Box::end(); ?>
+        <?php Box::end() ?>
     </div>
 
     <div class="col-md-9">

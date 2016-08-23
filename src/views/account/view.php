@@ -11,10 +11,8 @@ use yii\helpers\Url;
 
 $this->title = $model->login;
 $this->subtitle = Yii::t('hipanel/hosting', 'Account detailed information') . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel/hosting', 'Accounts'), 'url' => ['index']],
-    $this->title,
-]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Accounts'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="row">

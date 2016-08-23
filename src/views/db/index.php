@@ -8,8 +8,10 @@ use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel', 'Databases');
-$this->breadcrumbs->setItems([$this->title]);
-$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list'); ?>
+$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
+$this->params['breadcrumbs'][] = $this->title;
+
+?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>

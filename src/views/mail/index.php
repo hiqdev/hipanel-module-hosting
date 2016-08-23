@@ -1,9 +1,4 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\modules\hosting\grid\MailGridView;
 use hipanel\widgets\ActionBox;
@@ -13,10 +8,10 @@ use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel/hosting', 'Mailboxes');
-$this->breadcrumbs->setItems([
-    $this->title,
-]);
-$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list'); ?>
+$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
+$this->params['breadcrumbs'][] = $this->title;
+
+?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>

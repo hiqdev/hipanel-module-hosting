@@ -8,17 +8,16 @@ use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 use yii\web\View;
 
-$this->title = $model->mail;
-$this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']],
-    $this->title,
-]);
-
 /**
  * @var $this View
  * @var $model Mail
  */
+
+$this->title = $model->mail;
+$this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="row">
@@ -30,14 +29,14 @@ $this->breadcrumbs->setItems([
             'bodyOptions' => [
                 'class' => 'no-padding'
             ]
-        ]); ?>
+        ]) ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-envelope-o fa-5x"></i>
         </div>
         <p class="text-center">
             <span class="profile-user-role"><?= $model->mail ?></span>
             <br>
-            <span class="profile-user-name"><?= $model->client . ' / ' . $model->seller; ?></span>
+            <span class="profile-user-name"><?= $model->client . ' / ' . $model->seller ?></span>
         </p>
 
         <div class="profile-usermenu">
@@ -94,7 +93,7 @@ $this->breadcrumbs->setItems([
                 </li>
             </ul>
         </div>
-        <?php Box::end(); ?>
+        <?php Box::end() ?>
     </div>
 
     <div class="col-md-9">

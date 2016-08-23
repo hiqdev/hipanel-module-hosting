@@ -13,23 +13,21 @@ use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title    = $model->domain;
+$this->title = $model->domain;
 $this->subtitle = Yii::t('hipanel/hosting', 'hosting domain advanced config') . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['@hdomain/index']],
-    ['label' => $model->domain, 'url' => ['@hdomain/view', 'id' => $model->id]],
-    Yii::t('hipanel/hosting', 'Advanced config')
-]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['@hdomain/index']];
+$this->params['breadcrumbs'][] = ['label' => $model->domain, 'url' => ['@hdomain/view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('hipanel/hosting', 'Advanced config');
 
-
-$form = ActiveForm::begin([
+?>
+<?php $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
     'enableAjaxValidation'   => true,
     'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
-]); ?>
+]) ?>
 
     <div class="container-items">
-        <?php foreach ($models as $i => $model) { ?>
+        <?php foreach ($models as $i => $model) : ?>
             <div class="row">
                 <div class="col-md-9">
                     <div class="box box-danger">
@@ -54,10 +52,8 @@ $form = ActiveForm::begin([
                                         ]) ?>
                                     </div>
                                 </div>
-                                <?php
-                                print $form->field($model, "[$i]domain")->input('text', ['readonly' => true]);
-                                print $form->field($model, "[$i]docroot")->input('text', ['readonly' => true]);
-                                ?>
+                                <?= $form->field($model, "[$i]domain")->input('text', ['readonly' => true]) ?>
+                                <?= $form->field($model, "[$i]docroot")->input('text', ['readonly' => true]) ?>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <?= $form->field($model, "[$i]port") ?>
@@ -72,24 +68,23 @@ $form = ActiveForm::begin([
                                         <?= $form->field($model, "[$i]cgibin_postfix"); ?>
                                     </div>
                                 </div>
-                                <?php
-                                print $form->field($model, "[$i]enable_accesslog")->checkbox();
-                                print $form->field($model, "[$i]enable_errorslog")->checkbox();
-                                print $form->field($model, "[$i]enable_suexec")->checkbox();
-                                print $form->field($model, "[$i]enable_ssi")->checkbox();
-                                print $form->field($model, "[$i]enable_scripts")->checkbox();
-
-                                print $form->field($model, "[$i]apache_conf")->textarea(['rows' => 8]);
-                                print $form->field($model, "[$i]nginx_conf")->textarea(['rows' => 8]);
-                                ?>
+                                <?= $form->field($model, "[$i]enable_accesslog")->checkbox() ?>
+                                <?= $form->field($model, "[$i]enable_errorslog")->checkbox() ?>
+                                <?= $form->field($model, "[$i]enable_suexec")->checkbox() ?>
+                                <?= $form->field($model, "[$i]enable_ssi")->checkbox() ?>
+                                <?= $form->field($model, "[$i]enable_scripts")->checkbox() ?>
+                                <?= $form->field($model, "[$i]apache_conf")->textarea(['rows' => 8]) ?>
+                                <?= $form->field($model, "[$i]nginx_conf")->textarea(['rows' => 8]) ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php endforeach ?>
     </div>
-<?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
-    &nbsp;
-<?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-<?php ActiveForm::end();
+
+    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-default']) ?>
+        &nbsp;
+    <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+
+<?php ActiveForm::end() ?>
