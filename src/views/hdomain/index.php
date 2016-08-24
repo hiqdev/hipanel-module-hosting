@@ -1,17 +1,14 @@
 <?php
 
 use hipanel\modules\hosting\grid\HdomainGridView;
-use hipanel\widgets\ActionBox;
 use hipanel\widgets\AjaxModal;
-use hipanel\widgets\IndexLayoutSwitcher;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\bootstrap\Dropdown;
-use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel', 'Domains');
-$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
+$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -37,15 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('show-actions') ?>
-            <?= IndexLayoutSwitcher::widget() ?>
+            <?= $page->renderLayoutSwitcher() ?>
             <?= $page->renderSorter([
                 'attributes' => [
-                    'domain',
-                    'client',
-                    'seller',
-                    'account',
-                    'server',
-                    'state',
+                    'domain', 'client', 'seller',
+                    'account', 'server', 'state',
                 ],
             ]) ?>
             <?= $page->renderPerPage() ?>
@@ -81,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Block domains'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-enable-block',
                             'actionUrl' => ['bulk-enable-block-modal'],
-                            'size' => Modal::SIZE_LARGE,
+                            'size' => AjaxModal::SIZE_LARGE,
                             'handleSubmit' => false,
                             'toggleButton' => false,
                         ]) ?>
@@ -91,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Unblock domains'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-disable-block',
                             'actionUrl' => ['bulk-disable-block-modal'],
-                            'size' => Modal::SIZE_LARGE,
+                            'size' => AjaxModal::SIZE_LARGE,
                             'handleSubmit' => false,
                             'toggleButton' => false,
                         ]) ?>
@@ -102,25 +95,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
-        <?php $page->beginBulkForm() ?>
-            <?= HdomainGridView::widget([
-                'boxed' => false,
-                'dataProvider' => $dataProvider,
-                'filterModel'  => $model,
-                'columns'      => [
-                    'checkbox',
-                    'hdomain_with_aliases',
-                    'client',
-                    'seller',
-                    'account',
-                    'server',
-                    'state',
-                    'ip',
-                    'service',
-                    'actions',
-                ],
-            ]) ?>
-        <?php $page->endBulkForm() ?>
+            <?php $page->beginBulkForm() ?>
+                <?= HdomainGridView::widget([
+                    'boxed' => false,
+                    'dataProvider' => $dataProvider,
+                    'filterModel'  => $model,
+                    'columns'      => [
+                        'checkbox',
+                        'hdomain_with_aliases',
+                        'client', 'seller', 'account', 'server',
+                        'state', 'ip', 'service',
+                        'actions',
+                    ],
+                ]) ?>
+            <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>
     <?php $page->end() ?>
 <?php Pjax::end() ?>

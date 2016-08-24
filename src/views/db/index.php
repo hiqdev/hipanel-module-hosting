@@ -1,14 +1,12 @@
 <?php
 
 use hipanel\modules\hosting\grid\DbGridView;
-use hipanel\widgets\ActionBox;
-use hipanel\widgets\IndexLayoutSwitcher;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
 $this->title = Yii::t('hipanel', 'Databases');
-$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
+$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -23,10 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('show-actions') ?>
-            <?= IndexLayoutSwitcher::widget() ?>
+            <?= $page->renderLayoutSwitcher() ?>
             <?= $page->renderSorter([
                 'attributes' => [
-                    'client', 'seller', 'account', 'server', 'name', 'description', 'state'
+                    'client', 'seller', 'account', 'server',
+                    'name', 'description', 'state'
                 ],
             ]) ?>
             <?= $page->renderPerPage() ?>
@@ -37,24 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
-        <?php $page->beginBulkForm() ?>
-            <?= DbGridView::widget([
-                'boxed' => false,
-                'dataProvider' => $dataProvider,
-                'filterModel'  => $model,
-                'columns'      => [
-                    'checkbox',
-                    'name',
-                    'account',
-                    'server',
-                    'client_id',
-                    'seller_id',
-                    'description',
-                    'state',
-                    'actions'
-                ],
-            ]) ?>
-        <?php $page->endBulkForm() ?>
+            <?php $page->beginBulkForm() ?>
+                <?= DbGridView::widget([
+                    'boxed' => false,
+                    'dataProvider' => $dataProvider,
+                    'filterModel'  => $model,
+                    'columns'      => [
+                        'checkbox',
+                        'name', 'account', 'server',
+                        'client_id', 'seller_id',
+                        'description', 'state',
+                        'actions'
+                    ],
+                ]) ?>
+            <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>
     <?php $page->end() ?>
 <?php Pjax::end() ?>

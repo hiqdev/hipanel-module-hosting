@@ -5,12 +5,10 @@ use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\PasswordInput;
-use yii\bootstrap\Modal;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 $this->title = $model->login;
-$this->subtitle = Yii::t('hipanel/hosting', 'Account detailed information') . ' #' . $model->id;
+$this->params['subtitle'] = Yii::t('hipanel/hosting', 'Account detailed information') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Accounts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -159,13 +157,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
-                        'seller_id',
-                        'client_id',
+                        'seller_id', 'client_id',
                         ['attribute' => 'login'],
-                        'type',
-                        'state',
-                        'sshftp_ips',
-                        'per_hour_limit'
+                        'type', 'state', 'sshftp_ips', 'per_hour_limit'
                     ],
                 ]);
                 $box->endBody();

@@ -1,20 +1,18 @@
 <?php
 
-/* @var $this View */
-/* @var $model hipanel\modules\hosting\models\Account */
-/* @var $type string */
-
-use hipanel\base\View;
 use hipanel\helpers\Url;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
-use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+/* @var $this yii\web\View */
+/* @var $model hipanel\modules\hosting\models\Account */
+/* @var $type string */
+
 $this->title = $model->login;
-$this->subtitle = Yii::t('hipanel/hosting', 'account mail config') . ' #' . $model->id;
+$this->params['subtitle'] = Yii::t('hipanel/hosting', 'account mail config') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->login, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('hipanel/hosting', 'Mail config');

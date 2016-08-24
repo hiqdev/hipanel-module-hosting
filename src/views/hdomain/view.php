@@ -16,7 +16,7 @@ use yii\web\View;
  */
 
 $this->title = $model->domain;
-$this->subtitle = ($model->isAlias()
+$this->params['subtitle'] = ($model->isAlias()
     ? Yii::t('hipanel/hosting', 'Hosting domain alias detailed information')
     : Yii::t('hipanel/hosting', 'Hosting domain detailed information')
 ) . ' #' . $model->id;

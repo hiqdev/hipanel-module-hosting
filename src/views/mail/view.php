@@ -3,18 +3,19 @@
 use hipanel\modules\hosting\grid\MailGridView;
 use hipanel\modules\hosting\models\Mail;
 use hipanel\widgets\Box;
+use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 use yii\web\View;
 
 /**
- * @var $this View
+ * @var $this yii\web\View
  * @var $model Mail
  */
 
 $this->title = $model->mail;
-$this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
+$this->params['subtitle'] = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-center">
             <span class="profile-user-role"><?= $model->mail ?></span>
             <br>
-            <span class="profile-user-name"><?= $model->client . ' / ' . $model->seller ?></span>
+            <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
         </p>
 
         <div class="profile-usermenu">
@@ -109,13 +110,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
-                        'client_id',
-                        'seller_id',
-                        'server_id',
-                        'type',
-                        'domain',
-                        'forwards',
-                        'spam_action',
+                        'client_id', 'seller_id', 'server_id',
+                        'type', 'domain', 'forwards', 'spam_action',
                         'state',
                     ],
                 ]);

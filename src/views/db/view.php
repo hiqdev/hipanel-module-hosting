@@ -9,7 +9,7 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 
 $this->title = $model->name;
-$this->subtitle = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
+$this->params['subtitle'] = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -122,11 +122,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'boxed' => false,
                             'model' => $model,
                             'columns' => [
-                                'seller_id',
-                                'client_id',
+                                'seller_id', 'client_id',
                                 ['attribute' => 'name'],
-                                'service_ip',
-                                'description',
+                                'service_ip', 'description',
                                 'backups_widget',
                             ],
                         ]);
