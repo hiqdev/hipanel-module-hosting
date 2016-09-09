@@ -64,7 +64,7 @@ class ServiceController extends \hipanel\base\CrudController
                     /** @var \hipanel\actions\SearchAction $action */
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith(['ips', 'objects_count']);
+                    $dataProvider->query->joinWith(['ips'])->addSelect('objects_count');
                 },
                 'filterStorageMap' => [
                     'ip' => 'hosting.ip.ip',

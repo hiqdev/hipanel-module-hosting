@@ -55,9 +55,4 @@ class Service extends \hipanel\base\Model
     {
         return $this->hasMany(Ip::class, ['service_id', 'id']);
     }
-
-    public function getObjects_count()
-    {
-        return null; // This relation is not available separately from search query.
-    }
 }
