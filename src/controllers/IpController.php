@@ -225,7 +225,6 @@ class IpController extends \hipanel\base\CrudController
             $action = $event->sender;
             $dataProvider = $action->getDataProvider();
             $dataProvider->query->joinWith('links');
-            $dataProvider->query->joinWith('ptr');
 
             // TODO: ipModule is not wise yet. Redo
             $dataProvider->query
