@@ -14,17 +14,14 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
+use hipanel\helpers\FontIcon;
 use hipanel\modules\hosting\models\DbSearch;
 use hipanel\modules\hosting\models\HdomainSearch;
-use hipanel\modules\hosting\models\Service;
 use hipanel\modules\hosting\models\Soft;
 use hipanel\modules\server\grid\ServerColumn;
-use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\State;
 use Yii;
-use yii\base\InvalidParamException;
-use yii\bootstrap\Button;
 use yii\helpers\Html;
 
 class ServiceGridView extends \hipanel\grid\BoxedGridView
@@ -44,22 +41,38 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'header' => Yii::t('hipanel/hosting', 'Object'),
                 'value' => function ($model) {
-                    $html = $model->name;
-                    if ($model->objects_count > 0) {
-                        $html .= ' ';
-                        if ($model->soft_type === Soft::TYPE_DB) {
-                            $html .= Html::a(
-                                Yii::t('hipanel/hosting', '{0, plural, one{# DB} other{# DBs}}', $model->objects_count),
-                                ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
-                                ['class' => 'btn btn-default btn-xs']
-                            );
-                        } elseif ($model->soft_type === Soft::TYPE_WEB) {
-                            $html .= Html::a(
-                                Yii::t('hipanel/hosting', '{0, plural, one{# domain} other{# domains}}', $model->objects_count),
-                                ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]],
-                                ['class' => 'btn btn-default btn-xs']
-                            );
-                        }
+                    $html = $model->name . ' ';
+
+                    if ($model->soft_type === Soft::TYPE_WEB) {
+                        $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]];
+                        $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
+                        $type = function ($count) {
+                            return Yii::t('hipanel/hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
+                        };
+                    } elseif ($model->soft_type === Soft::TYPE_DB) {
+                        $url['ok'] = ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]];
+                        $url['deleted'] = ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
+                        $type = function ($count) {
+                            return Yii::t('hipanel/hosting', '{0, plural, one{# DB} other{# DBs}}', (int)$count);
+                        };
+                    } else {
+                        return $html;
+                    }
+
+                    if ($count = $model->objects_count['ok']) {
+                        $html .= Html::a(
+                            (int)$count . '&nbsp;' . FontIcon::i('fa-check') . ' ' . $type($count),
+                            $url['ok'],
+                            ['class' => 'btn btn-success btn-xs']
+                        );
+                    }
+                    $html .= ' ';
+                    if (($count = $model->objects_count['deleted']) > 0) {
+                        $html .= Html::a(
+                            (int)$count . '&nbsp;' . FontIcon::i('fa-trash') . ' ' . $type($count),
+                            $url['deleted'],
+                            ['class' => 'btn btn-xs btn-warning']
+                        );
                     }
 
                     return $html;
