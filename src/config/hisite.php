@@ -40,8 +40,18 @@ return [
             ],
         ],
         'menuManager' => [
-            'menus' => [
-                'hosting' => \hipanel\modules\hosting\SidebarMenu::class,
+            'items' => [
+                'sidebar' => [
+                    'add' => [
+                        'hosting' => [
+                            'menu' => \hipanel\modules\hosting\menus\SidebarHostingMenu::class,
+                            'where' => [
+                                'after' => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
+                                'before' => ['stock'],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
     ],

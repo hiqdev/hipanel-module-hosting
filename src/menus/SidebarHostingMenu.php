@@ -9,22 +9,12 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-namespace hipanel\modules\hosting;
+namespace hipanel\modules\hosting\menus;
 
 use Yii;
 
-class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInterface
+class SidebarHostingMenu extends \hiqdev\menumanager\Menu
 {
-    /**
-     * @inheritdoc
-     */
-    protected $_addTo = 'sidebar';
-
-    protected $_where = [
-        'after' => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
-        'before' => ['stock'],
-    ];
-
     public function items()
     {
         return [
