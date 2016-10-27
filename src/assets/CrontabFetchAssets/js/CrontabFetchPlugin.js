@@ -123,6 +123,7 @@
         },
         showError: function(message) {
             new PNotify({
+                styling: 'bootstrap3',
                 title: 'Error',
                 text: message,
                 type: 'error'
