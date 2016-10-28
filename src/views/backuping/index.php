@@ -44,7 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'main', 'client', 'account', 'server',
                         'backup_count', 'type', 'state_label',
                         'backup_last', 'total_du',
-                        'actions',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>

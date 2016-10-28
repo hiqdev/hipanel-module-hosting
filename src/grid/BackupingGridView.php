@@ -118,10 +118,6 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                     return Yii::$app->formatter->asShortSize($model->total_du, 2);
                 }
             ],
-            'actions' => [
-                'class' => ActionColumn::class,
-                'template' => '{view} {delete}',
-            ],
         ];
     }
 }
