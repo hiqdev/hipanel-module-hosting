@@ -41,30 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if (Yii::$app->user->can('admin')) : ?>
                     <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Update'), ['update', 'id' => $model->id]) ?></li>
                 <?php endif; ?>
-                <?php if (Yii::$app->user->can('admin')) : ?>
-                    <li>
-                        <?= ModalButton::widget([
-                            'model' => $model,
-                            'scenario' => 'delete',
-                            'button' => [
-                                'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
-                            ],
-                            'modal' => [
-                                'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm service deleting')),
-                                'headerOptions' => ['class' => 'label-info'],
-                                'footer' => [
-                                    'label' => Yii::t('hipanel/hosting', 'Delete service'),
-                                    'data-loading-text' => Yii::t('hipanel/hosting', 'Deleting service...'),
-                                    'class' => 'btn btn-danger',
-                                ]
-                            ],
-                            'body' => Yii::t('hipanel/hosting',
-                                'Are you sure, that you want to delete service {name}? All related objects might be deleted too!',
-                                ['name' => $model->name]
-                            )
-                        ]) ?>
-                    </li>
-                <?php endif; ?>
             </ul>
         </div>
         <?php Box::end(); ?>

@@ -35,7 +35,6 @@ class Service extends \hipanel\base\Model
                 'skipOnArray' => true, 'on' => ['create', 'update']
             ],
             [['ips'], 'each', 'rule' => ['ip'], 'on' => ['create', 'update']],
-            [['id'], 'integer', 'on' => ['update']],
             [['id'], 'required', 'on' => ['update']],
         ];
     }

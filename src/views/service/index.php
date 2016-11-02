@@ -33,9 +33,6 @@ $this->params['breadcrumbs'][]  = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
-            <?php if (Yii::$app->user->can('admin')) : ?>
-                <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger') ?>
-            <?php endif ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>

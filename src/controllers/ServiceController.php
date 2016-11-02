@@ -119,10 +119,6 @@ class ServiceController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel/hosting', 'Service was updated successfully'),
                 'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update a service')
             ],
-            'delete' => [
-                'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Service was deleted successfully'),
-            ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ]
