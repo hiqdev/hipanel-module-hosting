@@ -203,6 +203,7 @@ return [
     'Create mailbox' => 'Создать ящик',
     'Forward only' => 'Только пересылка',
     'Forwarding' => 'Пересылка',
+    'Spam action' => 'Действия для спама',
     'Auto answer' => 'Автоответ',
     'Mailbox with forwards' => 'Почтовый ящик с пересылкой',
     'Mailbox editing' => 'Редактирование почтового ящика',
