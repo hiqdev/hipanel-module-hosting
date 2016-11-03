@@ -19,6 +19,8 @@ class Account extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
+    public static $i18nDictionary = 'hipanel/hosting';
+
     const TYPE_SSH = 'user';
     const TYPE_FTP = 'ftponly';
 

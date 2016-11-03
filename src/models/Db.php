@@ -35,7 +35,7 @@ class Db extends Model
                 ['password'],
                 'match',
                 'pattern' => '/^[\x20-\x7f]*$/',
-                'message' => Yii::t('hipanel', '{attribute} should not contain non-latin characters'),
+                'message' => Yii::t('hipanel/hosting', '{attribute} should not contain non-latin characters'),
                 'on'      => ['create', 'set-password']
             ],
             [['password'], 'required', 'on' => ['set-password']],

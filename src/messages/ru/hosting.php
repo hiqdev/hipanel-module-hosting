@@ -11,9 +11,12 @@
 
 return [
     'Hosting' => 'Хостинг',
+
 /**
  * Account
  */
+    'Login' => 'Логин',
+    'Password' => 'Пароль',
     'Accounts' => 'Аккаунты',
     'Block account' => 'Заблокировать акканут',
     'Confirm account blocking' => 'Подтвердите блокировку аккаунта',
@@ -107,8 +110,9 @@ return [
     'Confirm database deleting' => 'Подтвердите удалени базы данных',
     'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!' => 'Вы уверены, что хотите удалить базу данных {name}? Все таблицы будут удалены, все данные будут утеряны!',
     'Service IP' => 'IP сервиса',
+    '{attribute} should not contain non-latin characters' => '{attribute} не должны содержать нелатинские символы',
 
-/**
+    /**
  * IP
  */
     'IP addresses' => 'IP адреса',
