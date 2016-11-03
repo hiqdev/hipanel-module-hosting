@@ -5,7 +5,7 @@
 /* @var $type string */
 
 $this->title                   = Yii::t('hipanel/hosting', 'Mailbox editing');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Mailboxes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->mail, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
 

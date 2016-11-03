@@ -16,7 +16,7 @@ use yii\web\View;
 
 $this->title = $model->mail;
 $this->params['subtitle'] = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Mailboxes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Mailboxes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="profile-usermenu">
             <ul class="nav">
-                <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Edit'), ['update', 'id' => $model->id]) ?></li>
+                <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Update'), ['update', 'id' => $model->id]) ?></li>
                 <?php if ($model->canChangePassword()) { ?>
                     <li>
                         <?php

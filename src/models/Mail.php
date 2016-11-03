@@ -59,6 +59,7 @@ class Mail extends \hipanel\base\Model
             'forwards'      => Yii::t('hipanel/hosting', 'Forwarding'),
             'du_limit'      => Yii::t('hipanel/hosting', 'Disk usage limit'),
             'autoanswer'    => Yii::t('hipanel/hosting', 'Auto answer'),
+            'spam_action' => Yii::t('hipanel/hosting', 'Spam action'),
             'mail'          => Yii::t('hipanel', 'E-mail'),
         ]);
     }

@@ -114,6 +114,7 @@ use yii\web\JsExpression;
                                 ])->widget(MultipleMailCombo::class, [
                                     'type' => 'hosting/spam-forward',
                                     'formElementSelector' => '.form-instance',
+                                    'filter' => ['nick_ne' => ['format' => '*']],
                                     'inputOptions' => [
                                         'data-attribute' => 'spam_forward_mail',
                                         'disabled' => true,
@@ -129,8 +130,11 @@ use yii\web\JsExpression;
                                     ]
                                 ])->label(false);
 
+                                $model->forwards = implode(',', $model->forwards);
                                 print $form->field($model, "[$i]forwards")->widget(MultipleMailCombo::class, [
                                     'formElementSelector' => '.form-instance',
+                                    'filter' => ['nick_ne' => ['format' => '*']], // It does not make sense to forward
+                                                                                  // mail to the wildcard address
                                     'inputOptions' => [
                                         'data-attribute' => 'forwards',
                                     ],
