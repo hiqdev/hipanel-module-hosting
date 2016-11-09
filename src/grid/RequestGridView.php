@@ -63,7 +63,15 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,request',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Yii::t('hipanel/hosting', $model->state_label);
+                    $colors = [
+                        'error' => 'danger',
+                        'progress' => 'info',
+                        'done' => 'success',
+                    ];
+
+                    return Html::tag('span', Yii::t('hipanel/hosting', $model->state_label), [
+                        'class' => 'text-' . (isset($colors[$model->state]) ? $colors[$model->state] : 'default')
+                    ]);
                 }
             ],
             'actions' => [

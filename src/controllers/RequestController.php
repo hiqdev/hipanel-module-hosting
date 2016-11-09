@@ -36,6 +36,9 @@ class RequestController extends \hipanel\base\CrudController
             ],
             'index' => [
                 'class' => IndexAction::class,
+                'findOptions' => [
+                    'object_class_ni' => 'domain',
+                ],
                 'data' => function ($action) {
                     return [
                         'objects' => $action->controller->getObjects(),
@@ -51,6 +54,9 @@ class RequestController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
+                'findOptions' => [
+                    'object_class_ni' => 'domain',
+                ],
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
