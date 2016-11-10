@@ -4,7 +4,6 @@ use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\client\widgets\combo\SellerCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hiqdev\combo\StaticCombo;
-use Yii;
 
 /**
  * @var \hipanel\widgets\AdvancedSearch $search
@@ -14,13 +13,13 @@ use Yii;
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?php /// TODO: line below - `implode` should be replaced with something more architectural ?>
-    <?= $search->field('domain_in')->input('text',
-        ['value' => implode(',', $search->model->domain_in)])->label(Yii::t('hipanel', 'Domain')) ?>
+    <?= $search->field('domain_like')->label() ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('domain_like') ?>
+    <?= $search->field('domain_in')->input('text', [
+        'value' => implode(',', $search->model->domain_in)
+    ])->label(Yii::t('hipanel/hosting', 'Domain list (comma-separated)')) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">

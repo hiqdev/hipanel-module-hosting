@@ -198,6 +198,7 @@ return [
     'Enable suexec' => 'Включить Suexec',
     'Allow scripts execution' => 'Разрешить выполнение скриптов',
     'Enable SSI' => 'Включить SSI',
+    'Domain list (comma-separated)' => 'Список доменов (через запятую)',
 
 /**
  * Mailboxes
