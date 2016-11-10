@@ -105,7 +105,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'hdomain_with_aliases',
                         'client', 'seller', 'account', 'server',
                         'state', 'ip', 'service',
-                        'actions',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>
