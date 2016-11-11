@@ -187,6 +187,8 @@ return [
     'DNS settings have been changed successfully' => 'Настройки ДНС были изменены успешно',
     'Premium autorenewal has been enabled' => 'Автопродление премиума включено',
     'Premium autorenewal has been disabled' => 'Автопродление премиума выключено',
+    'Enable backuping' => 'Включить бэкапы',
+    'Backups were enabled for the domain' => 'Бэкапы для домена включены',
 
     'Domain directory prefix' => 'Префикс каталога домена',
     'DocumentRoot directory postfix' => 'Постфикс каталога DocumentRoot',

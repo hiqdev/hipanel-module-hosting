@@ -26,14 +26,45 @@ class BackupGridRow extends Widget
 
     public function run()
     {
+        if ($this->model->backuping_exists) {
+            return $this->generateBackupingLink();
+        } else {
+            return $this->generateBackupingEnableLink();
+        }
+    }
+
+    protected function getRealObjectId()
+    {
         $id = $this->model->id;
 
         if ($this->model instanceof Hdomain) {
             $id = $this->model->isAlias() ? $this->model->vhost_id : $this->model->id;
         }
 
+        return $id;
+    }
+
+    protected function generateBackupingLink()
+    {
+        $id = $this->getRealObjectId();
+
         $linkToBackup = Html::a('<i class="fa fa-archive" aria-hidden="true"></i>&nbsp;&nbsp;' .
             Yii::t('hipanel/hosting', 'Backup settings'), ['@backuping/view', 'id' => $id]);
+
+        return $linkToBackup;
+    }
+
+    protected function generateBackupingEnableLink()
+    {
+        $text = '<i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;';
+        $text .= Yii::t('hipanel/hosting', 'Enable backuping');
+
+        $linkToBackup = Html::a($text, ['@hdomain/enable-backuping'], [
+            'data-method' => 'POST',
+            'data-params' => [
+                'Hdomain[id]' => $this->getRealObjectId()
+            ]
+        ]);
 
         return $linkToBackup;
     }

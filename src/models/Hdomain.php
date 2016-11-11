@@ -133,11 +133,13 @@ class Hdomain extends \hipanel\base\Model
             [
                 ['id'],
                 'required',
-                'on' => ['manage-proxy', 'delete']
+                'on' => ['manage-proxy', 'enable-backuping', 'disable-backuping', 'delete']
             ],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
             [['id', 'dns_on'], 'safe', 'on' => ['set-dns-on']],
+            [['backuping_exists'], 'boolean'],
+            [['backuping_type'], 'required', 'on' => ['enable-backuping', 'disable-backuping']],
         ];
     }
 
@@ -177,6 +179,7 @@ class Hdomain extends \hipanel\base\Model
         return isset($this->vhost_id);
     }
 
+    /** @inheritdoc */
     public function scenarioCommands()
     {
         $result = [];
@@ -186,6 +189,9 @@ class Hdomain extends \hipanel\base\Model
         }
         $result['create-alias'] = 'create';
         $result['set-dns-on'] = 'update';
+        $result['enable-backuping'] = 'update-backuping';
+        $result['disable-backuping'] = 'update-backuping';
+
         return $result;
     }
 }

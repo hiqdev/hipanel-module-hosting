@@ -183,6 +183,17 @@ class HdomainController extends \hipanel\base\CrudController
                         'class' => RedirectAction::class,
                     ],
                 ],
+            ],
+            'enable-backuping' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel/hosting', 'Backups were enabled for the domain'),
+                'on beforeSave' => function (Event $event) {
+                    /** @var \hipanel\actions\Action $action */
+                    $action = $event->sender;
+                    foreach ($action->collection->models as $model) {
+                        $model->setAttribute('backuping_type', 'week');
+                    }
+                },
             ]
         ];
     }
