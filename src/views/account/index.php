@@ -105,7 +105,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'checkbox',
                         'account', 'client', 'seller',
                         'server', 'state', 'type',
-                        'actions',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>
