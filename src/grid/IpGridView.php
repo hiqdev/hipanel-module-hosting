@@ -111,7 +111,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             'services' => [
                 'attribute' => 'links',
                 'format' => 'html',
-                'label' => Yii::t('hipanel/server', 'Services'),
+                'label' => Yii::t('hipanel:server', 'Services'),
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
                         'data' => $model->links,
