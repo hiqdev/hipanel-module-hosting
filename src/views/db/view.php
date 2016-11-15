@@ -66,18 +66,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => $model,
                         'scenario' => 'truncate',
                         'button' => [
-                            'label' => '<i class="fa fa-file-o"></i>' . Yii::t('hipanel/hosting', 'Truncate'),
+                            'label' => '<i class="fa fa-file-o"></i>' . Yii::t('hipanel:hosting', 'Truncate'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm database truncating')),
+                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm database truncating')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('hipanel/hosting', 'Truncate database'),
+                                'label' => Yii::t('hipanel:hosting', 'Truncate database'),
                                 'data-loading-text' => Yii::t('hipanel', 'Performing...'),
                                 'class' => 'btn btn-warning',
                             ]
                         ],
-                        'body' => Yii::t('hipanel/hosting',
+                        'body' => Yii::t('hipanel:hosting',
                             'Are you sure that to truncate database {name}? All tables will be dropped, all data will be lost!',
                             ['name' => $model->name]
                         )
@@ -91,15 +91,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm database deleting')),
+                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm database deleting')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('hipanel/hosting', 'Delete database'),
+                                'label' => Yii::t('hipanel:hosting', 'Delete database'),
                                 'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                 'class' => 'btn btn-danger',
                             ]
                         ],
-                        'body' => Yii::t('hipanel/hosting', 'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!',
+                        'body' => Yii::t('hipanel:hosting', 'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!',
                             ['name' => $model->name]
                         )
                     ]) ?>

@@ -51,8 +51,8 @@ class BackupController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Backup deleting task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete backup'),
+                'success' => Yii::t('hipanel:hosting', 'Backup deleting task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete backup'),
                 'POST html | POST pjax' => [
                     'save' => true,
                     'success' => [
@@ -66,8 +66,8 @@ class BackupController extends \hipanel\base\CrudController
     public function getObjectOptions()
     {
         return [
-            'hdomain' => Yii::t('hipanel/hosting', 'Domain'),
-            'db' => Yii::t('hipanel/hosting', 'Data Bases'),
+            'hdomain' => Yii::t('hipanel:hosting', 'Domain'),
+            'db' => Yii::t('hipanel:hosting', 'Data Bases'),
         ];
     }
 }

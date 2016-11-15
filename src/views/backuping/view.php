@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 
 /* @var $hasBackup bool */
-$this->title = Yii::t('hipanel/hosting', 'Backup: {0} {1}', [$model->object === 'hdomain' ? Yii::t('hipanel/hosting', 'domain') : Yii::t('hipanel/hosting', 'database'), $model->name]);
+$this->title = Yii::t('hipanel:hosting', 'Backup: {0} {1}', [$model->object === 'hdomain' ? Yii::t('hipanel:hosting', 'domain') : Yii::t('hipanel:hosting', 'database'), $model->name]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Backups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if ($hasBackup) : ?>
             <?php $page = IndexPage::begin(['model' => $model, 'layout' => 'noSearch']) ?>
             <?php $page->beginContent('show-actions') ?>
-                <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel/hosting', 'Backups')?></h4>
+                <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel:hosting', 'Backups')?></h4>
             <?php $page->endContent() ?>
             <?php $page->beginContent('bulk-actions') ?>
                 <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), Url::toRoute('@backup/delete'), 'danger')?>
@@ -85,14 +85,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php else: ?>
             <div class="box box-warning box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="icon fa fa-warning"></i>&nbsp;&nbsp;<?= Yii::t('hipanel/hosting', 'Backup is not enabled')?></h3>
+                    <h3 class="box-title"><i class="icon fa fa-warning"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:hosting', 'Backup is not enabled')?></h3>
                 </div>
                 <div class="box-body">
                     <?php $form = ActiveForm::begin(['action' => '@backuping/update']) ?>
                     <?= Html::activeHiddenInput($model, 'id') ?>
                     <?php $model->type = 'week' ?>
                     <?= $form->field($model, 'type')->dropDownList(BackupingGridView::$typeOptions) ?>
-                    <?= Html::submitButton(Yii::t('hipanel/hosting', 'Enable backup'), ['class' => 'btn btn-success']) ?>
+                    <?= Html::submitButton(Yii::t('hipanel:hosting', 'Enable backup'), ['class' => 'btn btn-success']) ?>
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>

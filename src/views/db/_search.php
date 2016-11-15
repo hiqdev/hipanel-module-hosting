@@ -35,7 +35,7 @@ use hiqdev\combo\StaticCombo;
 
 <div class="col-md-6">
     <?= $search->field('state')->widget(StaticCombo::class, [
-        'data' => $this->context->getRefs('state,db', 'hipanel/hosting'),
+        'data' => $this->context->getRefs('state,db', 'hipanel:hosting'),
         'hasId' => true,
         'multiple' => true,
     ]) ?>

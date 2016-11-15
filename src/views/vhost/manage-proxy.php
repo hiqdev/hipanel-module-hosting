@@ -11,10 +11,10 @@ use yii\bootstrap\Html;
 /** @var $type string */
 
 $this->title = $model->domain;
-$this->params['subtitle'] = Yii::t('hipanel/hosting', 'Hosting domain proxy settings') . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['@hdomain/index']];
+$this->params['subtitle'] = Yii::t('hipanel:hosting', 'Hosting domain proxy settings') . ' #' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Domains'), 'url' => ['@hdomain/index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['@hdomain/view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('hipanel/hosting', 'Hosting domain proxy settings');
+$this->params['breadcrumbs'][] = Yii::t('hipanel:hosting', 'Hosting domain proxy settings');
 
 ?>
 

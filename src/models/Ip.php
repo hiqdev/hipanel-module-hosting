@@ -26,7 +26,7 @@ class Ip extends \hipanel\base\Model
     /**
      * @var string
      */
-    public static $i18nDictionary = 'hipanel/hosting';
+    public static $i18nDictionary = 'hipanel:hosting';
 
     /**
      * @var Link[] Array of links to be inserted/updated.

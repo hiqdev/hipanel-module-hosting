@@ -37,7 +37,7 @@ class IpTag extends Label
         }
 
         $this->color = $class;
-        $this->label = Yii::t('hipanel/hosting', $tag);
+        $this->label = Yii::t('hipanel:hosting', $tag);
         parent::init();
     }
 }

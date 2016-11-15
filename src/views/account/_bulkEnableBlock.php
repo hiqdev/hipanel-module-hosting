@@ -12,11 +12,11 @@ use yii\helpers\Html;
 ]) ?>
 
     <div class="callout callout-warning">
-        <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate SSH sessions and reject new SSH and FTP connections!') ?></h4>
+        <h4><?= Yii::t('hipanel:hosting', 'This will immediately terminate SSH sessions and reject new SSH and FTP connections!') ?></h4>
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-heading"><?= Yii::t('hipanel/hosting', 'Affected accounts') ?></div>
+        <div class="panel-heading"><?= Yii::t('hipanel:hosting', 'Affected accounts') ?></div>
         <div class="panel-body">
             <?= ArraySpoiler::widget([
                 'data' => $models,

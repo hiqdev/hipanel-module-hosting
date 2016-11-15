@@ -102,18 +102,18 @@ class Vhost extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'domain_prefix'     => Yii::t('hipanel/hosting', 'Domain directory prefix'),
-            'docroot_postfix'   => Yii::t('hipanel/hosting', 'DocumentRoot directory postfix'),
-            'cgibin'            => Yii::t('hipanel/hosting', 'CGI-BIN directory postfix'),
-            'nginx_conf'        => Yii::t('hipanel/hosting', 'Additional NGINX config'),
-            'apache_conf'       => Yii::t('hipanel/hosting', 'Additional Apache config'),
-            'enable_accesslog'  => Yii::t('hipanel/hosting', 'Enable access log'),
-            'enable_errorslog'  => Yii::t('hipanel/hosting', 'Enable error log'),
-            'enable_suexec'     => Yii::t('hipanel/hosting', 'Enable suexec'),
-            'enable_scripts'    => Yii::t('hipanel/hosting', 'Allow scripts execution'),
-            'enable_ssi'        => Yii::t('hipanel/hosting', 'Enable SSI'),
-            'proxy_enabled'     => Yii::t('hipanel/hosting', 'Proxy enabled'),
-            'path'              => Yii::t('hipanel/hosting', 'Path'),
+            'domain_prefix'     => Yii::t('hipanel:hosting', 'Domain directory prefix'),
+            'docroot_postfix'   => Yii::t('hipanel:hosting', 'DocumentRoot directory postfix'),
+            'cgibin'            => Yii::t('hipanel:hosting', 'CGI-BIN directory postfix'),
+            'nginx_conf'        => Yii::t('hipanel:hosting', 'Additional NGINX config'),
+            'apache_conf'       => Yii::t('hipanel:hosting', 'Additional Apache config'),
+            'enable_accesslog'  => Yii::t('hipanel:hosting', 'Enable access log'),
+            'enable_errorslog'  => Yii::t('hipanel:hosting', 'Enable error log'),
+            'enable_suexec'     => Yii::t('hipanel:hosting', 'Enable suexec'),
+            'enable_scripts'    => Yii::t('hipanel:hosting', 'Allow scripts execution'),
+            'enable_ssi'        => Yii::t('hipanel:hosting', 'Enable SSI'),
+            'proxy_enabled'     => Yii::t('hipanel:hosting', 'Proxy enabled'),
+            'path'              => Yii::t('hipanel:hosting', 'Path'),
         ]);
     }
 

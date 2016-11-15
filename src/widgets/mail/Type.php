@@ -31,22 +31,22 @@ class Type extends Label
     {
         $model = $this->model;
         if ($model->type === $model::TYPE_FORWARD_ONLY) {
-            $this->label = Yii::t('hipanel/hosting', 'Forward only');
+            $this->label = Yii::t('hipanel:hosting', 'Forward only');
             $this->color = 'primary';
             $this->labelOptions = [
-                'title' => Yii::t('hipanel/hosting', 'You can not login to this mailbox, but all messages will be forwarded to specified addresses')
+                'title' => Yii::t('hipanel:hosting', 'You can not login to this mailbox, but all messages will be forwarded to specified addresses')
             ];
         } elseif ($model->type === $model::TYPE_BOX_WITH_FORWARDS) {
-            $this->label = Yii::t('hipanel/hosting', 'Mailbox with forwards');
+            $this->label = Yii::t('hipanel:hosting', 'Mailbox with forwards');
             $this->color = 'warning';
             $this->labelOptions = [
-                'title' => Yii::t('hipanel/hosting', 'You can login this mailbox, also all the messages will be forwarded to specified addresses')
+                'title' => Yii::t('hipanel:hosting', 'You can login this mailbox, also all the messages will be forwarded to specified addresses')
             ];
         } else {
-            $this->label = Yii::t('hipanel/hosting', 'Mailbox');
+            $this->label = Yii::t('hipanel:hosting', 'Mailbox');
             $this->color = 'default';
             $this->labelOptions = [
-                'title' => Yii::t('hipanel/hosting', 'You can login this mailbox')
+                'title' => Yii::t('hipanel:hosting', 'You can login this mailbox')
             ];
         }
 

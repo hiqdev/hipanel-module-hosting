@@ -49,7 +49,7 @@ class BackupGridRow extends Widget
         $id = $this->getRealObjectId();
 
         $linkToBackup = Html::a('<i class="fa fa-archive" aria-hidden="true"></i>&nbsp;&nbsp;' .
-            Yii::t('hipanel/hosting', 'Backup settings'), ['@backuping/view', 'id' => $id]);
+            Yii::t('hipanel:hosting', 'Backup settings'), ['@backuping/view', 'id' => $id]);
 
         return $linkToBackup;
     }
@@ -57,7 +57,7 @@ class BackupGridRow extends Widget
     protected function generateBackupingEnableLink()
     {
         $text = '<i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;';
-        $text .= Yii::t('hipanel/hosting', 'Enable backuping');
+        $text .= Yii::t('hipanel:hosting', 'Enable backuping');
 
         $linkToBackup = Html::a($text, ['@hdomain/enable-backuping'], [
             'data-method' => 'POST',

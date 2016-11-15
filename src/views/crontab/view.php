@@ -9,8 +9,8 @@ use yii\helpers\Html;
 AutosizeAsset::register($this);
 \hipanel\modules\hosting\assets\CrontabFetchAsset::register($this);
 
-$this->title = Yii::t('hipanel/hosting', 'Cron ID: {id}', ['id' => $model->id]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Crons'), 'url' => ['index']];
+$this->title = Yii::t('hipanel:hosting', 'Cron ID: {id}', ['id' => $model->id]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Crons'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $model->scenario = 'update';
 

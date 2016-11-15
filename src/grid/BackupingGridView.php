@@ -36,7 +36,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
     public static function setTypeOptions($typeOptions)
     {
         foreach ($typeOptions as $key => &$value) {
-            $value = Yii::t('hipanel/hosting/backuping/periodicity', $value);
+            $value = Yii::t('hipanel:hosting:backuping:periodicity', $value);
         }
 
         self::$typeOptions = $typeOptions;

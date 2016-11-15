@@ -56,10 +56,10 @@ class Mail extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'forwards'      => Yii::t('hipanel/hosting', 'Forwarding'),
-            'du_limit'      => Yii::t('hipanel/hosting', 'Disk usage limit'),
-            'autoanswer'    => Yii::t('hipanel/hosting', 'Auto answer'),
-            'spam_action' => Yii::t('hipanel/hosting', 'Spam action'),
+            'forwards'      => Yii::t('hipanel:hosting', 'Forwarding'),
+            'du_limit'      => Yii::t('hipanel:hosting', 'Disk usage limit'),
+            'autoanswer'    => Yii::t('hipanel:hosting', 'Auto answer'),
+            'spam_action' => Yii::t('hipanel:hosting', 'Spam action'),
             'mail'          => Yii::t('hipanel', 'E-mail'),
         ]);
     }
@@ -72,12 +72,12 @@ class Mail extends \hipanel\base\Model
     public function attributeHints()
     {
         return [
-            'forwards' => Yii::t('hipanel/hosting', 'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.'),
+            'forwards' => Yii::t('hipanel:hosting', 'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.'),
             'password' => $this->type === static::TYPE_FORWARD_ONLY
-                            ?  Yii::t('hipanel/hosting', 'Password change is prohibited on forward-only mailboxes')
+                            ?  Yii::t('hipanel:hosting', 'Password change is prohibited on forward-only mailboxes')
                             : ($this->isNewRecord
-                                ? Yii::t('hipanel/hosting', 'Leave this field empty to create a forward-only mailbox')
-                                : Yii::t('hipanel/hosting', 'Fill this field only if you want to change the password')
+                                ? Yii::t('hipanel:hosting', 'Leave this field empty to create a forward-only mailbox')
+                                : Yii::t('hipanel:hosting', 'Fill this field only if you want to change the password')
                             ),
         ];
     }
@@ -85,9 +85,9 @@ class Mail extends \hipanel\base\Model
     static public function getTypes()
     {
         return [
-            'mailbox' => Yii::t('hipanel/hosting', 'Mailbox'),
-            'forward_only' => Yii::t('hipanel/hosting', 'Forward only'),
-            'mailbox_with_forwards' => Yii::t('hipanel/hosting', 'Mailbox with forwards'),
+            'mailbox' => Yii::t('hipanel:hosting', 'Mailbox'),
+            'forward_only' => Yii::t('hipanel:hosting', 'Forward only'),
+            'mailbox_with_forwards' => Yii::t('hipanel:hosting', 'Mailbox with forwards'),
         ];
     }
 }

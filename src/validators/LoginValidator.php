@@ -26,6 +26,6 @@ class LoginValidator extends \yii\validators\RegularExpressionValidator
      */
     public function init()
     {
-        $this->message = \Yii::t('hipanel/hosting', '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length');
+        $this->message = \Yii::t('hipanel:hosting', '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length');
     }
 }

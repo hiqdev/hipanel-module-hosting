@@ -12,7 +12,7 @@ use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Services'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Services'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                 $box = Box::begin(['renderBody' => false]);
                     $box->beginHeader();
-                        echo $box->renderTitle(Yii::t('hipanel/hosting', 'Service information'));
+                        echo $box->renderTitle(Yii::t('hipanel:hosting', 'Service information'));
                     $box->endHeader();
                     $box->beginBody();
                         echo ServiceGridView::detailView([

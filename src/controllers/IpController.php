@@ -108,8 +108,8 @@ class IpController extends \hipanel\base\CrudController
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'IP address was created successfully'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create an IP address'),
+                'success' => Yii::t('hipanel:hosting', 'IP address was created successfully'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create an IP address'),
                 'data' => function ($action, $data) {
                     /** @var Ip $model */
                     foreach ($data['models'] as $model) {
@@ -128,8 +128,8 @@ class IpController extends \hipanel\base\CrudController
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'IP address was updated successfully'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update an IP address'),
+                'success' => Yii::t('hipanel:hosting', 'IP address was updated successfully'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to update an IP address'),
                 'data' => function ($action, $data = []) {
                     /** @var Ip $model */
                     foreach ($data['models'] as $model) {
@@ -153,7 +153,7 @@ class IpController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'IP address was deleted successfully')
+                'success' => Yii::t('hipanel:hosting', 'IP address was deleted successfully')
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -167,7 +167,7 @@ class IpController extends \hipanel\base\CrudController
 
     public function getIpTags()
     {
-        return $this->getRefs('tag,ip', 'hipanel/hosting');
+        return $this->getRefs('tag,ip', 'hipanel:hosting');
     }
 
     public function actionExpand($id)
@@ -176,7 +176,7 @@ class IpController extends \hipanel\base\CrudController
             $ips = Ip::perform('Expand', ['id' => $id, 'with_existing' => true]);
         } catch (ErrorResponseException $e) {
             if ($e->getMessage() === 'result is too long') {
-                return Yii::t('hipanel/hosting', 'Too many IP addresses in the network');
+                return Yii::t('hipanel:hosting', 'Too many IP addresses in the network');
             }
             throw $e;
         }

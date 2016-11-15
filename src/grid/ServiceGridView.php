@@ -39,7 +39,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             ],
             'object' => [
                 'format' => 'raw',
-                'header' => Yii::t('hipanel/hosting', 'Object'),
+                'header' => Yii::t('hipanel:hosting', 'Object'),
                 'value' => function ($model) {
                     $html = $model->name . ' ';
 
@@ -47,13 +47,13 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                         $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]];
                         $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
                         $type = function ($count) {
-                            return Yii::t('hipanel/hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
+                            return Yii::t('hipanel:hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
                         };
                     } elseif ($model->soft_type === Soft::TYPE_DB) {
                         $url['ok'] = ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]];
                         $url['deleted'] = ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
                         $type = function ($count) {
-                            return Yii::t('hipanel/hosting', '{0, plural, one{# DB} other{# DBs}}', (int)$count);
+                            return Yii::t('hipanel:hosting', '{0, plural, one{# DB} other{# DBs}}', (int)$count);
                         };
                     } else {
                         return $html;
@@ -80,7 +80,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             ],
             'ip' => [
                 'format' => 'raw',
-                'label' => Yii::t('hipanel/hosting', 'IP'),
+                'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {
                     return ArraySpoiler::widget(['data' => array_unique(array_merge((array)$model->ip, (array)$model->ips))]);
                 },
@@ -104,7 +104,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::class,
-                'i18nDictionary' => 'hipanel/hosting',
+                'i18nDictionary' => 'hipanel:hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
@@ -114,7 +114,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             'actions' => [
                 'class' => ActionColumn::class,
                 'template' => '{view}',
-                'header' => Yii::t('hipanel/hosting', 'Actions'),
+                'header' => Yii::t('hipanel:hosting', 'Actions'),
             ],
         ];
     }

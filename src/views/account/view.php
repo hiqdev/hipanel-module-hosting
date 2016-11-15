@@ -8,8 +8,8 @@ use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 
 $this->title = $model->login;
-$this->params['subtitle'] = Yii::t('hipanel/hosting', 'Account detailed information') . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Accounts'), 'url' => ['index']];
+$this->params['subtitle'] = Yii::t('hipanel:hosting', 'Account detailed information') . ' #' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Accounts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'disabled' => !$model->isOperable(),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Enter a new password')),
+                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Enter a new password')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
                                 'label' => Yii::t('hipanel', 'Change'),
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]
                     ]) ?>
                         <div class="callout callout-warning">
-                            <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
+                            <h4><?= Yii::t('hipanel:hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
                         </div>
 
                         <?= $modalButton->form->field($model, 'password')->widget(PasswordInput::class)->label(false) ?>
@@ -65,11 +65,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model' => $model,
                         'scenario' => 'set-allowed-ips',
                         'button' => [
-                            'label' => '<i class="fa fa-globe"></i>' . Yii::t('hipanel/hosting', 'Manage IP restrictions'),
+                            'label' => '<i class="fa fa-globe"></i>' . Yii::t('hipanel:hosting', 'Manage IP restrictions'),
                             'disabled' => !$model->isOperable(),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Enter new restrictions')),
+                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Enter new restrictions')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
                                 'label' => Yii::t('hipanel', 'Change'),
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]) ?>
                         <div class="callout callout-warning">
-                            <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
+                            <h4><?= Yii::t('hipanel:hosting', 'This will immediately terminate all sessions of the user!') ?></h4>
                         </div>
 
                         <?= $modalButton->form->field($model, 'sshftp_ips') ?>
@@ -97,11 +97,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             'model' => $model,
                             'scenario' => 'set-mail-settings',
                             'button' => [
-                                'label' => '<i class="fa fa-envelope-o"></i>' . Yii::t('hipanel/hosting', 'Mail settings'),
+                                'label' => '<i class="fa fa-envelope-o"></i>' . Yii::t('hipanel:hosting', 'Mail settings'),
                                 'disabled' => !$model->isOperable(),
                             ],
                             'modal' => [
-                                'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Enter mail settings')),
+                                'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Enter mail settings')),
                                 'headerOptions' => ['class' => 'label-info'],
                                 'footer' => [
                                     'label' => Yii::t('hipanel', 'Change'),
@@ -125,11 +125,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'model'    => $model,
                         'scenario' => 'delete',
                         'button'   => ['label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete')],
-                        'body'     => Yii::t('hipanel/hosting',
+                        'body'     => Yii::t('hipanel:hosting',
                                             'Are you sure you want to delete account {name}? You will loose all data, that relates this account!',
                                         ['name' => $model->login]),
                         'modal'    => [
-                            'header'        => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm account deleting')),
+                            'header'        => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm account deleting')),
                             'headerOptions' => ['class' => 'label-danger'],
                             'footer' => [
                                 'label' => Yii::t('hipanel', 'Delete'),
@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                 $box = Box::begin(['renderBody' => false]);
                 $box->beginHeader();
-                echo $box->renderTitle(Yii::t('hipanel/hosting', 'Account information'));
+                echo $box->renderTitle(Yii::t('hipanel:hosting', 'Account information'));
                 $box->endHeader();
                 $box->beginBody();
                 echo AccountGridView::detailView([

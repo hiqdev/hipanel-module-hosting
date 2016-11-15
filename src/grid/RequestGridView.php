@@ -23,7 +23,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'classes' => [
-                'label' => Yii::t('hipanel/hosting', 'Action'),
+                'label' => Yii::t('hipanel:hosting', 'Action'),
                 'filter' => false,
                 'enableSorting' => false,
                 'value' => function ($model) {
@@ -59,7 +59,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::class,
-                'i18nDictionary' => 'hipanel/hosting',
+                'i18nDictionary' => 'hipanel:hosting',
                 'gtype' => 'state,request',
                 'format' => 'raw',
                 'value' => function ($model) {
@@ -69,7 +69,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                         'done' => 'success',
                     ];
 
-                    return Html::tag('span', Yii::t('hipanel/hosting', $model->state_label), [
+                    return Html::tag('span', Yii::t('hipanel:hosting', $model->state_label), [
                         'class' => 'text-' . (isset($colors[$model->state]) ? $colors[$model->state] : 'default')
                     ]);
                 }

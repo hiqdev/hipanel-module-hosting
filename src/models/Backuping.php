@@ -42,17 +42,17 @@ class Backuping extends \hipanel\base\Model
         return $this->mergeAttributeLabels([
             'day'           => Yii::t('hipanel', 'Date'),
             'hour'          => Yii::t('hipanel', 'Time'),
-            'backup_last'   => Yii::t('hipanel/hosting', 'Last backup'),
+            'backup_last'   => Yii::t('hipanel:hosting', 'Last backup'),
             'backup_count'  => Yii::t('hipanel', 'Count'),
-            'total_du'      => Yii::t('hipanel/hosting', 'Disk usage'),
-            'total_du_gb'   => Yii::t('hipanel/hosting', 'Disk'),
-            'method_label'  => Yii::t('hipanel/hosting', 'Method'),
+            'total_du'      => Yii::t('hipanel:hosting', 'Disk usage'),
+            'total_du_gb'   => Yii::t('hipanel:hosting', 'Disk'),
+            'method_label'  => Yii::t('hipanel:hosting', 'Method'),
             'account_id'    => Yii::t('hipanel', 'Account'),
             'server_id'     => Yii::t('hipanel', 'Server'),
             'state_label'   => Yii::t('hipanel', 'State'),
             'state'         => Yii::t('hipanel', 'State'),
-            'type'          => Yii::t('hipanel/hosting', 'Periodicity'),
-            'object'        => Yii::t('hipanel/hosting', 'Object'),
+            'type'          => Yii::t('hipanel:hosting', 'Periodicity'),
+            'object'        => Yii::t('hipanel:hosting', 'Object'),
         ]);
     }
 }

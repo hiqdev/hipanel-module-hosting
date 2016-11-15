@@ -7,7 +7,7 @@ use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
-$this->title = Yii::t('hipanel/hosting', 'IP addresses');
+$this->title = Yii::t('hipanel:hosting', 'IP addresses');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $page->beginContent('main-actions') ?>
             <?php if (Yii::$app->user->can('support')) : ?>
-                <?= Html::a(Yii::t('hipanel/hosting', 'Create IP'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+                <?= Html::a(Yii::t('hipanel:hosting', 'Create IP'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
             <?php endif; ?>
         <?php $page->endContent() ?>
 
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $page->endBulkForm() ?>
             <?= AjaxModal::widget([
                 'id' => 'expand-ip',
-                'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Expanded range'), ['class' => 'modal-title']),
+                'header'=> Html::tag('h4', Yii::t('hipanel:hosting', 'Expanded range'), ['class' => 'modal-title']),
                 'scenario' => 'expand',
                 'actionUrl' => ['expand'],
                 'size' => AjaxModal::SIZE_LARGE,

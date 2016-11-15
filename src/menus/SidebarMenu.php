@@ -19,22 +19,22 @@ class SidebarMenu extends \hiqdev\menumanager\Menu
     {
         return [
             'hosting' => [
-                'label' => Yii::t('hipanel/hosting', 'Hosting'),
+                'label' => Yii::t('hipanel:hosting', 'Hosting'),
                 'url' => '#',
                 'icon' => 'fa-sitemap',
                 'items' => [
                     'accounts' => [
-                        'label' => Yii::t('hipanel/hosting', 'Accounts'),
+                        'label' => Yii::t('hipanel:hosting', 'Accounts'),
                         'url' => ['/hosting/account/index'],
                         'icon' => 'fa-user',
                     ],
                     'dbs' => [
-                        'label' => Yii::t('hipanel/hosting', 'Databases'),
+                        'label' => Yii::t('hipanel:hosting', 'Databases'),
                         'url' => ['/hosting/db/index'],
                         'icon' => 'fa-database',
                     ],
                     'hdomains' => [
-                        'label' => Yii::t('hipanel/hosting', 'Domains'),
+                        'label' => Yii::t('hipanel:hosting', 'Domains'),
                         'url' => ['/hosting/hdomain/index'],
                         'icon' => 'fa-globe',
                         'visible' => function () {
@@ -42,7 +42,7 @@ class SidebarMenu extends \hiqdev\menumanager\Menu
                         },
                     ],
                     'mails' => [
-                        'label' => Yii::t('hipanel/hosting', 'Mailboxes'),
+                        'label' => Yii::t('hipanel:hosting', 'Mailboxes'),
                         'url' => ['/hosting/mail/index'],
                         'icon' => 'fa-envelope-o',
                         'visible' => function () {
@@ -50,27 +50,27 @@ class SidebarMenu extends \hiqdev\menumanager\Menu
                         },
                     ],
                     'backuping' => [
-                        'label' => Yii::t('hipanel/hosting', 'Backups'),
+                        'label' => Yii::t('hipanel:hosting', 'Backups'),
                         'icon' => 'fa-archive',
                         'url' => ['/hosting/backuping/index'],
                     ],
                     'crontab' => [
-                        'label' => Yii::t('hipanel/hosting', 'Crons'),
+                        'label' => Yii::t('hipanel:hosting', 'Crons'),
                         'icon' => 'fa-clock-o',
                         'url' => ['/hosting/crontab/index'],
                     ],
                     'ip' => [
-                        'label' => Yii::t('hipanel/hosting', 'IP addresses'),
+                        'label' => Yii::t('hipanel:hosting', 'IP addresses'),
                         'icon' => 'fa-location-arrow',
                         'url' => ['/hosting/ip/index'],
                     ],
                     'service' => [
-                        'label' => Yii::t('hipanel/hosting', 'Services'),
+                        'label' => Yii::t('hipanel:hosting', 'Services'),
                         'icon' => 'fa-terminal',
                         'url' => ['/hosting/service/index'],
                     ],
                     'request' => [
-                        'label' => Yii::t('hipanel/hosting', 'Requests'),
+                        'label' => Yii::t('hipanel:hosting', 'Requests'),
                         'icon' => 'fa-tasks',
                         'url' => ['/hosting/request/index'],
                     ],

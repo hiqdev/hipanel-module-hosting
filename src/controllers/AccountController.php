@@ -71,38 +71,38 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Account creating task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create account')
+                'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account')
             ],
             'create-ftponly' => [
                 'class' => SmartCreateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Account creating task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create account')
+                'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account')
             ],
             'set-password' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Password has been changed'),
-                'error' => Yii::t('hipanel/hosting', 'Failed to change password'),
+                'success' => Yii::t('hipanel:hosting', 'Password has been changed'),
+                'error' => Yii::t('hipanel:hosting', 'Failed to change password'),
             ],
             'set-allowed-ips' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Allowed IPs changing task has been successfully added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to change allowed IPs'),
+                'success' => Yii::t('hipanel:hosting', 'Allowed IPs changing task has been successfully added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change allowed IPs'),
             ],
             'set-mail-settings' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Mail settings where changed'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to change mail settings'),
+                'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
             ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Account was blocked successfully'),
-                'error' => Yii::t('hipanel/hosting', 'Error during the account blocking'),
+                'success' => Yii::t('hipanel:hosting', 'Account was blocked successfully'),
+                'error' => Yii::t('hipanel:hosting', 'Error during the account blocking'),
             ],
             'disable-block' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Account was unblocked successfully'),
-                'error' => Yii::t('hipanel/hosting', 'Error during the account unblocking'),
+                'success' => Yii::t('hipanel:hosting', 'Account was unblocked successfully'),
+                'error' => Yii::t('hipanel:hosting', 'Error during the account unblocking'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -113,8 +113,8 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Account deleting task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete account')
+                'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account')
             ],
             'get-directories-list' => [
                 'class' => SearchAction::class,
@@ -133,8 +133,8 @@ class AccountController extends \hipanel\base\CrudController
             'bulk-enable-block' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'enable-block',
-                'success' => Yii::t('hipanel/hosting', 'Hosting accounts were blocked successfully'),
-                'error' => Yii::t('hipanel/hosting', 'Error during the hosting accounts blocking'),
+                'success' => Yii::t('hipanel:hosting', 'Hosting accounts were blocked successfully'),
+                'error' => Yii::t('hipanel:hosting', 'Error during the hosting accounts blocking'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -169,8 +169,8 @@ class AccountController extends \hipanel\base\CrudController
             'bulk-disable-block' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'disable-block',
-                'success' => Yii::t('hipanel/hosting', 'Hosting accounts were unblocked successfully'),
-                'error' => Yii::t('hipanel/hosting', 'Error during the hosting accounts unblocking'),
+                'success' => Yii::t('hipanel:hosting', 'Hosting accounts were unblocked successfully'),
+                'error' => Yii::t('hipanel:hosting', 'Error during the hosting accounts unblocking'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -198,11 +198,11 @@ class AccountController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return $this->getRefs('state,account', 'hipanel/hosting');
+        return $this->getRefs('state,account', 'hipanel:hosting');
     }
 
     public function getTypeData()
     {
-        return $this->getRefs('type,account', 'hipanel/hosting');
+        return $this->getRefs('type,account', 'hipanel:hosting');
     }
 }

@@ -17,10 +17,10 @@ use yii\web\View;
 
 $this->title = $model->domain;
 $this->params['subtitle'] = ($model->isAlias()
-    ? Yii::t('hipanel/hosting', 'Hosting domain alias detailed information')
-    : Yii::t('hipanel/hosting', 'Hosting domain detailed information')
+    ? Yii::t('hipanel:hosting', 'Hosting domain alias detailed information')
+    : Yii::t('hipanel:hosting', 'Hosting domain detailed information')
 ) . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Domains'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -48,18 +48,18 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="nav">
                 <li>
                     <?php $url = 'http://' . $model->domain . '/' ?>
-                    <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('hipanel/hosting', 'Go to site {link}', ['link' => $url]), $url,
+                    <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('hipanel:hosting', 'Go to site {link}', ['link' => $url]), $url,
                         ['target' => '_blank']) ?>
                 </li>
                 <?php if (!$model->isAlias()) { ?>
                     <li>
-                        <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel/hosting', 'Advanced settings'),
+                        <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel:hosting', 'Advanced settings'),
                             ['/hosting/vhost/advanced-config', 'id' => $model->id]) ?>
                     </li>
                 <?php } ?>
                 <?php if (!$model->isAlias()) { ?>
                 <li>
-                    <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('hipanel/hosting', 'Proxy settings'),
+                    <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('hipanel:hosting', 'Proxy settings'),
                         ['/hosting/vhost/manage-proxy', 'id' => $model->id]) ?>
                 </li>
                 <?php } ?>
@@ -76,15 +76,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm domain deleting')),
+                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm domain deleting')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('hipanel/hosting', 'Delete domain'),
+                                'label' => Yii::t('hipanel:hosting', 'Delete domain'),
                                 'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                 'class' => 'btn btn-danger',
                             ]
                         ],
-                        'body' => Yii::t('hipanel/hosting',
+                        'body' => Yii::t('hipanel:hosting',
                             'Are you sure to delete domain {name}? All files under domain root on the server will stay untouched. You can delete them manually later.',
                             ['name' => $model->domain]
                         )
@@ -133,15 +133,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 'label' => '<i class="fa fa-trash-o"></i>',
                                             ],
                                             'modal' => [
-                                                'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm alias deleting')),
+                                                'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm alias deleting')),
                                                 'headerOptions' => ['class' => 'label-info'],
                                                 'footer' => [
-                                                    'label' => Yii::t('hipanel/hosting', 'Delete alias'),
+                                                    'label' => Yii::t('hipanel:hosting', 'Delete alias'),
                                                     'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                                     'class' => 'btn btn-danger',
                                                 ]
                                             ],
-                                            'body' => Yii::t('hipanel/hosting',
+                                            'body' => Yii::t('hipanel:hosting',
                                                 'Are you sure to delete alias {name}?',
                                                 ['name' => $aliasModel->domain]
                                             ),

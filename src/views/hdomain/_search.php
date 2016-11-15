@@ -19,7 +19,7 @@ use hiqdev\combo\StaticCombo;
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('domain_in')->input('text', [
         'value' => implode(',', $search->model->domain_in)
-    ])->label(Yii::t('hipanel/hosting', 'Domain list (comma-separated)')) ?>
+    ])->label(Yii::t('hipanel:hosting', 'Domain list (comma-separated)')) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">

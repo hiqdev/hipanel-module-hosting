@@ -9,13 +9,13 @@ use hipanel\widgets\ModalButton;
     $modalButton = ModalButton::begin([
         'model' => $model,
         'scenario' => 'enable-block',
-        'button' => ['label' => '<i class="ion-locked"></i>' . Yii::t('hipanel/hosting', 'Block account')],
+        'button' => ['label' => '<i class="ion-locked"></i>' . Yii::t('hipanel:hosting', 'Block account')],
         'form' => [
             'enableAjaxValidation'   => true,
             'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => 'enable-block']),
         ],
         'modal' => [
-            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm account blocking')),
+            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm account blocking')),
             'headerOptions' => ['class' => 'label-danger'],
             'footer' => [
                 'label' => Yii::t('hipanel', 'Block'),
@@ -25,7 +25,7 @@ use hipanel\widgets\ModalButton;
         ]
     ]); ?>
     <div class="callout callout-warning">
-        <h4><?= Yii::t('hipanel/hosting', 'This will immediately terminate SSH sessions and reject new SSH and FTP connections!') ?></h4>
+        <h4><?= Yii::t('hipanel:hosting', 'This will immediately terminate SSH sessions and reject new SSH and FTP connections!') ?></h4>
     </div>
 
     <?php echo $modalButton->form->field($model, 'type')->dropDownList($blockReasons); ?>
@@ -36,13 +36,13 @@ use hipanel\widgets\ModalButton;
     $modalButton = ModalButton::begin([
         'model' => $model,
         'scenario' => 'disable-block',
-        'button' => ['label' => '<i class="ion-unlocked"></i>' . Yii::t('hipanel/hosting', 'Unblock account')],
+        'button' => ['label' => '<i class="ion-unlocked"></i>' . Yii::t('hipanel:hosting', 'Unblock account')],
         'form' => [
             'enableAjaxValidation'   => true,
             'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => 'disable-block']),
         ],
         'modal' => [
-            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm account unblocking')),
+            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm account unblocking')),
             'headerOptions' => ['class' => 'label-info'],
             'footer' => [
                 'label' => Yii::t('hipanel', 'Unblock'),

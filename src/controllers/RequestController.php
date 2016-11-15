@@ -60,24 +60,24 @@ class RequestController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Deleted'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete request.')
+                'success' => Yii::t('hipanel:hosting', 'Deleted'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete request.')
             ],
         ];
     }
 
     public function getStates()
     {
-        return $this->getRefs('state,request', 'hipanel/hosting');
+        return $this->getRefs('state,request', 'hipanel:hosting');
     }
 
     public function getObjects()
     {
         return [
-            'db'        => Yii::t('hipanel/hosting', 'Database'),
-            'hdomain'   => Yii::t('hipanel/hosting', 'Domain'),
-            'device'    => Yii::t('hipanel/hosting', 'Server'),
-            'service'   => Yii::t('hipanel/hosting', 'Service'),
+            'db'        => Yii::t('hipanel:hosting', 'Database'),
+            'hdomain'   => Yii::t('hipanel:hosting', 'Domain'),
+            'device'    => Yii::t('hipanel:hosting', 'Server'),
+            'service'   => Yii::t('hipanel:hosting', 'Service'),
         ];
     }
 }

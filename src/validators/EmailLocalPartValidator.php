@@ -41,7 +41,7 @@ class EmailLocalPartValidator extends RegularExpressionValidator
      */
     public function init()
     {
-        $this->message = \Yii::t('hipanel/hosting', '{attribute} is not a valid local part of email');
+        $this->message = \Yii::t('hipanel:hosting', '{attribute} is not a valid local part of email');
 
         if ($this->pattern === null) {
             $this->pattern = $this->allowWildCard ? $this->defaultWildPattern : $this->defaultPattern;

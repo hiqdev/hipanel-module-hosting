@@ -12,10 +12,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $type string */
 
 $this->title = $model->login;
-$this->params['subtitle'] = Yii::t('hipanel/hosting', 'account mail config') . ' #' . $model->id;
+$this->params['subtitle'] = Yii::t('hipanel:hosting', 'account mail config') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Accounts', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->login, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('hipanel/hosting', 'Mail config');
+$this->params['breadcrumbs'][] = Yii::t('hipanel:hosting', 'Mail config');
 
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',

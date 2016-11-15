@@ -41,9 +41,9 @@ class Request extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'object_name' => Yii::t('hipanel/hosting', 'Object Name'),
-            'object' => Yii::t('hipanel/hosting', 'Object'),
-            'classes' => Yii::t('hipanel/hosting', 'Object'),
+            'object_name' => Yii::t('hipanel:hosting', 'Object Name'),
+            'object' => Yii::t('hipanel:hosting', 'Object'),
+            'classes' => Yii::t('hipanel:hosting', 'Object'),
             'type_ids' => Yii::t('hipanel', 'Types'),
         ]);
     }

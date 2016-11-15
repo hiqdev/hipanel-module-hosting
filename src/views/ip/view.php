@@ -16,7 +16,7 @@ use yii\helpers\Html;
  * @var $model Ip
  */
 $this->title = $model->ip;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'IP addresses'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'IP addresses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -55,15 +55,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                             ],
                             'modal' => [
-                                'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm IP address deleting')),
+                                'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm IP address deleting')),
                                 'headerOptions' => ['class' => 'label-info'],
                                 'footer' => [
-                                    'label' => Yii::t('hipanel/hosting', 'Delete IP address'),
-                                    'data-loading-text' => Yii::t('hipanel/hosting', 'Deleting IP address...'),
+                                    'label' => Yii::t('hipanel:hosting', 'Delete IP address'),
+                                    'data-loading-text' => Yii::t('hipanel:hosting', 'Deleting IP address...'),
                                     'class' => 'btn btn-danger',
                                 ]
                             ],
-                            'body' => Yii::t('hipanel/hosting',
+                            'body' => Yii::t('hipanel:hosting',
                                 'Are you sure, that you want to delete IP address {ip}? All related objects might be deleted too!',
                                 ['ip' => $model->ip]
                             )

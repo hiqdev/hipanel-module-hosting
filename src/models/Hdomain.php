@@ -152,13 +152,13 @@ class Hdomain extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'backend_ip'        => Yii::t('hipanel/hosting', 'Backend IP'),
-            'with_www'          => Yii::t('hipanel/hosting', 'Create www alias'),
-            'proxy_enable'      => Yii::t('hipanel/hosting', 'Enable proxy'),
-            'backuping_type'    => Yii::t('hipanel/hosting', 'Backup periodicity'),
-            'vhost_id'          => Yii::t('hipanel/hosting', 'Alias for'),
-            'proxy_enabled'     => Yii::t('hipanel/hosting', 'Proxy enabled'),
-            'path'              => Yii::t('hipanel/hosting', 'Path'),
+            'backend_ip'        => Yii::t('hipanel:hosting', 'Backend IP'),
+            'with_www'          => Yii::t('hipanel:hosting', 'Create www alias'),
+            'proxy_enable'      => Yii::t('hipanel:hosting', 'Enable proxy'),
+            'backuping_type'    => Yii::t('hipanel:hosting', 'Backup periodicity'),
+            'vhost_id'          => Yii::t('hipanel:hosting', 'Alias for'),
+            'proxy_enabled'     => Yii::t('hipanel:hosting', 'Proxy enabled'),
+            'path'              => Yii::t('hipanel:hosting', 'Path'),
             'dns_on'            => Yii::t('hipanel', 'DNS'),
             'comment'           => Yii::t('hipanel', 'Comment'),
         ]);

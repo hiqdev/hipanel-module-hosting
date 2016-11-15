@@ -19,7 +19,7 @@ class Account extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    public static $i18nDictionary = 'hipanel/hosting';
+    public static $i18nDictionary = 'hipanel:hosting';
 
     const TYPE_SSH = 'user';
     const TYPE_FTP = 'ftponly';
@@ -64,7 +64,7 @@ class Account extends \hipanel\base\Model
                 'range' => ['root', 'toor'],
                 'not' => true,
                 'on' => ['create', 'create-ftponly'],
-                'message' => Yii::t('hipanel/hosting', 'You can not use this login')
+                'message' => Yii::t('hipanel:hosting', 'You can not use this login')
             ],
             [
                 ['sshftp_ips'],
@@ -99,10 +99,10 @@ class Account extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'allowed_ips'    => Yii::t('hipanel/hosting', 'Allowed IPs'),
-            'sshftp_ips'     => Yii::t('hipanel/hosting', 'IP to access on the server via SSH or FTP'),
-            'block_send'     => Yii::t('hipanel/hosting', 'Block outgoing post'),
-            'per_hour_limit' => Yii::t('hipanel/hosting', 'Maximum letters per hour'),
+            'allowed_ips'    => Yii::t('hipanel:hosting', 'Allowed IPs'),
+            'sshftp_ips'     => Yii::t('hipanel:hosting', 'IP to access on the server via SSH or FTP'),
+            'block_send'     => Yii::t('hipanel:hosting', 'Block outgoing post'),
+            'per_hour_limit' => Yii::t('hipanel:hosting', 'Maximum letters per hour'),
         ]);
     }
 

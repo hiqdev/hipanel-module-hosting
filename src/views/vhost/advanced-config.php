@@ -13,10 +13,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $type string */
 
 $this->title = $model->domain;
-$this->params['subtitle'] = Yii::t('hipanel/hosting', 'hosting domain advanced config') . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Domains'), 'url' => ['@hdomain/index']];
+$this->params['subtitle'] = Yii::t('hipanel:hosting', 'hosting domain advanced config') . ' #' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Domains'), 'url' => ['@hdomain/index']];
 $this->params['breadcrumbs'][] = ['label' => $model->domain, 'url' => ['@hdomain/view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('hipanel/hosting', 'Advanced config');
+$this->params['breadcrumbs'][] = Yii::t('hipanel:hosting', 'Advanced config');
 
 ?>
 <?php $form = ActiveForm::begin([

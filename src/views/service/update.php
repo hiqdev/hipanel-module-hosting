@@ -5,8 +5,8 @@
 /* @var $softs array */
 /* @var $states array */
 
-$this->title = Yii::t('hipanel/hosting', 'Update service');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Services'), 'url' => ['index']];
+$this->title = Yii::t('hipanel:hosting', 'Update service');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Services'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
 

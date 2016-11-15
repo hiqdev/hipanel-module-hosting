@@ -101,9 +101,9 @@ use yii\web\JsExpression;
                                 }
 
                                 print $form->field($model, "[$i]spam_action")->radioList([
-                                    ''        => Yii::t('hipanel/hosting', 'Do nothing'),
-                                    'delete'  => Yii::t('hipanel/hosting', 'Delete'),
-                                    'forward' => Yii::t('hipanel/hosting', 'Forward to'),
+                                    ''        => Yii::t('hipanel:hosting', 'Do nothing'),
+                                    'delete'  => Yii::t('hipanel:hosting', 'Delete'),
+                                    'forward' => Yii::t('hipanel:hosting', 'Forward to'),
                                 ], [
                                     'class' => 'spam-action',
                                 ]);

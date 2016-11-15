@@ -34,7 +34,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::class,
-                'i18nDictionary' => 'hipanel/hosting',
+                'i18nDictionary' => 'hipanel:hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
@@ -88,12 +88,12 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                     } elseif ($model->spam_action === '') {
                         return Label::widget([
                             'color' => 'info',
-                            'label' => Yii::t('hipanel/hosting', 'Do nothing')
+                            'label' => Yii::t('hipanel:hosting', 'Do nothing')
                         ]);
                     } else {
                         return Label::widget([
                             'color' => 'primary',
-                            'label' => Yii::t('hipanel/hosting', 'Forward to')
+                            'label' => Yii::t('hipanel:hosting', 'Forward to')
                         ]) . ' ' . ArraySpoiler::widget([
                             'data' => $model->spam_action,
                             'visibleCount' => 2

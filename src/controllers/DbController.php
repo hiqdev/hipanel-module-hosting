@@ -53,7 +53,7 @@ class DbController extends CrudController
             ],
             'create' => [
                 'class'   => SmartCreateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'DB has been created successfully'),
+                'success' => Yii::t('hipanel:hosting', 'DB has been created successfully'),
             ],
             'set-password' => [
                 'class'   => SmartUpdateAction::class,
@@ -61,24 +61,24 @@ class DbController extends CrudController
             ],
             'truncate' => [
                 'class'   => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'DB has been truncated successfully'),
+                'success' => Yii::t('hipanel:hosting', 'DB has been truncated successfully'),
             ],
             'set-description' => [
                 'class'   => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Description has been changed successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Description has been changed successfully'),
             ],
             'validate-form' => [
                 'class'   => ValidateFormAction::class,
             ],
             'delete' => [
                 'class'   => SmartPerformAction::class,
-                'success' => Yii::t('hipanel/hosting', 'DB has been deleted successfully'),
+                'success' => Yii::t('hipanel:hosting', 'DB has been deleted successfully'),
             ],
         ];
     }
 
     public function getStateData()
     {
-        return $this->getRefs('state,db', 'hipanel/hosting');
+        return $this->getRefs('state,db', 'hipanel:hosting');
     }
 }

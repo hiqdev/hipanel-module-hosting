@@ -53,8 +53,8 @@ class VhostController extends \hipanel\base\CrudController
                 'findOptions' => [
                     'select' => 'advanced',
                 ],
-                'success' => Yii::t('hipanel/hosting', 'Advanced settings were updated successfully'),
-                'error'   => Yii::t('hipanel/hosting', 'Error when updating advanced settings'),
+                'success' => Yii::t('hipanel:hosting', 'Advanced settings were updated successfully'),
+                'error'   => Yii::t('hipanel:hosting', 'Error when updating advanced settings'),
             ],
             'manage-proxy' => [
                 'class' => SmartUpdateAction::class,
@@ -62,8 +62,8 @@ class VhostController extends \hipanel\base\CrudController
                     'select' => 'advanced',
                     'with_backends' => true
                 ],
-                'success' => Yii::t('hipanel/hosting', 'Domain proxy setting settings were changed'),
-                'error' => Yii::t('hipanel/hosting', 'Error when changing domain proxy settings'),
+                'success' => Yii::t('hipanel:hosting', 'Domain proxy setting settings were changed'),
+                'error' => Yii::t('hipanel:hosting', 'Error when changing domain proxy settings'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,

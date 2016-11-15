@@ -13,7 +13,7 @@ use yii\web\View;
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('ip_like')->label(Yii::t('hipanel/hosting', 'IP')) ?>
+    <?= $search->field('ip_like')->label(Yii::t('hipanel:hosting', 'IP')) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">

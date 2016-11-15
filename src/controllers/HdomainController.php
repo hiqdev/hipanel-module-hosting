@@ -78,45 +78,45 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Domain has been created successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domain has been created successfully'),
             ],
             'create-alias' => [
                 'class' => SmartCreateAction::class,
                 'view' => 'create-alias',
-                'success' => Yii::t('hipanel/hosting', 'Domain has been created successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domain has been created successfully'),
             ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Domain has been blocked successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domain has been blocked successfully'),
             ],
             'disable-block' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Domain has been unblocked successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domain has been unblocked successfully'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
             'enable-paid-feature-autorenewal' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Premium autorenewal has been enabled'),
+                'success' => Yii::t('hipanel:hosting', 'Premium autorenewal has been enabled'),
             ],
             'disable-paid-feature-autorenewal' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Premium autorenewal has been disabled'),
+                'success' => Yii::t('hipanel:hosting', 'Premium autorenewal has been disabled'),
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Domain has been deleted successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domain has been deleted successfully'),
             ],
             'delete-alias' => [
                 'class' => SmartDeleteAction::class,
                 'scenario' => 'delete',
-                'success' => Yii::t('hipanel/hosting', 'Domain has been deleted successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domain has been deleted successfully'),
             ],
             'bulk-enable-block' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'enable-block',
-                'success' => Yii::t('hipanel/hosting', 'Domains have been blocked successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domains have been blocked successfully'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -151,7 +151,7 @@ class HdomainController extends \hipanel\base\CrudController
             'bulk-disable-block' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'disable-block',
-                'success' => Yii::t('hipanel/hosting', 'Domains have been unblocked successfully'),
+                'success' => Yii::t('hipanel:hosting', 'Domains have been unblocked successfully'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -176,7 +176,7 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'set-dns-on' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'DNS settings were changed'),
+                'success' => Yii::t('hipanel:hosting', 'DNS settings were changed'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -186,7 +186,7 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'enable-backuping' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Backups were enabled for the domain'),
+                'success' => Yii::t('hipanel:hosting', 'Backups were enabled for the domain'),
                 'on beforeSave' => function (Event $event) {
                     /** @var \hipanel\actions\Action $action */
                     $action = $event->sender;
@@ -200,7 +200,7 @@ class HdomainController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return $this->getRefs('state,hdomain', 'hipanel/hosting');
+        return $this->getRefs('state,hdomain', 'hipanel:hosting');
     }
 
     public function getTypeData()

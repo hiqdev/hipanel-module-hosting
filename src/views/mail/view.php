@@ -16,7 +16,7 @@ use yii\web\View;
 
 $this->title = $model->mail;
 $this->params['subtitle'] = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/hosting', 'Mailboxes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Mailboxes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -78,15 +78,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                         ],
                         'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel/hosting', 'Confirm mailbox deleting')),
+                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm mailbox deleting')),
                             'headerOptions' => ['class' => 'label-info'],
                             'footer' => [
-                                'label' => Yii::t('hipanel/hosting', 'Delete mailbox'),
+                                'label' => Yii::t('hipanel:hosting', 'Delete mailbox'),
                                 'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                 'class' => 'btn btn-danger',
                             ]
                         ],
-                        'body' => Yii::t('hipanel/hosting',
+                        'body' => Yii::t('hipanel:hosting',
                             'Are you sure to delete database {name}? All data will be lost.',
                             ['name' => $model->mail]
                         )

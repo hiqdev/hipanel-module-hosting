@@ -59,11 +59,11 @@ use yii\helpers\Url;
                                 }
 
                                 print $form->field($model, "[$i]sshftp_ips")
-                                    ->hint(Yii::t('hipanel/hosting', 'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))
+                                    ->hint(Yii::t('hipanel:hosting', 'Access to the account is opened by default. Please input the IPs, for which the access to the server will be granted'))
                                     ->input('text', [
                                             'data' => [
-                                                'title' => Yii::t('hipanel/hosting', 'IP restrictions'),
-                                                'content' => Yii::t('hipanel/hosting', 'Text about IP restrictions'), /// TODO
+                                                'title' => Yii::t('hipanel:hosting', 'IP restrictions'),
+                                                'content' => Yii::t('hipanel:hosting', 'Text about IP restrictions'), /// TODO
                                             ],
                                             'value' => $model->getSshFtpIpsList()
                                         ]

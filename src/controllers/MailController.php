@@ -65,23 +65,23 @@ class MailController extends \hipanel\base\CrudController
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Mailbox creating task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create mailbox')
+                'success' => Yii::t('hipanel:hosting', 'Mailbox creating task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create mailbox')
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Mailbox updating task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update mailbox')
+                'success' => Yii::t('hipanel:hosting', 'Mailbox updating task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to update mailbox')
             ],
             'set-password' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Mailbox password change task has been added to queue'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to change mailbox password')
+                'success' => Yii::t('hipanel:hosting', 'Mailbox password change task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mailbox password')
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel/hosting', 'Mailbox delete task has been created successfully'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to delete mailbox')
+                'success' => Yii::t('hipanel:hosting', 'Mailbox delete task has been created successfully'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete mailbox')
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -91,7 +91,7 @@ class MailController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return $this->getRefs('state,mail', 'hipanel/hosting');
+        return $this->getRefs('state,mail', 'hipanel:hosting');
     }
 
     public function getTypeData()

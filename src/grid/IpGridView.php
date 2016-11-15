@@ -44,7 +44,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             'tags' => [
                 'format' => 'raw',
                 'attribute' => 'tag',
-                'header' => Yii::t('hipanel/hosting', 'Tags'),
+                'header' => Yii::t('hipanel:hosting', 'Tags'),
                 'visible' => Yii::$app->user->can('admin'),
                 'filter' => function ($column, $model) {
                     return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('hipanel', '---')], static::$ipTags), ['class' => 'form-control']);
@@ -59,7 +59,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             ],
             'counters' => [
                 'format' => 'html',
-                'header' => Yii::t('hipanel/hosting', 'Counters'),
+                'header' => Yii::t('hipanel:hosting', 'Counters'),
                 'value' => function ($model) {
                     $html = '';
                     foreach ($model->objects_count as $count) {
@@ -67,7 +67,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                             $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip]];
                             $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip, 'state' => 'deleted']];
                             $type = function ($count) {
-                                return Yii::t('hipanel/hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
+                                return Yii::t('hipanel:hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
                             };
                         } else {
                             throw new InvalidParamException('The object type is not supported', $model);
@@ -131,14 +131,14 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                 'buttons' => [
                     'expand' => function ($url, $model) {
                         $options = array_merge([
-                            'title' => Yii::t('hipanel/hosting', 'Expand'),
-                            'aria-label' => Yii::t('hipanel/hosting', 'Expand'),
+                            'title' => Yii::t('hipanel:hosting', 'Expand'),
+                            'aria-label' => Yii::t('hipanel:hosting', 'Expand'),
                             'data-pjax' => '0',
                             'data-id' => $model->id,
                             'class' => 'btn-expand-ip',
                         ]);
 
-                        return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel/hosting', 'Expand'), $url, $options);
+                        return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel:hosting', 'Expand'), $url, $options);
                     },
                 ],
             ],

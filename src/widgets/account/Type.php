@@ -28,7 +28,7 @@ class Type extends Label
         }
 
         $this->color = $class;
-        $this->label = Yii::t('hipanel/hosting', $this->model->type_label);
+        $this->label = Yii::t('hipanel:hosting', $this->model->type_label);
         parent::init();
     }
 }

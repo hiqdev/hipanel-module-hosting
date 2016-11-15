@@ -98,8 +98,8 @@ class ServiceController extends \hipanel\base\CrudController
                         'softs' => $action->controller->getSofts(),
                     ];
                 },
-                'success' => Yii::t('hipanel/hosting', 'Service was created successfully'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to create a service')
+                'success' => Yii::t('hipanel:hosting', 'Service was created successfully'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create a service')
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
@@ -116,8 +116,8 @@ class ServiceController extends \hipanel\base\CrudController
                     $dataProvider = $action->getDataProvider();
                     $dataProvider->query->joinWith('ips');
                 },
-                'success' => Yii::t('hipanel/hosting', 'Service was updated successfully'),
-                'error' => Yii::t('hipanel/hosting', 'An error occurred when trying to update a service')
+                'success' => Yii::t('hipanel:hosting', 'Service was updated successfully'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to update a service')
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -127,7 +127,7 @@ class ServiceController extends \hipanel\base\CrudController
 
     public function getStateData()
     {
-        return $this->getRefs('state,service', 'hipanel/hosting');
+        return $this->getRefs('state,service', 'hipanel:hosting');
     }
 
     public function getSofts()

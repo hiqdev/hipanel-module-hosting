@@ -7,7 +7,7 @@ use hipanel\widgets\Pjax;
 use yii\bootstrap\Dropdown;
 use yii\helpers\Html;
 
-$this->title = Yii::t('hipanel/hosting', 'Accounts');
+$this->title = Yii::t('hipanel:hosting', 'Accounts');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -22,13 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="dropdown">
                 <a class="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
-                    <?= Yii::t('hipanel/hosting', 'Create account'); ?>
+                    <?= Yii::t('hipanel:hosting', 'Create account'); ?>
                     <span class="caret"></span>
                 </a>
                 <?= Dropdown::widget([
                     'items' => [
-                        ['label' => Yii::t('hipanel/hosting', 'Create account'), 'url' => ['create']],
-                        ['label' => Yii::t('hipanel/hosting', 'Create FTP account'), 'url' => ['create-ftponly']],
+                        ['label' => Yii::t('hipanel:hosting', 'Create account'), 'url' => ['create']],
+                        ['label' => Yii::t('hipanel:hosting', 'Create FTP account'), 'url' => ['create-ftponly']],
                     ]
                 ]); ?>
             </div>
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= AjaxModal::widget([
                             'id' => 'bulk-enable-block-modal',
                             'bulkPage' => true,
-                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Block accounts'), ['class' => 'modal-title']),
+                            'header'=> Html::tag('h4', Yii::t('hipanel:hosting', 'Block accounts'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-enable-block',
                             'actionUrl' => ['bulk-enable-block-modal'],
                             'size' => AjaxModal::SIZE_LARGE,
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= AjaxModal::widget([
                             'id' => 'bulk-disable-block-modal',
                             'bulkPage' => true,
-                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Unblock accounts'), ['class' => 'modal-title']),
+                            'header'=> Html::tag('h4', Yii::t('hipanel:hosting', 'Unblock accounts'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-disable-block',
                             'actionUrl' => ['bulk-disable-block-modal'],
                             'size' => AjaxModal::SIZE_LARGE,

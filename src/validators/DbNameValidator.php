@@ -28,6 +28,6 @@ class DbNameValidator extends RegularExpressionValidator
      */
     public function init()
     {
-        $this->message = \Yii::t('hipanel/hosting', '{attribute} should contain only letters, digits, underscores or hyphens and be at least 2 symbols length');
+        $this->message = \Yii::t('hipanel:hosting', '{attribute} should contain only letters, digits, underscores or hyphens and be at least 2 symbols length');
     }
 }

@@ -82,7 +82,7 @@ class BackupingController extends \hipanel\base\CrudController
 
     public function getTypeOptions()
     {
-        return $this->getRefs('type,backuping', 'hipanel/hosting');
+        return $this->getRefs('type,backuping', 'hipanel:hosting');
     }
 
     public function getStateOptions()

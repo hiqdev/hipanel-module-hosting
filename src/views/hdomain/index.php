@@ -21,13 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->beginContent('main-actions') ?>
             <div class="dropdown">
                 <a class="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <?= Yii::t('hipanel/hosting', 'Create domain') ?>
+                    <?= Yii::t('hipanel:hosting', 'Create domain') ?>
                     <span class="caret"></span>
                 </a>
                 <?= Dropdown::widget([
                     'items' => [
-                        ['label' => Yii::t('hipanel/hosting', 'Create domain'), 'url' => ['create']],
-                        ['label' => Yii::t('hipanel/hosting', 'Create alias'), 'url' => ['create-alias']],
+                        ['label' => Yii::t('hipanel:hosting', 'Create domain'), 'url' => ['create']],
+                        ['label' => Yii::t('hipanel:hosting', 'Create alias'), 'url' => ['create-alias']],
                     ]
                 ]) ?>
             </div>
@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= AjaxModal::widget([
                             'id' => 'bulk-enable-block-modal',
                             'bulkPage' => true,
-                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Block domains'), ['class' => 'modal-title']),
+                            'header'=> Html::tag('h4', Yii::t('hipanel:hosting', 'Block domains'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-enable-block',
                             'actionUrl' => ['bulk-enable-block-modal'],
                             'size' => AjaxModal::SIZE_LARGE,
@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= AjaxModal::widget([
                             'id' => 'bulk-disable-block-modal',
                             'bulkPage' => true,
-                            'header'=> Html::tag('h4', Yii::t('hipanel/hosting', 'Unblock domains'), ['class' => 'modal-title']),
+                            'header'=> Html::tag('h4', Yii::t('hipanel:hosting', 'Unblock domains'), ['class' => 'modal-title']),
                             'scenario' => 'bulk-disable-block',
                             'actionUrl' => ['bulk-disable-block-modal'],
                             'size' => AjaxModal::SIZE_LARGE,

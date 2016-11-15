@@ -95,7 +95,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'state' => [
                 'class' => RefColumn::class,
-                'i18nDictionary' => 'hipanel/hosting',
+                'i18nDictionary' => 'hipanel:hosting',
                 'format' => 'raw',
                 'value' => function ($model) {
                     $html = '';
@@ -104,7 +104,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                             'color' => 'success',
                             'label' => Yii::t('hipanel', 'DNS'),
                             'tag' => 'span',
-                            'labelOptions' => ['title' => Yii::t('hipanel/hosting', 'DNS is enabled')],
+                            'labelOptions' => ['title' => Yii::t('hipanel:hosting', 'DNS is enabled')],
                         ]);
                     }
                     $html .= ' ' . State::widget(compact('model'));
@@ -120,7 +120,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'dns_switch' => [
                 'attribute' => 'dns_on',
-                'label' => Yii::t('hipanel/hosting', 'DNS'),
+                'label' => Yii::t('hipanel:hosting', 'DNS'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     if (empty($model->dns_hdomain_id)) {
@@ -129,7 +129,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                             'attribute' => 'dns_on',
                             'pluginOptions' => [
                                 'type' => 'select',
-                                'title' => Yii::t('hipanel/hosting', 'Toggles DNS records upload on NS server'),
+                                'title' => Yii::t('hipanel:hosting', 'Toggles DNS records upload on NS server'),
                                 'source' => ['' => Yii::t('hipanel', 'Disabled'), '1' => Yii::t('hipanel', 'Enabled')],
                                 'url' => Url::to('set-dns-on'),
                                 'placement' => 'bottom',
@@ -139,7 +139,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                             ],
                         ]);
                     } else {
-                        return Yii::t('hipanel/hosting', 'Belongs to {link}', [
+                        return Yii::t('hipanel:hosting', 'Belongs to {link}', [
                             'link' => Html::a($model->dns_hdomain_domain, Url::to(['@hdomain/view', 'id' => $model->dns_hdomain_id]))
                         ]);
                     }
@@ -157,7 +157,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'backups_widget' => [
-                'label' => Yii::t('hipanel/hosting', 'Backups'),
+                'label' => Yii::t('hipanel:hosting', 'Backups'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     return BackupGridRow::widget(['model' => $model]);

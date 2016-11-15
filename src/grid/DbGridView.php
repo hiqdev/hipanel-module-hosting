@@ -34,7 +34,7 @@ class DbGridView extends BoxedGridView
             ],
             'state'       => [
                 'class'  => RefColumn::class,
-                'i18nDictionary' => 'hipanel/hosting',
+                'i18nDictionary' => 'hipanel:hosting',
                 'format' => 'raw',
                 'value'  => function ($model) {
                     return State::widget(compact('model'));
@@ -70,7 +70,7 @@ class DbGridView extends BoxedGridView
                 }
             ],
             'backups_widget' => [
-                'label' => Yii::t('hipanel/hosting', 'Backups'),
+                'label' => Yii::t('hipanel:hosting', 'Backups'),
                 'format' => 'raw',
                 'value' => function ($model) { return BackupGridRow::widget(['model' => $model]); }
             ],

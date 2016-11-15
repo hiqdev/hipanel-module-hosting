@@ -34,7 +34,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             'state' => [
                 'class'             => RefColumn::class,
                 'format'            => 'raw',
-                'i18nDictionary'    => 'hipanel/hosting',
+                'i18nDictionary'    => 'hipanel:hosting',
                 'value'             => function ($model) {
                     return State::widget(compact('model'));
                 },
@@ -59,7 +59,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             ],
             'type' => [
                 'class'             => RefColumn::class,
-                'i18nDictionary'    => 'hipanel/hosting',
+                'i18nDictionary'    => 'hipanel:hosting',
                 'format'            => 'raw',
                 'value'             => function ($model) {
                     return Type::widget(compact('model'));

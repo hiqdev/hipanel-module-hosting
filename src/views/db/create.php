@@ -4,7 +4,7 @@
 /* @var $model hipanel\modules\ticket\models\Thread */
 /* @var $type string */
 
-$this->title = Yii::t('hipanel/hosting', 'Create database');
+$this->title = Yii::t('hipanel:hosting', 'Create database');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel', 'Databases'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 

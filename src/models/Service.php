@@ -44,9 +44,9 @@ class Service extends \hipanel\base\Model
     {
         return $this->mergeAttributeLabels([
             'soft_type'         => Yii::t('hipanel', 'Type'),
-            'bin'               => Yii::t('hipanel/hosting', 'bin'),
-            'etc'               => Yii::t('hipanel/hosting', 'etc'),
-            'soft'              => Yii::t('hipanel/hosting', 'Soft'),
+            'bin'               => Yii::t('hipanel:hosting', 'bin'),
+            'etc'               => Yii::t('hipanel:hosting', 'etc'),
+            'soft'              => Yii::t('hipanel:hosting', 'Soft'),
         ]);
     }
 

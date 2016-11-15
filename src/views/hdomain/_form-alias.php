@@ -47,13 +47,13 @@ $form = ActiveForm::begin([
                             print $form->field($model, "[$i]alias_type")->radio([
                                 'value' => 'subdomain',
                                 'class' => 'alias-type',
-                                'label' => Yii::t('hipanel/hosting', 'Subdomain of existing domain'),
+                                'label' => Yii::t('hipanel:hosting', 'Subdomain of existing domain'),
                             ]);
                             print $form->field($model, "[$i]alias_type")->radio([
                                 'id' => $model->formName() . '-' . $i . '-alias_type-new',
                                 'value' => 'new',
                                 'class' => 'alias-type',
-                                'label' => Yii::t('hipanel/hosting', 'New domain')
+                                'label' => Yii::t('hipanel:hosting', 'New domain')
                             ]);
                             ?>
 
