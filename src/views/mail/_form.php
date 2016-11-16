@@ -130,7 +130,7 @@ use yii\web\JsExpression;
                                     ]
                                 ])->label(false);
 
-                                $model->forwards = implode(',', $model->forwards);
+                                $model->forwards = implode(',', (array)$model->forwards);
                                 print $form->field($model, "[$i]forwards")->widget(MultipleMailCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'filter' => ['nick_ne' => ['format' => '*']], // It does not make sense to forward
