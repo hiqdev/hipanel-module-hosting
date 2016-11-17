@@ -4,6 +4,7 @@ use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\HdomainCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\hosting\widgets\combo\VhostCombo;
+use hipanel\modules\server\models\Server;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
@@ -31,10 +32,15 @@ $form = ActiveForm::begin([
                         <div class="form-instance" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
                             <?php
                             if (Yii::$app->user->can('support')) {
-                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                    'formElementSelector' => '.form-instance'
+                                ]);
                             }
 
-                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
+                                'formElementSelector' => '.form-instance',
+                                'state' => Server::STATE_OK
+                            ]);
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions'        => [

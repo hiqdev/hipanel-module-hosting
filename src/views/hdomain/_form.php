@@ -3,15 +3,19 @@
 use hipanel\models\Ref;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
+use hipanel\modules\server\models\Server;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $model hipanel\modules\hosting\models\Hdomain */
-/* @var $type string */
+/**
+ * @var $this \yii\web\View
+ * @var $models \hipanel\modules\hosting\models\Hdomain[]
+ * @var $model \hipanel\modules\hosting\models\Hdomain
+ * @var $type string
+ */
 
 if (Yii::$app->user->can('support')) {
     $this->registerJs(<<<'JS'
@@ -89,12 +93,15 @@ $form = ActiveForm::begin([
                              xmlns="http://www.w3.org/1999/html">
                             <?php
                             if (Yii::$app->user->can('support')) {
-                                print $form->field($model, "[$i]client")
-                                    ->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
+                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                    'formElementSelector' => '.form-instance'
+                                ]);
                             }
 
-                            print $form->field($model, "[$i]server")
-                                ->widget(PanelServerCombo::class, ['formElementSelector' => '.form-instance']);
+                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
+                                'formElementSelector' => '.form-instance',
+                                'state' => Server::STATE_OK
+                            ]);
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions' => [

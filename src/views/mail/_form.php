@@ -9,6 +9,7 @@ use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\MultipleMailCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\hosting\widgets\combo\VhostCombo;
+use hipanel\modules\server\models\Server;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
@@ -56,7 +57,8 @@ use yii\web\JsExpression;
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'readonly' => !$model->isNewRecord
-                                    ]
+                                    ],
+                                    'state' => Server::STATE_OK
                                 ]);
 
                                 print $form->field($model, "[$i]account")->widget(SshAccountCombo::class,[
