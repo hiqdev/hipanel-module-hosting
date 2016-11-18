@@ -16,6 +16,7 @@ use hipanel\grid\RefColumn;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\UnsetArrayValue;
 
 class RequestGridView extends \hipanel\grid\BoxedGridView
 {
@@ -72,7 +73,10 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                     return Html::tag('span', Yii::t('hipanel:hosting', $model->state_label), [
                         'class' => 'text-' . (isset($colors[$model->state]) ? $colors[$model->state] : 'default')
                     ]);
-                }
+                },
+                'filterOverrides' => [
+                    'done' => new UnsetArrayValue,
+                ]
             ],
             'actions' => [
                 'class' => ActionColumn::class,

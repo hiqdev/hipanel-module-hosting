@@ -41,8 +41,8 @@ class RequestController extends \hipanel\base\CrudController
                 ],
                 'data' => function ($action) {
                     return [
-                        'objects' => $action->controller->getObjects(),
-                        'states' => $action->controller->getStates(),
+                        'objects' => $this->getObjects(),
+                        'states' => $this->getFilteredStates(),
                     ];
                 },
                 'filterStorageMap' => [
@@ -64,6 +64,14 @@ class RequestController extends \hipanel\base\CrudController
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete request.')
             ],
         ];
+    }
+
+    public function getFilteredStates()
+    {
+        $result = $this->getStates();
+        unset($result['done']);
+
+        return $result;
     }
 
     public function getStates()
