@@ -12,9 +12,10 @@
 return [
     'Hosting' => 'Хостинг',
 
-/**
- * Account
- */
+    /**
+     * Account
+     */
+    'Block outgoing post' => 'Заблокировать отправку почты',
     'Login' => 'Логин',
     'Password' => 'Пароль',
     'Accounts' => 'Аккаунты',
@@ -72,9 +73,9 @@ return [
     'Hosting accounts were blocked successfully' => 'Аккаунты были заблокированы',
     'You can not use this login' => 'Вы не можете использовать этот логин',
 
-/**
- * Service
- */
+    /**
+     * Service
+     */
     'Soft' => 'ПО',
     'Services' => 'Сервисы',
     'Create service' => 'Создать сервис',
@@ -91,9 +92,9 @@ return [
     'Delete service' => 'Удалить сервис',
     'Deleting service' => 'Сервис удаляется...',
     'Are you sure, that you want to delete service {name}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить сервис {name}? Все связанные объкты могут быть также удалены!',
-/**
- * DB
- */
+    /**
+     * DB
+     */
     'Database' => 'База данных',
     'Databases' => 'Базы данных',
     'DB name' => 'Имя БД',
@@ -113,8 +114,8 @@ return [
     '{attribute} should not contain non-latin characters' => '{attribute} не должны содержать нелатинские символы',
 
     /**
- * IP
- */
+     * IP
+     */
     'IP addresses' => 'IP адреса',
     'Create IP' => 'Создать IP',
     'Count of objects' => 'Количество объектов',
@@ -133,9 +134,9 @@ return [
     'Are you sure, that you want to delete IP address {ip}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить IP адрес {ip}? Все связанные объекты могут быть также удалены!',
     'IP address was deleted successfully' => 'IP адрес был успешно удалён',
 
-/**
- * Domains
- */
+    /**
+     * Domains
+     */
     'Domain' => 'Домен',
     'Domains' => 'Домены',
     'New domain' => 'Новый домен',
@@ -202,9 +203,9 @@ return [
     'Enable SSI' => 'Включить SSI',
     'Domain list (comma-separated)' => 'Список доменов (через запятую)',
 
-/**
- * Mailboxes
- */
+    /**
+     * Mailboxes
+     */
     'Mailbox' => 'Почтовый ящик',
     'Mailboxes' => 'Почтовые ящики',
     'Create mailbox' => 'Создать ящик',
@@ -239,9 +240,9 @@ return [
     'Confirm mailbox deleting' => 'Подтвердите удалени базы данных',
     'Are you sure to delete mailbox {name}? All data will be lost!' => 'Вы уверены, что хотите удалить почту {name}? Все данные будут утеряны!',
 
-/**
- * Backups
- */
+    /**
+     * Backups
+     */
     'Backups' => 'Бэкапы',
     'Backup' => 'Бэкап',
     'Show backups' => 'Показать бэкапы',
@@ -260,14 +261,14 @@ return [
     'database' => 'база данных',
     'Enable backup' => 'Включить бэкапы',
     'Backup is not enabled' => 'Бэкапы не включены',
-/**
- * Crons
- */
+    /**
+     * Crons
+     */
     'Crons' => 'Планировщик задач',
     '{0, plural, one{# record} other{# records}}' => '{0, plural, one{# запись} few{# записи} other{# записей}}',
-/**
- * Requests
- */
+    /**
+     * Requests
+     */
     'Requests' => 'Запросы',
     'Object Name' => 'Имя объекта',
     'Action' => 'Действие',
