@@ -39,7 +39,9 @@ class Db extends Model
                 'on'      => ['create', 'set-password']
             ],
             [['password'], 'required', 'on' => ['set-password']],
-            [['id'], 'required', 'on' => ['delete', 'set-password', 'set-description', 'truncate']]
+            [['id'], 'required', 'on' => ['delete', 'set-password', 'set-description', 'truncate']],
+            [['backuping_exists'], 'boolean'],
+            [['backuping_type'], 'required', 'on' => ['enable-backuping', 'disable-backuping']],
         ];
     }
 
@@ -51,5 +53,14 @@ class Db extends Model
             'service_ip'           => Yii::t('hipanel:hosting', 'Service IP'),
             'backuping_type'       => Yii::t('hipanel:hosting', 'Backup type'),
         ]);
+    }
+
+    public function scenarioCommands()
+    {
+        $result = [];
+        $result['enable-backuping'] = 'update-backuping';
+        $result['disable-backuping'] = 'update-backuping';
+
+        return $result;
     }
 }

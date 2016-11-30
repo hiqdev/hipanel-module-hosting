@@ -20,6 +20,7 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
 use Yii;
+use yii\base\Event;
 
 class DbController extends CrudController
 {
@@ -74,6 +75,17 @@ class DbController extends CrudController
                 'class'   => SmartPerformAction::class,
                 'success' => Yii::t('hipanel:hosting', 'DB has been deleted successfully'),
             ],
+            'enable-backuping' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Backups were enabled for the domain'),
+                'on beforeSave' => function (Event $event) {
+                    /** @var \hipanel\actions\Action $action */
+                    $action = $event->sender;
+                    foreach ($action->collection->models as $model) {
+                        $model->setAttribute('backuping_type', 'week');
+                    }
+                },
+            ]
         ];
     }
 
