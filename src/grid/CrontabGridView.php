@@ -13,7 +13,9 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
 use hipanel\helpers\StringHelper;
+use hipanel\modules\hosting\menus\CrontabActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
+use hiqdev\menumanager\MenuColumn;
 use Yii;
 use yii\helpers\Html;
 
@@ -50,8 +52,8 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 }
             ],
             'actions' => [
-                'class' => ActionColumn::class,
-                'template' => '{view}',
+                'class' => MenuColumn::class,
+                'menuClass' => CrontabActionsMenu::class,
             ],
         ];
     }

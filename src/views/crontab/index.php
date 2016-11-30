@@ -38,10 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
-                        // 'checkbox',
                         'crontab', 'account',
-                        'server', 'client', 'state',
                         'actions',
+                        'server', 'client', 'state',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>
