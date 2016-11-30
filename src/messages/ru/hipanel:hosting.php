@@ -239,8 +239,8 @@ return [
     'Do nothing' => 'Ничего не делать',
     'Delete' => 'Удалять',
     'Forward to' => 'Пересылать',
-    'Delete mailbox' => 'Удалить базу данных',
-    'Confirm mailbox deleting' => 'Подтвердите удалени базы данных',
+    'Delete mailbox' => 'Удалить почтовый ящик',
+    'Confirm mailbox deleting' => 'Подтвердите удалени почтового ящика',
     'Are you sure to delete mailbox {name}? All data will be lost!' => 'Вы уверены, что хотите удалить почту {name}? Все данные будут утеряны!',
 
     /**
