@@ -1,11 +1,13 @@
 <?php
 
 use hipanel\modules\hosting\grid\MailGridView;
+use hipanel\modules\hosting\menus\MailDetailMenu;
 use hipanel\modules\hosting\models\Mail;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\PasswordInput;
+use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 use yii\web\View;
 
@@ -41,58 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <ul class="nav">
-                <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Update'), ['update', 'id' => $model->id]) ?></li>
-                <?php if ($model->canChangePassword()) { ?>
-                    <li>
-                        <?php
-                        $modalButton = ModalButton::begin([
-                            'model' => $model,
-                            'scenario' => 'set-password',
-                            'button' => [
-                                'label' => '<i class="fa fa-lock"></i>' . Yii::t('hipanel', 'Change password'),
-                            ],
-                            'modal' => [
-                                'header' => Html::tag('h4', Yii::t('hipanel', 'New password')),
-                                'headerOptions' => ['class' => 'label-info'],
-                                'footer' => [
-                                    'label' => Yii::t('hipanel', 'Change password'),
-                                    'data-loading-text' => Yii::t('hipanel', 'Changing...'),
-                                    'class' => 'btn btn-warning',
-                                ]
-                            ]
-                        ]);
-                        ?>
-
-                        <?php echo $modalButton->form->field($model, 'password')->widget(PasswordInput::class)->label(false);
-
-                        ModalButton::end();
-                        ?>
-                    </li>
-                <?php } ?>
-                <li>
-                    <?= ModalButton::widget([
-                        'model' => $model,
-                        'scenario' => 'delete',
-                        'button' => [
-                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
-                        ],
-                        'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm mailbox deleting')),
-                            'headerOptions' => ['class' => 'label-info'],
-                            'footer' => [
-                                'label' => Yii::t('hipanel:hosting', 'Delete mailbox'),
-                                'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
-                                'class' => 'btn btn-danger',
-                            ]
-                        ],
-                        'body' => Yii::t('hipanel:hosting',
-                            'Are you sure to delete database {name}? All data will be lost.',
-                            ['name' => $model->mail]
-                        )
-                    ]) ?>
-                </li>
-            </ul>
+            <?= MailDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
         </div>
         <?php Box::end() ?>
     </div>
