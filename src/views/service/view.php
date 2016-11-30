@@ -6,10 +6,10 @@
  */
 
 use hipanel\modules\hosting\grid\ServiceGridView;
+use hipanel\modules\hosting\menus\ServiceDetailMenu;
 use hipanel\widgets\Box;
-use hipanel\widgets\ModalButton;
 use hipanel\widgets\Pjax;
-use yii\helpers\Html;
+use hiqdev\menumanager\widgets\DetailMenu;
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Services'), 'url' => ['index']];
@@ -30,18 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ]); ?>
         <div class="profile-user-img text-center">
-            <i class="fa fa-cogs fa-5x"></i>
+            <i class="fa fa-fw fa-terminal fa-5x"></i>
         </div>
         <p class="text-center">
             <span class="profile-user-role"><?= $model->name ?></span>
         </p>
 
         <div class="profile-usermenu">
-            <ul class="nav">
-                <?php if (Yii::$app->user->can('admin')) : ?>
-                    <li><?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Update'), ['update', 'id' => $model->id]) ?></li>
-                <?php endif; ?>
-            </ul>
+            <?= ServiceDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
         </div>
         <?php Box::end(); ?>
     </div>

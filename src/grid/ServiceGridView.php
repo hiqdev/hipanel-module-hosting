@@ -11,16 +11,17 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\helpers\FontIcon;
+use hipanel\modules\hosting\menus\ServiceActionsMenu;
 use hipanel\modules\hosting\models\DbSearch;
 use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\models\Soft;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\State;
+use hiqdev\menumanager\MenuColumn;
 use Yii;
 use yii\helpers\Html;
 
@@ -112,9 +113,8 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,service',
             ],
             'actions' => [
-                'class' => ActionColumn::class,
-                'template' => '{view}',
-                'header' => Yii::t('hipanel:hosting', 'Actions'),
+                'class' => MenuColumn::class,
+                'menuClass' => ServiceActionsMenu::class,
             ],
         ];
     }
