@@ -13,7 +13,9 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
 use hipanel\grid\RefColumn;
+use hipanel\modules\hosting\menus\RequestActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
+use hiqdev\menumanager\MenuColumn;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\UnsetArrayValue;
@@ -79,8 +81,8 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 ]
             ],
             'actions' => [
-                'class' => ActionColumn::class,
-                'template' => '{view} {delete}',
+                'class' => MenuColumn::class,
+                'menuClass' => RequestActionsMenu::class,
             ],
         ];
     }

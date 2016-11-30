@@ -41,8 +41,8 @@ $this->params['breadcrumbs'][]  = $this->title;
                     'columns'      => [
                         'checkbox', 'classes',
                         'server', 'account',
-                        'object', 'time', 'state',
                         'actions',
+                        'object', 'time', 'state',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>
