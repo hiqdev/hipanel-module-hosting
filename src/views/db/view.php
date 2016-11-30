@@ -35,76 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <ul class="nav">
-                <li>
-                    <?php $modalButton = ModalButton::begin([
-                        'model' => $model,
-                        'scenario' => 'set-password',
-                        'button' => [
-                            'label' => '<i class="fa fa-lock"></i>' . Yii::t('hipanel', 'Change password'),
-                        ],
-                        'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel', 'New password')),
-                            'headerOptions' => ['class' => 'label-info'],
-                            'footer' => [
-                                'label' => Yii::t('hipanel', 'Change'),
-                                'data-loading-text' => Yii::t('hipanel', 'Changing...'),
-                                'class' => 'btn btn-info',
-                            ]
-                        ]
-                    ]) ?>
-
-                    <div class="callout callout-warning">
-                        <h4><?= Yii::t('hipanel', 'This will immediately terminate all sessions of the user!') ?></h4>
-                    </div>
-
-                    <?= $modalButton->form->field($model, 'password')->widget(PasswordInput::class)->label(false) ?>
-                    <?php ModalButton::end() ?>
-                </li>
-                <li>
-                    <?= ModalButton::widget([
-                        'model' => $model,
-                        'scenario' => 'truncate',
-                        'button' => [
-                            'label' => '<i class="fa fa-file-o"></i>' . Yii::t('hipanel:hosting', 'Truncate'),
-                        ],
-                        'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm database truncating')),
-                            'headerOptions' => ['class' => 'label-info'],
-                            'footer' => [
-                                'label' => Yii::t('hipanel:hosting', 'Truncate database'),
-                                'data-loading-text' => Yii::t('hipanel', 'Performing...'),
-                                'class' => 'btn btn-warning',
-                            ]
-                        ],
-                        'body' => Yii::t('hipanel:hosting',
-                            'Are you sure that to truncate database {name}? All tables will be dropped, all data will be lost!',
-                            ['name' => $model->name]
-                        )
-                    ]) ?>
-                </li>
-                <li>
-                    <?= ModalButton::widget([
-                        'model' => $model,
-                        'scenario' => 'delete',
-                        'button' => [
-                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
-                        ],
-                        'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm database deleting')),
-                            'headerOptions' => ['class' => 'label-info'],
-                            'footer' => [
-                                'label' => Yii::t('hipanel:hosting', 'Delete database'),
-                                'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
-                                'class' => 'btn btn-danger',
-                            ]
-                        ],
-                        'body' => Yii::t('hipanel:hosting', 'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!',
-                            ['name' => $model->name]
-                        )
-                    ]) ?>
-                </li>
-            </ul>
+            <?= \hipanel\modules\hosting\menus\DbDetailMenu::create(['model' => $model])->render(\hiqdev\menumanager\widgets\DetailMenu::class) ?>
         </div>
         <?php Box::end() ?>
     </div>
