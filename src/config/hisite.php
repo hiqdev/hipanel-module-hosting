@@ -20,6 +20,7 @@ return [
         "@service" => "/hosting/service",
         "@ip" => "/hosting/ip",
         "@request" => "/hosting/request",
+        "@crontab" => "/hosting/crontab",
     ],
     'modules' => [
         'hosting' => [
