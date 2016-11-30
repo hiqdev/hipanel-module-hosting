@@ -15,6 +15,7 @@ return [
     /**
      * Account
      */
+    'Are you sure to delete mail {name}?' => 'Вы уверены, что удалить почту {name}?',
     'Confirm database truncating' => 'Подтвердите очитску базы данных',
     'Are you sure that to truncate database {name}? All tables will be dropped, all data will be lost!' => 'Вы уверены, что хотите очистить базу данных {name}? Все таблицы будут удалены все данные будут потеряны!',
     'Block outgoing post' => 'Заблокировать отправку почты',
