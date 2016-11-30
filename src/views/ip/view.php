@@ -6,10 +6,12 @@
  */
 
 use hipanel\modules\hosting\grid\IpGridView;
+use hipanel\modules\hosting\menus\IpDetailMenu;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\widgets\Box;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\Pjax;
+use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 
 /**
@@ -40,37 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <ul class="nav">
-                <?php if (Yii::$app->user->can('admin')) : ?>
-                    <li>
-                        <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel', 'Update'), ['update', 'id' => $model->id]) ?>
-                    </li>
-                <?php endif; ?>
-                <?php if (Yii::$app->user->can('admin')) : ?>
-                    <li>
-                        <?= ModalButton::widget([
-                            'model' => $model,
-                            'scenario' => 'delete',
-                            'button' => [
-                                'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
-                            ],
-                            'modal' => [
-                                'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm IP address deleting')),
-                                'headerOptions' => ['class' => 'label-info'],
-                                'footer' => [
-                                    'label' => Yii::t('hipanel:hosting', 'Delete IP address'),
-                                    'data-loading-text' => Yii::t('hipanel:hosting', 'Deleting IP address...'),
-                                    'class' => 'btn btn-danger',
-                                ]
-                            ],
-                            'body' => Yii::t('hipanel:hosting',
-                                'Are you sure, that you want to delete IP address {ip}? All related objects might be deleted too!',
-                                ['ip' => $model->ip]
-                            )
-                        ]) ?>
-                    </li>
-                <?php endif; ?>
-            </ul>
+            <?= IpDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
         </div>
         <?php Box::end(); ?>
     </div>

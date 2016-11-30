@@ -15,10 +15,12 @@ use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\FontIcon;
 use hipanel\helpers\Url;
+use hipanel\modules\hosting\menus\IpActionsMenu;
 use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\XEditable;
+use hiqdev\menumanager\MenuColumn;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
@@ -126,21 +128,8 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'actions' => [
-                'class' => ActionColumn::class,
-                'template' => '{view} {expand} {update} {delete}',
-                'buttons' => [
-                    'expand' => function ($url, $model) {
-                        $options = array_merge([
-                            'title' => Yii::t('hipanel:hosting', 'Expand'),
-                            'aria-label' => Yii::t('hipanel:hosting', 'Expand'),
-                            'data-pjax' => '0',
-                            'data-id' => $model->id,
-                            'class' => 'btn-expand-ip',
-                        ]);
-
-                        return Html::a(FontIcon::i('fa-th') . Yii::t('hipanel:hosting', 'Expand'), $url, $options);
-                    },
-                ],
+                'class' => MenuColumn::class,
+                'menuClass' => IpActionsMenu::class,
             ],
             'ptr' => [
                 'options' => [

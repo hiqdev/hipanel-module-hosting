@@ -43,10 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'ipTags' => $ipTags,
                     'columns' => [
                         'ip',
+                        'actions',
                         'tags',
                         'counters',
                         'links',
-                        'actions',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>
