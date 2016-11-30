@@ -9,7 +9,7 @@ use hipanel\widgets\ModalButton;
     $modalButton = ModalButton::begin([
         'model' => $model,
         'scenario' => 'enable-block',
-        'button' => ['label' => '<i class="ion-locked"></i>' . Yii::t('hipanel:hosting', 'Block domain')],
+        'button' => ['label' => '<i class="fa fa-fw fa-lock"></i> ' . Yii::t('hipanel:hosting', 'Block domain')],
         'form' => [
             'enableAjaxValidation'   => true,
             'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => 'enable-block']),

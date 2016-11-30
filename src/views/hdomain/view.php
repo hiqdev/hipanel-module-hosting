@@ -2,10 +2,12 @@
 
 use hipanel\modules\dns\widgets\DnsZoneEditWidget;
 use hipanel\modules\hosting\grid\HdomainGridView;
+use hipanel\modules\hosting\menus\HdomainDetailMenu;
 use hipanel\modules\hosting\models\Hdomain;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
+use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\web\View;
@@ -17,9 +19,9 @@ use yii\web\View;
 
 $this->title = $model->domain;
 $this->params['subtitle'] = ($model->isAlias()
-    ? Yii::t('hipanel:hosting', 'Hosting domain alias detailed information')
-    : Yii::t('hipanel:hosting', 'Hosting domain detailed information')
-) . ' #' . $model->id;
+        ? Yii::t('hipanel:hosting', 'Hosting domain alias detailed information')
+        : Yii::t('hipanel:hosting', 'Hosting domain detailed information')
+    ) . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Domains'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -45,52 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <ul class="nav">
-                <li>
-                    <?php $url = 'http://' . $model->domain . '/' ?>
-                    <?= Html::a('<i class="fa fa-globe"></i>' . Yii::t('hipanel:hosting', 'Go to site {link}', ['link' => $url]), $url,
-                        ['target' => '_blank']) ?>
-                </li>
-                <?php if (!$model->isAlias()) { ?>
-                    <li>
-                        <?= Html::a('<i class="fa fa-pencil"></i>' . Yii::t('hipanel:hosting', 'Advanced settings'),
-                            ['/hosting/vhost/advanced-config', 'id' => $model->id]) ?>
-                    </li>
-                <?php } ?>
-                <?php if (!$model->isAlias()) { ?>
-                <li>
-                    <?= Html::a('<i class="fa fa-adjust"></i>' . Yii::t('hipanel:hosting', 'Proxy settings'),
-                        ['/hosting/vhost/manage-proxy', 'id' => $model->id]) ?>
-                </li>
-                <?php } ?>
-                <?php if (Yii::$app->user->can('support') && Yii::$app->user->id !== $model->client_id && !$model->isAlias()) : ?>
-                    <li>
-                        <?= $this->render('_block', compact(['model', 'blockReasons'])) ?>
-                    </li>
-                <?php endif ?>
-                <li>
-                    <?= ModalButton::widget([
-                        'model' => $model,
-                        'scenario' => 'delete',
-                        'button' => [
-                            'label' => '<i class="fa fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
-                        ],
-                        'modal' => [
-                            'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Confirm domain deleting')),
-                            'headerOptions' => ['class' => 'label-info'],
-                            'footer' => [
-                                'label' => Yii::t('hipanel:hosting', 'Delete domain'),
-                                'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
-                                'class' => 'btn btn-danger',
-                            ]
-                        ],
-                        'body' => Yii::t('hipanel:hosting',
-                            'Are you sure to delete domain {name}? All files under domain root on the server will stay untouched. You can delete them manually later.',
-                            ['name' => $model->domain]
-                        )
-                    ]) ?>
-                </li>
-            </ul>
+            <?= HdomainDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
         </div>
         <?php Box::end() ?>
     </div>
@@ -98,7 +55,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#hdomain-details" data-toggle="tab"><?= Yii::t('hipanel', 'Details') ?></a></li>
+                <li class="active"><a href="#hdomain-details" data-toggle="tab"><?= Yii::t('hipanel', 'Details') ?></a>
+                </li>
                 <li><a href="#hdomain-dns" data-toggle="tab"><?= Yii::t('hipanel', 'DNS records') ?></a></li>
             </ul>
             <div class="tab-content">
