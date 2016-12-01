@@ -14,6 +14,7 @@ namespace hipanel\modules\hosting\controllers;
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartCreateAction;
+use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
@@ -72,7 +73,7 @@ class DbController extends CrudController
                 'class'   => ValidateFormAction::class,
             ],
             'delete' => [
-                'class'   => SmartPerformAction::class,
+                'class'   => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel:hosting', 'DB has been deleted successfully'),
             ],
             'enable-backuping' => [
