@@ -12,7 +12,8 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\StringHelper;
-use hipanel\modules\client\validators\LoginValidator;
+
+use hipanel\modules\hosting\validators\LoginValidator;
 use Yii;
 
 class Account extends \hipanel\base\Model

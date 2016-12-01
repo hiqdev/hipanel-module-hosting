@@ -234,7 +234,7 @@ return [
     'An error occurred when trying to delete mailbox' => 'Произошла ошибка при попытке удалить почтовый ящик',
     'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.' => 'Все письма будут перенаправлены на указанные адреса. Вы можете выбрать email из списка существующих, или вписать нужный адрес самостоятельно.',
     '{attribute} is not a valid local part of email' => '{attribute} не валидная часть e-mail адреса',
-    '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length' => '{attribute} должны начинаться с буквы, содержать только буквы, цифры или подчеркивания и по меньшей мере 2 символов длиной',
+    '{attribute} should begin with a letter, contain only letters, digits or underscores and be at least 2 symbols length' => '{attribute} должнен начинаться с буквы и может содержать буквы, цифры или подчеркивания, но не короче 2 символов',
     '{attribute} should contain only letters, digits, underscores or hyphens and be at least 2 symbols length' => '{attribute} должен содержать только буквы, цифры, подчёркивание, тире и быть как минимум 2 символов длины',
     'Do nothing' => 'Ничего не делать',
     'Delete' => 'Удалять',
