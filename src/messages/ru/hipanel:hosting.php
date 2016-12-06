@@ -168,7 +168,7 @@ return [
     'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately' => 'Эта опция создаст A записи для домена и его алиасов. Изменения будут немедленно загружены на NS серверы',
     'Toggles DNS records upload on NS server' => 'Включение загрузки DNS записей на NS серверы',
     'DNS is enabled' => 'DNS включён',
-    'Advanced settings were updated successfully' => 'Расширенные настройки были успешно изменеы',
+    'Advanced settings were updated successfully' => 'Расширенные настройки были успешно изменены',
     'Error when updating advanced settings' => 'Ошибка при изменении расширенных настроек',
     'Domain proxy setting settings were changed' => 'Настройки проксирования домена изменеы',
     'Error when changing domain proxy settings' => 'Ошибка при изменении настроек проксирования',
