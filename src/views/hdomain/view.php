@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <?= HdomainDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
+            <?= HdomainDetailMenu::create(['model' => $model, 'blockReasons' => $blockReasons])->render(DetailMenu::class) ?>
         </div>
         <?php Box::end() ?>
     </div>

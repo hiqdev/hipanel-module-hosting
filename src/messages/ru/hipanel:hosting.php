@@ -282,4 +282,7 @@ return [
     'Server' => 'Сервер',
     'Service' => 'Сервис',
 
+    'Confirm hosting domain blocking' => 'Подтвердить блокирование хостинг-домена',
+    'This action will block access to the website from the world!' => 'Это действие заблокирует доступ к веб-сайту из мира!',
+
 ];
