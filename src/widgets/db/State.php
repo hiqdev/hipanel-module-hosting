@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -21,9 +20,9 @@ class State extends Label
     public function init()
     {
         $state = $this->model->state;
-        if ($state==='ok') {
+        if ($state === 'ok') {
             $class = 'info';
-        } elseif ($state==='blocked') {
+        } elseif ($state === 'blocked') {
             $class = 'danger';
         } else {
             $class = 'warning';

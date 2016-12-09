@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -13,7 +12,6 @@ namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
-use hipanel\actions\ProxyAction;
 use hipanel\actions\RedirectAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
@@ -27,8 +25,8 @@ class BackupController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/backup/index'
-                ]
+                    '/hosting/backup/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
@@ -44,7 +42,7 @@ class BackupController extends \hipanel\base\CrudController
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
                     'client_id' => 'client.client.id',
-                ]
+                ],
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -56,7 +54,7 @@ class BackupController extends \hipanel\base\CrudController
                 'POST html | POST pjax' => [
                     'save' => true,
                     'success' => [
-                        'class' => RedirectAction::class
+                        'class' => RedirectAction::class,
                     ],
                 ],
             ],

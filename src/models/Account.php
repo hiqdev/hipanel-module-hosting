@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -12,7 +11,6 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\StringHelper;
-
 use hipanel\modules\hosting\validators\LoginValidator;
 use Yii;
 
@@ -41,7 +39,7 @@ class Account extends \hipanel\base\Model
             [['id', 'client_id', 'device_id', 'server_id', 'seller_id', 'uid', 'gid'], 'integer'],
             [
                 ['login', 'password', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller'],
-                'safe'
+                'safe',
             ],
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
             [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label', 'mail_settings', 'per_hour_limit'], 'safe'],
@@ -65,7 +63,7 @@ class Account extends \hipanel\base\Model
                 'range' => ['root', 'toor'],
                 'not' => true,
                 'on' => ['create', 'create-ftponly'],
-                'message' => Yii::t('hipanel:hosting', 'You can not use this login')
+                'message' => Yii::t('hipanel:hosting', 'You can not use this login'),
             ],
             [
                 ['sshftp_ips'],
@@ -73,18 +71,18 @@ class Account extends \hipanel\base\Model
                 'filter' => function ($value) {
                     return StringHelper::explode($value);
                 },
-                'on' => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
+                'on' => ['create', 'create-ftponly', 'update', 'set-allowed-ips'],
             ],
             [
                 ['sshftp_ips'],
                 'each',
                 'rule' => ['ip', 'negation' => true, 'subnet' => null],
-                'on' => ['create', 'create-ftponly', 'update', 'set-allowed-ips']
+                'on' => ['create', 'create-ftponly', 'update', 'set-allowed-ips'],
             ],
             [
                 ['id'],
                 'required',
-                'on' => ['set-password', 'set-allowed-ips', 'set-mail-settings', 'delete']
+                'on' => ['set-password', 'set-allowed-ips', 'set-mail-settings', 'delete'],
             ],
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
             [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
@@ -95,7 +93,7 @@ class Account extends \hipanel\base\Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

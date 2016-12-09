@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -59,7 +58,7 @@ class Vhost extends \hipanel\base\Model
                     'fullpath',
                     'proxy_enabled',
                 ],
-                'safe'
+                'safe',
             ],
             [
                 [
@@ -73,7 +72,7 @@ class Vhost extends \hipanel\base\Model
                     'soft_id',
                     'service_id',
                 ],
-                'integer'
+                'integer',
             ],
             [
                 [
@@ -84,12 +83,12 @@ class Vhost extends \hipanel\base\Model
                     'enable_scripts',
                     'dns_on',
                 ],
-                'boolean'
+                'boolean',
             ],
             [
                 ['id'],
                 'required',
-                'on' => ['advanced-config', 'manage-proxy']
+                'on' => ['advanced-config', 'manage-proxy'],
             ],
             [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['manage-proxy']],
@@ -97,7 +96,7 @@ class Vhost extends \hipanel\base\Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,14 +9,13 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
@@ -77,7 +75,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ObjectLabelWidget::widget(compact('model'));
-                }
+                },
             ],
             'backup_count' => [
                 'filter' => false,
@@ -95,9 +93,9 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                             'type' => 'select',
                             'source' => $typeOptions,
                             'url' => Url::to('update'),
-                        ]
+                        ],
                     ]);
-                }
+                },
             ],
             'state_label' => [
                 'filter' => false,
@@ -116,7 +114,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'html',
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->total_du, 2);
-                }
+                },
             ],
         ];
     }

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,7 +10,6 @@
 
 namespace hipanel\modules\hosting\models;
 
-use Yii;
 use yii\web\JsExpression;
 
 class Link extends \hipanel\base\Model
@@ -40,7 +38,7 @@ class Link extends \hipanel\base\Model
                 return !empty($this->server);
             }, 'whenClient' => new JsExpression("function (attribute, value) {
                 return $(attribute).parent('.item').find('[data-attribute=server]').val();
-            }"), 'on' => ['create', 'update']]
+            }"), 'on' => ['create', 'update']],
         ];
     }
 }

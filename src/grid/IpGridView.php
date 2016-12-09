@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,7 +10,6 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\FontIcon;
 use hipanel\helpers\Url;
@@ -57,7 +55,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         $labels[] = IpTag::widget(['tag' => $tag]);
                     }
                     return implode(' ', $labels);
-                }
+                },
             ],
             'counters' => [
                 'format' => 'html',
@@ -66,10 +64,10 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                     $html = '';
                     foreach ($model->objects_count as $count) {
                         if ($count['type'] === 'hdomain') {
-                            $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip]];
-                            $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['ip_like' => $model->ip, 'state' => 'deleted']];
+                            $url['ok'] = ['@hdomain', (new HdomainSearch())->formName() => ['ip_like' => $model->ip]];
+                            $url['deleted'] = ['@hdomain', (new HdomainSearch())->formName() => ['ip_like' => $model->ip, 'state' => 'deleted']];
                             $type = function ($count) {
-                                return Yii::t('hipanel:hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
+                                return Yii::t('hipanel:hosting', '{0, plural, one{domain} other{domains}}', (int) $count);
                             };
                         } else {
                             throw new InvalidParamException('The object type is not supported', $model);
@@ -77,7 +75,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
 
                         if ($count['ok']) {
                             $html .= Html::a(
-                                (int)$count['ok'] . '&nbsp;' . FontIcon::i('fa-check') . ' ' . $type($count['ok']),
+                                (int) $count['ok'] . '&nbsp;' . FontIcon::i('fa-check') . ' ' . $type($count['ok']),
                                 $url['ok'],
                                 ['class' => 'btn btn-success btn-xs']
                             );
@@ -85,7 +83,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         $html .= ' ';
                         if ($count['deleted'] > 0) {
                             $html .= Html::a(
-                                (int)$count['deleted'] . '&nbsp;' . FontIcon::i('fa-trash') . ' ' . $type($count['deleted']),
+                                (int) $count['deleted'] . '&nbsp;' . FontIcon::i('fa-trash') . ' ' . $type($count['deleted']),
                                 $url['deleted'],
                                 ['class' => 'btn btn-xs btn-warning']
                             );
@@ -93,7 +91,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                     }
 
                     return $html;
-                }
+                },
             ],
             'links' => [
                 'format' => 'html',
@@ -108,7 +106,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         $items[] = $item;
                     }
                     return ArraySpoiler::widget(['data' => $items, 'visibleCount' => 3]);
-                }
+                },
             ],
             'services' => [
                 'attribute' => 'links',
@@ -142,13 +140,13 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                             'model' => $model,
                             'attribute' => 'ptr',
                             'pluginOptions' => [
-                                'url' => Url::to('@ip/set-ptr')
+                                'url' => Url::to('@ip/set-ptr'),
                             ],
                         ]);
                     }
 
                     return null;
-                }
+                },
             ],
         ];
     }

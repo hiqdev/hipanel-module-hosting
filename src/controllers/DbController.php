@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -31,8 +30,8 @@ class DbController extends CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/db/index'
-                ]
+                    '/hosting/db/index',
+                ],
             ],
             'index' => [
                 'class'     => IndexAction::class,
@@ -48,10 +47,10 @@ class DbController extends CrudController
                     'server'    => 'server.server.name',
                     'client_id' => 'client.client.id',
                     'seller_id' => 'client.client.seller_id',
-                ]
+                ],
             ],
             'view' => [
-                'class'   => ViewAction::class
+                'class'   => ViewAction::class,
             ],
             'create' => [
                 'class'   => SmartCreateAction::class,
@@ -86,7 +85,7 @@ class DbController extends CrudController
                         $model->setAttribute('backuping_type', 'week');
                     }
                 },
-            ]
+            ],
         ];
     }
 

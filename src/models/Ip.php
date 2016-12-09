@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -65,7 +64,7 @@ class Ip extends \hipanel\base\Model
                 'filter' => function ($value) {
                     return StringHelper::explode($value);
                 },
-                'skipOnArray' => true, 'on' => ['create', 'update']
+                'skipOnArray' => true, 'on' => ['create', 'update'],
             ],
             [['id'], 'required', 'on' => ['update', 'delete', 'set-ptr']],
             [['id'], 'integer', 'on' => ['create', 'update', 'delete', 'expand']],
@@ -74,7 +73,7 @@ class Ip extends \hipanel\base\Model
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
@@ -83,7 +82,7 @@ class Ip extends \hipanel\base\Model
             'is_single'             => Yii::t(static::$i18nDictionary, 'Single'),
             'ip_normalized'         => Yii::t(static::$i18nDictionary, 'Normalized IP'),
             'expanded_ips'          => Yii::t(static::$i18nDictionary, 'Expanded IPs'),
-            'ptr'                   => Yii::t(static::$i18nDictionary, 'PTR')
+            'ptr'                   => Yii::t(static::$i18nDictionary, 'PTR'),
         ]);
     }
 
@@ -132,7 +131,7 @@ class Ip extends \hipanel\base\Model
     }
 
     /**
-     * Checks, whether it is possible to set a PTR record on the IP address
+     * Checks, whether it is possible to set a PTR record on the IP address.
      *
      * @return bool
      */

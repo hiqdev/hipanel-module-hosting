@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -19,12 +18,12 @@ use yii\validators\RegularExpressionValidator;
 class DbNameValidator extends RegularExpressionValidator
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $pattern = '/^[a-z0-9_-]{2,31}$/';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -18,7 +17,7 @@ class Service extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -32,14 +31,14 @@ class Service extends \hipanel\base\Model
                 'filter' => function ($value) {
                     return StringHelper::explode($value);
                 },
-                'skipOnArray' => true, 'on' => ['create', 'update']
+                'skipOnArray' => true, 'on' => ['create', 'update'],
             ],
             [['ips'], 'each', 'rule' => ['ip'], 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update']],
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([

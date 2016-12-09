@@ -1,4 +1,12 @@
 <?php
+/**
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hipanel\modules\hosting\menus;
 
@@ -38,12 +46,12 @@ class MailDetailMenu extends Menu
                             'label' => Yii::t('hipanel:hosting', 'Delete mailbox'),
                             'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                             'class' => 'btn btn-danger',
-                        ]
+                        ],
                     ],
                     'body' => Yii::t('hipanel:hosting',
                         'Are you sure to delete mail {name}?',
                         ['name' => Html::tag('b', $this->model->mail)]
-                    )
+                    ),
                 ]),
                 'encode' => false,
             ],

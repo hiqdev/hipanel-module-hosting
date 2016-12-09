@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -15,23 +14,23 @@ use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class Account
+ * Class Account.
  */
 class AccountPathCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/accountPath';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'path';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/account/get-directories-list';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = ['id', 'login', 'server', 'path'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [
@@ -40,13 +39,12 @@ class AccountPathCombo extends Combo
         ]);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions([
             'clearWhen' => ['hosting/account'],
             'activeWhen' => ['hosting/account'],
-
         ]);
     }
 }

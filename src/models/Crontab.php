@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,20 +9,18 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
 
 namespace hipanel\modules\hosting\models;
 
-use Yii;
-
 class Crontab extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -40,7 +37,7 @@ class Crontab extends \hipanel\base\Model
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([]);
@@ -55,7 +52,7 @@ class Crontab extends \hipanel\base\Model
         $regex = '/^(\s+)?(#.*)?$/';
         foreach (explode("\n", $this->crontab) as $line) {
             if (!preg_match($regex, trim($line))) {
-                $count++;
+                ++$count;
             }
         }
 

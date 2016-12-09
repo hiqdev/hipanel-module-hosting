@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,16 +10,16 @@
 
 return [
     'aliases' => [
-        "@account" => "/hosting/account",
-        "@hdomain" => "/hosting/hdomain",
-        "@db" => "/hosting/db",
-        "@mail" => "/hosting/mail",
-        "@backup" => "/hosting/backup",
-        "@backuping" => "/hosting/backuping",
-        "@service" => "/hosting/service",
-        "@ip" => "/hosting/ip",
-        "@request" => "/hosting/request",
-        "@crontab" => "/hosting/crontab",
+        '@account' => '/hosting/account',
+        '@hdomain' => '/hosting/hdomain',
+        '@db' => '/hosting/db',
+        '@mail' => '/hosting/mail',
+        '@backup' => '/hosting/backup',
+        '@backuping' => '/hosting/backuping',
+        '@service' => '/hosting/service',
+        '@ip' => '/hosting/ip',
+        '@request' => '/hosting/request',
+        '@crontab' => '/hosting/crontab',
     ],
     'modules' => [
         'hosting' => [

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -26,7 +25,7 @@ class Mail extends \hipanel\base\Model
     const SPAM_ACTION_NONE = '';
     const SPAM_ACTION_DELETE = 'delete';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -52,7 +51,7 @@ class Mail extends \hipanel\base\Model
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
@@ -74,7 +73,7 @@ class Mail extends \hipanel\base\Model
         return [
             'forwards' => Yii::t('hipanel:hosting', 'All messages will be forwarded on the specified addresses. You can select email from the list of existing or wright down your own.'),
             'password' => $this->type === static::TYPE_FORWARD_ONLY
-                            ?  Yii::t('hipanel:hosting', 'Password change is prohibited on forward-only mailboxes')
+                            ? Yii::t('hipanel:hosting', 'Password change is prohibited on forward-only mailboxes')
                             : ($this->isNewRecord
                                 ? Yii::t('hipanel:hosting', 'Leave this field empty to create a forward-only mailbox')
                                 : Yii::t('hipanel:hosting', 'Fill this field only if you want to change the password')
@@ -82,7 +81,7 @@ class Mail extends \hipanel\base\Model
         ];
     }
 
-    static public function getTypes()
+    public static function getTypes()
     {
         return [
             'mailbox' => Yii::t('hipanel:hosting', 'Mailbox'),

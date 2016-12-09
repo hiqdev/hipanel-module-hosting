@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -15,23 +14,23 @@ use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class Account
+ * Class Account.
  */
 class AccountCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/account';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'login';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/account/index';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = ['id', 'client', 'client_id', 'device', 'device_id'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_rename = ['text' => 'login'];
 
     /**
@@ -42,7 +41,7 @@ class AccountCombo extends Combo
      */
     public $accountType;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [
@@ -52,7 +51,7 @@ class AccountCombo extends Combo
         ]);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions([
@@ -61,7 +60,7 @@ class AccountCombo extends Combo
                 'client/seller' => 'seller',
                 'client/client' => 'client',
                 'server/server' => 'device',
-            ]
+            ],
         ]);
     }
 }

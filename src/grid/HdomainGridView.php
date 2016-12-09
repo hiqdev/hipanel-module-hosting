@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -14,7 +13,6 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
-use hipanel\grid\XEditableColumn;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\widgets\backup\BackupGridRow;
 use hipanel\modules\hosting\widgets\hdomain\State;
@@ -33,14 +31,14 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'hdomain' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'domain_like',
-                'attribute' => 'domain'
+                'attribute' => 'domain',
             ],
             'hdomain_with_aliases' => [
                 'format' => 'raw',
                 'attribute' => 'domain',
                 'filterAttribute' => 'domain_like',
                 'value' => function ($model) {
-                    $aliases = (array)$model->getAttribute('aliases');
+                    $aliases = (array) $model->getAttribute('aliases');
 
                     $html = Html::a($model->domain, ['view', 'id' => $model->id], ['class' => 'bold']) . '&nbsp;';
                     $html .= ArraySpoiler::widget([
@@ -58,13 +56,13 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                     ]);
 
                     return $html;
-                }
+                },
             ],
             'account' => [
-                'class' => AccountColumn::class
+                'class' => AccountColumn::class,
             ],
             'server' => [
-                'class' => ServerColumn::class
+                'class' => ServerColumn::class,
             ],
             'ip' => [
                 'enableSorting' => false,
@@ -85,13 +83,13 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         }
                     }
                     return $html;
-                }
+                },
             ],
             'service' => [
                 'label' => Yii::t('hipanel', 'Service'),
                 'value' => function ($model) {
                     return $model->getAttribute('vhost')['service'];
-                }
+                },
             ],
             'state' => [
                 'class' => RefColumn::class,
@@ -116,7 +114,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'value' => function ($model) {
                     return $model->dns_on ? Yii::t('hipanel', 'Enabled') : Yii::t('hipanel', 'Disabled');
-                }
+                },
             ],
             'dns_switch' => [
                 'attribute' => 'dns_on',
@@ -140,21 +138,21 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                         ]);
                     } else {
                         return Yii::t('hipanel:hosting', 'Belongs to {link}', [
-                            'link' => Html::a($model->dns_hdomain_domain, Url::to(['@hdomain/view', 'id' => $model->dns_hdomain_id]))
+                            'link' => Html::a($model->dns_hdomain_domain, Url::to(['@hdomain/view', 'id' => $model->dns_hdomain_id])),
                         ]);
                     }
-                }
+                },
             ],
             'aliases' => [
                 'label' => Yii::t('hipanel', 'Aliases'),
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
-                        'data' => (array)$model->getAttribute('aliases'),
+                        'data' => (array) $model->getAttribute('aliases'),
                         'delimiter' => '<br />',
                         'button' => ['popoverOptions' => ['html' => true]],
                     ]);
-                }
+                },
             ],
             'backups_widget' => [
                 'label' => Yii::t('hipanel:hosting', 'Backups'),
@@ -165,7 +163,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'actions' => [
                 'class' => ActionColumn::class,
-                'template' => '{view} {delete}'
+                'template' => '{view} {delete}',
             ],
         ];
     }

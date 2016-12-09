@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -61,8 +60,8 @@ class BackupGridRow extends Widget
         $linkToBackup = Html::a($text, [sprintf('@%s/enable-backuping', $this->model->type())], [
             'data-method' => 'POST',
             'data-params' => [
-                sprintf('%s[id]', ucfirst($this->model->type())) => $this->getRealObjectId()
-            ]
+                sprintf('%s[id]', ucfirst($this->model->type())) => $this->getRealObjectId(),
+            ],
         ]);
 
         return $linkToBackup;

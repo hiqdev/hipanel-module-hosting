@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -38,8 +37,8 @@ class AccountController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/account/index'
-                ]
+                    '/hosting/account/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
@@ -56,28 +55,28 @@ class AccountController extends \hipanel\base\CrudController
                     'type' => 'hosting.account.type',
                     'client_id' => 'client.client.id',
                     'seller_id' => 'client.client.seller_id',
-                ]
+                ],
             ],
             'view' => [
                 'class' => ViewAction::class,
                 'findOptions' => [
-                    'with_mail_settings' => true
+                    'with_mail_settings' => true,
                 ],
                 'data' => function ($action) {
                     return [
-                        'blockReasons' => $action->controller->getBlockReasons()
+                        'blockReasons' => $action->controller->getBlockReasons(),
                     ];
-                }
+                },
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account')
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account'),
             ],
             'create-ftponly' => [
                 'class' => SmartCreateAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account')
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account'),
             ],
             'set-password' => [
                 'class' => SmartUpdateAction::class,
@@ -109,12 +108,12 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'single-validate-form' => [
                 'class' => ValidateFormAction::class,
-                'validatedInputId' => false
+                'validatedInputId' => false,
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account')
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
             ],
             'get-directories-list' => [
                 'class' => SearchAction::class,
@@ -128,7 +127,7 @@ class AccountController extends \hipanel\base\CrudController
                     }
 
                     return $results;
-                }
+                },
             ],
             'bulk-enable-block' => [
                 'class' => SmartUpdateAction::class,
@@ -150,7 +149,7 @@ class AccountController extends \hipanel\base\CrudController
                         foreach ($action->collection->models as $model) {
                             $model->setAttributes([
                                 'type' => $type,
-                                'comment' => $comment
+                                'comment' => $comment,
                             ]);
                         }
                     }
@@ -162,9 +161,9 @@ class AccountController extends \hipanel\base\CrudController
                 'view' => '_bulkEnableBlock',
                 'data' => function ($action, $data) {
                     return array_merge($data, [
-                        'blockReasons' => $this->getBlockReasons()
+                        'blockReasons' => $this->getBlockReasons(),
                     ]);
-                }
+                },
             ],
             'bulk-disable-block' => [
                 'class' => SmartUpdateAction::class,

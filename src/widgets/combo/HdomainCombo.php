@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -16,24 +15,23 @@ use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 /**
- * Class HdomainCombo
- * @package hipanel\modules\hosting\widgets\combo
+ * Class HdomainCombo.
  */
 class HdomainCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/hdomain';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'login';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/hdomain/index';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = ['id', 'server'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_rename = ['text' => 'domain'];
 
     /**
@@ -41,7 +39,7 @@ class HdomainCombo extends Combo
      */
     public $activeWhen = ['hosting/vhost'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [
@@ -50,7 +48,7 @@ class HdomainCombo extends Combo
         ]);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions(ArrayHelper::merge([
@@ -58,8 +56,8 @@ class HdomainCombo extends Combo
             'select2Options' => [
                 'formatResult' => new JsExpression("function (data) {
                     return data.text + ' - ' + data.server;
-                }")
-            ]
+                }"),
+            ],
         ], $options));
     }
 }

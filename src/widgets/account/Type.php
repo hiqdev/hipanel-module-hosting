@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -21,7 +20,7 @@ class Type extends Label
     public function init()
     {
         $type = $this->model->type;
-        if ($type==='user') {
+        if ($type === 'user') {
             $class = 'info';
         } else {
             $class = 'warning';

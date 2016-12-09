@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,13 +10,12 @@
 
 namespace hipanel\modules\hosting\widgets\combo;
 
-use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 class MultipleMailCombo extends MailCombo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions(ArrayHelper::merge([
@@ -38,8 +36,8 @@ class MultipleMailCombo extends MailCombo
                             }
                         }
                     }
-                ')
-            ]
+                '),
+            ],
         ], $options));
     }
 }

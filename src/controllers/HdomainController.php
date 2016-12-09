@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -33,8 +32,8 @@ class HdomainController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/hdomain/index'
-                ]
+                    '/hosting/hdomain/index',
+                ],
             ],
             'search' => [
                 'class' => SearchAction::class,
@@ -59,7 +58,7 @@ class HdomainController extends \hipanel\base\CrudController
                     'account'     => 'hosting.account.login',
                     'client_id'   => 'client.client.id',
                     'seller_id'   => 'client.client.seller_id',
-                ]
+                ],
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -72,9 +71,9 @@ class HdomainController extends \hipanel\base\CrudController
                 ],
                 'data' => function ($action) {
                     return [
-                        'blockReasons' => $this->getBlockReasons()
+                        'blockReasons' => $this->getBlockReasons(),
                     ];
-                }
+                },
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
@@ -132,7 +131,7 @@ class HdomainController extends \hipanel\base\CrudController
                         foreach ($action->collection->models as $model) {
                             $model->setAttributes([
                                 'type' => $type,
-                                'comment' => $comment
+                                'comment' => $comment,
                             ]);
                         }
                     }
@@ -144,9 +143,9 @@ class HdomainController extends \hipanel\base\CrudController
                 'view' => '_bulkEnableBlock',
                 'data' => function ($action, $data) {
                     return array_merge($data, [
-                        'blockReasons' => $this->getBlockReasons()
+                        'blockReasons' => $this->getBlockReasons(),
                     ]);
-                }
+                },
             ],
             'bulk-disable-block' => [
                 'class' => SmartUpdateAction::class,
@@ -194,7 +193,7 @@ class HdomainController extends \hipanel\base\CrudController
                         $model->setAttribute('backuping_type', 'week');
                     }
                 },
-            ]
+            ],
         ];
     }
 

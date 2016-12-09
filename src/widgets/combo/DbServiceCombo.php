@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -12,13 +11,13 @@
 namespace hipanel\modules\hosting\widgets\combo;
 
 /**
- * Class DbService
+ * Class DbService.
  */
 class DbServiceCombo extends ServiceCombo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/service/db';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $softType = 'db';
 }

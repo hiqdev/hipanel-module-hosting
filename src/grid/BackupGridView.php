@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -33,7 +32,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
             'object_id' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'id',
-                'attribute' => 'object_id'
+                'attribute' => 'object_id',
             ],
             'backup' => [
                 'class' => MainColumn::class,
@@ -43,7 +42,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'class' => ServerColumn::class,
             ],
             'account' => [
-                'class' => AccountColumn::class
+                'class' => AccountColumn::class,
             ],
             'object' => [
                 'format' => 'raw',
@@ -53,26 +52,26 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                     $labelType = ObjectLabelWidget::widget(compact('model'));
                     return $labelType . '&nbsp;' .
                         Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
-                }
+                },
             ],
             'name' => [
                 'format' => 'raw',
                 'attribute' => 'name',
                 'value' => function ($model) {
                     return Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
-                }
+                },
             ],
             'size' => [
                 'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->size, 2);
-                }
+                },
             ],
             'time' => [
                 'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asDatetime($model->time);
-                }
+                },
             ],
             'actions' => [
                 'class' => ActionColumn::class,
@@ -92,8 +91,8 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                                 'data-pjax' => '0',
                             ],
                         ]);
-                    }
-                ]
+                    },
+                ],
             ],
         ];
     }

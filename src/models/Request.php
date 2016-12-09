@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -23,7 +22,7 @@ class Request extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -33,11 +32,11 @@ class Request extends \hipanel\base\Model
             [['tries_left', 'pid', 'time_lag'], 'integer'],
             [['object_name'], 'safe'],
             [['time'], 'date'],
-            [['id'], 'integer', 'on' => ['delete']]
+            [['id'], 'integer', 'on' => ['delete']],
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,7 +10,6 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\ActionColumn;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\menus\RequestActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
@@ -40,7 +38,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             ],
             'account' => [
                 'enableSorting' => false,
-                'class' => AccountColumn::class
+                'class' => AccountColumn::class,
             ],
             'object' => [
                 'enableSorting' => false,
@@ -51,14 +49,13 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                         ['/hosting/' . $model->object_class . '/view', 'id' => $model->object_id],
                         ['data-pjax' => 0]
                     );
-                }
-
+                },
             ],
             'time' => [
                 'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asDatetime($model->time);
-                }
+                },
             ],
             'state' => [
                 'class' => RefColumn::class,
@@ -73,12 +70,12 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                     ];
 
                     return Html::tag('span', Yii::t('hipanel:hosting', $model->state_label), [
-                        'class' => 'text-' . (isset($colors[$model->state]) ? $colors[$model->state] : 'default')
+                        'class' => 'text-' . (isset($colors[$model->state]) ? $colors[$model->state] : 'default'),
                     ]);
                 },
                 'filterOverrides' => [
-                    'done' => new UnsetArrayValue,
-                ]
+                    'done' => new UnsetArrayValue(),
+                ],
             ],
             'actions' => [
                 'class' => MenuColumn::class,

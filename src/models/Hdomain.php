@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -48,7 +47,7 @@ class Hdomain extends \hipanel\base\Model
      */
     public $aliases;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -66,7 +65,7 @@ class Hdomain extends \hipanel\base\Model
                     'device_id',
                     'dns_hdomain_id',
                 ],
-                'integer'
+                'integer',
             ],
             [
                 [
@@ -80,7 +79,7 @@ class Hdomain extends \hipanel\base\Model
                     'proxy_enabled',
                     'dns_hdomain_domain',
                 ],
-                'safe'
+                'safe',
             ],
             [['client', 'seller'], ClientLoginValidator::class],
             [['account'], AccountLoginValidator::class],
@@ -99,14 +98,14 @@ class Hdomain extends \hipanel\base\Model
                     'ip',
                 ],
                 'required',
-                'on' => ['create']
+                'on' => ['create'],
             ],
             [
                 ['subdomain'],
                 'match',
                 'pattern' => '/^(\*|[a-z0-9][a-z0-9-]*)$/i',
                 'message' => Yii::t('hipanel', '{attribute} does not look like a domain part'),
-                'on' => ['create-alias']
+                'on' => ['create-alias'],
             ],
             [
                 [
@@ -115,7 +114,7 @@ class Hdomain extends \hipanel\base\Model
                     'vhost_id',
                 ],
                 'required',
-                'on' => ['create-alias']
+                'on' => ['create-alias'],
             ],
             [
                 [
@@ -125,15 +124,15 @@ class Hdomain extends \hipanel\base\Model
                 'when' => function ($model) {
                     return $model->alias_type === 'new';
                 },
-                'whenClient' => new JsExpression("function (attribute, value) {
+                'whenClient' => new JsExpression('function (attribute, value) {
                     return false;
-                }"),
-                'on' => ['create-alias']
+                }'),
+                'on' => ['create-alias'],
             ],
             [
                 ['id'],
                 'required',
-                'on' => ['manage-proxy', 'enable-backuping', 'disable-backuping', 'delete']
+                'on' => ['manage-proxy', 'enable-backuping', 'disable-backuping', 'delete'],
             ],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
@@ -148,7 +147,7 @@ class Hdomain extends \hipanel\base\Model
         return isset($this->getAttribute('vhost')['backend']);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
@@ -179,7 +178,7 @@ class Hdomain extends \hipanel\base\Model
         return isset($this->vhost_id);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function scenarioCommands()
     {
         $result = [];

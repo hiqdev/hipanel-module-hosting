@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -16,28 +15,28 @@ use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 /**
- * Class Account
+ * Class Account.
  */
 class VhostCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/vhost';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'domain';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/vhost/search';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = ['id', 'domain', 'account', 'server', 'service', 'ip', 'port'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_rename = ['text' => 'domain'];
 
     public $activeWhen = ['server/server', 'hosting/account'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [
@@ -47,7 +46,7 @@ class VhostCombo extends Combo
         ]);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions([
@@ -56,8 +55,8 @@ class VhostCombo extends Combo
             'select2Options' => [
                 'formatResult' => new JsExpression("function (data) {
                     return data.domain + '<br><small>' +  data.service + ' - ' + data.ip + ':' + data.port + '</small>';
-                }")
-            ]
+                }"),
+            ],
         ]);
     }
 }

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -15,10 +14,9 @@ use Yii;
 
 class Backuping extends \hipanel\base\Model
 {
-
     use \hipanel\base\ModelTrait;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -28,7 +26,7 @@ class Backuping extends \hipanel\base\Model
             [['day', 'hour', 'path', 'include', 'exclude'], 'safe'],
             [['method', 'method_label', 'server', 'account', 'name', 'object', 'service'], 'safe'],
             [['backup_last'], 'date'],
-            [['backup_count', 'total_du', 'total_du_gb',], 'integer'],
+            [['backup_count', 'total_du', 'total_du_gb'], 'integer'],
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
 
             [['id', 'type'], 'safe', 'on' => ['update']],
@@ -36,7 +34,7 @@ class Backuping extends \hipanel\base\Model
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([

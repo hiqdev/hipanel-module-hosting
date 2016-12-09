@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -14,9 +13,7 @@ namespace hipanel\modules\hosting\validators;
 use yii\validators\RegularExpressionValidator;
 
 /**
- * Class EmailLocalPart is used to validate Email local parts
- *
- * @package hipanel\modules\hosting\validators
+ * Class EmailLocalPart is used to validate Email local parts.
  */
 class EmailLocalPartValidator extends RegularExpressionValidator
 {
@@ -37,7 +34,7 @@ class EmailLocalPartValidator extends RegularExpressionValidator
     public $allowWildCard = false;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {

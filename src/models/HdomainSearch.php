@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -37,7 +36,9 @@ class HdomainSearch extends Hdomain
             [
                 ['domain_in'],
                 'filter',
-                'filter' => function ($value) { return is_array($value) ? $value : StringHelper::explode($value); }
+                'filter' => function ($value) {
+                    return is_array($value) ? $value : StringHelper::explode($value);
+                },
             ],
         ]);
     }

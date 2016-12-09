@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,5 +10,5 @@
 
 return [
     'ok' => 'Активен',
-    'disabled' => 'Отключен'
+    'disabled' => 'Отключен',
 ];

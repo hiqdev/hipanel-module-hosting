@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -30,7 +29,7 @@ class DbGridView extends BoxedGridView
                 'class'           => MainColumn::class,
                 'format' => 'html',
                 'attribute'       => 'name',
-                'filterAttribute' => 'name_like'
+                'filterAttribute' => 'name_like',
             ],
             'state'       => [
                 'class'  => RefColumn::class,
@@ -42,13 +41,13 @@ class DbGridView extends BoxedGridView
                 'gtype'  => 'state,db',
             ],
             'account' => [
-                'class' => AccountColumn::class
+                'class' => AccountColumn::class,
             ],
             'server'      => [
-                'class' => ServerColumn::class
+                'class' => ServerColumn::class,
             ],
             'service_ip'  => [
-                'filter' => false
+                'filter' => false,
             ],
             'description' => [
                 'class' => XEditableColumn::class,
@@ -67,17 +66,19 @@ class DbGridView extends BoxedGridView
                 'popover' => Yii::t('hipanel', 'Change password'),
                 'value'   => function () {
                     return Yii::t('hipanel', 'Change password');
-                }
+                },
             ],
             'backups_widget' => [
                 'label' => Yii::t('hipanel:hosting', 'Backups'),
                 'format' => 'raw',
-                'value' => function ($model) { return BackupGridRow::widget(['model' => $model]); }
+                'value' => function ($model) {
+                    return BackupGridRow::widget(['model' => $model]);
+                },
             ],
             'actions'     => [
                 'class'    => ActionColumn::class,
-                'template' => '{view} {delete}'
-            ]
+                'template' => '{view} {delete}',
+            ],
         ];
     }
 }

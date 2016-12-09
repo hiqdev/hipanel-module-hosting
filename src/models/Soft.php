@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,14 +9,12 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
 
 namespace hipanel\modules\hosting\models;
-
-use Yii;
 
 class Soft extends \hipanel\base\Model
 {
@@ -27,7 +24,7 @@ class Soft extends \hipanel\base\Model
     const TYPE_DB = 'db';
     const TYPE_LOGIN = 'login';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [

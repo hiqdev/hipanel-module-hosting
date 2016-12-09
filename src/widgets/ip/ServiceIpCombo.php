@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -16,20 +15,20 @@ use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 /**
- * Class ServiceIpCombo
+ * Class ServiceIpCombo.
  */
 class ServiceIpCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/hdomain-ip';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'hdomain-ip';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/ip/search-service-edit';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = [
         'id',
         'links',
@@ -37,10 +36,10 @@ class ServiceIpCombo extends Combo
     ];
 
     public $_rename = [
-        'text' => 'ip'
+        'text' => 'ip',
     ];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_filter = [
         'server' => 'server/server',
     ];
@@ -53,7 +52,7 @@ class ServiceIpCombo extends Combo
             ],
             'select2Options' => [
                 'multiple' => true,
-                'tokenSeparators' => [',', " "],
+                'tokenSeparators' => [',', ' '],
                 'tags' => true,
                 'allowClear' => true,
                 'formatResult' => new JsExpression("
@@ -84,12 +83,12 @@ class ServiceIpCombo extends Combo
                             }
                         }
                     }
-                ")
-            ]
+                "),
+            ],
         ], $options));
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [

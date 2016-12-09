@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -42,14 +41,14 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,mail',
             ],
             'server' => [
-                'class' => ServerColumn::class
+                'class' => ServerColumn::class,
             ],
             'domain' => [
                 'attribute' => 'hdomain_id',
                 'format' => 'raw',
                 'value' => function ($model) {
                     return Html::a($model->domain, ['@hdomain/view', 'id' => $model->hdomain_id]);
-                }
+                },
             ],
             'type' => [
                 'format' => 'raw',
@@ -60,7 +59,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 },
                 'value' => function ($model) {
                     return Type::widget(compact('model'));
-                }
+                },
             ],
             'forwards' => [
                 'format' => 'raw',
@@ -71,10 +70,10 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                         'data' => $model->forwards,
                         'button' => [
                             'label' => '+{count}',
-                            'popoverOptions' => ['html' => true]
+                            'popoverOptions' => ['html' => true],
                         ],
                     ]);
-                }
+                },
             ],
             'spam_action' => [
                 'format' => 'raw',
@@ -83,27 +82,27 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                     if ($model->spam_action === $model::SPAM_ACTION_DELETE) {
                         return Label::widget([
                             'color' => 'danger',
-                            'label' => Yii::t('hipanel', 'Delete')
+                            'label' => Yii::t('hipanel', 'Delete'),
                         ]);
                     } elseif ($model->spam_action === '') {
                         return Label::widget([
                             'color' => 'info',
-                            'label' => Yii::t('hipanel:hosting', 'Do nothing')
+                            'label' => Yii::t('hipanel:hosting', 'Do nothing'),
                         ]);
                     } else {
                         return Label::widget([
                             'color' => 'primary',
-                            'label' => Yii::t('hipanel:hosting', 'Forward to')
+                            'label' => Yii::t('hipanel:hosting', 'Forward to'),
                         ]) . ' ' . ArraySpoiler::widget([
                             'data' => $model->spam_action,
-                            'visibleCount' => 2
+                            'visibleCount' => 2,
                         ]);
                     }
-                }
+                },
             ],
             'actions' => [
                 'class' => ActionColumn::class,
-                'template' => '{view} {delete}'
+                'template' => '{view} {delete}',
             ],
         ];
     }

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,21 +10,20 @@
 
 namespace hipanel\modules\hosting\widgets\ip;
 
-use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class BackIpCombo
+ * Class BackIpCombo.
  */
 class BackIpCombo extends HdomainIpCombo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/hdomain-backend-ip';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'hdomain-backend-ip';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [

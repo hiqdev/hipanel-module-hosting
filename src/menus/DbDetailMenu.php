@@ -1,4 +1,12 @@
 <?php
+/**
+ * Hosting Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-hosting
+ * @package   hipanel-module-hosting
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
 
 namespace hipanel\modules\hosting\menus;
 
@@ -32,12 +40,12 @@ class DbDetailMenu extends Menu
                             'label' => Yii::t('hipanel:hosting', 'Truncate database'),
                             'data-loading-text' => Yii::t('hipanel', 'Performing...'),
                             'class' => 'btn btn-danger',
-                        ]
+                        ],
                     ],
                     'body' => Yii::t('hipanel:hosting',
                         'Are you sure that to truncate database {name}? All tables will be dropped, all data will be lost!',
                         ['name' => Html::tag('b', $this->model->name)]
-                    )
+                    ),
                 ]),
                 'encode' => false,
             ],
@@ -55,11 +63,11 @@ class DbDetailMenu extends Menu
                             'label' => Yii::t('hipanel:hosting', 'Delete database'),
                             'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                             'class' => 'btn btn-danger',
-                        ]
+                        ],
                     ],
                     'body' => Yii::t('hipanel:hosting', 'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!',
                         ['name' => Html::tag('b', $this->model->name)]
-                    )
+                    ),
                 ]),
                 'encode' => false,
             ],

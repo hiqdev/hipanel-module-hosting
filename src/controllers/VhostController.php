@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,14 +9,13 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
 
 namespace hipanel\modules\hosting\controllers;
 
-use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
 use hipanel\actions\RedirectAction;
 use hipanel\actions\SearchAction;
@@ -34,19 +32,19 @@ class VhostController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/vhost/index'
-                ]
+                    '/hosting/vhost/index',
+                ],
             ],
             'index' => [
                 'class' => RedirectAction::class,
-                'url' => ['@hdomain/index']
+                'url' => ['@hdomain/index'],
             ],
             'search' => [
                 'class' => SearchAction::class,
             ],
             'view' => [
                 'class' => RedirectAction::class,
-                'url' => ArrayHelper::merge(['@hdomain/view'], Yii::$app->request->get())
+                'url' => ArrayHelper::merge(['@hdomain/view'], Yii::$app->request->get()),
             ],
             'advanced-config' => [
                 'class' => SmartUpdateAction::class,
@@ -60,7 +58,7 @@ class VhostController extends \hipanel\base\CrudController
                 'class' => SmartUpdateAction::class,
                 'findOptions' => [
                     'select' => 'advanced',
-                    'with_backends' => true
+                    'with_backends' => true,
                 ],
                 'success' => Yii::t('hipanel:hosting', 'Domain proxy setting settings were changed'),
                 'error' => Yii::t('hipanel:hosting', 'Error when changing domain proxy settings'),

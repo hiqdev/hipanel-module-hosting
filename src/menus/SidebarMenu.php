@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -38,7 +37,7 @@ class SidebarMenu extends \hiqdev\menumanager\Menu
                         'url' => ['/hosting/hdomain/index'],
                         'icon' => 'fa-globe',
                         'visible' => function () {
-                            return (bool)Yii::getAlias('@domain', false);
+                            return (bool) Yii::getAlias('@domain', false);
                         },
                     ],
                     'mails' => [
@@ -46,7 +45,7 @@ class SidebarMenu extends \hiqdev\menumanager\Menu
                         'url' => ['/hosting/mail/index'],
                         'icon' => 'fa-envelope-o',
                         'visible' => function () {
-                            return (bool)Yii::getAlias('@mail', false);
+                            return (bool) Yii::getAlias('@mail', false);
                         },
                     ],
                     'backuping' => [

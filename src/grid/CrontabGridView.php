@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,8 +10,6 @@
 
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\ActionColumn;
-use hipanel\helpers\StringHelper;
 use hipanel\modules\hosting\menus\CrontabActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
 use hiqdev\menumanager\MenuColumn;
@@ -31,7 +28,7 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model, $key, $index) {
                     $label = Yii::t('hipanel:hosting', '{0, plural, one{# record} other{# records}}', $model->cronRecordCount);
                     return Html::a($label, ['view', 'id' => $key], ['class' => 'bold', 'data-pjax' => 0]);
-                }
+                },
             ],
             'server' => [
                 'sortAttribute' => 'server',
@@ -41,7 +38,7 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
             'account' => [
                 'sortAttribute' => 'account',
                 'attribute' => 'account_id',
-                'class' => AccountColumn::class
+                'class' => AccountColumn::class,
             ],
             'client',
             'state' => [
@@ -49,7 +46,7 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 'attribute' => 'state',
                 'value' => function ($model) {
                     return Yii::t('hipanel:hosting:cron:states', $model->state);
-                }
+                },
             ],
             'actions' => [
                 'class' => MenuColumn::class,

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -45,16 +44,16 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                     $html = $model->name . ' ';
 
                     if ($model->soft_type === Soft::TYPE_WEB) {
-                        $url['ok'] = ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name]];
-                        $url['deleted'] = ['@hdomain', (new HdomainSearch)->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
+                        $url['ok'] = ['@hdomain', (new HdomainSearch())->formName() => ['server' => $model->server, 'service' => $model->name]];
+                        $url['deleted'] = ['@hdomain', (new HdomainSearch())->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
                         $type = function ($count) {
-                            return Yii::t('hipanel:hosting', '{0, plural, one{domain} other{domains}}', (int)$count);
+                            return Yii::t('hipanel:hosting', '{0, plural, one{domain} other{domains}}', (int) $count);
                         };
                     } elseif ($model->soft_type === Soft::TYPE_DB) {
-                        $url['ok'] = ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name]];
-                        $url['deleted'] = ['@db', (new DbSearch)->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
+                        $url['ok'] = ['@db', (new DbSearch())->formName() => ['server' => $model->server, 'service' => $model->name]];
+                        $url['deleted'] = ['@db', (new DbSearch())->formName() => ['server' => $model->server, 'service' => $model->name, 'state' => 'deleted']];
                         $type = function ($count) {
-                            return Yii::t('hipanel:hosting', '{0, plural, one{# DB} other{# DBs}}', (int)$count);
+                            return Yii::t('hipanel:hosting', '{0, plural, one{# DB} other{# DBs}}', (int) $count);
                         };
                     } else {
                         return $html;
@@ -62,7 +61,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
 
                     if ($count = $model->objects_count['ok']) {
                         $html .= Html::a(
-                            (int)$count . '&nbsp;' . FontIcon::i('fa-check') . ' ' . $type($count),
+                            (int) $count . '&nbsp;' . FontIcon::i('fa-check') . ' ' . $type($count),
                             $url['ok'],
                             ['class' => 'btn btn-success btn-xs']
                         );
@@ -70,7 +69,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                     $html .= ' ';
                     if (($count = $model->objects_count['deleted']) > 0) {
                         $html .= Html::a(
-                            (int)$count . '&nbsp;' . FontIcon::i('fa-trash') . ' ' . $type($count),
+                            (int) $count . '&nbsp;' . FontIcon::i('fa-trash') . ' ' . $type($count),
                             $url['deleted'],
                             ['class' => 'btn btn-xs btn-warning']
                         );
@@ -83,25 +82,25 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {
-                    return ArraySpoiler::widget(['data' => array_unique(array_merge((array)$model->ip, (array)$model->ips))]);
+                    return ArraySpoiler::widget(['data' => array_unique(array_merge((array) $model->ip, (array) $model->ips))]);
                 },
             ],
             'bin' => [
                 'format' => 'html',
                 'value' => function ($model) {
                     return $model->bin ? Html::tag('code', $model->bin) : '';
-                }
+                },
             ],
             'etc' => [
                 'format' => 'html',
                 'value' => function ($model) {
                     return $model->etc ? Html::tag('code', $model->etc) : '';
-                }
+                },
             ],
             'soft' => [
                 'value' => function ($model) {
                     return $model->soft;
-                }
+                },
             ],
             'state' => [
                 'class' => RefColumn::class,

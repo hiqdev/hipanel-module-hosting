@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -21,7 +20,6 @@ use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartCreateAction;
-use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
@@ -55,8 +53,8 @@ class ServiceController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/service/index'
-                ]
+                    '/hosting/service/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
@@ -78,7 +76,7 @@ class ServiceController extends \hipanel\base\CrudController
                         'stateData' => $this->getStateData(),
                         'softData' => $this->getSofts(),
                     ];
-                }
+                },
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -87,7 +85,7 @@ class ServiceController extends \hipanel\base\CrudController
                     $action = $event->sender;
                     $dataProvider = $action->getDataProvider();
                     $dataProvider->query->joinWith('ips')->addSelect('objects_count');
-                }
+                },
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
@@ -99,7 +97,7 @@ class ServiceController extends \hipanel\base\CrudController
                     ];
                 },
                 'success' => Yii::t('hipanel:hosting', 'Service was created successfully'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create a service')
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create a service'),
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
@@ -117,11 +115,11 @@ class ServiceController extends \hipanel\base\CrudController
                     $dataProvider->query->joinWith('ips');
                 },
                 'success' => Yii::t('hipanel:hosting', 'Service was updated successfully'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to update a service')
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to update a service'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
-            ]
+            ],
         ];
     }
 

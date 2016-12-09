@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -41,7 +40,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 'gtype'             => 'state,account',
             ],
             'server' => [
-                'class'             => ServerColumn::class
+                'class'             => ServerColumn::class,
             ],
             'sshftp_ips' => [
                 'attribute'         => 'sshftp_ips',
@@ -49,13 +48,13 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 'value'             => function ($model) {
                     return ArraySpoiler::widget([
                         'data'         => $model->sshftp_ips,
-                        'visibleCount' => 3
+                        'visibleCount' => 3,
                     ]);
-                }
+                },
             ],
             'actions' => [
                 'class'             => ActionColumn::class,
-                'template'          => '{view} {delete}'
+                'template'          => '{view} {delete}',
             ],
             'type' => [
                 'class'             => RefColumn::class,

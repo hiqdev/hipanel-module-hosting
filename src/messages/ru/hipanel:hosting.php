@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -13,7 +12,7 @@ return [
     'Hosting' => 'Хостинг',
 
     /**
-     * Account
+     * Account.
      */
     'Are you sure to delete mail {name}?' => 'Вы уверены, что удалить почту {name}?',
     'Confirm database truncating' => 'Подтвердите очитску базы данных',
@@ -77,7 +76,7 @@ return [
     'You can not use this login' => 'Вы не можете использовать этот логин',
 
     /**
-     * Service
+     * Service.
      */
     'Soft' => 'ПО',
     'Services' => 'Сервисы',
@@ -96,7 +95,7 @@ return [
     'Deleting service' => 'Сервис удаляется...',
     'Are you sure, that you want to delete service {name}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить сервис {name}? Все связанные объкты могут быть также удалены!',
     /**
-     * DB
+     * DB.
      */
     'Database' => 'База данных',
     'Databases' => 'Базы данных',
@@ -117,7 +116,7 @@ return [
     '{attribute} should not contain non-latin characters' => '{attribute} не должны содержать нелатинские символы',
 
     /**
-     * IP
+     * IP.
      */
     'IP addresses' => 'IP адреса',
     'Create IP' => 'Создать IP',
@@ -138,7 +137,7 @@ return [
     'IP address was deleted successfully' => 'IP адрес был успешно удалён',
 
     /**
-     * Domains
+     * Domains.
      */
     'Domain' => 'Домен',
     'Domains' => 'Домены',
@@ -207,7 +206,7 @@ return [
     'Domain list (comma-separated)' => 'Список доменов (через запятую)',
 
     /**
-     * Mailboxes
+     * Mailboxes.
      */
     'Mailbox' => 'Почтовый ящик',
     'Mailboxes' => 'Почтовые ящики',
@@ -244,7 +243,7 @@ return [
     'Are you sure to delete mailbox {name}? All data will be lost!' => 'Вы уверены, что хотите удалить почту {name}? Все данные будут утеряны!',
 
     /**
-     * Backups
+     * Backups.
      */
     'Backups' => 'Бэкапы',
     'Backup' => 'Бэкап',
@@ -265,12 +264,12 @@ return [
     'Enable backup' => 'Включить бэкапы',
     'Backup is not enabled' => 'Бэкапы не включены',
     /**
-     * Crons
+     * Crons.
      */
     'Crons' => 'Планировщик задач',
     '{0, plural, one{# record} other{# records}}' => '{0, plural, one{# запись} few{# записи} other{# записей}}',
     /**
-     * Requests
+     * Requests.
      */
     'Requests' => 'Запросы',
     'Object Name' => 'Имя объекта',
@@ -284,5 +283,4 @@ return [
 
     'Confirm hosting domain blocking' => 'Подтвердить блокирование хостинг-домена',
     'This action will block access to the website from the world!' => 'Это действие заблокирует доступ к веб-сайту из мира!',
-
 ];

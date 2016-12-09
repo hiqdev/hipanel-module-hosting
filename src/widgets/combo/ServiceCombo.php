@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -13,29 +12,28 @@ namespace hipanel\modules\hosting\widgets\combo;
 
 use hiqdev\combo\Combo;
 use yii\helpers\ArrayHelper;
-use yii\web\JsExpression;
 
 /**
- * Class Service
+ * Class Service.
  */
 class ServiceCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'name';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/service';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/service/index';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = ['id', 'client', 'client_id', 'server', 'server_id', 'seller', 'seller_id', 'soft'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_rename = ['text' => 'name'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_filter = [
         'client' => 'client/client',
         'server' => 'server/server',
@@ -55,14 +53,14 @@ class ServiceCombo extends Combo
             'client/seller' => 'seller',
             'client/client' => 'client',
             'server/server' => 'server',
-        ]
+        ],
     ];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [
-            'soft_type' => ['format' => $this->softType]
+            'soft_type' => ['format' => $this->softType],
         ]);
     }
 }

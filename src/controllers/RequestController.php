@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -31,8 +30,8 @@ class RequestController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/request/index'
-                ]
+                    '/hosting/request/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
@@ -50,7 +49,7 @@ class RequestController extends \hipanel\base\CrudController
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
                     'client_id' => 'client.client.id',
-                ]
+                ],
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -61,7 +60,7 @@ class RequestController extends \hipanel\base\CrudController
             'delete' => [
                 'class' => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Deleted'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete request.')
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete request.'),
             ],
         ];
     }

@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -11,14 +10,11 @@
 
 namespace hipanel\modules\hosting\widgets\combo;
 
-use hiqdev\combo\Combo;
-use yii\helpers\ArrayHelper;
-
 /**
- * Class Account
+ * Class Account.
  */
 class SshAccountCombo extends AccountCombo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $accountType = 'user';
 }

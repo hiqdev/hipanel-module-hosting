@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -20,7 +19,7 @@ class Db extends Model
 {
     use ModelTrait;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -36,7 +35,7 @@ class Db extends Model
                 'match',
                 'pattern' => '/^[\x20-\x7f]*$/',
                 'message' => Yii::t('hipanel:hosting', '{attribute} should not contain non-latin characters'),
-                'on'      => ['create', 'set-password']
+                'on'      => ['create', 'set-password'],
             ],
             [['password'], 'required', 'on' => ['set-password']],
             [['id'], 'required', 'on' => ['delete', 'set-password', 'set-description', 'truncate']],
@@ -45,7 +44,7 @@ class Db extends Model
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([

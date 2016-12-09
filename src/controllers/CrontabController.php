@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -35,8 +34,8 @@ class CrontabController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/crontab/index'
-                ]
+                    '/hosting/crontab/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
@@ -44,7 +43,7 @@ class CrontabController extends \hipanel\base\CrudController
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
                     'client_id' => 'client.client.id',
-                ]
+                ],
             ],
             'view' => [
                 'class' => ViewAction::class,

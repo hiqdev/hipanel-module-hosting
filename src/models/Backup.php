@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -17,7 +16,7 @@ class Backup extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function rules()
     {
         return [
@@ -28,16 +27,16 @@ class Backup extends \hipanel\base\Model
                 [
                     'title', 'size_gb', 'time', 'service',
                     'client', 'method', 'server', 'account',
-                    'client', 'object', 'name', 'state', 'type'
+                    'client', 'object', 'name', 'state', 'type',
                 ],
-                'safe'
+                'safe',
             ],
             [['method_label', 'type_label', 'state_label'], 'safe'],
             [['id'], 'integer', 'on' => ['delete']],
         ];
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([

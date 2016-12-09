@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -29,8 +28,8 @@ class BackupingController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/backuping/index'
-                ]
+                    '/hosting/backuping/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
@@ -45,7 +44,7 @@ class BackupingController extends \hipanel\base\CrudController
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
                     'client_id' => 'client.client.id',
-                ]
+                ],
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,

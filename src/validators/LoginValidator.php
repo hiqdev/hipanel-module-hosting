@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -12,17 +11,17 @@
 namespace hipanel\modules\hosting\validators;
 
 /**
- * Class LoginValidator is used to validate logins of accounts
+ * Class LoginValidator is used to validate logins of accounts.
  */
 class LoginValidator extends \yii\validators\RegularExpressionValidator
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $pattern = '/^[a-z][a-z0-9_]{2,31}$/';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {

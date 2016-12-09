@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -10,7 +9,7 @@
  */
 
 /**
- * @link    http://hiqdev.com/hipanel-module-hosting
+ * @see    http://hiqdev.com/hipanel-module-hosting
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
@@ -58,17 +57,17 @@ class IpController extends \hipanel\base\CrudController
             'set-orientation' => [
                 'class' => OrientationAction::class,
                 'allowedRoutes' => [
-                    '/hosting/ip/index'
-                ]
+                    '/hosting/ip/index',
+                ],
             ],
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => $this->getDataProviderOptions(),
                 'data' => function ($action) {
                     return [
-                        'ipTags' => $action->controller->getIpTags()
+                        'ipTags' => $action->controller->getIpTags(),
                     ];
-                }
+                },
             ],
             'search-service-edit' => [
                 'class' => SearchAction::class,
@@ -100,7 +99,7 @@ class IpController extends \hipanel\base\CrudController
                     }
 
                     return $results;
-                }
+                },
             ],
             'view' => [
                 'class' => ViewAction::class,
@@ -119,7 +118,7 @@ class IpController extends \hipanel\base\CrudController
                     }
 
                     return [
-                        'tags' => $this->getIpTags()
+                        'tags' => $this->getIpTags(),
                     ];
                 },
                 'collectionLoader' => function ($action, $data) {
@@ -143,7 +142,7 @@ class IpController extends \hipanel\base\CrudController
                     }
 
                     return [
-                        'tags' => $this->getIpTags()
+                        'tags' => $this->getIpTags(),
                     ];
                 },
                 'collectionLoader' => function ($action, $data) {
@@ -153,7 +152,7 @@ class IpController extends \hipanel\base\CrudController
             ],
             'delete' => [
                 'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel:hosting', 'IP address was deleted successfully')
+                'success' => Yii::t('hipanel:hosting', 'IP address was deleted successfully'),
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
@@ -161,7 +160,7 @@ class IpController extends \hipanel\base\CrudController
             'set-ptr' => [
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'set-ptr',
-            ]
+            ],
         ];
     }
 

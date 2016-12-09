@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -16,31 +15,31 @@ use yii\helpers\ArrayHelper;
 use yii\web\JsExpression;
 
 /**
- * Class HdomainIpCombo
+ * Class HdomainIpCombo.
  */
 class HdomainIpCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/hdomain-ip';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'hdomain-ip';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/ip/index';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = [
         'id',
         'expanded_ips',
-        'links'
+        'links',
     ];
 
     public $_rename = [
-        'text' => 'ip'
+        'text' => 'ip',
     ];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_filter = [
         'client' => 'client/client',
         'server' => 'server/server',
@@ -54,7 +53,7 @@ class HdomainIpCombo extends Combo
             ],
             'select2Options' => [
                 'ajax' => [
-                    'results'      => new JsExpression("
+                    'results'      => new JsExpression('
                         function (data) {
                             var ret = [];
                             var used_ips = {};
@@ -78,7 +77,7 @@ class HdomainIpCombo extends Combo
 
                             return {results: ret};
                         }
-                "),
+                '),
                 ],
                 'formatResult' => new JsExpression("
                     function(row) {
@@ -91,12 +90,12 @@ class HdomainIpCombo extends Combo
                         if (!row.service) return row.text;
                         return row.service + ': ' + row.text;
                     }
-                ")
-            ]
+                "),
+            ],
         ], $options));
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [

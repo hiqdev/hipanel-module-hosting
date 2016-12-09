@@ -1,6 +1,5 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
@@ -17,24 +16,24 @@ use yii\web\JsExpression;
 
 class MailCombo extends Combo
 {
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $type = 'hosting/mail';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $name = 'mail';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $url = '/hosting/mail/search';
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_return = ['id', 'account', 'server', 'client'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public $_rename = ['text' => 'mail'];
 
     public $activeWhen = ['server/server'];
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getFilter()
     {
         return ArrayHelper::merge(parent::getFilter(), [
@@ -44,16 +43,16 @@ class MailCombo extends Combo
         ]);
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions(ArrayHelper::merge([
             'activeWhen' => $this->activeWhen,
             'select2Options' => [
-                'formatResult' => new JsExpression("function (data) {
+                'formatResult' => new JsExpression('function (data) {
                     return data.text;
-                }")
-            ]
+                }'),
+            ],
         ], $options));
     }
 }
