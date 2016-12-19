@@ -26,6 +26,7 @@ class MailDetailMenu extends Menu
                 'label' => Yii::t('hipanel', 'Update'),
                 'icon' => 'fa-pencil',
                 'url' => ['update', 'id' => $this->model->id],
+                'visible' => $this->model->state !== 'deleted',
             ],
             [
                 'label' => $this->renderView('_change-password', ['model' => $this->model]),

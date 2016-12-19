@@ -61,6 +61,9 @@ class MailController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
+                'findOptions' => [
+                    'show_deleted' => true
+                ]
             ],
             'create' => [
                 'class' => SmartCreateAction::class,

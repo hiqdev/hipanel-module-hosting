@@ -65,7 +65,7 @@ class Mail extends \hipanel\base\Model
 
     public function canChangePassword()
     {
-        return $this->type !== static::TYPE_FORWARD_ONLY;
+        return $this->type !== static::TYPE_FORWARD_ONLY && $this->state !== 'deleted';
     }
 
     public function attributeHints()
