@@ -45,7 +45,8 @@ class Mail extends \hipanel\base\Model
                 return $res;
             }, 'skipOnArray' => true, 'on' => ['create', 'update']],
             [['forwards', 'spam_forward_mail'], 'each', 'rule' => ['email'], 'on' => ['create', 'update']],
-            [['spam_action', 'autoanswer', 'du_limit'], 'safe', 'on' => ['create', 'update']],
+            [['spam_action', 'autoanswer'], 'safe', 'on' => ['create', 'update']],
+            [['du_limit'], 'integer', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update', 'delete']],
             [['hdomain_id', 'server', 'account', 'nick'], 'required', 'on' => ['create']],
         ];
