@@ -241,6 +241,7 @@ return [
     'Delete mailbox' => 'Удалить почтовый ящик',
     'Confirm mailbox deleting' => 'Подтвердите удалени почтового ящика',
     'Are you sure to delete mailbox {name}? All data will be lost!' => 'Вы уверены, что хотите удалить почту {name}? Все данные будут утеряны!',
+    'If left empty, the value in accordance with your reseller settings.' => 'Если оставить пустым, будет использовано значение в соответствии с настройками вашего реселлера.',
 
     /**
      * Backups.
