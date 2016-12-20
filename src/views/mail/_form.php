@@ -34,8 +34,7 @@ use yii\web\JsExpression;
                 <div class="col-md-4">
                     <div class="box box-danger">
                         <div class="box-body">
-                            <div class="form-instance" xmlns="http://www.w3.org/1999/html"
-                                 xmlns="http://www.w3.org/1999/html">
+                            <div class="form-instance">
                                 <?php
                                 if (!$model->isNewRecord) {
                                     $model->setScenario('update');
@@ -61,7 +60,7 @@ use yii\web\JsExpression;
                                     'state' => Server::STATE_OK
                                 ]);
 
-                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class,[
+                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'readonly' => !$model->isNewRecord
@@ -103,8 +102,8 @@ use yii\web\JsExpression;
                                 }
 
                                 print $form->field($model, "[$i]spam_action")->radioList([
-                                    ''        => Yii::t('hipanel:hosting', 'Do nothing'),
-                                    'delete'  => Yii::t('hipanel:hosting', 'Delete'),
+                                    '' => Yii::t('hipanel:hosting', 'Do nothing'),
+                                    'delete' => Yii::t('hipanel:hosting', 'Delete'),
                                     'forward' => Yii::t('hipanel:hosting', 'Forward to'),
                                 ], [
                                     'class' => 'spam-action',
@@ -136,7 +135,7 @@ use yii\web\JsExpression;
                                 print $form->field($model, "[$i]forwards")->widget(MultipleMailCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'filter' => ['nick_ne' => ['format' => '*']], // It does not make sense to forward
-                                                                                  // mail to the wildcard address
+                                    // mail to the wildcard address
                                     'inputOptions' => [
                                         'data-attribute' => 'forwards',
                                     ],
@@ -147,9 +146,9 @@ use yii\web\JsExpression;
                                 ]);
 
                                 print $form->field($model, "[$i]autoanswer")->textarea();
-
-                                print $form->field($model, "[$i]du_limit", [
-                                    'template' => <<<HTML
+                                if (Yii::$app->user->can('support')) {
+                                    print $form->field($model, "[$i]du_limit", [
+                                        'template' => <<<HTML
                                         {label}
                                         <div class="input-group">
                                             {input}
@@ -157,7 +156,8 @@ use yii\web\JsExpression;
                                         </div>
                                         {hint}\n{error}
 HTML
-                                ]);
+                                    ])->hint(Yii::t('hipanel:hosting', 'If left empty, the value in accordance with your reseller settings.'));
+                                }
                                 ?>
                             </div>
                         </div>
