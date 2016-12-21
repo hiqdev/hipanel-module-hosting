@@ -12,7 +12,7 @@ namespace hipanel\modules\hosting\menus;
 
 use hiqdev\menumanager\Menu;
 
-class ReauestDetailMenu extends Menu
+class ReaqestDetailMenu extends Menu
 {
     public $model;
 
