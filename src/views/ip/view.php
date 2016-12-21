@@ -1,9 +1,4 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
 
 use hipanel\modules\hosting\grid\IpGridView;
 use hipanel\modules\hosting\menus\IpDetailMenu;
@@ -11,7 +6,6 @@ use hipanel\modules\hosting\models\Ip;
 use hipanel\widgets\Box;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\Pjax;
-use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 
 /**
@@ -42,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <?= IpDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
+            <?= IpDetailMenu::widget(['model' => $model]) ?>
         </div>
         <?php Box::end(); ?>
     </div>
@@ -60,11 +54,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
-                        'ip',
-                        'tags',
-                        'counters',
-                        'links',
-                        'ptr',
+                        'ip', 'tags', 'counters',
+                        'links', 'ptr',
                     ],
                 ]);
                 $box->endBody();

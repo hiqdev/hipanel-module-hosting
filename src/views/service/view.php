@@ -9,7 +9,6 @@ use hipanel\modules\hosting\grid\ServiceGridView;
 use hipanel\modules\hosting\menus\ServiceDetailMenu;
 use hipanel\widgets\Box;
 use hipanel\widgets\Pjax;
-use hiqdev\menumanager\widgets\DetailMenu;
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Services'), 'url' => ['index']];
@@ -37,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <?= ServiceDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
+            <?= ServiceDetailMenu::widget(['model' => $model]) ?>
         </div>
         <?php Box::end(); ?>
     </div>
@@ -55,15 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'model' => $model,
                             'boxed' => false,
                             'columns' => [
-                                'seller_id',
-                                'client_id',
-                                'server',
-                                'service',
-                                'ip',
-                                'bin',
-                                'etc',
-                                'soft',
-                                'state',
+                                'seller_id', 'client_id',
+                                'server', 'service', 'ip',
+                                'bin', 'etc', 'soft', 'state',
                             ],
                         ]);
                     $box->endBody();

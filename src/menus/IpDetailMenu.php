@@ -11,11 +11,10 @@
 namespace hipanel\modules\hosting\menus;
 
 use hipanel\widgets\ModalButton;
-use hiqdev\menumanager\Menu;
 use Yii;
 use yii\helpers\Html;
 
-class IpDetailMenu extends Menu
+class IpDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 

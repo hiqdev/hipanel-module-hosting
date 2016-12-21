@@ -11,11 +11,10 @@
 namespace hipanel\modules\hosting\menus;
 
 use hipanel\widgets\ModalButton;
-use hiqdev\menumanager\Menu;
 use Yii;
 use yii\helpers\Html;
 
-class MailDetailMenu extends Menu
+class MailDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 
@@ -29,7 +28,7 @@ class MailDetailMenu extends Menu
                 'visible' => $this->model->state !== 'deleted',
             ],
             [
-                'label' => $this->renderView('_change-password', ['model' => $this->model]),
+                'label' => $this->render('_change-password', ['model' => $this->model]),
                 'encode' => false,
                 'visible' => $this->model->canChangePassword(),
             ],

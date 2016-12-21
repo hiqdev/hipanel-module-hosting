@@ -6,7 +6,6 @@ use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\PasswordInput;
-use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 
 $this->title = $model->login;
@@ -35,11 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
 
         <div class="profile-usermenu">
-            <?= AccountDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
-            <!--ul class="nav">
-                <li>
-                </li>
-            </ul-->
+            <?= AccountDetailMenu::widget(['model' => $model]) ?>
         </div>
         <?php Box::end() ?>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use hipanel\modules\hosting\grid\DbGridView;
+use hipanel\modules\hosting\menus\DbDetailMenu;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
@@ -31,11 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-center">
             <span class="profile-user-role"><?= $model->name ?></span>
             <br>
-            <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
+            <span class="profile-user-name"><?= ClientSellerLink::widget(['model' => $model]) ?></span>
         </p>
 
         <div class="profile-usermenu">
-            <?= \hipanel\modules\hosting\menus\DbDetailMenu::create(['model' => $model])->render(\hiqdev\menumanager\widgets\DetailMenu::class) ?>
+            <?= DbDetailMenu::widget(['model' => $model]) ?>
         </div>
         <?php Box::end() ?>
     </div>

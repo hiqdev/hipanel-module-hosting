@@ -7,7 +7,6 @@ use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
 use hipanel\widgets\PasswordInput;
-use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 use yii\web\View;
 
@@ -39,11 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-center">
             <span class="profile-user-role"><?= $model->mail ?></span>
             <br>
-            <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
+            <span class="profile-user-name"><?= ClientSellerLink::widget(['model' => $model]) ?></span>
         </p>
 
         <div class="profile-usermenu">
-            <?= MailDetailMenu::create(['model' => $model])->render(DetailMenu::class) ?>
+            <?= MailDetailMenu::widget(['model' => $model]) ?>
         </div>
         <?php Box::end() ?>
     </div>

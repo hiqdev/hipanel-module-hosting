@@ -11,11 +11,10 @@
 namespace hipanel\modules\hosting\menus;
 
 use hipanel\widgets\ModalButton;
-use hiqdev\menumanager\Menu;
 use Yii;
 use yii\helpers\Html;
 
-class DbDetailMenu extends Menu
+class DbDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 
@@ -23,7 +22,7 @@ class DbDetailMenu extends Menu
     {
         return [
             [
-                'label' => $this->renderView('_change-password', ['model' => $this->model]),
+                'label' => $this->render('_change-password', ['model' => $this->model]),
                 'encode' => false,
             ],
             [

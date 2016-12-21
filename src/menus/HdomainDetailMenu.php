@@ -11,12 +11,11 @@
 namespace hipanel\modules\hosting\menus;
 
 use hipanel\widgets\ModalButton;
-use hiqdev\menumanager\Menu;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 
-class HdomainDetailMenu extends Menu
+class HdomainDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 
@@ -49,7 +48,7 @@ class HdomainDetailMenu extends Menu
                 'visible' => !$this->model->isAlias(),
             ],
             [
-                'label' => $this->renderView('_block', ['model' => $this->model, 'blockReasons' => $this->blockReasons]),
+                'label' => $this->render('_block', ['model' => $this->model, 'blockReasons' => $this->blockReasons]),
                 'encode' => false,
                 'visible' => Yii::$app->user->can('support') && Yii::$app->user->id !== $this->model->client_id && !$this->model->isAlias(),
             ],

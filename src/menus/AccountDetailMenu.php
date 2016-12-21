@@ -10,10 +10,9 @@
 
 namespace hipanel\modules\hosting\menus;
 
-use hiqdev\menumanager\Menu;
 use Yii;
 
-class AccountDetailMenu extends Menu
+class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 
@@ -23,25 +22,25 @@ class AccountDetailMenu extends Menu
     {
         return [
             [
-                'label' => $this->renderView('_change-password', ['model' => $this->model]),
+                'label' => $this->render('_change-password', ['model' => $this->model]),
                 'encode' => false,
             ],
             [
-                'label' => $this->renderView('_manage-ip-restrictions', ['model' => $this->model]),
+                'label' => $this->render('_manage-ip-restrictions', ['model' => $this->model]),
                 'encode' => false,
             ],
             [
-                'label' => $this->renderView('_mail-settings', ['model' => $this->model]),
+                'label' => $this->render('_mail-settings', ['model' => $this->model]),
                 'encode' => false,
                 'visible' => $this->model->canSetMailSettings(),
             ],
             [
-                'label' => $this->renderView('_block', ['model' => $this->model, 'blockReasons' => $this->blockReasons]),
+                'label' => $this->render('_block', ['model' => $this->model, 'blockReasons' => $this->blockReasons]),
                 'encode' => false,
                 'visible' => Yii::$app->user->can('support') && Yii::$app->user->id !== $this->model->client_id,
             ],
             [
-                'label' => $this->renderView('_delete', ['model' => $this->model]),
+                'label' => $this->render('_delete', ['model' => $this->model]),
                 'encode' => false,
             ],
         ];

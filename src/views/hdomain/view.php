@@ -7,7 +7,6 @@ use hipanel\modules\hosting\models\Hdomain;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\ModalButton;
-use hiqdev\menumanager\widgets\DetailMenu;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\web\View;
@@ -43,11 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-center">
             <span class="profile-user-role"><?= $model->domain ?></span>
             <br>
-            <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
+            <span class="profile-user-name"><?= ClientSellerLink::widget(['model' => $model]) ?></span>
         </p>
 
         <div class="profile-usermenu">
-            <?= HdomainDetailMenu::create(['model' => $model, 'blockReasons' => $blockReasons])->render(DetailMenu::class) ?>
+            <?= HdomainDetailMenu::widget(['model' => $model, 'blockReasons' => $blockReasons]) ?>
         </div>
         <?php Box::end() ?>
     </div>

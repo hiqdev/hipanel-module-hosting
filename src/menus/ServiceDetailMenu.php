@@ -10,9 +10,7 @@
 
 namespace hipanel\modules\hosting\menus;
 
-use hiqdev\menumanager\Menu;
-
-class ServiceDetailMenu extends Menu
+class ServiceDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 
