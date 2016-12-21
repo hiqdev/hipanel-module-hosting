@@ -43,16 +43,16 @@ return [
                 ],
             ],
         ],
-        'menuManager' => [
-            'items' => [
-                'sidebar' => [
-                    'add' => [
-                        'hosting' => [
-                            'menu' => \hipanel\modules\hosting\menus\SidebarMenu::class,
-                            'where' => [
-                                'after' => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
-                                'before' => ['stock'],
-                            ],
+    ],
+    'container' => [
+        'definitions' => [
+            \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
+                'add' => [
+                    'hosting' => [
+                        'menu' => \hipanel\modules\hosting\menus\SidebarMenu::class,
+                        'where' => [
+                            'after' => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
+                            'before' => ['stock'],
                         ],
                     ],
                 ],
