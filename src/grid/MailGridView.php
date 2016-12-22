@@ -43,6 +43,13 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             'server' => [
                 'class' => ServerColumn::class,
             ],
+            'du_limit' => [
+                'attribute' => 'du_limit',
+                'format' => 'html',
+                'value' => function ($model) {
+                    return $model->du_limit . 'MB';
+                },
+            ],
             'domain' => [
                 'attribute' => 'hdomain_id',
                 'format' => 'raw',

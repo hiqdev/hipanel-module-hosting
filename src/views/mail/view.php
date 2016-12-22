@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         'client_id', 'seller_id', 'server_id',
                         'type', 'domain', 'forwards', 'spam_action',
-                        'state',
+                        'state', 'du_limit',
                     ],
                 ]);
                 $box->endBody();
