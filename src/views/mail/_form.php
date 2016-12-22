@@ -156,7 +156,7 @@ use yii\web\JsExpression;
                                         </div>
                                         {hint}\n{error}
 HTML
-                                    ])->hint(Yii::t('hipanel:hosting', 'If left empty, the value in accordance with your reseller settings.'));
+                                    ])->textInput(['placeholder' => Yii::t('hipanel:hosting', 'The default value is 150')]);
                                 }
                                 ?>
                             </div>
