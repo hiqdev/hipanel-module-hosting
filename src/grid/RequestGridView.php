@@ -13,7 +13,7 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\menus\RequestActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
-use hiqdev\menumanager\MenuColumn;
+use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\UnsetArrayValue;

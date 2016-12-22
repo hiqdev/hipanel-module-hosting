@@ -12,7 +12,7 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\modules\hosting\menus\CrontabActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
-use hiqdev\menumanager\MenuColumn;
+use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;
 

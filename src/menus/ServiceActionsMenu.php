@@ -10,10 +10,9 @@
 
 namespace hipanel\modules\hosting\menus;
 
-use hiqdev\menumanager\Menu;
 use Yii;
 
-class ServiceActionsMenu extends Menu
+class ServiceActionsMenu extends \hiqdev\yii2\menus\Menu
 {
     public $model;
 

@@ -18,7 +18,7 @@ use hipanel\modules\hosting\models\HdomainSearch;
 use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\XEditable;
-use hiqdev\menumanager\MenuColumn;
+use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;

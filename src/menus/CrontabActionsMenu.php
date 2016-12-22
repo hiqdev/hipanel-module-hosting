@@ -10,10 +10,9 @@
 
 namespace hipanel\modules\hosting\menus;
 
-use hiqdev\menumanager\Menu;
 use Yii;
 
-class CrontabActionsMenu extends Menu
+class CrontabActionsMenu extends \hiqdev\yii2\menus\Menu
 {
     public $model;
 
