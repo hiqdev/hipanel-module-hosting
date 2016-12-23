@@ -106,7 +106,7 @@
             $.ajax({
                 url: "get-info",
                 dataType: 'json',
-                tethod: 'post',
+                method: 'post',
                 data: { id: this.crontab.id },
                 success: function (data) {
                     _this._loadingOff();
@@ -122,12 +122,7 @@
             showErrorMainHint('{LaNG:Error occurred during fetching crontab from server. <br>Maybe server is offline. Please, contact support.}');
         },
         showError: function(message) {
-            new PNotify({
-                styling: 'bootstrap3',
-                title: 'Error',
-                text: message,
-                type: 'error'
-            });
+            hipanel.notify.error(message);
         }
     };
     $.fn[ pluginName ] = function (options) {
