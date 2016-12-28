@@ -42,7 +42,6 @@ $this->params['breadcrumbs'][]  = $this->title;
                     'boxed' => false,
                     'filterModel' => $model,
                     'columns' => [
-                        'checkbox',
                         'seller_id', 'client_id',
                         'server',
                         'actions',
