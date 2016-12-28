@@ -22,6 +22,10 @@ use yii\web\JsExpression;
 <?php $form = ActiveForm::begin([
     'id' => 'dynamic-form',
     'enableAjaxValidation' => true,
+    'options' => [
+        'role' => 'form',
+        'autocomplete' => 'off',
+    ],
     'validationUrl' => Url::toRoute([
         'validate-form',
         'scenario' => reset($models)->isNewRecord ? reset($models)->scenario : 'update'
@@ -92,7 +96,8 @@ use yii\web\JsExpression;
                                 <?php
                                 print $form->field($model, "[$i]password")->widget(PasswordInput::class, [
                                     'inputOptions' => [
-                                        'disabled' => $model->type === $model::TYPE_FORWARD_ONLY
+                                        'disabled' => $model->type === $model::TYPE_FORWARD_ONLY,
+                                        'autocomplete' => 'new-password',
                                     ]
                                 ]);
 
