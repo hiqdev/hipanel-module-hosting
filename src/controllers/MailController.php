@@ -21,6 +21,7 @@ use hipanel\actions\OrientationAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
+use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
@@ -87,6 +88,16 @@ class MailController extends \hipanel\base\CrudController
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
+            ],
+            'disable' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Mailbox has been disabled.'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred.'),
+            ],
+            'enable' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Mailbox has been enabled.'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred.'),
             ],
         ];
     }

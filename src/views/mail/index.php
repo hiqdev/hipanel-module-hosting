@@ -32,6 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Enable'), 'enable') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Disable'), 'disable') ?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger')?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
@@ -44,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'checkbox',
                         'mail', 'type', 'forwards',
                         'client', 'seller', 'server',
-                        'state', 'actions',
+                        'state',
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>

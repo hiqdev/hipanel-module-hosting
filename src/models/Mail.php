@@ -49,6 +49,8 @@ class Mail extends \hipanel\base\Model
             [['du_limit'], 'integer', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update', 'delete']],
             [['hdomain_id', 'server', 'account', 'nick'], 'required', 'on' => ['create']],
+
+            [['id'], 'integer', 'on' => ['enable', 'disable']],
         ];
     }
 
