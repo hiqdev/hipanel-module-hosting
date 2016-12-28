@@ -242,6 +242,10 @@ return [
     'Confirm mailbox deleting' => 'Подтвердите удалени почтового ящика',
     'Are you sure to delete mailbox {name}? All data will be lost!' => 'Вы уверены, что хотите удалить почту {name}? Все данные будут утеряны!',
     'The default value is 150' => 'Значение по умолчанию 150',
+    'Mailbox has been disabled.' => 'Почтовый ящик отключен.',
+    'Mailbox has been enabled.' => 'Почтовый ящик был включен.',
+    'An error occurred.' => 'Произошла ошибка.',
+    'Switched off' => 'Выключен',
 
     /**
      * Backups.
