@@ -44,7 +44,9 @@ class Mail extends \hipanel\base\Model
                     $this->addError(Yii::t('hipanel:hosting', 'password can contain only latin characters and digits'));
                 }
             }, 'on' => ['create', 'update', 'set-password']],
-            [['password'], 'match', 'pattern' => '/^[a-zA-Z0-9]+$/', 'message' => Yii::t('hipanel:hosting', 'Password can contain only latin characters and digits.'), 'on' => ['create', 'update', 'set-password']],
+            [['password'], 'match', 'pattern' => '/^[a-zA-Z0-9]+$/',
+                'message' => Yii::t('hipanel:hosting', 'Password can contain only latin characters and digits.'),
+                'on' => ['create', 'update', 'set-password']],
             [['nick'], EmailLocalPartValidator::class, 'on' => ['create']],
             [['forwards', 'spam_forward_mail'], 'filter', 'filter' => function ($value) {
                 $res = StringHelper::explode($value, ',', true, true);
