@@ -246,6 +246,7 @@ return [
     'Mailbox has been enabled.' => 'Почтовый ящик был включен.',
     'An error occurred.' => 'Произошла ошибка.',
     'Switched off' => 'Выключен',
+    'Password can contain only latin characters and digits.' => 'Пароль может содержать только латинские буквы и цифры.',
 
     /**
      * Backups.
