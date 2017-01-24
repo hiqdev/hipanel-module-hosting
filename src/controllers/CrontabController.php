@@ -64,7 +64,7 @@ class CrontabController extends \hipanel\base\CrudController
         $id = Yii::$app->request->post('id');
         if ($id) {
             try {
-                $response = Crontab::perform('RequestFetch', ['id' => $id]);
+                $response = Crontab::perform('request-fetch', ['id' => $id]);
             } catch (Exception $e) {
                 $response['error'] = $e->errorInfo['response'];
             }
@@ -79,7 +79,7 @@ class CrontabController extends \hipanel\base\CrudController
         $id = Yii::$app->request->post('id');
         if ($id) {
             try {
-                $response = Crontab::perform('GetRequestState', ['id' => $id]);
+                $response = Crontab::perform('get-request-state', ['id' => $id]);
             } catch (Exception $e) {
                 $response['error'] = $e->errorInfo['response'];
             }
@@ -93,7 +93,7 @@ class CrontabController extends \hipanel\base\CrudController
         $response = [];
         if ($id) {
             try {
-                $response = Crontab::perform('GetInfo', ['id' => $id]);
+                $response = Crontab::perform('get-info', ['id' => $id]);
             } catch (Exception $e) {
                 $response = $e->errorInfo['response'];
             }

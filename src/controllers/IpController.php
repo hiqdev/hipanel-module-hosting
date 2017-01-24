@@ -8,12 +8,6 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @see    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
@@ -172,7 +166,7 @@ class IpController extends \hipanel\base\CrudController
     public function actionExpand($id)
     {
         try {
-            $ips = Ip::perform('Expand', ['id' => $id, 'with_existing' => true]);
+            $ips = Ip::perform('expand', ['id' => $id, 'with_existing' => true]);
         } catch (ErrorResponseException $e) {
             if ($e->getMessage() === 'result is too long') {
                 return Yii::t('hipanel:hosting', 'Too many IP addresses in the network');
