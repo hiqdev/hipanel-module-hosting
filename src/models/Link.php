@@ -16,12 +16,7 @@ class Link extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
-    public static function index()
-    {
-        return 'ips';
-    }
-
-    public static function type()
+    public static function from()
     {
         return 'ip';
     }
