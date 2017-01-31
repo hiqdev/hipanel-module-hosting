@@ -143,10 +143,10 @@ class Account extends \hipanel\base\Model
         return $this->type === self::TYPE_SSH && Yii::$app->user->can('support');
     }
 
-    public function scenarioCommands()
+    public function scenarioActions()
     {
         return [
-            'set-allowed-ips' => [null, 'SetAllowedIPs'],
+            'set-allowed-ips' => 'set-allowed-IPs',
             'create-ftponly' => 'create',
         ];
     }

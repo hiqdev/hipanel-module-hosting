@@ -179,18 +179,14 @@ class Hdomain extends \hipanel\base\Model
     }
 
     /** {@inheritdoc} */
-    public function scenarioCommands()
+    public function scenarioActions()
     {
-        $result = [];
-
-        if (in_array($this->scenario, ['create', 'update'], true)) {
-            $result['create'] = ['vhosts', ucfirst($this->scenario)]; // Create must be sent to vhost module
-        }
-        $result['create-alias'] = 'create';
-        $result['set-dns-on'] = 'update';
-        $result['enable-backuping'] = 'update-backuping';
-        $result['disable-backuping'] = 'update-backuping';
-
-        return $result;
+        return [
+            'create'            => [Vhost::tableName(), 'create'], // Create must be sent to Vhost module
+            'create-alias'      => 'create',
+            'set-dns-on'        => 'update',
+            'enable-backuping'  => 'update-backuping',
+            'disable-backuping' => 'update-backuping',
+        ];
     }
 }

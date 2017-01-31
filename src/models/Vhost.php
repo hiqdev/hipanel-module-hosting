@@ -126,10 +126,10 @@ class Vhost extends \hipanel\base\Model
         return $this->getAttribute('backend')['ip'];
     }
 
-    public function scenarioCommands()
+    public function scenarioActions()
     {
         return [
-            'advanced-config' => 'setAdvancedConfig',
+            'advanced-config' => 'set-advanced-config',
         ];
     }
 }

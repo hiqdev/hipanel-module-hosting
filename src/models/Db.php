@@ -54,7 +54,7 @@ class Db extends Model
         ]);
     }
 
-    public function scenarioCommands()
+    public function scenarioActions()
     {
         $result = [];
         $result['enable-backuping'] = 'update-backuping';
