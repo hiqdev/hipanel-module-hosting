@@ -10,7 +10,6 @@
 
 namespace hipanel\modules\hosting\widgets\backup;
 
-use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\Hdomain;
 use Yii;
 use yii\base\Widget;
@@ -57,10 +56,11 @@ class BackupGridRow extends Widget
     {
         $text = '<i class="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;';
         $text .= Yii::t('hipanel:hosting', 'Enable backuping');
-        $linkToBackup = Html::a($text, [sprintf('@%s/enable-backuping', $this->model->type())], [
+
+        $linkToBackup = Html::a($text, [sprintf('@%s/enable-backuping', $this->model->tableName())], [
             'data-method' => 'POST',
             'data-params' => [
-                sprintf('%s[id]', ucfirst($this->model->type())) => $this->getRealObjectId(),
+                sprintf('%s[id]', ucfirst($this->model->tableName())) => $this->getRealObjectId(),
             ],
         ]);
 
