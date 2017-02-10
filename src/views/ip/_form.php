@@ -106,8 +106,11 @@ DynamicFormWidget::begin([
                                                                 'server/server',
                                                             ],
                                                             'select2Options' => [
-                                                                'formatResult' => $formatJs,
-                                                                'formatSelection' => $formatJs,
+                                                                'templateResult' => $formatJs,
+                                                                'templateSelection' => $formatJs,
+                                                                'escapeMarkup' => new JsExpression("function (markup) {
+                                                                    return markup; // Allows HTML
+                                                                }")
                                                             ],
                                                         ],
                                                         'formElementSelector' => '.item',
