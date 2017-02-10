@@ -44,6 +44,9 @@ class ServiceIpCombo extends Combo
         'server' => 'server/server',
     ];
 
+    /** {@inheritdoc} */
+    public $multiple = true;
+
     public function getPluginOptions($options = [])
     {
         return parent::getPluginOptions(ArrayHelper::merge([
@@ -51,37 +54,31 @@ class ServiceIpCombo extends Combo
                 'server/server',
             ],
             'select2Options' => [
-                'multiple' => true,
                 'tokenSeparators' => [',', ' '],
                 'tags' => true,
                 'allowClear' => true,
-                'formatResult' => new JsExpression("
-                    function(row) {
-                        if (!row.device) return row.text;
-                        return row.device + ': ' + row.text;
+                'templateResult' => new JsExpression("function (data) {
+                    if (data.loading || !data.device) {
+                        return data.text;
                     }
-                "),
-//                'formatSelection' => new JsExpression("
-//                    function(row) {
-//                        if (!row.service) return row.text;
-//                        return row.service + ': ' + row.text;
-//                    }
-//                "),
-                'createSearchChoice' => new JsExpression(/** @lang javascript */"
-                    function (term, data) {
-                        var ipv6_regex = /^((([0-9a-f]{1,4}:){7}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){6}:[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){5}:([0-9a-f]{1,4}:)?[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){4}:([0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){3}:([0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){2}:([0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9a-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9a-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9a-f]{1,4}::([0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})|(::([0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){1,7}:))(\/([1-9][0-9]?|1[01][0-9]|12[0-8]))?$/i;
-                        var ipv4_regex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/([1-9]|1[0-9]|2[0-9]|3[0-2]))?$/i;
 
-                        if ($(data).filter(function () {
-                                return this.text.localeCompare(term) === 0;
-                            }).length === 0) {
-                            if (term.match(ipv4_regex) || term.match(ipv6_regex)) {
-                                return {
-                                    id: term,
-                                    text: term
-                                };
-                            }
+                    return data.device + ': ' + data.text;
+                }"),
+                'createTag' => new JsExpression(/** @lang javascript */"
+                    function (query) {
+                        var ipv6_regex = /^((([0-9a-f]{1,4}:){7}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){6}:[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){5}:([0-9a-f]{1,4}:)?[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){4}:([0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){3}:([0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){2}:([0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9a-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9a-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9a-f]{1,4}::([0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})|(::([0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})|(([0-9a-f]{1,4}:){1,7}:))(\/([1-9][0-9]?|1[01][0-9]|12[0-8]))?$/i,
+                            ipv4_regex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/([1-9]|1[0-9]|2[0-9]|3[0-2]))?$/i,
+                            term = query.term;
+
+                        if (term.match(ipv4_regex) || term.match(ipv6_regex)) {
+                            return {
+                                id: term,
+                                text: term,
+                                tag: true
+                            };
                         }
+
+                        return null;
                     }
                 "),
             ],

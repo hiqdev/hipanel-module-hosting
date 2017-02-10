@@ -74,11 +74,11 @@ $this->registerJs(<<<'JS'
         if ($checkbox.prop('checked')) {
             $proxied.removeClass('hidden');
             $not_proxied.addClass('hidden');
-            $scope.find('input[data-attribute=account]').trigger('change');
+            $scope.find('select[data-attribute=account]').trigger('combo:update');
         } else {
             $proxied.addClass('hidden').find('input').select2('enable', false);
             $not_proxied.removeClass('hidden');
-            $scope.find('input[data-attribute=account]').trigger('change');
+            $scope.find('select[data-attribute=account]').trigger('combo:update');
         }
     });
 JS

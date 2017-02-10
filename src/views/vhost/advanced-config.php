@@ -4,7 +4,6 @@ use hipanel\helpers\Url;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
-use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 

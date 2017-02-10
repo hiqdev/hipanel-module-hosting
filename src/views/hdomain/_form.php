@@ -110,14 +110,19 @@ $form = ActiveForm::begin([
                                 'pluginOptions' => [
                                     'onChange' => new \yii\web\JsExpression(<<<'JS'
                                             function (event) {
-                                                var $form = event.element.closest('.form-instance');
-                                                var data;
-                                                if (event.added) {
-                                                    data = {account: event.added.text, domain: $form.find('input[data-attribute="domain"]').val()};
+                                                var element = $(event.target),
+                                                    form = element.closest('.form-instance'),
+                                                    data;
+
+                                                if (element.val()) {
+                                                    data = {
+                                                        account: element.data('field').getData()[0].text,
+                                                        domain: form.find('input[data-attribute="domain"]').val()
+                                                    };
                                                 } else {
                                                     data = {clear: true};
                                                 }
-                                                $form.find('input[data-attribute=path]').trigger('updatePath', data);
+                                                form.find('input[data-attribute=path]').trigger('updatePath', data);
                                                 return true;
                                             }
 JS

@@ -53,9 +53,16 @@ class VhostCombo extends Combo
             'clearWhen' => ['server/server'],
             'activeWhen' => $this->activeWhen,
             'select2Options' => [
-                'formatResult' => new JsExpression("function (data) {
+                'templateResult' => new JsExpression("function (data) {
+                    if (data.loading) {
+                      return data.text;
+                    }
+
                     return data.domain + '<br><small>' +  data.service + ' - ' + data.ip + ':' + data.port + '</small>';
                 }"),
+                'escapeMarkup' => new JsExpression("function (markup) {
+                    return markup; // Allows HTML
+                }")
             ],
         ]);
     }

@@ -53,7 +53,7 @@ class HdomainIpCombo extends Combo
             ],
             'select2Options' => [
                 'ajax' => [
-                    'results'      => new JsExpression('
+                    'processResults' => new JsExpression('
                         function (data) {
                             var ret = [];
                             var used_ips = {};
@@ -79,14 +79,17 @@ class HdomainIpCombo extends Combo
                         }
                 '),
                 ],
-                'formatResult' => new JsExpression("
-                    function(row) {
-                        if (!row.service) return row.text;
-                        return row.service + ': ' + row.text;
+                'templateResult' => new JsExpression("
+                    function (data) {
+                        if (data.loading || !data.service) {
+                            return data.text;
+                        }
+
+                        return data.service + ': ' + data.text;
                     }
                 "),
-                'formatSelection' => new JsExpression("
-                    function(row) {
+                'templateSelection' => new JsExpression("
+                    function (row) {
                         if (!row.service) return row.text;
                         return row.service + ': ' + row.text;
                     }

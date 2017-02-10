@@ -35,20 +35,28 @@ $form = ActiveForm::begin([
                                 }
 
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, ['formElementSelector' => '.form-instance']);
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                        'formElementSelector' => '.form-instance',
+                                        'inputOptions' => [
+                                            'readonly' => !$model->isNewRecord
+                                        ]
+                                    ]);
                                 }
 
                                 print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                     'formElementSelector' => '.form-instance',
-                                    'state' => Server::STATE_OK
+                                    'state' => Server::STATE_OK,
+                                    'inputOptions' => [
+                                        'readonly' => !$model->isNewRecord
+                                    ]
                                 ]);
 
                                 print $form->field($model, "[$i]name");
+
+                                $ips = array_unique(array_merge((array)$model->ip, (array)$model->ips));
                                 print $form->field($model, "[$i]ips")->widget(ServiceIpCombo::class, [
                                     'formElementSelector' => '.form-instance',
-                                    'inputOptions' => [
-                                        'value' => implode(',', array_unique(array_merge((array)$model->ip, (array)$model->ips)))
-                                    ]
+                                    'current' => array_combine($ips, $ips),
                                 ]);
 
                                 print $form->field($model, "[$i]bin");

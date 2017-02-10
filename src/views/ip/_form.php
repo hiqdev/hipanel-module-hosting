@@ -130,9 +130,6 @@ DynamicFormWidget::begin([
                                 print $form->field($model, "[$i]tags")->widget(StaticCombo::class, [
                                     'data' => $tags,
                                     'hasId' => true,
-                                    'inputOptions' => [
-                                        'value' => implode(',', (array)$model->tags)
-                                    ],
                                     'multiple' => true,
                                 ]);
                                 ?>

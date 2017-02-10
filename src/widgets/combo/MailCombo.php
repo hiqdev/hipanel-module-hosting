@@ -48,11 +48,6 @@ class MailCombo extends Combo
     {
         return parent::getPluginOptions(ArrayHelper::merge([
             'activeWhen' => $this->activeWhen,
-            'select2Options' => [
-                'formatResult' => new JsExpression('function (data) {
-                    return data.text;
-                }'),
-            ],
         ], $options));
     }
 }

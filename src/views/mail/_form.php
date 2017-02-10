@@ -113,6 +113,11 @@ use yii\web\JsExpression;
                                 ], [
                                     'class' => 'spam-action',
                                 ]);
+
+                                if (is_string($model->spam_forward_mail)) {
+                                    $model->spam_forward_mail = explode(',', $model->spam_forward_mail);
+                                }
+
                                 print $form->field($model, "[$i]spam_forward_mail", [
                                     'options' => [
                                         'style' => $model->spam_action !== 'forward' ? 'display: none' : ''
@@ -136,7 +141,9 @@ use yii\web\JsExpression;
                                     ]
                                 ])->label(false);
 
-                                $model->forwards = implode(',', (array)$model->forwards);
+                                if (is_string($model->forwards)) {
+                                    $model->forwards = explode(',', $model->forwards);
+                                }
                                 print $form->field($model, "[$i]forwards")->widget(MultipleMailCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'filter' => ['nick_ne' => ['format' => '*']], // It does not make sense to forward
@@ -147,7 +154,6 @@ use yii\web\JsExpression;
                                     'activeWhen' => [
                                         'server/server',
                                     ]
-
                                 ]);
 
                                 print $form->field($model, "[$i]autoanswer")->textarea();

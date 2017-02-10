@@ -54,7 +54,11 @@ class HdomainCombo extends Combo
         return parent::getPluginOptions(ArrayHelper::merge([
             'activeWhen' => $this->activeWhen,
             'select2Options' => [
-                'formatResult' => new JsExpression("function (data) {
+                'templateResult' => new JsExpression("function (data) {
+                    if (data.loading) {
+                        return data.text;
+                    }
+
                     return data.text + ' - ' + data.server;
                 }"),
             ],

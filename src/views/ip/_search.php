@@ -22,7 +22,7 @@ use yii\web\View;
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('tag_in')->widget(StaticCombo::class, [
-        'data' => array_merge(['' => Yii::t('hipanel', '---')], $ipTags),
+        'data' => $ipTags,
         'hasId' => true,
         'multiple' => true,
     ]) ?>
