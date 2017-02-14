@@ -34,7 +34,6 @@ use hiqdev\combo\StaticCombo;
     <?= $search->field('type')->widget(StaticCombo::class, [
         'data' => $typeData,
         'hasId' => true,
-        'multiple' => false,
     ]) ?>
 </div>
 
@@ -42,6 +41,5 @@ use hiqdev\combo\StaticCombo;
     <?= $search->field('state')->widget(StaticCombo::class, [
         'data' => $stateData,
         'hasId' => true,
-        'multiple' => false,
     ]) ?>
 </div>
