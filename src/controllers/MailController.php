@@ -16,9 +16,9 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\ComboSearchAction;
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
-use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
@@ -40,7 +40,7 @@ class MailController extends \hipanel\base\CrudController
                 ],
             ],
             'search' => [
-                'class' => SearchAction::class,
+                'class' => ComboSearchAction::class,
             ],
             'index' => [
                 'class' => IndexAction::class,

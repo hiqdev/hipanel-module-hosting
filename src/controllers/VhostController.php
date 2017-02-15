@@ -16,9 +16,9 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\ComboSearchAction;
 use hipanel\actions\OrientationAction;
 use hipanel\actions\RedirectAction;
-use hipanel\actions\SearchAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\helpers\ArrayHelper;
@@ -40,7 +40,7 @@ class VhostController extends \hipanel\base\CrudController
                 'url' => ['@hdomain/index'],
             ],
             'search' => [
-                'class' => SearchAction::class,
+                'class' => ComboSearchAction::class,
             ],
             'view' => [
                 'class' => RedirectAction::class,
