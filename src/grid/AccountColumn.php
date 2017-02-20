@@ -8,16 +8,10 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-/**
- * @see    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
-
 namespace hipanel\modules\hosting\grid;
 
-use hipanel\grid\DataColumn;
 use hipanel\modules\hosting\widgets\combo\AccountCombo;
+use hiqdev\higrid\DataColumn;
 use yii\helpers\Html;
 
 class AccountColumn extends DataColumn
