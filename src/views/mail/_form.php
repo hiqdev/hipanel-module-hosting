@@ -1,10 +1,9 @@
 <?php
 
-/* @var $this View */
+/* @var View */
 /* @var $model hipanel\modules\hosting\models\Mail */
 /* @var $type string */
 
-use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\MultipleMailCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
@@ -16,6 +15,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use yii\web\JsExpression;
+use yii\web\View;
 
 ?>
 

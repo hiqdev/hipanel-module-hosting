@@ -1,10 +1,9 @@
 <?php
 
-/* @var $this View */
+/* @var View */
 /* @var $model hipanel\modules\hosting\models\Account */
 /* @var $type string */
 
-use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\AccountPathCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
@@ -14,6 +13,8 @@ use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\web\View;
+
 ?>
 
 <?php $form = ActiveForm::begin([

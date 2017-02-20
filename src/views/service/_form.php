@@ -1,11 +1,10 @@
 <?php
 
-/* @var $this View */
+/* @var View */
 /* @var $model hipanel\modules\hosting\models\Service */
 /* @var $softs array */
 /* @var $states array */
 
-use hipanel\base\View;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\ip\ServiceIpCombo;
 use hipanel\modules\server\models\Server;
@@ -13,6 +12,7 @@ use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\web\View;
 
 $form = ActiveForm::begin([
     'id'                     => 'dynamic-form',
