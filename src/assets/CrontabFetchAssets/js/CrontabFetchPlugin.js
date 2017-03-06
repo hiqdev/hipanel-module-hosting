@@ -106,7 +106,7 @@
             $.ajax({
                 url: "get-info",
                 dataType: 'json',
-                method: 'post',
+                method: 'get',
                 data: { id: this.crontab.id },
                 success: function (data) {
                     _this._loadingOff();
