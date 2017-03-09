@@ -15,9 +15,10 @@ use hipanel\actions\OrientationAction;
 use hipanel\actions\RedirectAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
+use hipanel\base\CrudController;
 use Yii;
 
-class BackupController extends \hipanel\base\CrudController
+class BackupController extends CrudController
 {
     public function actions()
     {
