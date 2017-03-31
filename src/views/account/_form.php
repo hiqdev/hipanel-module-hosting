@@ -72,15 +72,20 @@ use yii\web\View;
                                 ?>
                             </div>
                         </div>
-                        <div class="box-footer">
-                            <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
-                            <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-                        </div>
                     </div>
                 </div>
             </div>
         <?php } ?>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box box-widget">
+                    <div class="box-body">
+                        <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
+                        <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    &nbsp;
 <?php ActiveForm::end(); ?>
 <?php $this->registerJs("$('#account-sshftp_ips').popover({placement: 'top', trigger: 'focus'});"); ?>
