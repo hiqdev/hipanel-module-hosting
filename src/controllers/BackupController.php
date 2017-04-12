@@ -23,12 +23,6 @@ class BackupController extends CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/backup/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {

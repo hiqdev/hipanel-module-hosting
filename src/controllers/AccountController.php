@@ -34,12 +34,6 @@ class AccountController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/account/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {

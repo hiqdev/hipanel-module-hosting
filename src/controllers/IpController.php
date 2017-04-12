@@ -48,12 +48,6 @@ class IpController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/ip/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => $this->getDataProviderOptions(),

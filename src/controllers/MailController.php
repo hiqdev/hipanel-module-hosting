@@ -33,12 +33,6 @@ class MailController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/mail/index',
-                ],
-            ],
             'search' => [
                 'class' => ComboSearchAction::class,
             ],

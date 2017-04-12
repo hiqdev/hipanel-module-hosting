@@ -31,12 +31,6 @@ class CrontabController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/crontab/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'filterStorageMap' => [

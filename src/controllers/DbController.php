@@ -27,12 +27,6 @@ class DbController extends CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/db/index',
-                ],
-            ],
             'index' => [
                 'class'     => IndexAction::class,
                 'data'  => function ($action) {

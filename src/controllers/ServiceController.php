@@ -50,12 +50,6 @@ class ServiceController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/service/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {

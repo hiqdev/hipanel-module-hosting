@@ -27,12 +27,6 @@ class RequestController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/request/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'findOptions' => [

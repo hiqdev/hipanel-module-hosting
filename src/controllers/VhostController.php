@@ -29,12 +29,6 @@ class VhostController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/vhost/index',
-                ],
-            ],
             'index' => [
                 'class' => RedirectAction::class,
                 'url' => ['@hdomain/index'],

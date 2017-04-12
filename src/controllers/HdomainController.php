@@ -29,12 +29,6 @@ class HdomainController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/hdomain/index',
-                ],
-            ],
             'search' => [
                 'class' => ComboSearchAction::class,
             ],

@@ -25,12 +25,6 @@ class BackupingController extends \hipanel\base\CrudController
     public function actions()
     {
         return [
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '/hosting/backuping/index',
-                ],
-            ],
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {
