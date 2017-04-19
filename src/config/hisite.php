@@ -49,7 +49,9 @@ return [
             \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
                 'add' => [
                     'hosting' => [
-                        'menu' => \hipanel\modules\hosting\menus\SidebarMenu::class,
+                        'menu' => [
+                            'class' => \hipanel\modules\hosting\menus\SidebarMenu::class,
+                        ],
                         'where' => [
                             'after' => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
                             'before' => ['stock'],
