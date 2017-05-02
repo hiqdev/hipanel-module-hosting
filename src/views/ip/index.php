@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $page->beginContent('main-actions') ?>
             <?php if (Yii::$app->user->can('support')) : ?>
-                <?= Html::a(Yii::t('hipanel:hosting', 'Create IP'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
+                <?= Html::a(Yii::t('hipanel:hosting', 'Create IP'), ['@ip/create'], ['class' => 'btn btn-sm btn-success']) ?>
             <?php endif; ?>
         <?php $page->endContent() ?>
 
