@@ -95,8 +95,10 @@ DynamicFormWidget::begin([
                                                                 return data.text;
                                                             } else if (data.text == '') {
                                                                 return data.soft;
-                                                            } else {
+                                                            } else if (data.soft) {
                                                                 return data.text + '<br><small>' + data.soft + '</small>';
+                                                            } else {
+                                                                return data.text;
                                                             }
                                                         }
                                                     ");
