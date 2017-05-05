@@ -50,27 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]) ?>
             <?php $page->endBulkForm() ?>
-            <?= AjaxModal::widget([
-                'id' => 'expand-ip',
-                'header'=> Html::tag('h4', Yii::t('hipanel:hosting', 'Expanded range'), ['class' => 'modal-title']),
-                'scenario' => 'expand',
-                'actionUrl' => ['expand'],
-                'size' => AjaxModal::SIZE_LARGE,
-                'toggleButton' => false,
-                'clientEvents' => [
-                    'show.bs.modal' => function ($widget) {
-                        return new JsExpression("function() {
-                            $.get('{$widget->actionUrl}', {'id': $('#{$widget->id}').data('ip_id')}).done(function (data) {
-                                $('#{$widget->id} .modal-body').html(data);
-                            });;
-                        }");
-                    }
-                ]
-            ]) ?>
-            <?php $this->registerJs("$('.btn-expand-ip').click(function (event) {
-                $('#expand-ip').data('ip_id', $(this).data('id')).modal('show');
-                event.preventDefault();
-            });"); ?>
         <?php $page->endContent() ?>
     <?php $page->end() ?>
 <?php Pjax::end() ?>

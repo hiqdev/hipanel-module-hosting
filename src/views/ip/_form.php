@@ -76,6 +76,8 @@ DynamicFormWidget::begin([
 
                                             echo Html::activeHiddenInput($link, "[$i][$link_id]id", ['value' => $link->id]);
                                             echo Html::activeHiddenInput($link, "[$i][$link_id]ip_id", ['data-attribute' => 'ip_id', 'value' => $model->id]); ?>
+
+                                            <label><?= Yii::t('hipanel:hosting', 'Links') ?></label>
                                             <div class="row" style="margin-bottom: 5pt">
                                                 <div class="col-md-5">
                                                     <?= $form->field($link, "[$i][$link_id]device")->widget(ServerCombo::class, [

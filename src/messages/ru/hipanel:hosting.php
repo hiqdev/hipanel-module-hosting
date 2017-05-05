@@ -135,6 +135,7 @@ return [
     'Deleting IP address...' => 'Удаление IP адреса...',
     'Are you sure, that you want to delete IP address {ip}? All related objects might be deleted too!' => 'Вы уверены, что хотите удалить IP адрес {ip}? Все связанные объекты могут быть также удалены!',
     'IP address was deleted successfully' => 'IP адрес был успешно удалён',
+    'Expanded range' => 'Диапазон развёрнуто',
 
     /**
      * Domains.

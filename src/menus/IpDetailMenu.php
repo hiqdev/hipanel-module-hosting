@@ -18,9 +18,26 @@ class IpDetailMenu extends \hipanel\menus\AbstractDetailMenu
 {
     public $model;
 
+    /**
+     * @var IpActionsMenu
+     */
+    private $ipActionsMenu;
+
+    public function init()
+    {
+        $this->ipActionsMenu = IpActionsMenu::create(['model' => $this->model]);
+
+        parent::init();
+    }
+
+    public function run($config = [])
+    {
+        return $this->ipActionsMenu->registerClientScript() . parent::run($config);
+    }
+
     public function items()
     {
-        $actions = IpActionsMenu::create(['model' => $this->model])->items();
+        $actions = $this->ipActionsMenu->items();
         $items = array_merge($actions, [
             [
                 'label' => ModalButton::widget([
@@ -48,6 +65,7 @@ class IpDetailMenu extends \hipanel\menus\AbstractDetailMenu
             ],
         ]);
         unset($items['view']);
+
 
         return $items;
     }
