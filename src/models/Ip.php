@@ -70,6 +70,11 @@ class Ip extends \hipanel\base\Model
             [['id'], 'integer', 'on' => ['create', 'update', 'delete', 'expand']],
             [['with_existing'], 'boolean', 'on' => ['expand']],
             [['ptr'], DomainValidator::class, 'on' => ['set-ptr']],
+
+            // Set note
+            [['note', 'ip'], 'string', 'on' => 'set-note'],
+            ['note', 'filter','filter'=>'\yii\helpers\HtmlPurifier::process', 'on' => 'set-note'],
+            ['id', 'integer', 'on' => 'set-note'],
         ];
     }
 
