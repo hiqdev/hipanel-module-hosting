@@ -72,10 +72,10 @@ class Ip extends \hipanel\base\Model
             [['ptr'], DomainValidator::class, 'on' => ['set-ptr']],
 
             // Set note
-            ['note', 'string', 'on' => ['set-note', 'create', 'update']],
-            ['note', 'filter','filter'=>'\yii\helpers\HtmlPurifier::process', 'on' => ['set-note', 'create', 'update']],
-            ['ip', 'safe', 'on' => 'set-note'],
-            ['id', 'integer', 'on' => 'set-note'],
+            [['note'], 'string', 'on' => 'set-note'],
+            [['note'], 'filter','filter'=>'\yii\helpers\HtmlPurifier::process', 'on' => 'set-note'],
+            [['ip'], 'safe', 'on' => 'set-note'],
+            [['id'], 'integer', 'on' => 'set-note'],
         ];
     }
 
@@ -89,6 +89,7 @@ class Ip extends \hipanel\base\Model
             'ip_normalized'         => Yii::t(static::$i18nDictionary, 'Normalized IP'),
             'expanded_ips'          => Yii::t(static::$i18nDictionary, 'Expanded IPs'),
             'ptr'                   => Yii::t(static::$i18nDictionary, 'PTR'),
+            'note' => Yii::t('hipanel', 'Note'),
         ]);
     }
 
