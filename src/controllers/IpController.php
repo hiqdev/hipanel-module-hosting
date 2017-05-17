@@ -149,6 +149,11 @@ class IpController extends \hipanel\base\CrudController
                 'class' => SmartUpdateAction::class,
                 'scenario' => 'set-ptr',
             ],
+            'set-note' => [
+                'class' => SmartUpdateAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Note changed'),
+                'error' => Yii::t('hipanel:hosting', 'Failed to change note'),
+            ],
         ];
     }
 
