@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
-                        'ip', 'tags', 'counters',
+                        'ip', 'note', 'tags', 'counters',
                         'links', 'ptr',
                     ],
                 ]);

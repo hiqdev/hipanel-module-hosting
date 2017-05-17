@@ -37,7 +37,7 @@ DynamicFormWidget::begin([
     ],
 ]); ?>
     <div class="container-items"><!-- widgetContainer -->
-        <?php foreach ($models as $i => $model) { ?>
+        <?php foreach ($models as $i => $model) : ?>
             <div class="row ip-item">
                 <div class="col-md-5">
                     <div class="box box-danger">
@@ -67,7 +67,7 @@ DynamicFormWidget::begin([
                                     ],
                                 ]) ?>
                                 <div class="container-ips">
-                                    <?php foreach ($model->getAddedLinks() as $link_id => $link) { ?>
+                                    <?php foreach ($model->getAddedLinks() as $link_id => $link) : ?>
                                         <div class="item">
                                             <?php
                                             if ($link->isNewRecord && empty($link->ip_id)) {
@@ -131,7 +131,7 @@ DynamicFormWidget::begin([
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                    <?php endforeach; ?>
                                 </div>
                                 <?php DynamicFormWidget::end();
                                 print $form->field($model, "[$i]tags")->widget(StaticCombo::class, [
@@ -140,12 +140,15 @@ DynamicFormWidget::begin([
                                     'multiple' => true,
                                 ]);
                                 ?>
+                                <?php if (Yii::$app->user->can('admin')) : ?>
+                                    <?= $form->field($model, 'note')->textarea() ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php } ?>
+        <?php endforeach; ?>
     </div>
 <?php DynamicFormWidget::end() ?>
 

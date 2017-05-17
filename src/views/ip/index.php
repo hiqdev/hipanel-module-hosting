@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'ipTags' => $ipTags,
                     'columns' => [
                         'ip',
+                        'note',
                         'actions',
                         'tags',
                         'counters',

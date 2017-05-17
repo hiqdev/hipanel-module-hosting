@@ -22,6 +22,7 @@ use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
+use hipanel\grid\XEditableColumn;
 
 class IpGridView extends \hipanel\grid\BoxedGridView
 {
@@ -40,6 +41,18 @@ class IpGridView extends \hipanel\grid\BoxedGridView
             'ip' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'ip_like',
+            ],
+            'note' => [
+                'class' => XEditableColumn::class,
+                'pluginOptions' => [
+                    'url'       => Url::to('set-note'),
+                ],
+                'widgetOptions' => [
+                    'linkOptions' => [
+                        'data-type' => 'textarea',
+                    ],
+                ],
+                'visible' => Yii::$app->user->can('admin'),
             ],
             'tags' => [
                 'format' => 'raw',
