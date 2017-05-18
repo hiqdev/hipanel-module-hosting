@@ -141,20 +141,7 @@ DynamicFormWidget::begin([
                                 ]);
                                 ?>
                                 <?php if (Yii::$app->user->can('admin')) : ?>
-                                    <div class="form-group">
-                                        <?= Html::label($model->getAttributeLabel('note'), null, ['class' => 'control-label']) ?>
-                                        <br>
-                                        <?= \hipanel\widgets\XEditable::widget([
-                                            'model' => $model,
-                                            'attribute' => 'note',
-                                            'linkOptions' => [
-                                                'data-type' => 'textarea',
-                                            ],
-                                            'pluginOptions' => [
-                                                'url'       => Url::to('set-note'),
-                                            ],
-                                        ]) ?>
-                                    </div>
+                                    <?= $form->field($model, "[$i]note")->textarea() ?>
                                 <?php endif; ?>
                             </div>
                         </div>
