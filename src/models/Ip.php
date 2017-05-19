@@ -89,7 +89,7 @@ class Ip extends \hipanel\base\Model
             'ip_normalized'         => Yii::t(static::$i18nDictionary, 'Normalized IP'),
             'expanded_ips'          => Yii::t(static::$i18nDictionary, 'Expanded IPs'),
             'ptr'                   => Yii::t(static::$i18nDictionary, 'PTR'),
-            'note' => Yii::t('hipanel', 'Note'),
+            'note'                  => Yii::t('hipanel', 'Note'),
         ]);
     }
 
