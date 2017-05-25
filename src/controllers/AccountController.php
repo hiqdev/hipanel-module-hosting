@@ -117,6 +117,7 @@ class AccountController extends \hipanel\base\CrudController
 
                     $model = $action->collection->first;
                     $pathLike = Yii::$app->request->post('path_like');
+
                     foreach ($model['path'] as $path) {
                         if ($pathLike !== null) {
                             if (preg_match('|' . $pathLike . '|', $path)) {
@@ -124,8 +125,10 @@ class AccountController extends \hipanel\base\CrudController
                                 continue;
                             }
                         }
+
                         $results[] = ['id' => $path, 'text' => $path];
                     }
+
                     return $results;
                 },
             ],
