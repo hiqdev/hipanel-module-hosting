@@ -111,7 +111,7 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'get-directories-list' => [
                 'class' => SearchAction::class,
-                'findOptions' => ['with_directories' => true, 'limit' => 'ALL'],
+                'findOptions' => ['with_directories' => true],
                 'ajaxResponseFormatter' => function ($action) {
                     $results = [];
 
@@ -119,7 +119,7 @@ class AccountController extends \hipanel\base\CrudController
                     $pathLike = Yii::$app->request->post('path_like');
 
                     foreach ($model['path'] as $path) {
-                        if ($pathLike !== null) {
+                        if ($pathLike) {
                             if (preg_match('|' . $pathLike . '|', $path)) {
                                 array_unshift($results, ['id' => $path, 'text' => $path]);
                                 continue;
