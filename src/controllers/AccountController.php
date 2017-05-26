@@ -116,7 +116,16 @@ class AccountController extends \hipanel\base\CrudController
                     $results = [];
 
                     $model = $action->collection->first;
+                    $pathLike = Yii::$app->request->post('path_like');
+
                     foreach ($model['path'] as $path) {
+                        if ($pathLike) {
+                            if (preg_match('|' . $pathLike . '|', $path)) {
+                                array_unshift($results, ['id' => $path, 'text' => $path]);
+                                continue;
+                            }
+                        }
+
                         $results[] = ['id' => $path, 'text' => $path];
                     }
 
