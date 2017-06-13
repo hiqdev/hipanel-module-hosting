@@ -41,6 +41,10 @@ return [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => '@hipanel/modules/hosting/messages',
                 ],
+                'hipanel:hosting:account' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@hipanel/modules/hosting/messages',
+                ],
             ],
         ],
     ],

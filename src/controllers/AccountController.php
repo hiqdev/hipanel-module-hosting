@@ -18,6 +18,7 @@ namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
+use hipanel\actions\RenderJsonAction;
 use hipanel\actions\PrepareBulkAction;
 use hipanel\actions\RedirectAction;
 use hipanel\actions\SearchAction;
@@ -72,18 +73,28 @@ class AccountController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account'),
             ],
-            'set-password' => [
+            'change-password' => [
                 'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel:hosting', 'Password has been changed'),
-                'error' => Yii::t('hipanel:hosting', 'Failed to change password'),
+                'view' => '_changePasswordModal',
+                'POST' => [
+                    'save' => true,
+                    'success' => [
+                        'class' => RenderJsonAction::class,
+                        'return' => function ($action) {
+                            return ['success' => !$action->collection->hasErrors()];
+                        },
+                    ],
+                ],
             ],
             'set-allowed-ips' => [
                 'class' => SmartUpdateAction::class,
+                'view' => '_ipRestrictionsModal',
                 'success' => Yii::t('hipanel:hosting', 'Allowed IPs changing task has been successfully added to queue'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change allowed IPs'),
             ],
             'set-mail-settings' => [
                 'class' => SmartUpdateAction::class,
+                'view' => '_setMailSettings',
                 'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
             ],
@@ -108,6 +119,15 @@ class AccountController extends \hipanel\base\CrudController
                 'class' => SmartDeleteAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
+            ],
+            'bulk-delete' => [
+                'class' => SmartDeleteAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
+            ],
+            'bulk-delete-modal' => [
+                'class' => PrepareBulkAction::class,
+                'view' => '_bulkDelete',
             ],
             'get-directories-list' => [
                 'class' => SearchAction::class,
@@ -160,7 +180,6 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'bulk-enable-block-modal' => [
                 'class' => PrepareBulkAction::class,
-                'scenario' => 'enable-block',
                 'view' => '_bulkEnableBlock',
                 'data' => function ($action, $data) {
                     return array_merge($data, [
@@ -182,6 +201,7 @@ class AccountController extends \hipanel\base\CrudController
                 'on beforeSave' => function (Event $event) {
                     /** @var \hipanel\actions\Action $action */
                     $action = $event->sender;
+                    $type = Yii::$app->request->post('type');
                     $comment = Yii::$app->request->post('comment');
                     if (!empty($type)) {
                         foreach ($action->collection->models as $model) {
@@ -194,6 +214,11 @@ class AccountController extends \hipanel\base\CrudController
                 'class' => PrepareBulkAction::class,
                 'scenario' => 'disable-block',
                 'view' => '_bulkDisableBlock',
+                'data' => function ($action, $data) {
+                    return array_merge($data, [
+                        'blockReasons' => $this->getBlockReasons(),
+                    ]);
+                },
             ],
         ];
     }
