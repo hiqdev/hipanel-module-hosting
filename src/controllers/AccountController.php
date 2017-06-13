@@ -94,6 +94,7 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'set-mail-settings' => [
                 'class' => SmartUpdateAction::class,
+                'view' => '_setMailSettings',
                 'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
             ],

@@ -38,7 +38,7 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
            [
                 'label' => SettingsModal::widget([
                     'model' => $this->model,
-                    'title' => Yii::t('hipanel:hosting', 'IP address restrictions'),
+                    'title' => Yii::t('hipanel:hosting:account', 'IP address restrictions'),
                     'headerOptions' => ['class' => 'label-warning'],
                     'icon' => 'fa-arrows-alt fa-fw',
                     'scenario' => 'set-allowed-ips',
@@ -52,10 +52,11 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
                     'title' => Yii::t('hipanel:hosting', 'Mail settings'),
                     'headerOptions' => ['class' => 'label-info'],
                     'icon' => 'fa-envelope fa-fw',
-                    'scenario' => 'mailing-settings',
+                    'scenario' => 'set-mail-settings',
                 ]),
                 'encode' => false,
                 'visible' => $this->model->canSetMailSettings(),
+                'disabled' => $this->model->isOperable(),
             ],
             [
                 'label' => BlockModalButton::widget(['model' => $this->model]),

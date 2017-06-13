@@ -13,4 +13,5 @@ return [
     'Confirm account deleting' => 'Подтвердите удаление аккаунта',
     'Delete account' => 'Удалить аккаунт',
     'Deleting account' => 'Удаление аккаунта',
+    'IP address restrictions' => 'Ограничение доступа по IP',
 ];
