@@ -1,5 +1,8 @@
 <?php
 
+use hipanel\modules\client\widgets\combo\ClientCombo;
+use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
+use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -19,6 +22,11 @@ use yii\helpers\Url;
         <div class="col-md-6">
             <fieldset>
                 <legend><?= Yii::t('hipanel:hosting', 'Enter mail settings') ?></legend>
+                <?php if (Yii::$app->user->can('support')) : ?>
+                    <?= $form->field($model, "[$model->id]client")->widget(ClientCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
+                <?php endif ?>
+                <?= $form->field($model, "[$model->id]server")->widget(PanelServerCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
+                <?= $form->field($model, "[$model->id]login")->widget(SshAccountCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
                 <?= Html::activeHiddenInput($model, "[$model->id]id") ?>
                 <?= $form->field($model, "[$model->id]per_hour_limit") ?>
                 <?= $form->field($model, "[$model->id]block_send")->checkbox() ?>
