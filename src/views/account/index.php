@@ -60,6 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'actionUrl' => ['create'],
                     'handleSubmit' => false,
                     'toggleButton' => false,
+                    'options' => [
+                        'tabindex' => false,
+                    ]
                 ]) ?>
                 <?= AjaxModal::widget([
                     'id' => 'create-ftp-account-modal',
@@ -70,6 +73,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'actionUrl' => ['create-ftponly'],
                     'handleSubmit' => false,
                     'toggleButton' => false,
+                    'options' => [
+                        'tabindex' => false,
+                    ]
                 ]) ?>
             </div>
         <?php $page->endContent() ?>
