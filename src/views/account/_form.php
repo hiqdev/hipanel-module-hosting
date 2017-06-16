@@ -17,14 +17,16 @@ use yii\web\View;
 
 ?>
 
+<?php $scenario = $model->isNewRecord ? reset($models)->scenario : 'update'; ?>
+
 <div class="account-create">
 
     <?php $form = ActiveForm::begin([
-        'id' => 'dynamic-form',
+        'id' => "{$scenario}-dynamic-form",
         'enableAjaxValidation' => true,
         'validationUrl' => Url::toRoute([
             'validate-form',
-            'scenario' => $model->isNewRecord ? reset($models)->scenario : 'update'
+            'scenario' => $scenario,
         ]),
     ]) ?>
 
@@ -44,14 +46,19 @@ use yii\web\View;
 
                                     <?php
                                     if (Yii::$app->user->can('support')) {
-                                        print $form->field($model, "[$i]client")->widget(ClientCombo::class);
+                                        print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                            'id' => "{$i}-client-input",
+                                        ]);
                                     }
 
                                     print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
-                                        'state' => Server::STATE_OK
+                                        'state' => Server::STATE_OK,
+                                        'id' => "{$i}-server-input",
                                     ]);
                                     if ($model->scenario === 'create-ftponly') {
-                                        print $form->field($model, "[$i]account")->widget(SshAccountCombo::class);
+                                        print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
+                                            'id' => "{$i}-ssh-account-input",
+                                        ]);
                                     }
 
                                     print $form->field($model, "[$i]login")->textInput(['autocomplete' => 'new-login']);
@@ -60,7 +67,9 @@ use yii\web\View;
                                     ]);
 
                                     if ($model->scenario === 'create-ftponly') {
-                                        print $form->field($model, "[$i]path")->widget(AccountPathCombo::class);
+                                        print $form->field($model, "[$i]path")->widget(AccountPathCombo::class,[
+                                            'id' => "{$i}-account-path-input",
+                                        ]);
                                     }
 
                                     print $form->field($model, "[$i]sshftp_ips")
