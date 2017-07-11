@@ -36,9 +36,6 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                         'label' => Yii::t('hipanel:hosting', 'Domains'),
                         'url' => ['/hosting/hdomain/index'],
                         'icon' => 'fa-globe',
-                        'visible' => function () {
-                            return (bool) Yii::getAlias('@domain', false);
-                        },
                     ],
                     'mails' => [
                         'label' => Yii::t('hipanel:hosting', 'Mailboxes'),
