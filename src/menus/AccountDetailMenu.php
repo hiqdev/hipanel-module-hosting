@@ -67,7 +67,6 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
                 'label' => SimpleOperation::widget([
                     'model' => $this->model,
                     'scenario' => 'delete',
-                    'skipCheckOperable' => true,
                     'buttonLabel' => '<i class="fa fa-fw fa-trash-o"></i>' . Yii::t('hipanel', 'Delete'),
                     'buttonClass' => '',
                     'body' => Yii::t('hipanel:hosting:account', 'Are you sure you want to delete account {name}?', ['name' => $this->model->login]),
