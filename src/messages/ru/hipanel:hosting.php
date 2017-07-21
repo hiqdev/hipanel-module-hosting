@@ -55,6 +55,8 @@ return [
     'Disabled' => 'Отключён',
     'User account' => 'Обычный',
     'FTP-only account' => 'FTP аккаунт',
+    'No login account' => 'Без права входа',
+    'SSH Account' => 'SSH аккаунт',
     'System account' => 'Системный аккаунт',
     'An error occurred when trying to create account' => 'Ошибка при создании аккаунта',
     'Password has been changed' => 'Пароль был изменен',
