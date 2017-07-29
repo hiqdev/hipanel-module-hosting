@@ -17,7 +17,6 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
-use hipanel\actions\OrientationAction;
 use hipanel\actions\RenderJsonAction;
 use hipanel\actions\PrepareBulkAction;
 use hipanel\actions\RedirectAction;
@@ -122,6 +121,7 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'bulk-delete' => [
                 'class' => SmartDeleteAction::class,
+                'scenario' => 'delete',
                 'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
             ],
