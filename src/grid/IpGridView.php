@@ -28,16 +28,11 @@ class IpGridView extends \hipanel\grid\BoxedGridView
 {
     public $controllerUrl = '@ip';
 
-    public static $ipTags = [];
+    public $ipTags = [];
 
-    public static function setIpTags($ipTags)
+    public function columns()
     {
-        static::$ipTags = $ipTags;
-    }
-
-    public static function defaultColumns()
-    {
-        return [
+        return array_merge(parent::columns(), [
             'ip' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'ip_like',
@@ -60,7 +55,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                 'header' => Yii::t('hipanel:hosting', 'Tags'),
                 'visible' => Yii::$app->user->can('admin'),
                 'filter' => function ($column, $model) {
-                    return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('hipanel', '---')], static::$ipTags), ['class' => 'form-control']);
+                    return Html::activeDropDownList($model, 'tag_in', array_merge(['' => Yii::t('hipanel', '---')], $this->ipTags), ['class' => 'form-control']);
                 },
                 'value' => function ($model) {
                     $labels = [];
@@ -161,6 +156,6 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                     return null;
                 },
             ],
-        ];
+        ]);
     }
 }

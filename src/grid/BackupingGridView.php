@@ -26,25 +26,23 @@ use yii\helpers\Html;
 
 class BackupingGridView extends \hipanel\grid\BoxedGridView
 {
-    public static $typeOptions;
+    public $typeOptions;
 
-    /**
-     * @param mixed $typeOptions
-     */
-    public static function setTypeOptions($typeOptions)
+    public function getTypeOptions()
     {
-        foreach ($typeOptions as $key => &$value) {
-            $value = Yii::t('hipanel:hosting:backuping:periodicity', $value);
+        $result = [];
+        foreach ($this->typeOptions as $key => $value) {
+            $result[$key] = Yii::t('hipanel:hosting:backuping:periodicity', $value);
         }
 
-        self::$typeOptions = $typeOptions;
+        return $result;
     }
 
-    public static function defaultColumns()
+    public function columns()
     {
-        $typeOptions = self::$typeOptions;
+        $typeOptions = $this->getTypeOptions();
 
-        return [
+        return array_merge(parent::columns(), [
             'name' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'name_like',
@@ -116,6 +114,6 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                     return Yii::$app->formatter->asShortSize($model->total_du, 2);
                 },
             ],
-        ];
+        ]);
     }
 }
