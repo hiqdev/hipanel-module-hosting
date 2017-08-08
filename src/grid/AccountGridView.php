@@ -21,9 +21,9 @@ use Yii;
 
 class AccountGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'account' => [
                 'class'             => MainColumn::class,
                 'label'             => Yii::t('hipanel', 'Account'),
@@ -65,6 +65,6 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 },
                 'gtype'             => 'type,account',
             ],
-        ];
+        ]);
     }
 }
