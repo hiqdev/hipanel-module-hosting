@@ -20,9 +20,9 @@ use yii\helpers\UnsetArrayValue;
 
 class RequestGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'classes' => [
                 'label' => Yii::t('hipanel:hosting', 'Action'),
                 'filter' => false,
@@ -81,6 +81,6 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'class' => MenuColumn::class,
                 'menuClass' => RequestActionsMenu::class,
             ],
-        ];
+        ]);
     }
 }
