@@ -19,9 +19,9 @@ use yii\helpers\Html;
 
 class BackupGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'id' => [
                 'format' => 'html',
                 'attribute' => 'id',
@@ -94,6 +94,6 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                     },
                 ],
             ],
-        ];
+        ]);
     }
 }
