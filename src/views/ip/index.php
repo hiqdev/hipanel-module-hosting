@@ -1,7 +1,9 @@
 <?php
 
+use hipanel\modules\hosting\grid\IpGridLegend;
 use hipanel\modules\hosting\grid\IpGridView;
 use hipanel\widgets\AjaxModal;
+use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
@@ -24,6 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endif; ?>
         <?php $page->endContent() ?>
 
+        <?php $page->beginContent('legend') ?>
+            <?= GridLegend::widget(['legendItem' => new IpGridLegend($model)]) ?>
+        <?php $page->endContent() ?>
+
         <?php $page->beginContent('show-actions') ?>
             <?= $page->renderLayoutSwitcher() ?>
             <?= $page->renderSorter([
@@ -41,6 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel'  => $model,
                     'boxed' => false,
                     'ipTags' => $ipTags,
+                    'rowOptions' => function ($model) {
+                        return GridLegend::create(new IpGridLegend($model))->gridRowOptions();
+                    },
                     'columns' => [
                         'ip',
                         'note',
