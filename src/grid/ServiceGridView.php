@@ -26,9 +26,9 @@ use yii\helpers\Html;
 
 class ServiceGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'service' => [
                 'class' => MainColumn::class,
                 'attribute' => 'name',
@@ -115,6 +115,6 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'class' => MenuColumn::class,
                 'menuClass' => ServiceActionsMenu::class,
             ],
-        ];
+        ]);
     }
 }
