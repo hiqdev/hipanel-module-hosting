@@ -24,9 +24,9 @@ use yii\helpers\Html;
 
 class MailGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'mail' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'mail_like',
@@ -98,12 +98,12 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                         ]);
                     } else {
                         return Label::widget([
-                            'color' => 'primary',
-                            'label' => Yii::t('hipanel:hosting', 'Forward to'),
-                        ]) . ' ' . ArraySpoiler::widget([
-                            'data' => $model->spam_action,
-                            'visibleCount' => 2,
-                        ]);
+                                'color' => 'primary',
+                                'label' => Yii::t('hipanel:hosting', 'Forward to'),
+                            ]) . ' ' . ArraySpoiler::widget([
+                                'data' => $model->spam_action,
+                                'visibleCount' => 2,
+                            ]);
                     }
                 },
             ],
@@ -111,6 +111,6 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 'class' => ActionColumn::class,
                 'template' => '{view} {delete}',
             ],
-        ];
+        ]);
     }
 }

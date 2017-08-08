@@ -1,6 +1,8 @@
 <?php
 
+use hipanel\modules\hosting\grid\MailGridLegend;
 use hipanel\modules\hosting\grid\MailGridView;
+use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
@@ -15,6 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
         <?php $page->setSearchFormData(compact(['stateData', 'typeData'])) ?>
+
+        <?php $page->beginContent('legend') ?>
+            <?= GridLegend::widget(['legendItem' => new MailGridLegend($model)]) ?>
+        <?php $page->endContent() ?>
 
         <?php $page->beginContent('main-actions') ?>
             <?= Html::a(Yii::t('hipanel:hosting', 'Create mailbox'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
@@ -43,6 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'dataProvider' => $dataProvider,
                     'filterModel' => $model,
+                    'rowOptions' => function ($model) {
+                        return GridLegend::create(new MailGridLegend($model))->gridRowOptions();
+                    },
                     'columns' => [
                         'checkbox',
                         'mail', 'type', 'forwards',
