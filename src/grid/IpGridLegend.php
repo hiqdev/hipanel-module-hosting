@@ -17,10 +17,12 @@ class IpGridLegend extends BaseGridLegend implements GridLegendInterface
             [
                 'label' => Yii::t('hipanel:hosting', 'Free'),
                 'color' => '#AAFFAA',
+                'rule' => $this->model->type === 'free',
             ],
             [
                 'label' => Yii::t('hipanel:hosting', 'Dedicated'),
                 'color' => '#CCCCFF',
+                'rule' => $this->model->type === 'dedicated',
             ],
             [
                 'label' => Yii::t('hipanel:hosting', 'System'),
