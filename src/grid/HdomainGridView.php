@@ -25,9 +25,9 @@ use yii\helpers\Html;
 
 class HdomainGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'hdomain' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'domain_like',
@@ -165,6 +165,6 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'class' => ActionColumn::class,
                 'template' => '{view} {delete}',
             ],
-        ];
+        ]);
     }
 }
