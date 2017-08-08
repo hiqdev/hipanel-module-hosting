@@ -18,9 +18,9 @@ use yii\helpers\Html;
 
 class CrontabGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'crontab' => [
                 'attribute' => 'crontab',
                 'format' => 'html',
@@ -52,6 +52,6 @@ class CrontabGridView extends \hipanel\grid\BoxedGridView
                 'class' => MenuColumn::class,
                 'menuClass' => CrontabActionsMenu::class,
             ],
-        ];
+        ]);
     }
 }
