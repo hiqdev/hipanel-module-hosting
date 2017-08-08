@@ -22,9 +22,9 @@ use Yii;
 
 class DbGridView extends BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'name'          => [
                 'class'           => MainColumn::class,
                 'format' => 'html',
@@ -79,6 +79,6 @@ class DbGridView extends BoxedGridView
                 'class'    => ActionColumn::class,
                 'template' => '{view} {delete}',
             ],
-        ];
+        ]);
     }
 }
