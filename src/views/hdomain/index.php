@@ -1,7 +1,9 @@
 <?php
 
+use hipanel\modules\hosting\grid\HdomainGridLegend;
 use hipanel\modules\hosting\grid\HdomainGridView;
 use hipanel\widgets\AjaxModal;
+use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\bootstrap\Dropdown;
@@ -32,6 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
             </div>
         <?php $page->endContent() ?>
+
+        <?php $page->begincontent('legend') ?>
+            <?= GridLegend::widget(['legendItem' => new HdomainGridLegend($model)]) ?>
+        <?php $page->endcontent() ?>
 
         <?php $page->beginContent('show-actions') ?>
             <?= $page->renderLayoutSwitcher() ?>
@@ -100,6 +106,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'dataProvider' => $dataProvider,
                     'filterModel'  => $model,
+                    'rowOptions' => function ($model) {
+                        return GridLegend::create(new HdomainGridLegend($model))->gridRowOptions();
+                    },
                     'columns'      => [
                         'checkbox',
                         'hdomain_with_aliases',
