@@ -1,6 +1,8 @@
 <?php
 
+use hipanel\modules\hosting\grid\RequestGridLegend;
 use hipanel\modules\hosting\grid\RequestGridView;
+use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 
@@ -15,7 +17,8 @@ $this->params['breadcrumbs'][]  = $this->title;
 
         <?php $page->setSearchFormData(compact('objects', 'states')) ?>
 
-        <?php $page->beginContent('main-actions') ?>
+        <?php $page->beginContent('legend') ?>
+            <?= GridLegend::widget(['legendItem' => new RequestGridLegend($model)]) ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('show-actions') ?>
@@ -38,6 +41,9 @@ $this->params['breadcrumbs'][]  = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel'  => $model,
                     'boxed' => false,
+                    'rowOptions' => function ($model) {
+                        return GridLegend::create(new RequestGridLegend($model))->gridRowOptions();
+                    },
                     'columns'      => [
                         'checkbox', 'classes',
                         'server', 'account',
