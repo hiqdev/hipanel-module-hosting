@@ -13,6 +13,8 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\menus\RequestActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
+use hipanel\widgets\gridLegend\ColorizeGrid;
+use hipanel\widgets\gridLegend\GridLegend;
 use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;
@@ -20,6 +22,8 @@ use yii\helpers\UnsetArrayValue;
 
 class RequestGridView extends \hipanel\grid\BoxedGridView
 {
+    use ColorizeGrid;
+
     public function columns()
     {
         return array_merge(parent::columns(), [

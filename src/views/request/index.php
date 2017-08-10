@@ -41,9 +41,7 @@ $this->params['breadcrumbs'][]  = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel'  => $model,
                     'boxed' => false,
-                    'rowOptions' => function ($model) {
-                        return GridLegend::create(new RequestGridLegend($model))->gridRowOptions();
-                    },
+                    'colorize' => true,
                     'columns'      => [
                         'checkbox', 'classes',
                         'server', 'account',
