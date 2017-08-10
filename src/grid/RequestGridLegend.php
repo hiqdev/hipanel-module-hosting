@@ -2,6 +2,7 @@
 
 namespace hipanel\modules\hosting\grid;
 
+use DateTime;
 use hipanel\widgets\gridLegend\BaseGridLegend;
 use hipanel\widgets\gridLegend\GridLegendInterface;
 
@@ -17,13 +18,13 @@ class RequestGridLegend extends BaseGridLegend implements GridLegendInterface
             [
                 'label' => ['hipanel:hosting', 'Already'],
                 'color' => '#E0E0E0',
-                'rule' => false,
+                'rule' => ((new DateTime($this->model->time)) < (new DateTime())),
                 'columns' => ['time'],
             ],
             [
                 'label' => ['hipanel:hosting', 'Deferred'],
                 'color' => '#AAAAFF',
-                'rule' => false,
+                'rule' => ((new DateTime($this->model->time)) > (new DateTime())),
                 'columns' => ['time'],
             ],
             [
