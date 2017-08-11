@@ -101,62 +101,6 @@ class AccountController extends \hipanel\base\CrudController
                 'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Account was blocked successfully'),
                 'error' => Yii::t('hipanel:hosting', 'Error during the account blocking'),
-            ],
-            'disable-block' => [
-                'class' => SmartUpdateAction::class,
-                'success' => Yii::t('hipanel:hosting', 'Account was unblocked successfully'),
-                'error' => Yii::t('hipanel:hosting', 'Error during the account unblocking'),
-            ],
-            'validate-form' => [
-                'class' => ValidateFormAction::class,
-            ],
-            'single-validate-form' => [
-                'class' => ValidateFormAction::class,
-                'validatedInputId' => false,
-            ],
-            'delete' => [
-                'class' => SmartDeleteAction::class,
-                'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
-            ],
-            'bulk-delete' => [
-                'class' => SmartDeleteAction::class,
-                'scenario' => 'delete',
-                'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
-            ],
-            'bulk-delete-modal' => [
-                'class' => PrepareBulkAction::class,
-                'view' => '_bulkDelete',
-            ],
-            'get-directories-list' => [
-                'class' => SearchAction::class,
-                'findOptions' => ['with_directories' => true],
-                'ajaxResponseFormatter' => function ($action) {
-                    $results = [];
-
-                    $model = $action->collection->first;
-                    $pathLike = Yii::$app->request->post('path_like');
-
-                    foreach ($model['path'] as $path) {
-                        if ($pathLike) {
-                            if (preg_match('|' . $pathLike . '|', $path)) {
-                                array_unshift($results, ['id' => $path, 'text' => $path]);
-                                continue;
-                            }
-                        }
-
-                        $results[] = ['id' => $path, 'text' => $path];
-                    }
-
-                    return $results;
-                },
-            ],
-            'bulk-enable-block' => [
-                'class' => SmartUpdateAction::class,
-                'scenario' => 'enable-block',
-                'success' => Yii::t('hipanel:hosting', 'Hosting accounts were blocked successfully'),
-                'error' => Yii::t('hipanel:hosting', 'Error during the hosting accounts blocking'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -187,11 +131,10 @@ class AccountController extends \hipanel\base\CrudController
                     ]);
                 },
             ],
-            'bulk-disable-block' => [
+            'disable-block' => [
                 'class' => SmartUpdateAction::class,
-                'scenario' => 'disable-block',
-                'success' => Yii::t('hipanel:hosting', 'Hosting accounts were unblocked successfully'),
-                'error' => Yii::t('hipanel:hosting', 'Error during the hosting accounts unblocking'),
+                'success' => Yii::t('hipanel:hosting', 'Account was unblocked successfully'),
+                'error' => Yii::t('hipanel:hosting', 'Error during the account unblocking'),
                 'POST html' => [
                     'save'    => true,
                     'success' => [
@@ -218,6 +161,45 @@ class AccountController extends \hipanel\base\CrudController
                     return array_merge($data, [
                         'blockReasons' => $this->getBlockReasons(),
                     ]);
+                },
+            ],
+            'validate-form' => [
+                'class' => ValidateFormAction::class,
+            ],
+            'single-validate-form' => [
+                'class' => ValidateFormAction::class,
+                'validatedInputId' => false,
+            ],
+            'delete' => [
+                'class' => SmartDeleteAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Account deleting task has been added to queue'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete account'),
+            ],
+            'bulk-delete-modal' => [
+                'class' => PrepareBulkAction::class,
+                'view' => '_bulkDelete',
+            ],
+            'get-directories-list' => [
+                'class' => SearchAction::class,
+                'findOptions' => ['with_directories' => true],
+                'ajaxResponseFormatter' => function ($action) {
+                    $results = [];
+
+                    $model = $action->collection->first;
+                    $pathLike = Yii::$app->request->post('path_like');
+
+                    foreach ($model['path'] as $path) {
+                        if ($pathLike) {
+                            if (preg_match('|' . $pathLike . '|', $path)) {
+                                array_unshift($results, ['id' => $path, 'text' => $path]);
+                                continue;
+                            }
+                        }
+
+                        $results[] = ['id' => $path, 'text' => $path];
+                    }
+
+                    return $results;
                 },
             ],
         ];
