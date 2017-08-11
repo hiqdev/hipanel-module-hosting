@@ -91,8 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:client', 'Unblock clients'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
-                    'scenario' => 'disable-block',
-                    'actionUrl' => ['bulk-disable-block-modal'],
+                    'scenario' => 'bulk-disable-block-modal',
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ],[
@@ -100,8 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:client', 'Block clients'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
-                    'scenario' => 'enable-block',
-                    'actionUrl' => ['bulk-enable-block-modal'],
+                    'scenario' => 'bulk-enable-block-modal',
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ]);
