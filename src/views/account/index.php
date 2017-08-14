@@ -57,7 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'header' => Html::tag('h4', Yii::t('hipanel:hosting:account', 'Create SSH account'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-info'],
                     'scenario' => 'create',
-                    'actionUrl' => ['create'],
                     'handleSubmit' => false,
                     'toggleButton' => false,
                     'options' => [
@@ -70,7 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'header' => Html::tag('h4', Yii::t('hipanel:hosting:account', 'Create FTP account'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-info'],
                     'scenario' => 'create-ftponly',
-                    'actionUrl' => ['create-ftponly'],
                     'handleSubmit' => false,
                     'toggleButton' => false,
                     'options' => [
@@ -106,8 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel', 'Delete'), ['class' => 'modal-title label-danger']),
                     'headerOptions' => ['class' => 'label-danger'],
-                    'scenario' => 'delete',
-                    'actionUrl' => ['bulk-delete-modal'],
+                    'scenario' => 'bulk-delete-modal',
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ]
@@ -128,8 +125,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Unblock accounts'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
-                    'scenario' => 'bulk-disable-block',
-                    'actionUrl' => ['bulk-disable-block-modal'],
+                    'scenario' => 'bulk-disable-block-modal',
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ],[
@@ -137,8 +133,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Block accounts'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
-                    'scenario' => 'bulk-enable-block',
-                    'actionUrl' => ['bulk-enable-block-modal'],
+                    'scenario' => 'bulk-enable-block-modal',
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ]);
