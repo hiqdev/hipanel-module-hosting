@@ -64,11 +64,13 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'create' => [
                 'class' => SmartCreateAction::class,
+                'view' => '_form',
                 'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account'),
             ],
             'create-ftponly' => [
                 'class' => SmartCreateAction::class,
+                'view' => '_form',
                 'success' => Yii::t('hipanel:hosting', 'Account creating task has been added to queue'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to create account'),
             ],

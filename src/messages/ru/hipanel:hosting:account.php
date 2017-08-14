@@ -14,4 +14,6 @@ return [
     'Delete account' => 'Удалить аккаунт',
     'Deleting account' => 'Удаление аккаунта',
     'IP address restrictions' => 'Ограничение доступа по IP',
+    'Create SSH account' => 'Создать SSH аккаунт',
+    'Create FTP account' => 'Создать FTP аккаунт',
 ];

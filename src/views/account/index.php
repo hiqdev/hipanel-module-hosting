@@ -35,11 +35,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     <span class="caret"></span>
                 </a>
                 <?= Dropdown::widget([
+                    'encodeLabels' => false,
                     'items' => [
-                        ['label' => Yii::t('hipanel:hosting', 'Create account'), 'url' => ['create']],
-                        ['label' => Yii::t('hipanel:hosting', 'Create FTP account'), 'url' => ['create-ftponly']],
+                        [
+                            'label' => '<i class="fa fa-terminal"></i> ' . Yii::t('hipanel:hosting:account', 'Create SSH account'),
+                            'linkOptions' => ['data-toggle' => 'modal'],
+                            'url' => '#create-ssh-account-modal',
+                        ],
+                        [
+                            'label' => '<i class="fa fa-upload"></i> ' . Yii::t('hipanel:hosting:account', 'Create FTP account'),
+                            'linkOptions' => ['data-toggle' => 'modal'],
+                            'url' => '#create-ftp-account-modal',
+                        ],
                     ]
                 ]); ?>
+            </div>
+            <div class="text-left">
+                <?= AjaxModal::widget([
+                    'id' => 'create-ssh-account-modal',
+                    'bulkPage' => true,
+                    'header' => Html::tag('h4', Yii::t('hipanel:hosting:account', 'Create SSH account'), ['class' => 'modal-title']),
+                    'headerOptions' => ['class' => 'label-info'],
+                    'scenario' => 'create',
+                    'handleSubmit' => false,
+                    'toggleButton' => false,
+                    'options' => [
+                        'tabindex' => false,
+                    ]
+                ]) ?>
+                <?= AjaxModal::widget([
+                    'id' => 'create-ftp-account-modal',
+                    'bulkPage' => true,
+                    'header' => Html::tag('h4', Yii::t('hipanel:hosting:account', 'Create FTP account'), ['class' => 'modal-title']),
+                    'headerOptions' => ['class' => 'label-info'],
+                    'scenario' => 'create-ftponly',
+                    'handleSubmit' => false,
+                    'toggleButton' => false,
+                    'options' => [
+                        'tabindex' => false,
+                    ]
+                ]) ?>
             </div>
         <?php $page->endContent() ?>
 
@@ -69,8 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel', 'Delete'), ['class' => 'modal-title label-danger']),
                     'headerOptions' => ['class' => 'label-danger'],
-                    'scenario' => 'delete',
-                    'actionUrl' => ['bulk-delete-modal'],
+                    'scenario' => 'bulk-delete-modal',
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ]
@@ -89,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 array_unshift($ajaxModals, [
                     'id' => 'bulk-disable-block-modal',
                     'bulkPage' => true,
-                    'header' => Html::tag('h4', Yii::t('hipanel:client', 'Unblock clients'), ['class' => 'modal-title']),
+                    'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Unblock accounts'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
                     'scenario' => 'bulk-disable-block-modal',
                     'handleSubmit' => false,
@@ -97,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],[
                     'id' => 'bulk-enable-block-modal',
                     'bulkPage' => true,
-                    'header' => Html::tag('h4', Yii::t('hipanel:client', 'Block clients'), ['class' => 'modal-title']),
+                    'header' => Html::tag('h4', Yii::t('hipanel:hosting', 'Block accounts'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
                     'scenario' => 'bulk-enable-block-modal',
                     'handleSubmit' => false,
