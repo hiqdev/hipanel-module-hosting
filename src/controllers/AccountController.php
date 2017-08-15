@@ -56,6 +56,13 @@ class AccountController extends \hipanel\base\CrudController
                 'findOptions' => [
                     'with_mail_settings' => true,
                 ],
+                'on beforePerform' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith(['blocking']);
+                    $dataProvider->query->andWhere(['with_blocking' => 1]);
+                },
                 'data' => function ($action) {
                     return [
                         'blockReasons' => $action->controller->getBlockReasons(),
@@ -102,7 +109,7 @@ class AccountController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Account was blocked successfully'),
                 'error' => Yii::t('hipanel:hosting', 'Error during the account blocking'),
                 'POST html' => [
-                    'save'    => true,
+                    'save' => true,
                     'success' => [
                         'class' => RedirectAction::class,
                     ],
@@ -136,7 +143,7 @@ class AccountController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Account was unblocked successfully'),
                 'error' => Yii::t('hipanel:hosting', 'Error during the account unblocking'),
                 'POST html' => [
-                    'save'    => true,
+                    'save' => true,
                     'success' => [
                         'class' => RedirectAction::class,
                     ],

@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         'seller_id', 'client_id',
                         ['attribute' => 'login'],
-                        'type', 'state', 'sshftp_ips', 'per_hour_limit'
+                        'type', 'state', 'sshftp_ips', 'per_hour_limit', 'blocking'
                     ],
                 ]);
                 $box->endBody();
