@@ -57,12 +57,19 @@ class HdomainController extends \hipanel\base\CrudController
             'view' => [
                 'class' => ViewAction::class,
                 'findOptions' => [
-                    'with_vhosts'  => true,
-                    'with_aliases' => true,
-                    'with_request' => true,
-                    'show_deleted' => true,
-                    'show_aliases' => true,
+                    'with_vhosts'   => true,
+                    'with_aliases'  => true,
+                    'with_request'  => true,
+                    'show_deleted'  => true,
+                    'show_aliases'  => true,
+                    'with_blocking' => true,
                 ],
+                'on beforePerform' => function (Event $event) {
+                    /** @var \hipanel\actions\SearchAction $action */
+                    $action = $event->sender;
+                    $dataProvider = $action->getDataProvider();
+                    $dataProvider->query->joinWith(['blocking']);
+                },
                 'data' => function ($action) {
                     return [
                         'blockReasons' => $this->getBlockReasons(),
