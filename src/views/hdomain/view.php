@@ -122,18 +122,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="tab-pane" id="hdomain-dns">
                     <?php
-//                    echo DnsZoneEditWidget::widget([
-//                        'domainId' => $model->getDnsId(),
-//                        'clientScriptWrap' => function ($js) {
-//                            return new \yii\web\JsExpression("
-//                                $('a[data-toggle=tab]').filter(function () {
-//                                    return $(this).attr('href') == '#hdomain-dns';
-//                                }).on('shown.bs.tab', function (e) {
-//                                    $js
-//                                });
-//                            ");
-//                        }
-//                    ])
+                    echo DnsZoneEditWidget::widget([
+                        'domainId' => $model->getDnsId(),
+                        'clientScriptWrap' => function ($js) {
+                            return new \yii\web\JsExpression("
+                                $('a[data-toggle=tab]').filter(function () {
+                                    return $(this).attr('href') == '#hdomain-dns';
+                                }).on('shown.bs.tab', function (e) {
+                                    $js
+                                });
+                            ");
+                        }
+                    ])
                     ?>
                 </div>
             </div>
