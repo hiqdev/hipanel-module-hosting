@@ -47,7 +47,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 'attribute' => 'du_limit',
                 'format' => 'html',
                 'value' => function ($model) {
-                    return $model->du_limit . 'MB';
+                    return !empty($model->du_limit) ? $model->du_limit . 'MB' : '';
                 },
             ],
             'domain' => [
