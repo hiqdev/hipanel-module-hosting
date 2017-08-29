@@ -293,4 +293,7 @@ return [
 
     'Confirm hosting domain blocking' => 'Подтвердить блокирование хостинг-домена',
     'This action will block access to the website from the world!' => 'Это действие заблокирует доступ к веб-сайту из мира!',
+
+    'Access credentials' => 'Данные для доступа',
+    'Go to the site' => 'Перейти',
 ];

@@ -45,6 +45,25 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= MailDetailMenu::widget(['model' => $model]) ?>
         </div>
         <?php Box::end() ?>
+        <div class="box box-widget">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?= Yii::t('hipanel:hosting', 'Access credentials') ?></h3>
+            </div>
+            <div class="box-body">
+                <dl>
+                    <dt><?= Yii::t('hipanel:hosting', 'POP/IMAP') ?></dt>
+                    <dd style="display: flex; justify-content: space-between">
+                        mail.connecting.name
+                        <?= Html::a(Yii::t('hipanel:hosting', 'Go to the site'), '//mail.connecting.name', ['target' => '_blank', 'class' => 'btn btn-default btn-xs']) ?></dd>
+
+                    <dt><?= Yii::t('hipanel:hosting', 'SMTP') ?></dt>
+                    <dd>smtp.connecting.name</dd>
+
+                    <dt><?= Yii::t('hipanel:hosting', 'Login') ?></dt>
+                    <dd><?= $model->mail ?></dd>
+                </dl>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-9">
