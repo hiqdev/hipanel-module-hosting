@@ -3,6 +3,7 @@
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\BackupGridView;
 use hipanel\modules\hosting\grid\BackupingGridView;
+use hipanel\modules\hosting\menus\BackupingDetailMenu;
 use hipanel\widgets\ClientSellerLink;
 use hipanel\widgets\IndexPage;
 use yii\bootstrap\ActiveForm;
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row">
     <div class="col-md-3">
         <div class="box box-solid">
-            <div class="box-body">
+            <div class="box-body no-padding">
                 <div class="profile-user-img text-center">
                     <i class="fa fa-archive fa-5x"></i>
                 </div>
@@ -30,6 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <span class="profile-user-name"><?= ClientSellerLink::widget(compact('model')) ?></span>
                 </p>
 
+                <div class="profile-usermenu">
+                    <?= BackupingDetailMenu::widget(['model' => $model]) ?>
+                </div>
+
+            </div>
+            <div class="box-footer no-padding">
                 <?= BackupingGridView::detailView([
                     'model' => $model,
                     'boxed' => false,
@@ -56,10 +63,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if ($hasBackup) : ?>
             <?php $page = IndexPage::begin(['model' => $model, 'layout' => 'noSearch']) ?>
             <?php $page->beginContent('show-actions') ?>
-                <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel:hosting', 'Backups')?></h4>
+            <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel:hosting', 'Backups') ?></h4>
             <?php $page->endContent() ?>
             <?php $page->beginContent('bulk-actions') ?>
-                <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), Url::toRoute('@backup/delete'), 'danger')?>
+            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), Url::toRoute('@backup/delete'), 'danger') ?>
             <?php $page->endContent() ?>
             <?php $page->beginContent('table') ?>
             <?php $page->beginBulkForm() ?>
@@ -85,7 +92,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php else: ?>
             <div class="box box-warning box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="icon fa fa-warning"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:hosting', 'Backup is not enabled')?></h3>
+                    <h3 class="box-title">
+                        <i class="icon fa fa-warning"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:hosting', 'Backup is not enabled') ?>
+                    </h3>
                 </div>
                 <div class="box-body">
                     <?php $form = ActiveForm::begin(['action' => '@backuping/update']) ?>

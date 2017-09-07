@@ -296,4 +296,6 @@ return [
 
     'Access credentials' => 'Данные для доступа',
     'Go to the site' => 'Перейти',
+    'Update settings' => 'Изменить настройки',
+    'Backup settings have been changed' => 'Настройки бэкапа были изменены',
 ];

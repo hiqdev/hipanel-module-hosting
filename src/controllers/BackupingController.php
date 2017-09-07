@@ -15,13 +15,33 @@ use hipanel\actions\OrientationAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
+use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
+use hipanel\helpers\ArrayHelper;
+use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\BackupSearch;
 use Yii;
+use yii\filters\AccessControl;
 
 class BackupingController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'manage-access' => [
+                'class' => AccessControl::class,
+                'only' => ['update'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['support'],
+                    ],
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return [
@@ -42,6 +62,15 @@ class BackupingController extends \hipanel\base\CrudController
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Backup settings have been changed'),
+                'data' => function ($action) {
+                    return [
+                        'typeOptions' => $action->controller->getTypeOptions(),
+                        'methodOptions' => $action->controller->getMethodOptions(),
+                        'dayOptions' => $action->controller->getDayOptions(),
+                        'hourOptions' => $action->controller->getHourOptions(),
+                    ];
+                }
             ],
             'disable' => [
                 'class' => SmartPerformAction::class,
@@ -70,12 +99,34 @@ class BackupingController extends \hipanel\base\CrudController
                     ];
                 },
             ],
+            'validate-form' => [
+                'class' => ValidateFormAction::class,
+            ],
         ];
+    }
+
+    public function getDayOptions()
+    {
+        return ArrayHelper::map(Ref::find()->where(['gtype' => 'type,day', 'select' => 'full'])->all(), 'id', function ($model) {
+            return Yii::t('hipanel:hosting', $model->label);
+        });
+    }
+
+    public function getHourOptions()
+    {
+        return ArrayHelper::map(Ref::find()->where(['gtype' => 'type,hour', 'select' => 'full'])->all(), 'id', function ($model) {
+            return Yii::t('hipanel:hosting', $model->label);
+        });
     }
 
     public function getTypeOptions()
     {
-        return $this->getRefs('type,backuping', 'hipanel:hosting');
+        return $this->getRefs('type,backuping', 'hipanel:hosting:backuping:periodicity');
+    }
+
+    public function getMethodOptions()
+    {
+        return $this->getRefs('type,backup_method', 'hipanel:hosting');
     }
 
     public function getStateOptions()
