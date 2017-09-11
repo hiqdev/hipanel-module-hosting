@@ -39,15 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridLegend::widget(['legendItem' => new HdomainGridLegend($model)]) ?>
         <?php $page->endcontent() ?>
 
-        <?php $page->beginContent('show-actions') ?>
-            <?= $page->renderLayoutSwitcher() ?>
+        <?php $page->beginContent('sorter-actions') ?>
             <?= $page->renderSorter([
                 'attributes' => [
                     'domain', 'client', 'seller',
                     'account', 'server', 'state',
                 ],
             ]) ?>
-            <?= $page->renderPerPage() ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>

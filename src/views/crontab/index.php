@@ -16,8 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->beginContent('main-actions') ?>
         <?php $page->endContent() ?>
 
-        <?php $page->beginContent('show-actions') ?>
-            <?= $page->renderLayoutSwitcher() ?>
+        <?php $page->beginContent('sorter-actions') ?>
             <?= $page->renderSorter([
                 'attributes' => [
                     'account',
@@ -25,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'server',
                 ],
             ]) ?>
-            <?= $page->renderPerPage() ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>

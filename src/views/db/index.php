@@ -20,15 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a(Yii::t('hipanel:hosting', 'Create DB'), 'create', ['class' => 'btn btn-sm btn-success']) ?>
         <?php $page->endContent() ?>
 
-        <?php $page->beginContent('show-actions') ?>
-            <?= $page->renderLayoutSwitcher() ?>
+        <?php $page->beginContent('sorter-actions') ?>
             <?= $page->renderSorter([
                 'attributes' => [
                     'client', 'seller', 'account', 'server',
                     'name', 'description', 'state'
                 ],
             ]) ?>
-            <?= $page->renderPerPage() ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>

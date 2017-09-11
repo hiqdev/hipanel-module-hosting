@@ -30,14 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridLegend::widget(['legendItem' => new IpGridLegend($model)]) ?>
         <?php $page->endContent() ?>
 
-        <?php $page->beginContent('show-actions') ?>
-            <?= $page->renderLayoutSwitcher() ?>
+        <?php $page->beginContent('sorter-actions') ?>
             <?= $page->renderSorter([
                 'attributes' => [
                     'ip'
                 ],
             ]) ?>
-            <?= $page->renderPerPage() ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
