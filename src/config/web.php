@@ -50,6 +50,22 @@ return [
     ],
     'container' => [
         'definitions' => [
+            \hipanel\models\ObjClass::class => [
+                'knownClasses' => [
+                    'db' => [
+                        'color' => 'info',
+                        'label' => function () {
+                            return Yii::t('hipanel:hosting', 'Database');
+                        },
+                    ],
+                    'hdomain' => [
+                        'color' => 'default',
+                        'label' => function () {
+                            return Yii::t('hipanel:hosting', 'Domain');
+                        },
+                    ],
+                ],
+            ],
             \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
                 'add' => [
                     'hosting' => [
