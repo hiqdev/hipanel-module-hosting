@@ -18,7 +18,7 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
-use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
+use hipanel\widgets\obj\ObjLabelWidget;
 use hipanel\modules\server\grid\ServerColumn;
 use hiqdev\xeditable\widgets\XEditable;
 use Yii;
@@ -56,8 +56,9 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'name_like',
                 'format' => 'raw',
                 'value' => function ($model) {
+                    $obj = $model->getObj();
                     return  Html::a($model->name, ['@backuping/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
-                            Html::a(ObjectLabelWidget::widget(compact('model')), ['@' . $model->object . '/view', 'id' => $model->id]);
+                            Html::a(ObjLabelWidget::widget(['model' => $obj]), ['@' . $obj->getObjClass()->getAlias() . '/view', 'id' => $model->id]);
                 },
             ],
             'account' => [
@@ -72,7 +73,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'filter' => false,
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return ObjectLabelWidget::widget(compact('model'));
+                    return ObjLabelWidget::widget(['model' => $model->getObj()]);
                 },
             ],
             'backup_count' => [

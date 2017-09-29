@@ -10,6 +10,7 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\models\Obj;
 use Yii;
 
 class Backuping extends \hipanel\base\Model
@@ -59,6 +60,16 @@ class Backuping extends \hipanel\base\Model
             'type' => Yii::t('hipanel:hosting', 'Periodicity'),
             'object' => Yii::t('hipanel:hosting', 'Object'),
             'skip_lock' => Yii::t('hipanel:hosting', 'Skip Lock'),
+        ]);
+    }
+
+    public function getObj()
+    {
+        return Yii::createObject([
+            'class' => Obj::class,
+            'id' => $this->id,
+            'name' => $this->name,
+            'class_name' => $this->object,
         ]);
     }
 }
