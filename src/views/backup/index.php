@@ -39,9 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $model,
                     'columns' => [
-                        'checkbox', 'object_id',
+                        'checkbox', 'id',
+                        'object_id', 'object',
                         'client', 'account', 'server',
-                        'object', 'time', 'size',
+                        'time', 'size',
                         'actions',
                     ],
                 ]) ?>

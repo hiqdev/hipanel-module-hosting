@@ -12,7 +12,7 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
-use hipanel\modules\hosting\widgets\backup\ObjectLabelWidget;
+use hipanel\widgets\obj\ObjLinkWidget;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
 use yii\helpers\Html;
@@ -23,16 +23,12 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
     {
         return array_merge(parent::columns(), [
             'id' => [
+                'class' => MainColumn::class,
                 'format' => 'html',
-                'attribute' => 'id',
-                'value' => function ($model) {
-                    return Html::tag('span', $model->id, ['class' => 'bold']);
-                },
+                'filterOptions' => ['class' => 'narrow-filter'],
             ],
             'object_id' => [
-                'class' => MainColumn::class,
-                'filterAttribute' => 'id',
-                'attribute' => 'object_id',
+                'filterOptions' => ['class' => 'narrow-filter'],
             ],
             'backup' => [
                 'class' => MainColumn::class,
@@ -48,17 +44,17 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'name',
                 'filterAttribute' => 'name_like',
+                'filterOptions' => ['class' => 'narrow-filter'],
                 'value' => function ($model) {
-                    $labelType = ObjectLabelWidget::widget(compact('model'));
-                    return $labelType . '&nbsp;' .
-                        Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
+                    return  Html::a($model->name, ['@backuping/view', 'id' => $model->object_id], ['class' => 'bold']) . ' ' .
+                            ObjLinkWidget::widget(['model' => $model->getObj()]);
                 },
             ],
             'name' => [
                 'format' => 'raw',
                 'attribute' => 'name',
                 'value' => function ($model) {
-                    return Html::a($model->name, ["@{$model->object}/view", 'id' => $model->object_id], ['data-pjax' => 0]);
+                    return ObjLinkWidget::widget(['label' => $model->name, 'model' => $model->getObj()]);
                 },
             ],
             'size' => [

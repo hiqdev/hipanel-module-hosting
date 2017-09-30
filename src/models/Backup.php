@@ -10,6 +10,7 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\models\Obj;
 use Yii;
 
 class Backup extends \hipanel\base\Model
@@ -42,6 +43,16 @@ class Backup extends \hipanel\base\Model
         return $this->mergeAttributeLabels([
             'method'    => Yii::t('hipanel:hosting', 'Method'),
             'size'      => Yii::t('hipanel:hosting', 'Size'),
+        ]);
+    }
+
+    public function getObj()
+    {
+        return Yii::createObject([
+            'class' => Obj::class,
+            'id' => $this->object_id,
+            'name' => $this->name,
+            'class_name' => $this->object,
         ]);
     }
 }
