@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\widgets\combo;
@@ -60,9 +60,9 @@ class VhostCombo extends Combo
 
                     return data.domain + '<br><small>' +  data.service + ' - ' + data.ip + ':' + data.port + '</small>';
                 }"),
-                'escapeMarkup' => new JsExpression("function (markup) {
+                'escapeMarkup' => new JsExpression('function (markup) {
                     return markup; // Allows HTML
-                }")
+                }'),
             ],
         ]);
     }

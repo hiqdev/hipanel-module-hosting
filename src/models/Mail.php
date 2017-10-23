@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\models;
@@ -46,10 +46,11 @@ class Mail extends \hipanel\base\Model
             }, 'on' => ['create', 'update', 'set-password']],
             [['password'], 'match', 'pattern' => '/^[a-zA-Z0-9]+$/',
                 'message' => Yii::t('hipanel:hosting', 'Password can contain only latin characters and digits.'),
-                'on' => ['create', 'update', 'set-password']],
+                'on' => ['create', 'update', 'set-password'], ],
             [['nick'], EmailLocalPartValidator::class, 'on' => ['create']],
             [['forwards', 'spam_forward_mail'], 'filter', 'filter' => function ($value) {
                 $res = StringHelper::explode($value, ',', true, true);
+
                 return $res;
             }, 'skipOnArray' => true, 'on' => ['create', 'update']],
             [['forwards', 'spam_forward_mail'], 'each', 'rule' => ['email'], 'on' => ['create', 'update']],
