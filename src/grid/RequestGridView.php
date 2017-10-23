@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\grid;
@@ -14,7 +14,6 @@ use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\menus\RequestActionsMenu;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\gridLegend\ColorizeGrid;
-use hipanel\widgets\gridLegend\GridLegend;
 use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;

@@ -5,12 +5,13 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\MainColumn;
+use hipanel\grid\XEditableColumn;
 use hipanel\helpers\FontIcon;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\menus\IpActionsMenu;
@@ -22,7 +23,6 @@ use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
-use hipanel\grid\XEditableColumn;
 
 class IpGridView extends \hipanel\grid\BoxedGridView
 {
@@ -62,6 +62,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                     foreach ($model->tags as $tag) {
                         $labels[] = IpTag::widget(['tag' => $tag]);
                     }
+
                     return implode(' ', $labels);
                 },
             ],
@@ -113,6 +114,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         }
                         $items[] = $item;
                     }
+
                     return ArraySpoiler::widget(['data' => $items, 'visibleCount' => 3]);
                 },
             ],

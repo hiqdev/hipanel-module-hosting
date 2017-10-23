@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\models;
@@ -38,6 +38,7 @@ class Ip extends \hipanel\base\Model
     {
         $attributes = $this->defaultAttributes();
         unset($attributes[array_search('links', $attributes, true)]);
+
         return $attributes;
     }
 
@@ -73,7 +74,7 @@ class Ip extends \hipanel\base\Model
 
             // Set note
             [['note'], 'string', 'on' => ['set-note', 'create', 'update']],
-            [['note'], 'filter','filter'=>'\yii\helpers\HtmlPurifier::process', 'on' => ['set-note', 'create', 'update']],
+            [['note'], 'filter', 'filter'=>'\yii\helpers\HtmlPurifier::process', 'on' => ['set-note', 'create', 'update']],
             [['ip'], 'safe', 'on' => 'set-note'],
             [['id'], 'integer', 'on' => 'set-note'],
         ];
