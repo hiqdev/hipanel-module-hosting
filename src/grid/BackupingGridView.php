@@ -19,6 +19,7 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
 use hipanel\widgets\obj\ObjLabelWidget;
+use hipanel\widgets\obj\ObjLinkWidget;
 use hipanel\modules\server\grid\ServerColumn;
 use hiqdev\xeditable\widgets\XEditable;
 use Yii;
