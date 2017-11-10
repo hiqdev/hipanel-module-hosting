@@ -27,7 +27,7 @@ class VhostController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => RedirectAction::class,
                 'url' => ['@hdomain/index'],
@@ -59,6 +59,6 @@ class VhostController extends \hipanel\base\CrudController
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
-        ];
+        ]);
     }
 }

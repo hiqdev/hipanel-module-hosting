@@ -27,7 +27,7 @@ class HdomainController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'search' => [
                 'class' => ComboSearchAction::class,
             ],
@@ -194,7 +194,7 @@ class HdomainController extends \hipanel\base\CrudController
                     }
                 },
             ],
-        ];
+        ]);
     }
 
     public function getStateData()

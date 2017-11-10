@@ -46,7 +46,7 @@ class IpController extends \hipanel\base\CrudController
 
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => $this->getDataProviderOptions(),
@@ -153,7 +153,7 @@ class IpController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Note changed'),
                 'error' => Yii::t('hipanel:hosting', 'Failed to change note'),
             ],
-        ];
+        ]);
     }
 
     public function getIpTags()

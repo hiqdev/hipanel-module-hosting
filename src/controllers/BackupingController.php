@@ -43,7 +43,7 @@ class BackupingController extends \hipanel\base\CrudController
 
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {
@@ -101,7 +101,7 @@ class BackupingController extends \hipanel\base\CrudController
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
-        ];
+        ]);
     }
 
     public function getDayOptions()

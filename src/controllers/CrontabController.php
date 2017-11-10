@@ -29,7 +29,7 @@ class CrontabController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'filterStorageMap' => [
@@ -47,7 +47,7 @@ class CrontabController extends \hipanel\base\CrudController
             'validate-form' => [
                 'class' => ValidateFormAction::class,
             ],
-        ];
+        ]);
     }
 
     public function actionRequestFetch()

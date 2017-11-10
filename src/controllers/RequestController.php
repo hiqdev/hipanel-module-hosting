@@ -25,7 +25,7 @@ class RequestController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'findOptions' => [
@@ -55,7 +55,7 @@ class RequestController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Deleted'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to delete request.'),
             ],
-        ];
+        ]);
     }
 
     public function getFilteredStates()

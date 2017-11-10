@@ -21,7 +21,7 @@ class BackupController extends CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {
@@ -52,7 +52,7 @@ class BackupController extends CrudController
                     ],
                 ],
             ],
-        ];
+        ]);
     }
 
     public function getObjectOptions()

@@ -31,7 +31,7 @@ class MailController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'search' => [
                 'class' => ComboSearchAction::class,
             ],
@@ -92,7 +92,7 @@ class MailController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Mailbox has been enabled.'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred.'),
             ],
-        ];
+        ]);
     }
 
     public function getStateData()
