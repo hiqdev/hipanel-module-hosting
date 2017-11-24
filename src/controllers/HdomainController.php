@@ -14,6 +14,7 @@ use hipanel\actions\ComboSearchAction;
 use hipanel\actions\IndexAction;
 use hipanel\actions\PrepareBulkAction;
 use hipanel\actions\RedirectAction;
+use hipanel\actions\RenderJsonAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartPerformAction;
@@ -193,6 +194,50 @@ class HdomainController extends \hipanel\base\CrudController
                         $model->setAttribute('backuping_type', 'week');
                     }
                 },
+            ],
+            'set-premium-autorenewal' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:domain', 'Premium autorenewal has been changed'),
+                'scenario' => 'set-paid-feature-autorenewal',
+                'queryOptions' => [
+                    'batch' => false,
+                ],
+                'POST ajax' => [
+                    'save' => true,
+                    'flash' => true,
+                    'success' => [
+                        'class' => RenderJsonAction::class,
+                        'return' => function ($action) {
+                            $message = Yii::$app->session->removeFlash('success');
+                            return [
+                                'success' => true,
+                                'text' => Yii::t('hipanel:domain', reset($message)['text']),
+                            ];
+                        },
+                    ],
+                    'error' => [
+                        'class' => RenderJsonAction::class,
+                        'return' => function ($action) {
+                            $message = Yii::$app->session->removeFlash('error');
+                            return [
+                                'success' => false,
+                                'text' => reset($message)['text'],
+                            ];
+                        },
+                    ],
+                ],
+            ],
+            'enable-premium-autorenewal' => [
+                'class' => SmartPerformAction::class,
+                'scenario' => 'enable-paid-feature-autorenewal',
+                'success' => Yii::t('hipanel:domain', 'Autorenewal has been enabled'),
+                'error' => Yii::t('hipanel:domain', 'Failed enabling Autorenewal'),
+            ],
+            'disable-premium-autorenewal' => [
+                'class' => SmartPerformAction::class,
+                'scenario' => 'disable-paid-feature-autorenewal',
+                'success' => Yii::t('hipanel:domain', 'Autorenewal has been disabled'),
+                'error' => Yii::t('hipanel:domain', 'Failed disabling Autorenewal'),
             ],
         ]);
     }

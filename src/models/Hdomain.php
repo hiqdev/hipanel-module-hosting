@@ -139,6 +139,7 @@ class Hdomain extends \hipanel\base\Model
             [['id', 'dns_on'], 'safe', 'on' => ['set-dns-on']],
             [['backuping_exists'], 'boolean'],
             [['backuping_type'], 'required', 'on' => ['enable-backuping', 'disable-backuping']],
+            [['id', 'premium_autorenewal'], 'required', 'on' => ['set-paid-feature-autorenewal']],
         ];
     }
 
