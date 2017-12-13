@@ -21,6 +21,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'label' => Yii::t('hipanel:hosting', 'Hosting'),
                 'url' => '#',
                 'icon' => 'fa-sitemap',
+                'visible' => Yii::$app->user->can('account.read'),
                 'items' => [
                     'accounts' => [
                         'label' => Yii::t('hipanel:hosting', 'Accounts'),
