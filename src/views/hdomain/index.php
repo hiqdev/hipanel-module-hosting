@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]) ?>
             </div>
             <?php if (Yii::getAlias('@certificate', false)) : ?>
-                <?= Html::a(Yii::t('hipanel:certificate', 'Order certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
+                <?= Html::a(Yii::t('hipanel:certificate', 'Buy certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
             <?php endif ?>
         <?php $page->endContent() ?>
 
