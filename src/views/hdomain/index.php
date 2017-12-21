@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ]) ?>
             </div>
-            <?php if (Yii::getAlias('@certificate', false)) : ?>
+            <?php if (Yii::getAlias('@certificate', false) && Yii::$app->user->can('certificate.pay') && Yii::$app->user->can('test.beta')) : ?>
                 <?= Html::a(Yii::t('hipanel:certificate', 'Buy certificate'), ['@certificate/order/index'], ['class' => 'btn btn-sm btn-success']) ?>
             <?php endif ?>
         <?php $page->endContent() ?>
