@@ -58,6 +58,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'size' => [
+                'format' => 'html',
                 'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->size, 2);
