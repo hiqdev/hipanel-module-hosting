@@ -197,7 +197,7 @@ class HdomainController extends \hipanel\base\CrudController
             ],
             'set-premium-autorenewal' => [
                 'class' => SmartPerformAction::class,
-                'success' => Yii::t('hipanel:domain', 'Premium autorenewal has been changed'),
+                'success' => Yii::t('hipanel', 'Premium autorenewal has been changed'),
                 'scenario' => 'set-paid-feature-autorenewal',
                 'queryOptions' => [
                     'batch' => false,
@@ -211,7 +211,7 @@ class HdomainController extends \hipanel\base\CrudController
                             $message = Yii::$app->session->removeFlash('success');
                             return [
                                 'success' => true,
-                                'text' => Yii::t('hipanel:domain', reset($message)['text']),
+                                'text' => Yii::t('hipanel', reset($message)['text']),
                             ];
                         },
                     ],
@@ -230,14 +230,14 @@ class HdomainController extends \hipanel\base\CrudController
             'enable-premium-autorenewal' => [
                 'class' => SmartPerformAction::class,
                 'scenario' => 'enable-paid-feature-autorenewal',
-                'success' => Yii::t('hipanel:domain', 'Autorenewal has been enabled'),
-                'error' => Yii::t('hipanel:domain', 'Failed enabling Autorenewal'),
+                'success' => Yii::t('hipanel', 'Autorenewal has been enabled'),
+                'error' => Yii::t('hipanel', 'Failed enabling Autorenewal'),
             ],
             'disable-premium-autorenewal' => [
                 'class' => SmartPerformAction::class,
                 'scenario' => 'disable-paid-feature-autorenewal',
-                'success' => Yii::t('hipanel:domain', 'Autorenewal has been disabled'),
-                'error' => Yii::t('hipanel:domain', 'Failed disabling Autorenewal'),
+                'success' => Yii::t('hipanel', 'Autorenewal has been disabled'),
+                'error' => Yii::t('hipanel', 'Failed disabling Autorenewal'),
             ],
         ]);
     }
