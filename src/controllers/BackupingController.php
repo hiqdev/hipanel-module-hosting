@@ -25,22 +25,6 @@ use yii\filters\AccessControl;
 
 class BackupingController extends \hipanel\base\CrudController
 {
-    public function behaviors()
-    {
-        return ArrayHelper::merge(parent::behaviors(), [
-            'manage-access' => [
-                'class' => AccessControl::class,
-                'only' => ['update'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['support'],
-                    ],
-                ],
-            ],
-        ]);
-    }
-
     public function actions()
     {
         return array_merge(parent::actions(), [
