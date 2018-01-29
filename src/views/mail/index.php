@@ -50,12 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'rowOptions' => function ($model) {
                         return GridLegend::create(new MailGridLegend($model))->gridRowOptions();
                     },
-                    'columns' => [
-                        'checkbox',
-                        'mail', 'type', 'forwards',
-                        'client', 'seller', 'server',
-                        'state',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>

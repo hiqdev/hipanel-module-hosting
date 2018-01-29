@@ -35,11 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
-                    'columns' => [
-                        'crontab', 'account',
-                        'actions',
-                        'server', 'client', 'state',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>

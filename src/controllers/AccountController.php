@@ -33,7 +33,7 @@ class AccountController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'data' => function ($action) {
@@ -209,7 +209,7 @@ class AccountController extends \hipanel\base\CrudController
                     return $results;
                 },
             ],
-        ];
+        ]);
     }
 
     public function getStateData()

@@ -39,13 +39,7 @@ $this->params['breadcrumbs'][]  = $this->title;
                     'dataProvider' => $dataProvider,
                     'boxed' => false,
                     'filterModel' => $model,
-                    'columns' => [
-                        'seller_id', 'client_id',
-                        'server',
-                        'actions',
-                        'object', 'ip',
-                        'soft', 'state',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>

@@ -48,14 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'rowOptions' => function ($model) {
                         return GridLegend::create(new IpGridLegend($model))->gridRowOptions();
                     },
-                    'columns' => [
-                        'ip',
-                        'note',
-                        'actions',
-                        'tags',
-                        'counters',
-                        'links',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>

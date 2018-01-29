@@ -27,7 +27,16 @@ use yii\helpers\Html;
 
 class BackupingGridView extends \hipanel\grid\BoxedGridView
 {
-    public $typeOptions;
+    public $typeOptions = [];
+
+    public function init()
+    {
+        parent::init();
+        $controller = Yii::$app->controller;
+        if (empty($this->typeOptions) && method_exists($controller, 'getTypeOptions')) {
+            $this->typeOptions = (array) $controller->getTypeOptions();
+        }
+    }
 
     public function getTypeOptions()
     {

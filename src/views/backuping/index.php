@@ -37,12 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $model,
                     'typeOptions' => $typeOptions,
-                    'columns' => [
-                        'checkbox',
-                        'main', 'client', 'account', 'server',
-                        'backup_count', 'type', 'state_label',
-                        'backup_last', 'total_du',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>

@@ -110,12 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'rowOptions' => function ($model) {
                         return GridLegend::create(new HdomainGridLegend($model))->gridRowOptions();
                     },
-                    'columns'      => [
-                        'checkbox',
-                        'hdomain_with_aliases',
-                        'client', 'seller', 'account', 'server',
-                        'state', 'ip', 'service',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>

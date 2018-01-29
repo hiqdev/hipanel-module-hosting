@@ -40,12 +40,7 @@ $this->params['breadcrumbs'][]  = $this->title;
                     'filterModel'  => $model,
                     'boxed' => false,
                     'colorize' => true,
-                    'columns'      => [
-                        'checkbox', 'classes',
-                        'server', 'account',
-                        'actions',
-                        'object', 'time', 'state',
-                    ],
+                    'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>
