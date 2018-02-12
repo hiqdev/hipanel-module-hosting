@@ -26,11 +26,29 @@ use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
+use hipanel\filters\EasyAccessControl;
 use Yii;
 use yii\base\Event;
 
 class AccountController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create' => 'account.create',
+                    'create-ftponly' => 'account.create',
+                    'change-password' => 'account.update',
+                    'set-allowed-ips' => 'account.update',
+                    'delete' => 'account.delete',
+                    '*' => 'account.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [
