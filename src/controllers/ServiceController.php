@@ -22,10 +22,10 @@ use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
+use hipanel\filters\EasyAccessControl;
 use hipanel\modules\hosting\models\Soft;
 use Yii;
 use yii\base\Event;
-use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
 class ServiceController extends \hipanel\base\CrudController
@@ -33,14 +33,13 @@ class ServiceController extends \hipanel\base\CrudController
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'manage-access' => [
-                'class' => AccessControl::class,
-                'only'  => ['create', 'update', 'delete'],
-                'rules' => [
-                    [
-                        'allow'   => true,
-                        'roles'   => ['admin'],
-                    ],
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create' => 'admin',
+                    'update' => 'admin',
+                    'delete' => 'admin',
+                    '*' => 'server.read',
                 ],
             ],
         ]);
