@@ -17,13 +17,13 @@ use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
+use hipanel\filters\EasyAccessControl;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\modules\hosting\models\Link;
 use hiqdev\hiart\Collection;
 use hiqdev\hiart\ResponseErrorException;
 use Yii;
 use yii\base\Event;
-use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
 class IpController extends \hipanel\base\CrudController
@@ -31,14 +31,13 @@ class IpController extends \hipanel\base\CrudController
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'manage-access' => [
-                'class' => AccessControl::class,
-                'only'  => ['create', 'update', 'delete'],
-                'rules' => [
-                    [
-                        'allow'   => true,
-                        'roles'   => ['admin'],
-                    ],
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create' => 'admin',
+                    'update' => 'admin',
+                    'delete' => 'admin',
+                    '*' => 'server.read',
                 ],
             ],
         ]);
