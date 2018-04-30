@@ -25,10 +25,26 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\modules\hosting\models\Mail;
+use hipanel\filters\EasyAccessControl;
 use Yii;
 
 class MailController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create' => 'account.create',
+                    'update' => 'account.update',
+                    'delete' => 'account.delete',
+                    '*' => 'account.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [

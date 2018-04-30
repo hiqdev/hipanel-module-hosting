@@ -20,11 +20,26 @@ use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\BackupSearch;
+use hipanel\filters\EasyAccessControl;
 use Yii;
 use yii\filters\AccessControl;
 
 class BackupingController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'update' => 'account.update',
+                    'delete' => 'account.delete',
+                    '*' => 'account.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [
