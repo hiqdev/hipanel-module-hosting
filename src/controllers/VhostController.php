@@ -32,6 +32,7 @@ class VhostController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
+                    'advanced-config,manage-proxy' => 'account.update',
                     '*' => 'account.read',
                 ],
             ],
