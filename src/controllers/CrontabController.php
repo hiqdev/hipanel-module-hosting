@@ -21,12 +21,26 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\modules\hosting\models\Crontab;
+use hipanel\filters\EasyAccessControl;
 use Yii;
 use yii\base\Exception;
 use yii\web\Response;
 
 class CrontabController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'update' => 'account.update',
+                    '*' => 'account.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [

@@ -21,11 +21,26 @@ use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
+use hipanel\filters\EasyAccessControl;
 use Yii;
 use yii\base\Event;
 
 class HdomainController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create' => 'account.create',
+                    'delete' => 'account.delete',
+                    '*' => 'account.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [
