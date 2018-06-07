@@ -54,7 +54,7 @@
     "autoload": {
         "psr-4": {
             "hipanel\\modules\\hosting\\": "src",
-            "hipanel\\modules\\hosting\\tests": "tests"
+            "hipanel\\modules\\hosting\\tests\\": "tests"
         }
     },
     "extra": {
