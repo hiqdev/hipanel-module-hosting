@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel:hosting', 'Backups') ?></h4>
             <?php $page->endContent() ?>
             <?php $page->beginContent('bulk-actions') ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), Url::toRoute('@backup/delete'), 'danger') ?>
+                <?= $page->renderBulkDeleteButton('@backup/delete') ?>
             <?php $page->endContent() ?>
             <?php $page->beginContent('table') ?>
             <?php $page->beginBulkForm() ?>

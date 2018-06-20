@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
             <?php endif ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel', 'Delete'), 'delete', 'danger')?>
+            <?= $page->renderBulkDeleteButton('delete')?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
