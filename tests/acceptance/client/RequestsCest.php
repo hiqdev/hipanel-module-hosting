@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class RequestsCest
@@ -23,50 +24,42 @@ class RequestsCest
         $I->login();
         $I->needPage(Url::to('@request'));
         $I->see('Requests', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
-        $this->ensureICanSeeLegendBox($I);
+        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-request-search';
-        $this->index->containsFilters($formId, []);
-
-        $I->see('Server', "//form[@id='$formId']//span");
-        $I->see('Account', "//form[@id='$formId']//span");
-        $I->see('Status', "//form[@id='$formId']//span");
-        $I->see('Object', "//form[@id='$formId']//span");
+        $this->index->containsFilters([
+            new Select2('Server'),
+            new Select2('Account'),
+            new Select2('Status'),
+            new Select2('Object'),
+        ]);
     }
 
-    private function ensureICanSeeLegendBox(Client $I)
+    private function ensureICanSeeLegendBox()
     {
-        $I->see('Legend', 'h3');
-        $I->see('Scheduled time:', 'h4');
-        $I->see('State:', 'h4');
-
-        $legend = [
+        $this->index->containsLegend([
+            'Scheduled time:',
             'Already',
             'Deferred',
+            'State:',
             'New',
             'In progress',
             'Done',
             'Error',
             'Buzzed',
-        ];
-        foreach ($legend as $text) {
-            $I->see($text, '//ul/li');
-        }
+        ]);
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsBulkButtons([
-            ["//button[@type='submit']" => 'Delete'],
+            'Delete',
         ]);
-        $this->index->containsColumns('bulk-request-search', [
+        $this->index->containsColumns([
             'Action',
             'Server',
             'Account',

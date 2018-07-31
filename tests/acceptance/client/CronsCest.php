@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class CronsCest
@@ -23,24 +24,21 @@ class CronsCest
         $I->login();
         $I->needPage(Url::to('@crontab'));
         $I->see('Crons', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
+        $this->ensureICanSeeAdvancedSearchBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-crontab-search';
-        $this->index->containsFilters($formId, []);
-
-        $I->see('Account', "//form[@id='$formId']//span");
-        $I->see('Server', "//form[@id='$formId']//span");
+        $this->index->containsFilters([
+            new Select2('Account'),
+            new Select2('Server'),
+        ]);
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
-        $this->index->containsColumns('bulk-crontab-search', [
+        $this->index->containsColumns([
             'Crontab',
             'Account',
             'Server',

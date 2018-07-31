@@ -4,6 +4,8 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Input;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class ServicesCest
@@ -23,30 +25,23 @@ class ServicesCest
         $I->login();
         $I->needPage(Url::to('@service'));
         $I->see('Services', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
+        $this->ensureICanSeeAdvancedSearchBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-service-search';
-        $this->index->containsFilters($formId, [
-            ['input' => [
-                'id' => 'servicesearch-name_like',
-                'placeholder' => 'Name',
-            ]],
+        $this->index->containsFilters([
+            new Input('Name'),
+            new Select2('Server'),
+            new Select2('Soft'),
+            new Select2('Status'),
         ]);
-
-        $I->see('Server', "//form[@id='$formId']//span");
-        $I->see('Soft', "//form[@id='$formId']//span");
-        $I->see('Status', "//form[@id='$formId']//span");
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
-        $this->index->containsColumns('bulk-service-search', [
+        $this->index->containsColumns([
             'Server',
             'Object',
             'IP',

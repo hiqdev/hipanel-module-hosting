@@ -4,6 +4,8 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Input;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class IPAddressesCest
@@ -23,48 +25,34 @@ class IPAddressesCest
         $I->login();
         $I->needPage(Url::to('@ip'));
         $I->see('IP addresses', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
-        $this->ensureICanSeeLegendBox($I);
+        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-ip-search';
-        $this->index->containsFilters($formId, [
-            ['input' => [
-                'id' => 'ipsearch-ip_like',
-                'placeholder' => 'IP',
-            ]],
-            ['input' => [
-                'placeholder' => 'Tags',
-            ]],
+        $this->index->containsFilters([
+            new Input('IP'),
+            new Input('Tags'),
+            new Select2('Servers'),
         ]);
-
-        $I->see('Servers', "//form[@id='$formId']//span");
     }
 
-    private function ensureICanSeeLegendBox(Client $I)
+    private function ensureICanSeeLegendBox()
     {
-        $I->see('Legend', 'h3');
-
-        $legend = [
+        $this->index->containsLegend([
             'Shared',
             'Free',
             'Dedicated',
             'System',
             'Blocked',
-        ];
-        foreach ($legend as $text) {
-            $I->see($text, '//ul/li');
-        }
+        ]);
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
-        $this->index->containsColumns('bulk-ip-search', [
+        $this->index->containsColumns([
             'IP',
             'Counters',
             'Links',
