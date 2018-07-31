@@ -4,6 +4,8 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Input;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class MailboxesCest
@@ -23,51 +25,39 @@ class MailboxesCest
         $I->login();
         $I->needPage(Url::to('@mail'));
         $I->see('Mailboxes', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
-        $this->ensureICanSeeLegendBox($I);
+        $I->seeLink('Create mailbox', Url::to('create'));
+        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->seeLink('Create mailbox', Url::to('create'));
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-mail-search';
-        $this->index->containsFilters($formId, [
-            ['input' => [
-                'id' => 'mailsearch-mail_like',
-                'placeholder' => 'E-mail',
-            ]],
+        $this->index->containsFilters([
+            new Input('E-mail'),
+            new Select2('Server'),
+            new Select2('Status'),
+            new Select2('Type'),
         ]);
-
-        $I->see('Server', "//form[@id='$formId']//span");
-        $I->see('Status', "//form[@id='$formId']//span");
-        $I->see('Type', "//form[@id='$formId']//span");
     }
 
-    private function ensureICanSeeLegendBox(Client $I)
+    private function ensureICanSeeLegendBox()
     {
-        $I->see('Legend', 'h3');
-
-        $legend = [
+        $this->index->containsLegend([
             'Mail box',
             'Mail alias',
             'Mail box with aliases',
-        ];
-        foreach ($legend as $text) {
-            $I->see($text, '//ul/li');
-        }
+        ]);
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsBulkButtons([
-            ["//button[@type='submit']" => 'Enable'],
-            ["//button[@type='submit']" => 'Disable'],
-            ["//button[@type='submit']" => 'Delete'],
+            'Enable',
+            'Disable',
+            'Delete',
         ]);
-        $this->index->containsColumns('bulk-mail-search', [
+        $this->index->containsColumns( [
             'E-mail',
             'Type',
             'Forwarding',

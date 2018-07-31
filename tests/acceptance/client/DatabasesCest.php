@@ -4,6 +4,8 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Input;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class DatabasesCest
@@ -23,39 +25,27 @@ class DatabasesCest
         $I->login();
         $I->needPage(Url::to('@db'));
         $I->see('Databases', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
+        $I->seeLink('Create DB', Url::to('create'));
+        $this->ensureICanSeeAdvancedSearchBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->seeLink('Create DB', Url::to('create'));
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-db-search';
-        $this->index->containsFilters($formId, [
-            ['input' => [
-                'id' => 'dbsearch-name',
-                'placeholder' => 'DB name',
-            ]],
-            ['input' => [
-                'id' => 'dbsearch-description',
-                'placeholder' => 'Description',
-            ]],
-            ['input' => [
-                'placeholder' => 'Status',
-            ]],
+        $this->index->containsFilters([
+            new Input('DB name'),
+            new Input('Description'),
+            new Input('Status'),
+            new Select2('Server')
         ]);
-
-        $I->see('Server', "//form[@id='$formId']//span");
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsBulkButtons([
-            ["//button[@type='submit']" => 'Delete'],
+            'Delete',
         ]);
-        $this->index->containsColumns('bulk-db-search', [
+        $this->index->containsColumns([
             'DB name',
             'Account',
             'Server',

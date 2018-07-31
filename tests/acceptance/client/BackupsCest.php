@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class BackupsCest
@@ -23,30 +24,27 @@ class BackupsCest
         $I->login();
         $I->needPage(Url::to('@backuping'));
         $I->see('Backups', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
+        $this->ensureICanSeeAdvancedSearchBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-backuping-search';
-        $this->index->containsFilters($formId, []);
-
-        $I->see('State', "//form[@id='$formId']//span");
-        $I->see('Account', "//form[@id='$formId']//span");
-        $I->see('Server', "//form[@id='$formId']//span");
+        $this->index->containsFilters([
+            new Select2('State'),
+            new Select2('Account'),
+            new Select2('Server'),
+        ]);
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsBulkButtons([
-            ["//button[@type='submit']" => 'Enable'],
-            ["//button[@type='submit']" => 'Disable'],
-            ["//button[@type='submit']" => 'Delete'],
+            'Enable',
+            'Disable',
+            'Delete',
         ]);
-        $this->index->containsColumns('bulk-backuping-search', [
+        $this->index->containsColumns([
             'Name',
             'Account',
             'Server',
