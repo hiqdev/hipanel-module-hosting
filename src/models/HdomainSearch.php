@@ -18,6 +18,7 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\SearchModelTrait;
 use hipanel\helpers\StringHelper;
+use Yii;
 use yii\helpers\ArrayHelper;
 
 class HdomainSearch extends Hdomain
@@ -54,6 +55,13 @@ class HdomainSearch extends Hdomain
             'with_vhosts',
             'with_dns',
             'show_aliases_only',
+        ]);
+    }
+
+    public function attributeLabels()
+    {
+        return $this->mergeAttributeLabels([
+            'domain_in' => Yii::t('hipanel:hosting', 'Domain list (comma-separated)')
         ]);
     }
 }
