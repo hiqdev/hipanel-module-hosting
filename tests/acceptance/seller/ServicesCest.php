@@ -34,6 +34,8 @@ class ServicesCest
         $this->index->containsFilters([
             new Input('Name'),
             new Select2('Server'),
+            new Select2('Client'),
+            new Select2('Reseller'),
             new Select2('Soft'),
             new Select2('Status'),
         ]);
@@ -42,6 +44,8 @@ class ServicesCest
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsColumns([
+            'Reseller',
+            'Client',
             'Server',
             'Object',
             'IP',

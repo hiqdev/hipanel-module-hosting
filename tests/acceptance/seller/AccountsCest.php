@@ -35,6 +35,8 @@ class AccountsCest
         $this->index->containsFilters([
             new Input('Login'),
             new Select2('Server'),
+            new Select2('Client'),
+            new Select2('Reseller'),
             new Select2('Type'),
             new Select2('Status'),
         ]);
@@ -47,6 +49,8 @@ class AccountsCest
         ]);
         $this->index->containsColumns([
             'Account',
+            'Client',
+            'Reseller',
             'Server',
             'Status',
             'Type',

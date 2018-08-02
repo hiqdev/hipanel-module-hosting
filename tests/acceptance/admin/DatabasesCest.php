@@ -34,9 +34,11 @@ class DatabasesCest
     {
         $this->index->containsFilters([
             new Input('DB name'),
+            new Select2('Server'),
             new Input('Description'),
+            new Select2('Client'),
+            new Select2('Reseller'),
             new Input('Status'),
-            new Select2('Server')
         ]);
     }
 
@@ -49,6 +51,8 @@ class DatabasesCest
             'DB name',
             'Account',
             'Server',
+            'Client',
+            'Reseller',
             'Description',
             'Status',
         ]);

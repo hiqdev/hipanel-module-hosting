@@ -36,6 +36,7 @@ class RequestsCest
             new Select2('Account'),
             new Select2('Status'),
             new Select2('Object'),
+            new Select2('Client'),
         ]);
     }
 

@@ -34,6 +34,7 @@ class BackupsCest
             new Select2('State'),
             new Select2('Account'),
             new Select2('Server'),
+            new Select2('Client'),
         ]);
     }
 
@@ -46,6 +47,7 @@ class BackupsCest
         ]);
         $this->index->containsColumns([
             'Name',
+            'Client',
             'Account',
             'Server',
             'Count',

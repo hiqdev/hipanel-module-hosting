@@ -33,6 +33,7 @@ class CronsCest
         $this->index->containsFilters([
             new Select2('Account'),
             new Select2('Server'),
+            new Select2('Client'),
         ]);
     }
 
@@ -42,6 +43,7 @@ class CronsCest
             'Crontab',
             'Account',
             'Server',
+            'Client',
             'Status',
         ]);
     }

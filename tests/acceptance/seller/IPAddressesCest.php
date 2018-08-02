@@ -34,8 +34,8 @@ class IPAddressesCest
     {
         $this->index->containsFilters([
             new Input('IP'),
-            new Input('Tags'),
             new Select2('Servers'),
+            new Input('Tags'),
         ]);
     }
 

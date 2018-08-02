@@ -37,6 +37,8 @@ class MailboxesCest
             new Input('E-mail'),
             new Select2('Server'),
             new Select2('Status'),
+            new Select2('Client'),
+            new Select2('Reseller'),
             new Select2('Type'),
         ]);
     }
@@ -61,6 +63,8 @@ class MailboxesCest
             'E-mail',
             'Type',
             'Forwarding',
+            'Client',
+            'Reseller',
             'Server',
             'Status',
         ]);

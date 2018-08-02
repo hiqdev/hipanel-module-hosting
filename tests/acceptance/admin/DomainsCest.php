@@ -39,6 +39,8 @@ class DomainsCest
             new Input('IP'),
             new Select2('Status'),
             new Select2('Show aliases only'),
+            new Select2('Client'),
+            new Select2('Reseller'),
             new Select2('Server'),
         ]);
     }
@@ -61,6 +63,8 @@ class DomainsCest
         ]);
         $this->index->containsColumns([
             'Domain name',
+            'Client',
+            'Reseller',
             'Account',
             'Server',
             'Status',
