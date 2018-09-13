@@ -26,20 +26,20 @@ class MailboxesCest
         $I->needPage(Url::to('@mail'));
         $I->see('Mailboxes', 'h1');
         $I->seeLink('Create mailbox', Url::to('create'));
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Seller $I)
     {
         $this->index->containsFilters([
-            new Input('E-mail'),
-            new Select2('Server'),
-            new Select2('Status'),
-            new Select2('Client'),
-            new Select2('Reseller'),
-            new Select2('Type'),
+            Input::asAdvancedSearch($I, 'E-mail'),
+            Select2::asAdvancedSearch($I, 'Server'),
+            Select2::asAdvancedSearch($I, 'Status'),
+            Select2::asAdvancedSearch($I, 'Client'),
+            Select2::asAdvancedSearch($I, 'Reseller'),
+            Select2::asAdvancedSearch($I, 'Type'),
         ]);
     }
 

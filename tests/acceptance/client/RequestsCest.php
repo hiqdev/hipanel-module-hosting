@@ -24,18 +24,18 @@ class RequestsCest
         $I->login();
         $I->needPage(Url::to('@request'));
         $I->see('Requests', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Select2('Server'),
-            new Select2('Account'),
-            new Select2('Status'),
-            new Select2('Object'),
+            Select2::asAdvancedSearch($I, 'Server'),
+            Select2::asAdvancedSearch($I, 'Account'),
+            Select2::asAdvancedSearch($I, 'Status'),
+            Select2::asAdvancedSearch($I, 'Object'),
         ]);
     }
 

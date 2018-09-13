@@ -24,15 +24,15 @@ class CronsCest
         $I->login();
         $I->needPage(Url::to('@crontab'));
         $I->see('Crons', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Select2('Account'),
-            new Select2('Server'),
+            Select2::asAdvancedSearch($I, 'Account'),
+            Select2::asAdvancedSearch($I, 'Server'),
         ]);
     }
 

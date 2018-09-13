@@ -26,19 +26,19 @@ class DatabasesCest
         $I->needPage(Url::to('@db'));
         $I->see('Databases', 'h1');
         $I->seeLink('Create DB', Url::to('create'));
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Admin $I)
     {
         $this->index->containsFilters([
-            new Input('DB name'),
-            new Select2('Server'),
-            new Input('Description'),
-            new Select2('Client'),
-            new Select2('Reseller'),
-            new Input('Status'),
+            Input::asAdvancedSearch($I, 'DB name'),
+            Select2::asAdvancedSearch($I, 'Server'),
+            Input::asAdvancedSearch($I, 'Description'),
+            Select2::asAdvancedSearch($I, 'Client'),
+            Select2::asAdvancedSearch($I, 'Reseller'),
+            Select2::asAdvancedSearch($I, 'Status'),
         ]);
     }
 

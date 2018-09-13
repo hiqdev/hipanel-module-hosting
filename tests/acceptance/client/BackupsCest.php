@@ -24,16 +24,16 @@ class BackupsCest
         $I->login();
         $I->needPage(Url::to('@backuping'));
         $I->see('Backups', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Select2('State'),
-            new Select2('Account'),
-            new Select2('Server'),
+            Select2::asAdvancedSearch($I, 'State'),
+            Select2::asAdvancedSearch($I, 'Account'),
+            Select2::asAdvancedSearch($I, 'Server'),
         ]);
     }
 
