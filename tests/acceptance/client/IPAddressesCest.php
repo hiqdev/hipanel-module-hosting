@@ -25,17 +25,17 @@ class IPAddressesCest
         $I->login();
         $I->needPage(Url::to('@ip'));
         $I->see('IP addresses', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Input('IP'),
-            new Input('Tags'),
-            new Select2('Servers'),
+            Input::asAdvancedSearch($I, 'IP'),
+            Select2::asAdvancedSearch($I, 'Tags'),
+            Select2::asAdvancedSearch($I, 'Servers'),
         ]);
     }
 

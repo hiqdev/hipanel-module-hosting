@@ -26,20 +26,20 @@ class DomainsCest
         $I->needPage(Url::to('@hdomain'));
         $I->see('Domains', 'h1');
         $I->see('Create domain', 'a');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Input('Domain name'),
-            new Input('Domain list (comma-separated)'),
-            new Input('IP'),
-            new Select2('Status'),
-            new Select2('Show aliases only'),
-            new Select2('Server'),
+            Input::asAdvancedSearch($I, 'Domain name'),
+            Input::asAdvancedSearch($I, 'Domain list (comma-separated)'),
+            Input::asAdvancedSearch($I, 'IP'),
+            Select2::asAdvancedSearch($I, 'Status'),
+            Select2::asAdvancedSearch($I, 'Show aliases only'),
+            Select2::asAdvancedSearch($I, 'Server'),
         ]);
     }
 

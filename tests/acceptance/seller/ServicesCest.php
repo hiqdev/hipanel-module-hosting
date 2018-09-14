@@ -25,19 +25,19 @@ class ServicesCest
         $I->login();
         $I->needPage(Url::to('@service'));
         $I->see('Services', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Seller $I)
     {
         $this->index->containsFilters([
-            new Input('Name'),
-            new Select2('Server'),
-            new Select2('Client'),
-            new Select2('Reseller'),
-            new Select2('Soft'),
-            new Select2('Status'),
+            Input::asAdvancedSearch($I, 'Name'),
+            Select2::asAdvancedSearch($I, 'Server'),
+            Select2::asAdvancedSearch($I, 'Client'),
+            Select2::asAdvancedSearch($I, 'Reseller'),
+            Select2::asAdvancedSearch($I, 'Soft'),
+            Select2::asAdvancedSearch($I, 'Status'),
         ]);
     }
 

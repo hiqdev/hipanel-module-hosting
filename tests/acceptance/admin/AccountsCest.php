@@ -26,19 +26,19 @@ class AccountsCest
         $I->needPage(Url::to('@account'));
         $I->see('Accounts', 'h1');
         $I->see('Create account', 'a');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Admin $I)
     {
         $this->index->containsFilters([
-            new Input('Login'),
-            new Select2('Server'),
-            new Select2('Client'),
-            new Select2('Reseller'),
-            new Select2('Type'),
-            new Select2('Status'),
+            Input::asAdvancedSearch($I, 'Login'),
+            Select2::asAdvancedSearch($I, 'Server'),
+            Select2::asAdvancedSearch($I, 'Client'),
+            Select2::asAdvancedSearch($I, 'Reseller'),
+            Select2::asAdvancedSearch($I, 'Type'),
+            Select2::asAdvancedSearch($I, 'Status'),
         ]);
     }
 
