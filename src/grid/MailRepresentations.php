@@ -15,11 +15,11 @@ class MailRepresentations extends RepresentationCollection
                 'columns' => [
                     'checkbox',
                     'mail',
-                    'type',
                     'forwards',
                     'client',
                     'seller',
                     'server',
+                    'account',
                     'state',
                 ],
             ],

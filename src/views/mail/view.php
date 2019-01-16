@@ -5,10 +5,7 @@ use hipanel\modules\hosting\menus\MailDetailMenu;
 use hipanel\modules\hosting\models\Mail;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
-use hipanel\widgets\ModalButton;
-use hipanel\widgets\PasswordInput;
 use yii\helpers\Html;
-use yii\web\View;
 
 /**
  * @var $this yii\web\View
@@ -70,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <?php
-                $box = Box::begin(['renderBody' => false]);
+                $box = Box::begin(['renderBody' => false, 'bodyOptions' => ['class' => 'no-padding']]);
                 $box->beginHeader();
                 echo $box->renderTitle(Yii::t('hipanel', 'Detailed information'));
                 $box->endHeader();
@@ -79,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
-                        'client_id', 'seller_id', 'server_id',
+                        'client_id', 'seller_id', 'server', 'account',
                         'type', 'domain', 'forwards', 'spam_action',
                         'state', 'du_limit',
                     ],
