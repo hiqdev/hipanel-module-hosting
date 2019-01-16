@@ -102,6 +102,7 @@ class Account extends \hipanel\base\Model
             'sshftp_ips'     => Yii::t('hipanel:hosting', 'IP to access on the server via SSH or FTP'),
             'block_send'     => Yii::t('hipanel:hosting', 'Block outgoing post'),
             'per_hour_limit' => Yii::t('hipanel:hosting', 'Maximum letters per hour'),
+            'path'           => Yii::t('hipanel:hosting:account', 'Home directory'),
         ]);
     }
 

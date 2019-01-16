@@ -18,6 +18,7 @@ use hipanel\modules\hosting\widgets\account\Type;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\ArraySpoiler;
 use Yii;
+use yii\helpers\Html;
 
 class AccountGridView extends \hipanel\grid\BoxedGridView
 {
@@ -65,6 +66,17 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                 },
                 'gtype'             => 'type,account',
             ],
+            'access_data' => [
+                'format' => 'raw',
+                'label' => Yii::t('hipanel:hosting:account', 'Access data'),
+                'value' => function ($model) {
+                    return Yii::t('hipanel:hosting:account', '{ip_label} {ip} {login_label} {login}', [
+                        'ip_label' => Html::tag('b', Yii::t('hipanel', 'IP:')),
+                        'login_label' => Html::tag('b', Yii::t('hipanel', 'Login:')),
+                        'ip' => $model->ip,
+                        'login' => $model->login]);
+                }
+            ]
         ]);
     }
 }
