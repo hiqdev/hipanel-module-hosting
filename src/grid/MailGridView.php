@@ -65,7 +65,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                     ]);
                 },
                 'value' => function ($model) {
-                    return Type::widget(compact('model'));
+                    return Type::widget(['model' => $model, 'label' => $model->type]);
                 },
             ],
             'forwards' => [
@@ -82,6 +82,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                     ]);
                 },
             ],
+            'account' => ['class' => AccountColumn::class],
             'spam_action' => [
                 'format' => 'raw',
                 'value' => function ($model) {

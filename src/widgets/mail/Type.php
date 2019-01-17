@@ -61,6 +61,6 @@ class Type extends Label
             return;
         }
 
-        parent::renderLabel();
+        return parent::renderLabel();
     }
 }
