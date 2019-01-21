@@ -49,6 +49,7 @@ DynamicFormWidget::begin([
                                 }
                                 echo $form->field($model, "[$i]id")->hiddenInput(['data-attribute' => 'id'])->label(false);
                                 echo $form->field($model, "[$i]ip")->textInput(['readonly' => !$model->isNewRecord]);
+                                echo $form->field($model, "[$i]type")->dropDownList($model->getAvailableTypes());
 
                                 DynamicFormWidget::begin([
                                     'widgetContainer' => 'dynamicform_links',

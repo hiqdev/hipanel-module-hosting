@@ -48,20 +48,8 @@ class IpActionsMenu extends \hiqdev\yii2\menus\Menu
                 'label' => Yii::t('hipanel', 'Update'),
                 'icon' => 'fa-pencil',
                 'url' => ['@ip/update', 'id' => $this->model->id],
-                'visible' => Yii::$app->user->can('admin'),
+                'visible' => Yii::$app->user->can('ip.update'),
             ],
-//            'delete' => [
-//                'label' => Yii::t('hipanel', 'Delete'),
-//                'icon' => 'fa-trash',
-//                'url' => ['@ip/delete', 'id' => $this->model->id],
-//                'linkOptions' => [
-//                    'data' => [
-//                        'confirm' => Yii::t('hipanel', 'Are you sure you want to delete this item?'),
-//                        'method' => 'POST',
-//                        'pjax' => '0',
-//                    ],
-//                ],
-//            ],
         ];
     }
 

@@ -11,6 +11,7 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\ArrayHelper;
+use hipanel\models\Ref;
 use hipanel\validators\DomainValidator;
 use Yii;
 use yii\helpers\StringHelper;
@@ -71,6 +72,9 @@ class Ip extends \hipanel\base\Model
             [['id'], 'integer', 'on' => ['create', 'update', 'delete', 'expand']],
             [['with_existing'], 'boolean', 'on' => ['expand']],
             [['ptr'], DomainValidator::class, 'on' => ['set-ptr']],
+
+            [['ip', 'type'], 'required', 'on' => ['create', 'update']],
+            [['type'], 'string', 'on' => ['create', 'update']],
 
             // Set note
             [['note'], 'string', 'on' => ['set-note', 'create', 'update']],
@@ -147,5 +151,10 @@ class Ip extends \hipanel\base\Model
     {
         return !in_array('aux', (array) $this->tags, true)
             && (new IpValidator(['ranges' => ['!system', 'any']]))->validate($this->ip);
+    }
+
+    public function getAvailableTypes(): array
+    {
+        return Ref::getList('type,ip', 'hipanel.hosting.ip.types');
     }
 }

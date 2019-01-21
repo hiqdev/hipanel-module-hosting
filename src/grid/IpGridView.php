@@ -11,6 +11,7 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\MainColumn;
+use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
 use hipanel\helpers\FontIcon;
 use hipanel\helpers\Url;
@@ -157,6 +158,16 @@ class IpGridView extends \hipanel\grid\BoxedGridView
 
                     return null;
                 },
+            ],
+            'type' => [
+                'class' => RefColumn::class,
+                'i18nDictionary' => 'hipanel.hosting.ip.types',
+                'filterAttribute' => 'types',
+                'format' => 'raw',
+                'gtype' => 'type,ip',
+                'value' => function ($model) {
+                    return Yii::t('hipanel.hosting.ip.types', $model->type);
+                }
             ],
         ]);
     }

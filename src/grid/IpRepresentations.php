@@ -13,12 +13,14 @@ class IpRepresentations extends RepresentationCollection
             'common' => [
                 'label' => Yii::t('hipanel', 'common'),
                 'columns' => [
+                    'actions',
                     'ip',
                     'note',
-                    'actions',
                     'tags',
                     'counters',
                     'links',
+                    'client',
+                    'type',
                 ],
             ],
         ]);

@@ -27,3 +27,10 @@ use yii\web\View;
         'multiple' => true,
     ]) ?>
 </div>
+
+<div class="col-md-6">
+    <?= $search->field('types')->widget(StaticCombo::class, [
+        'data' => $search->model->getAvailableTypes(),
+        'hasId' => true,
+    ]) ?>
+</div>

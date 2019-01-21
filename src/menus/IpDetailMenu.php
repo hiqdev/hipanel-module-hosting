@@ -61,7 +61,7 @@ class IpDetailMenu extends \hipanel\menus\AbstractDetailMenu
                     ),
                 ]),
                 'encode' => false,
-                'visible' => Yii::$app->user->can('admin'),
+                'visible' => Yii::$app->user->can('ip.delete'),
             ],
         ]);
         unset($items['view']);
