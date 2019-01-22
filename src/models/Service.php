@@ -34,6 +34,8 @@ class Service extends \hipanel\base\Model
                 'skipOnArray' => true, 'on' => ['create', 'update'],
             ],
             [['ips'], 'each', 'rule' => ['ip'], 'on' => ['create', 'update']],
+            [['server', 'name'], 'required', 'on' => ['create']],
+            [['id', 'server'], 'required', 'on' => ['update']],
             [['id'], 'required', 'on' => ['update']],
         ];
     }
@@ -52,5 +54,10 @@ class Service extends \hipanel\base\Model
     public function getIps()
     {
         return $this->hasMany(Ip::class, ['service_id', 'id']);
+    }
+
+    public function getPageTitle()
+    {
+        return implode(': ', array_filter([$this->server, $this->name]));
     }
 }

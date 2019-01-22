@@ -10,7 +10,7 @@ use hipanel\modules\hosting\menus\ServiceDetailMenu;
 use hipanel\widgets\Box;
 use hipanel\widgets\Pjax;
 
-$this->title = $model->name;
+$this->title = $model->pageTitle;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Services'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <?php
-                $box = Box::begin(['renderBody' => false]);
+                $box = Box::begin(['renderBody' => false, 'bodyOptions' => ['class' => 'no-padding']]);
                     $box->beginHeader();
                         echo $box->renderTitle(Yii::t('hipanel:hosting', 'Service information'));
                     $box->endHeader();
@@ -55,8 +55,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'boxed' => false,
                             'columns' => [
                                 'seller_id', 'client_id',
-                                'server', 'service', 'ip',
-                                'bin', 'etc', 'soft', 'state',
+                                'server', 'service', 'ip_with_link',
+                                'bin', 'etc', 'soft', 'soft_type_label', 'state',
                             ],
                         ]);
                     $box->endBody();

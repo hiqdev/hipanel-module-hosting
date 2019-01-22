@@ -13,6 +13,7 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\helpers\FontIcon;
+use hipanel\modules\hosting\controllers\IpController;
 use hipanel\modules\hosting\menus\ServiceActionsMenu;
 use hipanel\modules\hosting\models\DbSearch;
 use hipanel\modules\hosting\models\HdomainSearch;
@@ -83,6 +84,19 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {
                     return ArraySpoiler::widget(['data' => array_unique(array_merge((array) $model->ip, (array) $model->ips))]);
+                },
+            ],
+            'ip_with_link' => [
+                'format' => 'raw',
+                'label' => Yii::t('hipanel:hosting', 'IP'),
+                'value' => function ($model) {
+                    $ips = Html::tag('span', ArraySpoiler::widget(['data' => array_unique(array_merge((array) $model->ip, (array) $model->ips))]));
+                    $linkToIPs = Html::a(Yii::t('hipanel', 'Show'), IpController::getSearchUrl([
+                        'server_in' => $model->server,
+                        'service_id' => $model->id,
+                    ]), ['class' => 'btn bg-olive btn-xs btn-flat', 'target' => '_blank', 'data-pjax' => 0]);
+
+                    return Html::tag('span', sprintf('%s %s', $ips, $linkToIPs), ['style' => 'display: flex; justify-content: space-between;']);
                 },
             ],
             'bin' => [
