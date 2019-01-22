@@ -44,6 +44,7 @@ class IpSearch extends Ip
                 'show_only_device_link',
                 'with_links',
                 'not_tags',
+                'service_id',
             ]
         );
     }
