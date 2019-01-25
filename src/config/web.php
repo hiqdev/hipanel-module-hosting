@@ -33,7 +33,7 @@ return [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => '@hipanel/modules/hosting/messages',
                 ],
-                'hipanel:hosting:backuping:periodicity' => [
+                'hipanel.hosting.backuping.periodicity' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => '@hipanel/modules/hosting/messages',
                 ],

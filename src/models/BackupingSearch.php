@@ -16,7 +16,22 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\base\SearchModelTrait;
+use yii\helpers\ArrayHelper;
+
 class BackupingSearch extends Backuping
 {
-    use \hipanel\base\SearchModelTrait;
+    use SearchModelTrait {
+        searchAttributes as defaultSearchAttributes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function searchAttributes()
+    {
+        return ArrayHelper::merge($this->defaultSearchAttributes(), [
+            'object',
+        ]);
+    }
 }

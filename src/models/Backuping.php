@@ -11,7 +11,9 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\models\Obj;
+use hipanel\models\Ref;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 class Backuping extends \hipanel\base\Model
 {
@@ -71,5 +73,16 @@ class Backuping extends \hipanel\base\Model
             'name' => $this->name,
             'class_name' => $this->object,
         ]);
+    }
+
+    public function getTypeOptions(): array
+    {
+        return Yii::$app->get('cache')->getOrSet([__CLASS__, __METHOD__], function () {
+            return ArrayHelper::map(Ref::find()->where([
+                'gtype' => 'type,backuping', 'select' => 'full',
+            ])->all(), 'name', function ($model) {
+                return Yii::t('hipanel.hosting.backuping.periodicity', $model->name);
+            });
+        }, 86400 * 24); // 24 days
     }
 }

@@ -42,7 +42,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
     {
         $result = [];
         foreach ($this->typeOptions as $key => $value) {
-            $result[$key] = Yii::t('hipanel:hosting:backuping:periodicity', $value);
+            $result[$key] = Yii::t('hipanel.hosting.backuping.periodicity', $value);
         }
 
         return $result;
@@ -66,8 +66,8 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'name_like',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return  Html::a($model->name, ['@backuping/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
-                            ObjLinkWidget::widget(['model' => $model->getObj()]);
+                    return  Html::tag('span', Html::a($model->name, ['@backuping/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
+                            ObjLinkWidget::widget(['model' => $model->getObj()]), ['style' => 'display: flex; justify-content: space-between;']);
                 },
             ],
             'account' => [
@@ -101,6 +101,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                             'type' => 'select',
                             'source' => $typeOptions,
                             'url' => Url::to('update'),
+                            'data-display-value' => Yii::t('hipanel.hosting.backuping.periodicity', $model->type),
                         ],
                     ]);
                 },

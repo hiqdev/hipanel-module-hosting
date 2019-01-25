@@ -1,6 +1,5 @@
 <?php
 
-use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\BackupGridView;
 use hipanel\modules\hosting\grid\BackupingGridView;
 use hipanel\modules\hosting\menus\BackupingDetailMenu;
@@ -41,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'boxed' => false,
                     'gridOptions' => [
-                        'typeOptions' => $typeOptions,
+                        'typeOptions' => $model->typeOptions,
                     ],
                     'columns' => array_filter([
                         Yii::$app->user->can('support') ? 'id' : null,
