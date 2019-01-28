@@ -13,6 +13,7 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
+use hipanel\modules\hosting\models\Account;
 use hipanel\modules\hosting\widgets\account\State;
 use hipanel\modules\hosting\widgets\account\Type;
 use hipanel\modules\server\grid\ServerColumn;
@@ -69,7 +70,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             'access_data' => [
                 'format' => 'raw',
                 'label' => Yii::t('hipanel:hosting:account', 'Access data'),
-                'value' => function ($model) {
+                'value' => function (Account $model): string {
                     return Yii::t('hipanel:hosting:account', '{ip_label} {ip} {login_label} {login}', [
                         'ip_label' => Html::tag('b', Yii::t('hipanel', 'IP:')),
                         'login_label' => Html::tag('b', Yii::t('hipanel', 'Login:')),
