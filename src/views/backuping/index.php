@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'dataProvider' => $dataProvider,
                     'filterModel' => $model,
-                    'typeOptions' => $typeOptions,
+                    'typeOptions' => $model->typeOptions,
                     'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>

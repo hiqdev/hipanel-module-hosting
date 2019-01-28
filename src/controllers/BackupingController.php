@@ -48,7 +48,6 @@ class BackupingController extends \hipanel\base\CrudController
                 'data' => function ($action) {
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),
-                        'typeOptions' => $action->controller->getTypeOptions(),
                     ];
                 },
                 'filterStorageMap' => [
@@ -63,7 +62,6 @@ class BackupingController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Backup settings have been changed'),
                 'data' => function ($action) {
                     return [
-                        'typeOptions' => $action->controller->getTypeOptions(),
                         'methodOptions' => $action->controller->getMethodOptions(),
                         'dayOptions' => $action->controller->getDayOptions(),
                         'hourOptions' => $action->controller->getHourOptions(),
@@ -91,7 +89,6 @@ class BackupingController extends \hipanel\base\CrudController
 
                     return [
                         'stateOptions' => $action->controller->getStateOptions(),
-                        'typeOptions' => $action->controller->getTypeOptions(),
                         'backupsDataProvider' => $backupsDataProvider,
                         'hasBackup' => Backuping::find()->where(['id' => $action->getId()])->exists(),
                     ];
@@ -115,11 +112,6 @@ class BackupingController extends \hipanel\base\CrudController
         return ArrayHelper::map(Ref::find()->where(['gtype' => 'type,hour', 'select' => 'full'])->all(), 'id', function ($model) {
             return Yii::t('hipanel:hosting', $model->label);
         });
-    }
-
-    public function getTypeOptions()
-    {
-        return $this->getRefs('type,backuping', 'hipanel:hosting:backuping:periodicity');
     }
 
     public function getMethodOptions()

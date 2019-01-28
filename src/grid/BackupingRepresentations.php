@@ -14,10 +14,10 @@ class BackupingRepresentations extends RepresentationCollection
                 'label' => Yii::t('hipanel', 'common'),
                 'columns' => [
                     'checkbox',
-                    'main',
                     'client',
                     'account',
                     'server',
+                    'main',
                     'backup_count',
                     'type',
                     'state_label',
