@@ -4,10 +4,6 @@ use hipanel\modules\hosting\grid\DbGridView;
 use hipanel\modules\hosting\menus\DbDetailMenu;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
-use hipanel\widgets\ModalButton;
-use hipanel\widgets\PasswordInput;
-use yii\bootstrap\Modal;
-use yii\helpers\Html;
 
 $this->title = $model->name;
 $this->params['subtitle'] = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
@@ -45,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <?php
-                $box = Box::begin(['renderBody' => false]);
+                $box = Box::begin(['renderBody' => false, 'bodyOptions' => ['class' => 'no-padding']]);
                     $box->beginHeader();
                         echo $box->renderTitle(Yii::t('hipanel', 'Detailed information'));
                     $box->endHeader();
@@ -54,9 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'boxed' => false,
                             'model' => $model,
                             'columns' => [
+                                ['attribute' => 'name'], 'description',
+                                'info_server',
+                                'access',
                                 'seller_id', 'client_id',
-                                ['attribute' => 'name'],
-                                'service_ip', 'description',
                                 'backups_widget',
                             ],
                         ]);

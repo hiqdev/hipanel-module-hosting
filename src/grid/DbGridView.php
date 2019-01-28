@@ -15,10 +15,12 @@ use hipanel\grid\BoxedGridView;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
+use hipanel\modules\hosting\models\Db;
 use hipanel\modules\hosting\widgets\backup\BackupGridRow;
 use hipanel\modules\hosting\widgets\db\State;
 use hipanel\modules\server\grid\ServerColumn;
 use Yii;
+use yii\helpers\Html;
 
 class DbGridView extends BoxedGridView
 {
@@ -74,6 +76,29 @@ class DbGridView extends BoxedGridView
                 'value' => function ($model) {
                     return BackupGridRow::widget(['model' => $model]);
                 },
+            ],
+            'info_server' => [
+                'label' => Yii::t('hipanel:hosting', 'Server'),
+                'format' => 'raw',
+                'value' => function(Db $model) : string {
+                    return Yii::t('hipanel:hosting', '{host_label} {host} {dbms_label} {dbms}', [
+                        'host_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Host:')),
+                        'host' => $model->service_ip,
+                        'dbms_label' => Html::tag('b', Yii::t('hipanel:hosting', 'DBMS:')),
+                        'dbms' => $model->service,
+                    ]);
+                },
+
+            ],
+            'access' => [
+                'label' => Yii::t('hipanel:hosting', 'Access credentials'),
+                'format' => 'raw',
+                'value' => function (DB $model) : string {
+                    return Yii::t('hipanel:hosting', '{login_label} {login}', [
+                        'login_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Login:')),
+                        'login' => $model->name,
+                    ]);
+                }
             ],
             'actions'     => [
                 'class'    => ActionColumn::class,

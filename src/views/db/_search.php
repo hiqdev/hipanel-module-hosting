@@ -2,6 +2,7 @@
 
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\client\widgets\combo\SellerCombo;
+use hipanel\modules\hosting\widgets\combo\AccountCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hiqdev\combo\StaticCombo;
 
@@ -21,6 +22,10 @@ use hiqdev\combo\StaticCombo;
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('description') ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('account')->widget(AccountCombo::class) ?>
 </div>
 
 <?php if (Yii::$app->user->can('support')) { ?>

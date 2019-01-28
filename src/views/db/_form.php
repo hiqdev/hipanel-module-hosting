@@ -22,7 +22,7 @@ $form = ActiveForm::begin([
     'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->isNewRecord ? $model->scenario : 'update']),
 ]) ?>
 
-<div class="container-items"><!-- widgetContainer -->
+<div class="container-items">
     <?php foreach ($models as $i => $model) { ?>
         <div class="row">
             <div class="col-md-4">
@@ -37,7 +37,7 @@ $form = ActiveForm::begin([
 
                             print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                 'formElementSelector' => '.form-instance',
-                                'state' => Server::STATE_OK
+                                'state' => Server::STATE_OK,
                             ]);
                             print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, ['formElementSelector' => '.form-instance']);
                             print $form->field($model, "[$i]service_id")->widget(DbServiceCombo::class, ['formElementSelector' => '.form-instance']);
@@ -50,19 +50,15 @@ $form = ActiveForm::begin([
                         </div>
                     </div>
                 </div>
-
-                <!-- ticket-_form -->
             </div>
         </div>
     <?php } ?>
     <div class="row">
         <div class="col-md-4">
-            <div class="box box-widget">
-                <div class="box-body">
-                    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
-                    <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-                </div>
-            </div>
+            <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>&nbsp;
+            <?= Html::button(Yii::t('hipanel', 'Cancel'), [
+                'class' => 'btn btn-default', 'onclick' => 'history.go(-1)',
+            ]) ?>
         </div>
     </div>
 </div>
