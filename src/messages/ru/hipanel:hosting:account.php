@@ -14,4 +14,6 @@ return [
     'Delete account' => 'Удалить аккаунт',
     'Deleting account' => 'Удаление аккаунта',
     'IP address restrictions' => 'Ограничение доступа по IP',
+    'Home directory' => 'Домашний каталог',
+    'Access data' => 'Данные для доступа'
 ];

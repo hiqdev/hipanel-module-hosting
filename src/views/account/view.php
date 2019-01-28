@@ -21,8 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'box-solid',
             ],
             'bodyOptions' => [
-                'class' => 'no-padding'
-            ]
+                'class' => 'no-padding',
+            ],
         ]); ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-user fa-5x"></i>
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-md-6">
                 <?php
-                $box = Box::begin(['renderBody' => false]);
+                $box = Box::begin(['renderBody' => false, 'bodyOptions' => ['class' => 'no-padding']]);
                 $box->beginHeader();
                 echo $box->renderTitle(Yii::t('hipanel:hosting', 'Account information'));
                 $box->endHeader();
@@ -52,9 +52,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
-                        'seller_id', 'client_id',
+                        'server', 'ip',
                         ['attribute' => 'login'],
-                        'type', 'state', 'sshftp_ips', 'per_hour_limit', 'blocking'
+                        'sshftp_ips',
+                        'access_data',
+                        'path',
+                        'seller_id', 'client_id',
+                        'type', 'state', 'blocking',
                     ],
                 ]);
                 $box->endBody();
