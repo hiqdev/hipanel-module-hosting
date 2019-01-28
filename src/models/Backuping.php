@@ -77,7 +77,7 @@ class Backuping extends \hipanel\base\Model
 
     public function getTypeOptions(): array
     {
-        return Yii::$app->get('cache')->getOrSet([__CLASS__, __METHOD__], function () {
+        return Yii::$app->get('cache')->getOrSet([__METHOD__], function () {
             return ArrayHelper::map(Ref::find()->where([
                 'gtype' => 'type,backuping', 'select' => 'full',
             ])->all(), 'name', function ($model) {
