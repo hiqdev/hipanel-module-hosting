@@ -12,6 +12,7 @@ namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\RefColumn;
 use hipanel\modules\hosting\menus\RequestActionsMenu;
+use hipanel\modules\hosting\models\Request;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\gridLegend\ColorizeGrid;
 use hiqdev\yii2\menus\grid\MenuColumn;
@@ -47,8 +48,8 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'enableSorting' => false,
                 'filter' => false,
                 'format' => 'raw',
-                'value' => function ($model) {
-                    return Html::a('<i class="fa fa-external-link"></i>&nbsp;' . $model->object_name,
+                'value' => function (Request $model): string {
+                    return Html::a('<i class="fa fa-external-link"></i>&nbsp;' . $model->object,
                         ['/hosting/' . $model->object_class . '/view', 'id' => $model->object_id],
                         ['data-pjax' => 0]
                     );
@@ -79,6 +80,12 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'filterOverrides' => [
                     'done' => new UnsetArrayValue(),
                 ],
+            ],
+            'parent' => [
+                'format' => 'raw',
+                'value' => function (Request $model): string {
+                    return Html::a($model->parent, ['@request/view', 'id' => $model->parent_id]);
+                }
             ],
             'actions' => [
                 'class' => MenuColumn::class,
