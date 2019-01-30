@@ -27,11 +27,12 @@ class Request extends \hipanel\base\Model
     {
         return [
             [['id', 'object_id', 'service_id', 'client_id', 'account_id', 'server_id'], 'integer'],
-            [['realm', 'object', 'service', 'client', 'account', 'server', 'type_ids'], 'safe'],
-            [['type', 'type_label', 'state', 'state_label', 'action', 'object_class', 'classes'], 'safe'],
-            [['tries_left', 'pid', 'time_lag'], 'integer'],
+            [['realm', 'service', 'client', 'account', 'server', 'type_ids'], 'safe'],
+            [['child', 'parent'], 'string'],
+            [['type', 'type_label', 'state', 'state_label', 'action', 'object_class', 'classes', 'class_label'], 'safe'],
+            [['parent_id', 'child_id', 'tries_left', 'pid', 'time_lag'], 'integer'],
             [['object_name'], 'safe'],
-            [['time'], 'date'],
+            [['time', 'create_time', 'update_time'], 'date'],
             [['id'], 'integer', 'on' => ['delete']],
         ];
     }
@@ -44,6 +45,13 @@ class Request extends \hipanel\base\Model
             'object' => Yii::t('hipanel:hosting', 'Object'),
             'classes' => Yii::t('hipanel:hosting', 'Object'),
             'type_ids' => Yii::t('hipanel', 'Types'),
+            'time' => Yii::t('hipanel:hosting', 'Scheduled time'),
+            'pid' => Yii::t('hipanel:hosting', 'PID'),
         ]);
+    }
+
+    public function getObject(): string
+    {
+        return sprintf('%s %s', $this->server, empty($this->object_name) ? $this->class_label : $this->object_name);
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use hipanel\modules\hosting\grid\RequestGridView;
-use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 
 $this->title = Html::encode(Yii::t('hipanel', 'Request') . ' #' . $model->id);
@@ -15,12 +14,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-4">
         <?= RequestGridView::detailView([
             'model' => $model,
+            'boxOptions' => ['bodyOptions' => ['class' => 'no-padding']],
             'columns' => [
                 'classes',
                 'server',
                 'account',
                 'object',
-                'time',
+                'parent',
+                'pid',
+                'time:datetime',
+                'create_time:datetime',
+                'update_time:datetime',
                 'state',
             ],
         ]) ?>
