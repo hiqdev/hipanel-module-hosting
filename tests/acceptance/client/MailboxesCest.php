@@ -59,9 +59,9 @@ class MailboxesCest
         ]);
         $this->index->containsColumns( [
             'E-mail',
-            'Type',
             'Forwarding',
             'Server',
+            'Account',
             'Status',
         ]);
     }
