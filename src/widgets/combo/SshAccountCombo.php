@@ -10,6 +10,9 @@
 
 namespace hipanel\modules\hosting\widgets\combo;
 
+use hipanel\helpers\ArrayHelper;
+use yii\web\JsExpression;
+
 /**
  * Class Account.
  */
@@ -17,4 +20,23 @@ class SshAccountCombo extends AccountCombo
 {
     /** {@inheritdoc} */
     public $accountType = 'user';
+
+    /** {@inheritdoc} */
+    public function getPluginOptions($options = [])
+    {
+        return ArrayHelper::merge(parent::getPluginOptions($options), [
+            'select2Options' => [
+                'templateResult' => new JsExpression("function (data) {
+                    if (data.loading) {
+                        return data.text;
+                    }
+
+                    return data.client + '<small>@' + data.device + '</small>';
+                }"),
+                'escapeMarkup' => new JsExpression('function (markup) {
+                    return markup; // Allows HTML
+                }'),
+            ],
+        ]);
+    }
 }

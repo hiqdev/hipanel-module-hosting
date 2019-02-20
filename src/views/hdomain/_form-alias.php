@@ -16,98 +16,98 @@ use yii\web\JsExpression;
 /* @var $type string */
 
 $form = ActiveForm::begin([
-    'id'                     => 'dynamic-form',
+    'id' => 'dynamic-form',
     'enableClientValidation' => true,
-    'validateOnBlur'         => true,
-    'enableAjaxValidation'   => true,
-    'validationUrl'          => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
+    'validateOnBlur' => true,
+    'enableAjaxValidation' => true,
+    'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
 ]); ?>
 
-<div class="container-items">
-    <?php foreach ($models as $i => $model) : ?>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="box box-danger">
-                    <div class="box-body">
-                        <div class="form-instance" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-                            <?php
-                            if (Yii::$app->user->can('support')) {
-                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
-                                    'formElementSelector' => '.form-instance'
+    <div class="container-items">
+        <?php foreach ($models as $i => $model) : ?>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-danger">
+                        <div class="box-body">
+                            <div class="form-instance" xmlns="http://www.w3.org/1999/html"
+                                 xmlns="http://www.w3.org/1999/html">
+                                <?php
+                                if (Yii::$app->user->can('support')) {
+                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                        'formElementSelector' => '.form-instance',
+                                    ]);
+                                }
+
+                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
+                                    'formElementSelector' => '.form-instance',
+                                    'state' => Server::STATE_OK,
                                 ]);
-                            }
-
-                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
-                                'formElementSelector' => '.form-instance',
-                                'state' => Server::STATE_OK
-                            ]);
-                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
-                                'formElementSelector' => '.form-instance',
-                                'inputOptions'        => [
-                                    'data-attribute' => 'account'
-                                ],
-                            ]);
-                            print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::class, ['formElementSelector' => '.form-instance']);
-
-                            $model->alias_type = 'subdomain';
-                            print $form->field($model, "[$i]alias_type")->radio([
-                                'value' => 'subdomain',
-                                'class' => 'alias-type',
-                                'label' => Yii::t('hipanel:hosting', 'Subdomain of existing domain'),
-                            ]);
-                            print $form->field($model, "[$i]alias_type")->radio([
-                                'id' => $model->formName() . '-' . $i . '-alias_type-new',
-                                'value' => 'new',
-                                'class' => 'alias-type',
-                                'label' => Yii::t('hipanel:hosting', 'New domain')
-                            ]);
-                            ?>
-
-                            <div class="alias-subdomain form-inline">
-                                <?= $form->field($model, "[$i]subdomain")->input('text',  ['data-attribute' => 'subdomain'])->label(false) ?>
-                                <?= Html::tag('span', '.') ?>
-                                <?= $form->field($model, "[$i]dns_hdomain_id")->widget(HdomainCombo::class, [
+                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
-                                        'data-attribute' => 'dns_hdomain_id'
+                                        'data-attribute' => 'account',
                                     ],
-                                    'pluginOptions' => [
-                                        'onChange' => new JsExpression("function () {
+                                ]);
+                                print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::class, ['formElementSelector' => '.form-instance']);
+
+                                $model->alias_type = 'subdomain';
+                                print $form->field($model, "[$i]alias_type")->radio([
+                                    'value' => 'subdomain',
+                                    'class' => 'alias-type',
+                                    'label' => Yii::t('hipanel:hosting', 'Subdomain of existing domain'),
+                                ]);
+                                print $form->field($model, "[$i]alias_type")->radio([
+                                    'id' => $model->formName() . '-' . $i . '-alias_type-new',
+                                    'value' => 'new',
+                                    'class' => 'alias-type',
+                                    'label' => Yii::t('hipanel:hosting', 'New domain'),
+                                ]);
+                                ?>
+
+                                <div class="alias-subdomain form-inline">
+                                    <?= $form->field($model, "[$i]subdomain")->input('text', ['data-attribute' => 'subdomain'])->label(false) ?>
+                                    <?= Html::tag('span', '.') ?>
+                                    <?= $form->field($model, "[$i]dns_hdomain_id")->widget(HdomainCombo::class, [
+                                        'formElementSelector' => '.form-instance',
+                                        'inputOptions' => [
+                                            'data-attribute' => 'dns_hdomain_id',
+                                        ],
+                                        'pluginOptions' => [
+                                            'onChange' => new JsExpression("function () {
                                                 $(this).closest('.form-instance').find('input[data-attribute=\"sub-with-domain\"]').trigger('update');
                                             }
-                                        ")
-                                    ]
-                                ])->label(false) ?>
-                                <?= $form->field($model, "[$i]domain")->hiddenInput([
-                                    'id' => $model->formName() . '-' . $i . '-domain-sub',
-                                    'data-attribute' => 'sub-with-domain'
-                                ])->label(false) ?>
+                                        "),
+                                        ],
+                                    ])->label(false) ?>
+                                    <?= $form->field($model, "[$i]domain")->hiddenInput([
+                                        'id' => $model->formName() . '-' . $i . '-domain-sub',
+                                        'data-attribute' => 'sub-with-domain',
+                                    ])->label(false) ?>
+                                </div>
+                                <div class="alias-newdomain">
+                                    <?= $form->field($model, "[$i]domain")->input('text', [
+                                        'data-attribute' => 'domain',
+                                        'disabled' => true,
+                                        'class' => 'form-control collapse',
+                                    ])->label(false) ?>
+                                </div>
+                                <?= $form->field($model, "[$i]with_www")->checkbox() ?>
                             </div>
-                            <div class="alias-newdomain">
-                                <?= $form->field($model, "[$i]domain")->input('text', [
-                                    'data-attribute' => 'domain',
-                                    'disabled' => true,
-                                    'class' => 'form-control collapse'
-                                ])->label(false) ?>
-                            </div>
-                            <?= $form->field($model, "[$i]with_www")->checkbox() ?>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php endforeach ?>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="box box-widget">
-                <div class="box-body">
-                    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
-                    <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-                </div>
+        <?php endforeach ?>
+        <div class="row">
+            <div class="col-md-4">
+                <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
+                &nbsp;
+                <?= Html::button(Yii::t('hipanel', 'Cancel'), [
+                    'class' => 'btn btn-default', 'onclick' => 'history.go(-1)',
+                ]) ?>
             </div>
         </div>
     </div>
-</div>
 <?php ActiveForm::end();
 
 $this->registerJs(<<<'JS'
