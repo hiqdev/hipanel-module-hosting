@@ -45,6 +45,8 @@ class IpSearch extends Ip
                 'with_links',
                 'not_tags',
                 'service_id',
+                'ips',
+                'server_inilike',
             ]
         );
     }
@@ -53,7 +55,9 @@ class IpSearch extends Ip
     {
         return ArrayHelper::merge(parent::attributeLabels(), [
             'server_in' => Yii::t('hipanel:hosting', 'Servers'),
+            'server_inilike' => Yii::t('hipanel:hosting', 'Servers'),
             'tag_in' => Yii::t('hipanel:hosting', 'Tags'),
+            'ips' => Yii::t('hipanel:hosting', 'IPs'),
         ]);
     }
 }
