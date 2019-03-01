@@ -59,6 +59,7 @@ class Ip extends \hipanel\base\Model
             [['expanded_ips', 'ip_normalized'],                   'safe'],
             [['is_single'],                                       'boolean'],
             [['ip'], 'ip', 'subnet' => null, 'on' => ['create']],
+            [['ip'], 'required', 'on' => ['create']],
             [['ip'], 'safe', 'on' => ['update']],
             [['links'], 'safe', 'on' => ['create', 'update']],
             [['tags'], 'filter',
