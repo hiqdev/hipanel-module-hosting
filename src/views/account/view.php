@@ -4,9 +4,6 @@ use hipanel\modules\hosting\grid\AccountGridView;
 use hipanel\modules\hosting\menus\AccountDetailMenu;
 use hipanel\widgets\Box;
 use hipanel\widgets\ClientSellerLink;
-use hipanel\widgets\ModalButton;
-use hipanel\widgets\PasswordInput;
-use yii\helpers\Html;
 
 $this->title = $model->login;
 $this->params['subtitle'] = Yii::t('hipanel:hosting', 'Account detailed information') . ' #' . $model->id;

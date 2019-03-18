@@ -95,7 +95,7 @@ use yii\web\View;
 
                                 <?php
                                 print $form->field($model, "[$i]password")->widget(PasswordInput::class, [
-                                    'inputOptions' => [
+                                    'options' => [
                                         'disabled' => $model->type === $model::TYPE_FORWARD_ONLY,
                                         'autocomplete' => 'new-password',
                                     ]
