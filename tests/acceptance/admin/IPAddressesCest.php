@@ -33,8 +33,8 @@ class IPAddressesCest
     private function ensureICanSeeAdvancedSearchBox(Admin $I)
     {
         $this->index->containsFilters([
-            Input::asAdvancedSearch($I, 'IP'),
-            Select2::asAdvancedSearch($I, 'Servers'),
+            Input::asAdvancedSearch($I, 'IPs'),
+            Input::asAdvancedSearch($I, 'Servers'),
             Select2::asAdvancedSearch($I, 'Tags'),
         ]);
     }
