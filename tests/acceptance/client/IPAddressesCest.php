@@ -33,9 +33,9 @@ class IPAddressesCest
     private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            Input::asAdvancedSearch($I, 'IP'),
+            Input::asAdvancedSearch($I, 'IPs'),
+            Input::asAdvancedSearch($I, 'Servers'),
             Select2::asAdvancedSearch($I, 'Tags'),
-            Select2::asAdvancedSearch($I, 'Servers'),
         ]);
     }
 
