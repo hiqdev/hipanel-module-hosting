@@ -11,7 +11,6 @@ use yii\helpers\Html;
  * @var $this yii\web\View
  * @var $model Mail
  */
-
 $this->title = $model->mail;
 $this->params['subtitle'] = Yii::t('hipanel', 'Detailed information') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Mailboxes'), 'url' => ['index']];
@@ -26,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'box-solid',
             ],
             'bodyOptions' => [
-                'class' => 'no-padding'
-            ]
+                'class' => 'no-padding',
+            ],
         ]) ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-envelope-o fa-5x"></i>

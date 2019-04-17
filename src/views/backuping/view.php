@@ -74,14 +74,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $backupsDataProvider,
                 'filterModel' => $model,
                 'tableOptions' => [
-                    'class' => 'table table-striped table-bordered'
+                    'class' => 'table table-striped table-bordered',
                 ],
                 'filterRowOptions' => ['style' => 'display: none;'],
                 'columns' => [
                     'checkbox',
                     'time',
                     'size',
-                    'inner_actions'
+                    'inner_actions',
                 ],
             ]) ?>
             <?php $page->endBulkForm() ?>

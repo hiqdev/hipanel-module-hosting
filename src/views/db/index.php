@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $page->renderSorter([
                 'attributes' => [
                     'client', 'seller', 'account', 'server',
-                    'name', 'description', 'state'
+                    'name', 'description', 'state',
                 ],
             ]) ?>
         <?php $page->endContent() ?>

@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 /**
@@ -20,8 +20,8 @@ use hipanel\actions\ComboSearchAction;
 use hipanel\actions\RedirectAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
-use hipanel\helpers\ArrayHelper;
 use hipanel\filters\EasyAccessControl;
+use hipanel\helpers\ArrayHelper;
 use Yii;
 
 class VhostController extends \hipanel\base\CrudController

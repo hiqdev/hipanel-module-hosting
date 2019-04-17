@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'items' => [
                         ['label' => Yii::t('hipanel:hosting', 'Create domain'), 'url' => ['create']],
                         ['label' => Yii::t('hipanel:hosting', 'Create alias'), 'url' => ['create-alias']],
-                    ]
+                    ],
                 ]) ?>
             </div>
             <?php if (Yii::getAlias('@certificate', false) && Yii::$app->user->can('certificate.pay') && Yii::$app->user->can('test.beta')) : ?>

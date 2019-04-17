@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'server',
                 'object',
                 'time',
-                'size'
+                'size',
             ],
         ]) ?>
     </div>

@@ -4,9 +4,7 @@ use hipanel\modules\hosting\grid\IpGridView;
 use hipanel\modules\hosting\menus\IpDetailMenu;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\widgets\Box;
-use hipanel\widgets\ModalButton;
 use hipanel\widgets\Pjax;
-use yii\helpers\Html;
 
 /**
  * @var $model Ip
@@ -25,8 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'box-solid',
             ],
             'bodyOptions' => [
-                'class' => 'no-padding'
-            ]
+                'class' => 'no-padding',
+            ],
         ]); ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-globe fa-5x"></i>

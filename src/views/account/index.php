@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'items' => [
                         ['label' => Yii::t('hipanel:hosting', 'Create account'), 'url' => ['create']],
                         ['label' => Yii::t('hipanel:hosting', 'Create FTP account'), 'url' => ['create-ftponly']],
-                    ]
+                    ],
                 ]); ?>
             </div>
         <?php $page->endContent() ?>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $page->renderSorter([
                 'attributes' => [
                     'login', 'client', 'seller',
-                    'server', 'state', 'type'
+                    'server', 'state', 'type',
                 ],
             ]) ?>
         <?php $page->endContent() ?>
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => '<i class="fa fa-trash"></i> ' . Yii::t('hipanel', 'Delete'),
                     'url' => '#bulk-delete-modal',
-                    'linkOptions' => ['data-toggle' => 'modal']
+                    'linkOptions' => ['data-toggle' => 'modal'],
                 ],
             ];
             $ajaxModals = [
@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'actionUrl' => ['bulk-delete-modal'],
                     'handleSubmit' => false,
                     'toggleButton' => false,
-                ]
+                ],
             ];
             if (Yii::$app->user->can('support')) {
                 array_unshift($dropDownItems, [
@@ -82,7 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('hipanel', 'Disable block'),
                     'url' => '#bulk-disable-block-modal',
                     'linkOptions' => ['data-toggle' => 'modal'],
-
                 ]);
                 array_unshift($ajaxModals, [
                     'id' => 'bulk-disable-block-modal',

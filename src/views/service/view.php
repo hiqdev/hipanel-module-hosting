@@ -4,7 +4,6 @@
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
-
 use hipanel\modules\hosting\grid\ServiceGridView;
 use hipanel\modules\hosting\menus\ServiceDetailMenu;
 use hipanel\widgets\Box;
@@ -25,8 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'box-solid',
             ],
             'bodyOptions' => [
-                'class' => 'no-padding'
-            ]
+                'class' => 'no-padding',
+            ],
         ]); ?>
         <div class="profile-user-img text-center">
             <i class="fa fa-fw fa-terminal fa-5x"></i>

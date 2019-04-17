@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\controllers;
@@ -224,6 +224,7 @@ class HdomainController extends \hipanel\base\CrudController
                         'class' => RenderJsonAction::class,
                         'return' => function ($action) {
                             $message = Yii::$app->session->removeFlash('success');
+
                             return [
                                 'success' => true,
                                 'text' => Yii::t('hipanel', reset($message)['text']),
@@ -234,6 +235,7 @@ class HdomainController extends \hipanel\base\CrudController
                         'class' => RenderJsonAction::class,
                         'return' => function ($action) {
                             $message = Yii::$app->session->removeFlash('error');
+
                             return [
                                 'success' => false,
                                 'text' => reset($message)['text'],

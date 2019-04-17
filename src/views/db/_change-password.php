@@ -19,8 +19,8 @@ use yii\helpers\Html;
             'label' => Yii::t('hipanel', 'Change'),
             'data-loading-text' => Yii::t('hipanel', 'Changing...'),
             'class' => 'btn btn-warning',
-        ]
-    ]
+        ],
+    ],
 ]) ?>
 
 <p class="text-bold">

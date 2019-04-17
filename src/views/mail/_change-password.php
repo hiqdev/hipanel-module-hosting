@@ -20,8 +20,8 @@ $modalButton = ModalButton::begin([
             'label' => Yii::t('hipanel', 'Change password'),
             'data-loading-text' => Yii::t('hipanel', 'Changing...'),
             'class' => 'btn btn-warning',
-        ]
-    ]
+        ],
+    ],
 ]);
 ?>
 

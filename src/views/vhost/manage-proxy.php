@@ -9,7 +9,6 @@ use yii\bootstrap\Html;
 
 /** @var $this yii\web\View */
 /** @var $type string */
-
 $this->title = $model->domain;
 $this->params['subtitle'] = Yii::t('hipanel:hosting', 'Hosting domain proxy settings') . ' #' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Domains'), 'url' => ['@hdomain/index']];
@@ -37,20 +36,20 @@ $this->params['breadcrumbs'][] = Yii::t('hipanel:hosting', 'Hosting domain proxy
 
                                 <?php
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                    echo $form->field($model, "[$i]client")->widget(ClientCombo::class, [
                                         'formElementSelector' => '.form-instance',
-                                        'inputOptions' => ['readonly' => true]
+                                        'inputOptions' => ['readonly' => true],
                                     ]);
                                 }
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
+                                echo $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                     'formElementSelector' => '.form-instance',
-                                    'inputOptions' => ['readonly' => true]
+                                    'inputOptions' => ['readonly' => true],
                                 ]);
-                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
+                                echo $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                     'formElementSelector' => '.form-instance',
-                                    'inputOptions' => ['data-attribute' => 'account', 'readonly' => true]
+                                    'inputOptions' => ['data-attribute' => 'account', 'readonly' => true],
                                 ]);
-                                print $form->field($model, "[$i]domain")->input('text', ['readonly' => true]);
+                                echo $form->field($model, "[$i]domain")->input('text', ['readonly' => true]);
                                 ?>
                                 <?= $this->render('/hdomain/_form_ip_proxy', compact('model', 'form', 'i')) ?>
                             </div>

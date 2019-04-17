@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 return [
@@ -15,5 +15,5 @@ return [
     'Deleting account' => 'Удаление аккаунта',
     'IP address restrictions' => 'Ограничение доступа по IP',
     'Home directory' => 'Домашний каталог',
-    'Access data' => 'Данные для доступа'
+    'Access data' => 'Данные для доступа',
 ];

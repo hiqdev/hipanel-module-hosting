@@ -53,7 +53,6 @@ JS
                     <?= Html::button('<i class="fa fa-refresh"></i> ' . Yii::t('hipanel', 'Refresh'), [
                         'id' => 'refresh-crontab-field',
                         'class' => 'btn btn-default btn-xs',
-
                     ]) ?>
                 </div>
                 <!-- /.box-tools -->

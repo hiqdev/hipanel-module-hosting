@@ -12,7 +12,6 @@ use yii\web\View;
  * @var $stateData array
  * @var $typeData array
  */
-
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -31,7 +30,8 @@ use yii\web\View;
     ]) ?>
 </div>
 
-<?php if (Yii::$app->user->can('support')) { ?>
+<?php if (Yii::$app->user->can('support')) {
+        ?>
     <div class="col-md-4 col-sm-6 col-xs-12">
         <?= $search->field('client_id')->widget(ClientCombo::class, ['formElementSelector' => '.form-group']) ?>
     </div>
@@ -39,7 +39,8 @@ use yii\web\View;
     <div class="col-md-4 col-sm-6 col-xs-12">
         <?= $search->field('seller_id')->widget(SellerCombo::class, ['formElementSelector' => '.form-group']) ?>
     </div>
-<?php } ?>
+<?php
+    } ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('type')->widget(StaticCombo::class, [

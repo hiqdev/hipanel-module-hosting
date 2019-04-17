@@ -8,8 +8,8 @@ use hipanel\modules\hosting\widgets\combo\ServiceCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 use hipanel\widgets\DynamicFormWidget;
 use hiqdev\combo\StaticCombo;
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\JsExpression;
 use yii\web\View;
@@ -85,8 +85,8 @@ DynamicFormWidget::begin([
                                                         'pluginOptions' => [],
                                                         'formElementSelector' => '.item',
                                                         'inputOptions' => [
-                                                            'data-combo-field' => 'device'
-                                                        ]
+                                                            'data-combo-field' => 'device',
+                                                        ],
                                                     ])->label(false) ?>
                                                 </div>
                                                 <div class="col-md-5">
@@ -112,15 +112,15 @@ DynamicFormWidget::begin([
                                                             'select2Options' => [
                                                                 'templateResult' => $formatJs,
                                                                 'templateSelection' => $formatJs,
-                                                                'escapeMarkup' => new JsExpression("function (markup) {
+                                                                'escapeMarkup' => new JsExpression('function (markup) {
                                                                     return markup; // Allows HTML
-                                                                }")
+                                                                }'),
                                                             ],
                                                         ],
                                                         'formElementSelector' => '.item',
                                                         'inputOptions' => [
-                                                            'data-combo-field' => 'service_id'
-                                                        ]
+                                                            'data-combo-field' => 'service_id',
+                                                        ],
                                                     ])->label(false) ?>
                                                 </div>
                                                 <div class="col-md-2 text-right">
@@ -134,7 +134,7 @@ DynamicFormWidget::begin([
                                     <?php endforeach; ?>
                                 </div>
                                 <?php DynamicFormWidget::end();
-                                print $form->field($model, "[$i]tags")->widget(StaticCombo::class, [
+                                echo $form->field($model, "[$i]tags")->widget(StaticCombo::class, [
                                     'data' => $tags,
                                     'hasId' => true,
                                     'multiple' => true,

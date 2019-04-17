@@ -4,8 +4,8 @@ use hipanel\helpers\Url;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model hipanel\modules\hosting\models\Vhost */
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = Yii::t('hipanel:hosting', 'Advanced config');
                                             'formElementSelector' => '.form-instance',
                                             'inputOptions'        => [
                                                 'data-field' => 'account',
-                                                'readonly' => true
+                                                'readonly' => true,
                                             ],
                                         ]) ?>
                                     </div>

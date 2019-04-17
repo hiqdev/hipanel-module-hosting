@@ -33,30 +33,30 @@ $form = ActiveForm::begin([
                                  xmlns="http://www.w3.org/1999/html">
                                 <?php
                                 if (Yii::$app->user->can('support')) {
-                                    print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                    echo $form->field($model, "[$i]client")->widget(ClientCombo::class, [
                                         'formElementSelector' => '.form-instance',
                                     ]);
                                 }
 
-                                print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
+                                echo $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'state' => Server::STATE_OK,
                                 ]);
-                                print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
+                                echo $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                     'formElementSelector' => '.form-instance',
                                     'inputOptions' => [
                                         'data-attribute' => 'account',
                                     ],
                                 ]);
-                                print $form->field($model, "[$i]vhost_id")->widget(VhostCombo::class, ['formElementSelector' => '.form-instance']);
+                                echo $form->field($model, "[$i]vhost_id")->widget(VhostCombo::class, ['formElementSelector' => '.form-instance']);
 
                                 $model->alias_type = 'subdomain';
-                                print $form->field($model, "[$i]alias_type")->radio([
+                                echo $form->field($model, "[$i]alias_type")->radio([
                                     'value' => 'subdomain',
                                     'class' => 'alias-type',
                                     'label' => Yii::t('hipanel:hosting', 'Subdomain of existing domain'),
                                 ]);
-                                print $form->field($model, "[$i]alias_type")->radio([
+                                echo $form->field($model, "[$i]alias_type")->radio([
                                     'id' => $model->formName() . '-' . $i . '-alias_type-new',
                                     'value' => 'new',
                                     'class' => 'alias-type',

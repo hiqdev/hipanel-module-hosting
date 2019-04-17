@@ -1,12 +1,11 @@
 <?php
-
-/*
+/**
  * Hosting Plugin for HiPanel
  *
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 use hipanel\modules\hosting\widgets\ip\BackIpCombo;
@@ -15,25 +14,25 @@ use hipanel\modules\hosting\widgets\ip\HdomainIpCombo;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
-print $form->field($model, "[$i]proxy_enabled")->checkbox([
-    'class' => 'proxy_enable'
+echo $form->field($model, "[$i]proxy_enabled")->checkbox([
+    'class' => 'proxy_enable',
 ]);
 
 $proxyEnabled = $model->proxy_enabled;
 
-print $form->field($model, "[$i]ip", ['options' => ['class' => 'not-proxied-ip ' . ($proxyEnabled ? 'hidden' : '')]])
+echo $form->field($model, "[$i]ip", ['options' => ['class' => 'not-proxied-ip ' . ($proxyEnabled ? 'hidden' : '')]])
     ->widget(HdomainIpCombo::class, [
         'formElementSelector' => '.form-instance',
         'pluginOptions' => [
             'activeWhen' => [
                 new JsExpression("function (self) {
                     return !self.form.find('.proxy_enable').prop('checked');
-                }")
-            ]
-        ]
+                }"),
+            ],
+        ],
     ]);
 
-print $form->field($model, "[$i]ip", ['options' => ['class' => 'frontend_ip ' . (!$proxyEnabled ? 'hidden' : '')]])
+echo $form->field($model, "[$i]ip", ['options' => ['class' => 'frontend_ip ' . (!$proxyEnabled ? 'hidden' : '')]])
     ->widget(FrontIpCombo::class, [
         'formElementSelector' => '.form-instance',
         'inputOptions' => [
@@ -44,12 +43,12 @@ print $form->field($model, "[$i]ip", ['options' => ['class' => 'frontend_ip ' . 
             'activeWhen' => [
                 new JsExpression("function (self) {
                     return self.form.find('.proxy_enable').prop('checked');
-                }")
-            ]
+                }"),
+            ],
         ],
     ])->label('Frontend IP');
 
-print $form->field($model, "[$i]backend_ip", ['options' => ['class' => 'backend_ip ' . (!$proxyEnabled ? 'hidden' : '')]])
+echo $form->field($model, "[$i]backend_ip", ['options' => ['class' => 'backend_ip ' . (!$proxyEnabled ? 'hidden' : '')]])
     ->widget(BackIpCombo::class, [
         'formElementSelector' => '.form-instance',
         'inputOptions' => [
@@ -59,8 +58,8 @@ print $form->field($model, "[$i]backend_ip", ['options' => ['class' => 'backend_
             'activeWhen' => [
                 new JsExpression("function (self) {
                     return self.form.find('.proxy_enable').prop('checked');
-                }")
-            ]
+                }"),
+            ],
         ],
     ]);
 

@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\grid;
@@ -80,7 +80,7 @@ class DbGridView extends BoxedGridView
             'info_server' => [
                 'label' => Yii::t('hipanel:hosting', 'Server'),
                 'format' => 'raw',
-                'value' => function(Db $model) : string {
+                'value' => function (Db $model): string {
                     return Yii::t('hipanel:hosting', '{host_label} {host} {dbms_label} {dbms}', [
                         'host_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Host:')),
                         'host' => $model->service_ip,
@@ -88,17 +88,16 @@ class DbGridView extends BoxedGridView
                         'dbms' => $model->service,
                     ]);
                 },
-
             ],
             'access' => [
                 'label' => Yii::t('hipanel:hosting', 'Access credentials'),
                 'format' => 'raw',
-                'value' => function (DB $model) : string {
+                'value' => function (DB $model): string {
                     return Yii::t('hipanel:hosting', '{login_label} {login}', [
                         'login_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Login:')),
                         'login' => $model->name,
                     ]);
-                }
+                },
             ],
             'actions'     => [
                 'class'    => ActionColumn::class,

@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 /**
@@ -61,7 +61,7 @@ class HdomainSearch extends Hdomain
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'domain_in' => Yii::t('hipanel:hosting', 'Domain list (comma-separated)')
+            'domain_in' => Yii::t('hipanel:hosting', 'Domain list (comma-separated)'),
         ]);
     }
 }

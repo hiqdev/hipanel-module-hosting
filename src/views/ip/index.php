@@ -2,12 +2,10 @@
 
 use hipanel\modules\hosting\grid\IpGridLegend;
 use hipanel\modules\hosting\grid\IpGridView;
-use hipanel\widgets\AjaxModal;
 use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use yii\helpers\Html;
-use yii\web\JsExpression;
 
 $this->title = Yii::t('hipanel:hosting', 'IP addresses');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
@@ -33,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->beginContent('sorter-actions') ?>
             <?= $page->renderSorter([
                 'attributes' => [
-                    'ip'
+                    'ip',
                 ],
             ]) ?>
         <?php $page->endContent() ?>

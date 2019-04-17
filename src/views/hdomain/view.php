@@ -15,7 +15,6 @@ use yii\web\View;
  * @var $this View
  * @var $model Hdomain
  */
-
 $this->title = $model->domain;
 $this->params['subtitle'] = ($model->isAlias()
         ? Yii::t('hipanel:hosting', 'Hosting domain alias detailed information')
@@ -33,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'box-solid',
             ],
             'bodyOptions' => [
-                'class' => 'no-padding'
-            ]
+                'class' => 'no-padding',
+            ],
         ]) ?>
         <div class="profile-user-img text-center">
             <img class="img-thumbnail" src="//mini.s-shot.ru/1024x768/PNG/200/Z100/?<?= $model->domain ?>"/>
@@ -75,11 +74,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'format' => 'raw',
                                 'value' => function ($model) {
                                     $html = [];
-                                    foreach ((array)$model->getAttribute('aliases') as $id => $alias) {
+                                    foreach ((array) $model->getAttribute('aliases') as $id => $alias) {
                                         $aliasModel = Yii::createObject([
                                             'class' => Hdomain::class,
                                             'id' => $id,
-                                            'domain' => $alias
+                                            'domain' => $alias,
                                         ]);
                                         $item = Html::a($aliasModel->domain, ['view', 'id' => $aliasModel->id]) . ' ';
                                         $item .= ModalButton::widget([
@@ -96,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     'label' => Yii::t('hipanel:hosting', 'Delete alias'),
                                                     'data-loading-text' => Yii::t('hipanel', 'Deleting...'),
                                                     'class' => 'btn btn-danger',
-                                                ]
+                                                ],
                                             ],
                                             'body' => Yii::t('hipanel:hosting',
                                                 'Are you sure to delete alias {name}?',
@@ -107,13 +106,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     function (data) {
                                                         form.closest('.alias-item').remove();
                                                     }
-                                                ")
-                                            ]
+                                                "),
+                                            ],
                                         ]);
                                         $html[] = Html::tag('div', $item, ['class' => 'alias-item']);
                                     }
+
                                     return implode("\n", $html);
-                                }
+                                },
                             ],
                             'backups_widget',
                             'blocking',
@@ -132,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     $js
                                 });
                             ");
-                        }
+                        },
                     ])
                     ?>
                 </div>

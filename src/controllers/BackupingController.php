@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/hipanel-module-hosting
  * @package   hipanel-module-hosting
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\hosting\controllers;
@@ -16,13 +16,12 @@ use hipanel\actions\SmartPerformAction;
 use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
+use hipanel\filters\EasyAccessControl;
 use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\BackupSearch;
-use hipanel\filters\EasyAccessControl;
 use Yii;
-use yii\filters\AccessControl;
 
 class BackupingController extends \hipanel\base\CrudController
 {

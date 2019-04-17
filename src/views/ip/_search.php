@@ -1,6 +1,5 @@
 <?php
 
-use hipanel\modules\server\widgets\combo\ServerCombo;
 use hiqdev\combo\StaticCombo;
 use yii\web\View;
 
@@ -9,7 +8,6 @@ use yii\web\View;
  * @var $this View
  * @var $ipTags array
  */
-
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">

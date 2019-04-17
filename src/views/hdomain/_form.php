@@ -6,8 +6,8 @@ use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\models\Server;
 use hipanel\modules\server\widgets\combo\PanelServerCombo;
 use hiqdev\combo\StaticCombo;
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
@@ -16,7 +16,6 @@ use yii\helpers\Url;
  * @var $model \hipanel\modules\hosting\models\Hdomain
  * @var $type string
  */
-
 if (Yii::$app->user->can('support')) {
     $this->registerJs(<<<'JS'
             $('#dynamic-form').find('input[data-attribute=path]').on('updatePath', function (e, update) {
@@ -93,16 +92,16 @@ $form = ActiveForm::begin([
                              xmlns="http://www.w3.org/1999/html">
                             <?php
                             if (Yii::$app->user->can('support')) {
-                                print $form->field($model, "[$i]client")->widget(ClientCombo::class, [
-                                    'formElementSelector' => '.form-instance'
+                                echo $form->field($model, "[$i]client")->widget(ClientCombo::class, [
+                                    'formElementSelector' => '.form-instance',
                                 ]);
                             }
 
-                            print $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
+                            echo $form->field($model, "[$i]server")->widget(PanelServerCombo::class, [
                                 'formElementSelector' => '.form-instance',
-                                'state' => Server::STATE_OK
+                                'state' => Server::STATE_OK,
                             ]);
-                            print $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
+                            echo $form->field($model, "[$i]account")->widget(SshAccountCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'inputOptions' => [
                                     'data-attribute' => 'account',
@@ -129,7 +128,7 @@ JS
                                     ),
                                 ],
                             ]);
-                            print $form->field($model, "[$i]domain")->input('text', ['data-attribute' => 'domain']);
+                            echo $form->field($model, "[$i]domain")->input('text', ['data-attribute' => 'domain']);
                             $fieldOptions = ['inputOptions' => ['data-attribute' => 'path']];
                             if (!Yii::$app->user->can('support')) {
                                 $fieldOptions['template'] = '{label}
@@ -140,16 +139,15 @@ JS
                                             {error}
                                         </div>';
                             }
-                            print $form->field($model, "[$i]path", $fieldOptions);
-                            print $form->field($model, "[$i]with_www")->checkbox();
-                            print $form->field($model, "[$i]dns_on")->checkbox()
+                            echo $form->field($model, "[$i]path", $fieldOptions);
+                            echo $form->field($model, "[$i]with_www")->checkbox();
+                            echo $form->field($model, "[$i]dns_on")->checkbox()
                                 ->label(Yii::t('hipanel:hosting', 'DNS is enabled'))
                                 ->hint(Yii::t('hipanel:hosting', 'This option will automatically create A records for this domain and its\' aliases. Changes will be uploaded to the NS servers immediately'));
 
+                            echo $this->render('_form_ip_proxy', compact('model', 'form', 'i'));
 
-                            print $this->render('_form_ip_proxy', compact('model', 'form', 'i'));
-
-                            print $form->field($model, "[$i]backuping_type")->widget(StaticCombo::class, [
+                            echo $form->field($model, "[$i]backuping_type")->widget(StaticCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'hasId' => true,
                                 'data' => Ref::getList('type,backuping', 'hipanel:hosting'),

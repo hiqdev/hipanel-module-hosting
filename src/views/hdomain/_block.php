@@ -1,7 +1,7 @@
 <?php
 use hipanel\helpers\Url;
-use yii\helpers\Html;
 use hipanel\widgets\ModalButton;
+use yii\helpers\Html;
 
 ?>
 
@@ -21,8 +21,8 @@ use hipanel\widgets\ModalButton;
                 'label' => Yii::t('hipanel', 'Block'),
                 'data-loading-text' => Yii::t('hipanel', 'Blocking...'),
                 'class' => 'btn btn-danger',
-            ]
-        ]
+            ],
+        ],
     ]); ?>
     <div class="callout callout-warning">
         <h4><?= Yii::t('hipanel:hosting', 'This action will block access to the website from the world!') ?></h4>
@@ -48,12 +48,11 @@ use hipanel\widgets\ModalButton;
                 'label' => Yii::t('hipanel', 'Unblock'),
                 'data-loading-text' => Yii::t('hipanel', 'Unblocking...'),
                 'class' => 'btn btn-info',
-            ]
-        ]
+            ],
+        ],
     ]); ?>
 
     <?php echo $modalButton->form->field($model, 'comment'); ?>
 
     <?php $modalButton->end();
 }
-
