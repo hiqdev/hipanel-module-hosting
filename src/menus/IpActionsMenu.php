@@ -11,11 +11,12 @@
 namespace hipanel\modules\hosting\menus;
 
 use hipanel\widgets\AjaxModal;
+use hiqdev\yii2\menus\Menu;
 use Yii;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
-class IpActionsMenu extends \hiqdev\yii2\menus\Menu
+class IpActionsMenu extends Menu
 {
     public $model;
 
@@ -38,6 +39,7 @@ class IpActionsMenu extends \hiqdev\yii2\menus\Menu
                 'label' => Yii::t('hipanel:hosting', 'Expand'),
                 'icon' => 'fa-th',
                 'url' => ['@ip/expand', 'id' => $this->model->id],
+                'visible' => Yii::$app->user->can('test.alpha'),
                 'linkOptions' => [
                     'class' => 'btn-expand-ip',
                     'data-id' => $this->model->id,
@@ -50,18 +52,6 @@ class IpActionsMenu extends \hiqdev\yii2\menus\Menu
                 'url' => ['@ip/update', 'id' => $this->model->id],
                 'visible' => Yii::$app->user->can('admin'),
             ],
-//            'delete' => [
-//                'label' => Yii::t('hipanel', 'Delete'),
-//                'icon' => 'fa-trash',
-//                'url' => ['@ip/delete', 'id' => $this->model->id],
-//                'linkOptions' => [
-//                    'data' => [
-//                        'confirm' => Yii::t('hipanel', 'Are you sure you want to delete this item?'),
-//                        'method' => 'POST',
-//                        'pjax' => '0',
-//                    ],
-//                ],
-//            ],
         ];
     }
 
