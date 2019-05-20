@@ -11,11 +11,12 @@
 namespace hipanel\modules\hosting\menus;
 
 use hipanel\widgets\AjaxModal;
+use hiqdev\yii2\menus\Menu;
 use Yii;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 
-class IpActionsMenu extends \hiqdev\yii2\menus\Menu
+class IpActionsMenu extends Menu
 {
     public $model;
 
@@ -33,6 +34,17 @@ class IpActionsMenu extends \hiqdev\yii2\menus\Menu
                 'label' => Yii::t('hipanel', 'View'),
                 'icon' => 'fa-info',
                 'url' => ['@ip/view', 'id' => $this->model->id],
+            ],
+            'expand' => [
+                'label' => Yii::t('hipanel:hosting', 'Expand'),
+                'icon' => 'fa-th',
+                'url' => ['@ip/expand', 'id' => $this->model->id],
+                'visible' => Yii::$app->user->can('test.alpha'),
+                'linkOptions' => [
+                    'class' => 'btn-expand-ip',
+                    'data-id' => $this->model->id,
+                    'data-pjax' => 0,
+                ],
             ],
             'update' => [
                 'label' => Yii::t('hipanel', 'Update'),
