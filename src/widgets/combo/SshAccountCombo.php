@@ -31,7 +31,7 @@ class SshAccountCombo extends AccountCombo
                         return data.text;
                     }
 
-                    return data.client + '<small>@' + data.device + '</small>';
+                    return data.login + '<small>@' + data.device + '</small>';
                 }"),
                 'escapeMarkup' => new JsExpression('function (markup) {
                     return markup; // Allows HTML
