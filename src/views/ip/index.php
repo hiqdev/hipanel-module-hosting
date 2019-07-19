@@ -24,9 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endif; ?>
         <?php $page->endContent() ?>
 
-        <?php $page->beginContent('legend') ?>
-            <?= GridLegend::widget(['legendItem' => new IpGridLegend($model)]) ?>
-        <?php $page->endContent() ?>
+        <?php if (Yii::$app->user->can('support')) : ?>
+            <?php $page->beginContent('legend') ?>
+                <?= GridLegend::widget(['legendItem' => new IpGridLegend($model)]) ?>
+            <?php $page->endContent() ?>
+        <?php endif ?>
 
         <?php $page->beginContent('sorter-actions') ?>
             <?= $page->renderSorter([
