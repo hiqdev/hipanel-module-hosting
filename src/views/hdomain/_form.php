@@ -161,12 +161,9 @@ JS
     <?php endforeach ?>
     <div class="row">
         <div class="col-md-4">
-            <div class="box box-widget">
-                <div class="box-body">
-                    <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
-                    <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
-                </div>
-            </div>
+            <?= Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']) ?>
+            &nbsp;
+            <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
         </div>
     </div>
 </div>

@@ -43,7 +43,13 @@ $form = ActiveForm::begin([
                             print $form->field($model, "[$i]service_id")->widget(DbServiceCombo::class, ['formElementSelector' => '.form-instance']);
 
                             print $form->field($model, "[$i]name");
-                            print $form->field($model, "[$i]password")->widget(PasswordInput::class);
+                            print $form->field($model, "[$i]password")->widget(PasswordInput::class, [
+                                'randomOptions' => [
+                                    'weak' => ['label' => Yii::t('hipanel', 'Weak'), 'length' => 8, 'specialchars' => 1],
+                                    'medium' => ['label' => Yii::t('hipanel', 'Medium'), 'length' => 10, 'specialchars' => 1],
+                                    'strong' => ['label' => Yii::t('hipanel', 'Strong'), 'length' => 14, 'specialchars' => 1],
+                                ],
+                            ]);
 
                             print $form->field($model, "[$i]description");
                             ?>

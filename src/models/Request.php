@@ -16,11 +16,13 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\base\Model;
+use hipanel\base\ModelTrait;
 use Yii;
 
-class Request extends \hipanel\base\Model
+class Request extends Model
 {
-    use \hipanel\base\ModelTrait;
+    use ModelTrait;
 
     /** {@inheritdoc} */
     public function rules()
@@ -28,7 +30,7 @@ class Request extends \hipanel\base\Model
         return [
             [['id', 'object_id', 'service_id', 'client_id', 'account_id', 'server_id'], 'integer'],
             [['realm', 'service', 'client', 'account', 'server', 'type_ids'], 'safe'],
-            [['child', 'parent'], 'string'],
+            [['child', 'parent', 'error_code', 'error_detailed'], 'string'],
             [['type', 'type_label', 'state', 'state_label', 'action', 'object_class', 'classes', 'class_label'], 'safe'],
             [['parent_id', 'child_id', 'tries_left', 'pid', 'time_lag'], 'integer'],
             [['object_name'], 'safe'],

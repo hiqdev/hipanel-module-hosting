@@ -116,6 +116,7 @@ return [
     'Are you sure to delete database {name}? All tables will be dropped, all data will be lost!' => 'Вы уверены, что хотите удалить базу данных {name}? Все таблицы будут удалены, все данные будут утеряны!',
     'Service IP' => 'IP сервиса',
     '{attribute} should not contain non-latin characters' => '{attribute} не должны содержать нелатинские символы',
+    '{attribute} should contain at least one special character' => '{attribute} должен содержать хотя бы один специальный символ',
 
     /**
      * IP.

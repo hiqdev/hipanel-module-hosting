@@ -30,8 +30,12 @@ class SshAccountCombo extends AccountCombo
                     if (data.loading) {
                         return data.text;
                     }
+                    var name = data.login;
+                    if (typeof name === 'undefined') {
+                        name = data.account;
+                    }
 
-                    return data.login + '<small>@' + data.device + '</small>';
+                    return name + '<small>@' + data.device + '</small>';
                 }"),
                 'escapeMarkup' => new JsExpression('function (markup) {
                     return markup; // Allows HTML

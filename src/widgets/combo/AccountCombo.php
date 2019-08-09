@@ -28,7 +28,7 @@ class AccountCombo extends Combo
     public $url = '/hosting/account/index';
 
     /** {@inheritdoc} */
-    public $_return = ['id', 'client', 'client_id', 'device', 'device_id'];
+    public $_return = ['id', 'client', 'client_id', 'device', 'device_id', 'account'];
 
     /** {@inheritdoc} */
     public $_rename = ['text' => 'login'];
