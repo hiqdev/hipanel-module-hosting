@@ -10,12 +10,14 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\base\Model;
+use hipanel\base\ModelTrait;
 use hipanel\helpers\StringHelper;
 use Yii;
 
-class Service extends \hipanel\base\Model
+class Service extends Model
 {
-    use \hipanel\base\ModelTrait;
+    use ModelTrait;
 
     /** {@inheritdoc} */
     public function rules()
@@ -34,7 +36,7 @@ class Service extends \hipanel\base\Model
                 'skipOnArray' => true, 'on' => ['create', 'update'],
             ],
             [['ips'], 'each', 'rule' => ['ip'], 'on' => ['create', 'update']],
-            [['server', 'name'], 'required', 'on' => ['create']],
+            [['server', 'name', 'etc', 'bin', 'soft', 'state', 'ips'], 'required', 'on' => ['create', 'update']],
             [['id', 'server'], 'required', 'on' => ['update']],
             [['id'], 'required', 'on' => ['update']],
         ];

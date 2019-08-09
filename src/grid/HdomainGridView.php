@@ -14,6 +14,7 @@ use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\helpers\Url;
+use hipanel\modules\hosting\models\Hdomain;
 use hipanel\modules\hosting\widgets\backup\BackupGridRow;
 use hipanel\modules\hosting\widgets\hdomain\State;
 use hipanel\modules\server\grid\ServerColumn;
@@ -59,7 +60,10 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'account' => [
-                'class' => AccountColumn::class,
+                'format' => 'html',
+                'value' => function (Hdomain $hdomain): string {
+                    return Html::a($hdomain->account, ['@account/view', 'id' => $hdomain->account_id]);
+                }
             ],
             'server' => [
                 'class' => ServerColumn::class,

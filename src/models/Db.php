@@ -30,12 +30,20 @@ class Db extends Model
             /// Create
             [['server', 'account', 'service_id', 'name', 'password'], 'required', 'on' => ['create']],
             [['name'], DbNameValidator::class, 'on' => ['create']],
+            [['password'], 'string', 'min' => 8, 'max' => 20, 'on' => ['create', 'set-password']],
             [
                 ['password'],
                 'match',
-                'pattern' => '/^[\x20-\x7f]*$/',
+                'pattern' => '/^([A-Za-z0-9!@#$%^&*()\-_=+{};:,<.>]{8,20})$/', // old version '/^[\x20-\x7f]*$/'
                 'message' => Yii::t('hipanel:hosting', '{attribute} should not contain non-latin characters'),
                 'on'      => ['create', 'set-password'],
+            ],
+            [
+                ['password'],
+                'match',
+                'pattern' => '/(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>]){1,})/',
+                'message' => Yii::t('hipanel:hosting', '{attribute} should contain at least one special character'),
+                'on' => ['create', 'set-password'],
             ],
             [['password'], 'required', 'on' => ['set-password']],
             [['id'], 'required', 'on' => ['delete', 'set-password', 'set-description', 'truncate']],
