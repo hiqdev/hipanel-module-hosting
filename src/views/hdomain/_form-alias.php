@@ -29,8 +29,7 @@ $form = ActiveForm::begin([
                 <div class="col-md-4">
                     <div class="box box-danger">
                         <div class="box-body">
-                            <div class="form-instance" xmlns="http://www.w3.org/1999/html"
-                                 xmlns="http://www.w3.org/1999/html">
+                            <div class="form-instance">
                                 <?php
                                 if (Yii::$app->user->can('support')) {
                                     echo $form->field($model, "[$i]client")->widget(ClientCombo::class, [
@@ -111,7 +110,7 @@ $form = ActiveForm::begin([
 <?php ActiveForm::end();
 
 $this->registerJs(<<<'JS'
-    $(this).on('change', '.alias-type', function (e) {
+    $('#dynamic-form').on('change', '.alias-type', function (e) {
         var $form = $(this).closest('.form-instance');
 
         var $sub_inputs = $form.find('.alias-subdomain, input[data-attribute="subdomain"], input[data-attribute="sub-with-domain"]');
@@ -129,11 +128,11 @@ $this->registerJs(<<<'JS'
     $('#dynamic-form').on('update', 'input[data-attribute="sub-with-domain"]', function (event) {
         var $form = $(this).closest('.form-instance');
         var subdomain = $form.find('input[data-attribute="subdomain"]').val();
-        var domain = $form.find('input[data-attribute="dns_hdomain_id"]').select2('data');
+        var domain = $form.find(':input[data-attribute="dns_hdomain_id"]').select2('data');
         var value = '';
 
-        if (domain && domain.text) {
-            value = (subdomain.length > 0 ? (subdomain + '.') : '') + domain.text;
+        if (domain && domain.length && domain[0].text) {
+            value = (subdomain.length > 0 ? (subdomain + '.') : '') + domain[0].text;
         }
         $(this).val(value).trigger('change');
     });
