@@ -89,6 +89,8 @@ class Hdomain extends \hipanel\base\Model
             [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['create']],
             [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],
+            [['alias_type'], 'in', 'range' => ['new', 'subdomain'], 'on' => 'create-alias'],
+            [['alias_type'], 'default', 'value' => 'subdomain', 'on' => 'create-alias'],
             [
                 [
                     'server',
@@ -112,6 +114,7 @@ class Hdomain extends \hipanel\base\Model
                     'server',
                     'account',
                     'vhost_id',
+                    'alias_type',
                 ],
                 'required',
                 'on' => ['create-alias'],
@@ -125,7 +128,20 @@ class Hdomain extends \hipanel\base\Model
                     return $model->alias_type === 'new';
                 },
                 'whenClient' => new JsExpression('function (attribute, value) {
-                    return false;
+                    return $(":input[name*=alias_type]:checked").val() == "new";
+                }'),
+                'on' => ['create-alias'],
+            ],
+            [
+                [
+                    'dns_hdomain_id',
+                ],
+                'required',
+                'when' => function ($model) {
+                    return $model->alias_type === 'subdomain';
+                },
+                'whenClient' => new JsExpression('function (attribute, value) {
+                    return $(":input[name*=alias_type]:checked").val() == "subdomain";
                 }'),
                 'on' => ['create-alias'],
             ],
@@ -152,15 +168,18 @@ class Hdomain extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'backend_ip'        => Yii::t('hipanel:hosting', 'Backend IP'),
-            'with_www'          => Yii::t('hipanel:hosting', 'Create www alias'),
-            'proxy_enable'      => Yii::t('hipanel:hosting', 'Enable proxy'),
-            'backuping_type'    => Yii::t('hipanel:hosting', 'Backup periodicity'),
-            'vhost_id'          => Yii::t('hipanel:hosting', 'Alias for'),
-            'proxy_enabled'     => Yii::t('hipanel:hosting', 'Proxy enabled'),
-            'path'              => Yii::t('hipanel:hosting', 'Path'),
-            'dns_on'            => Yii::t('hipanel', 'DNS'),
-            'comment'           => Yii::t('hipanel', 'Comment'),
+            'backend_ip'         => Yii::t('hipanel:hosting', 'Backend IP'),
+            'with_www'           => Yii::t('hipanel:hosting', 'Create www alias'),
+            'proxy_enable'       => Yii::t('hipanel:hosting', 'Enable proxy'),
+            'backuping_type'     => Yii::t('hipanel:hosting', 'Backup periodicity'),
+            'vhost_id'           => Yii::t('hipanel:hosting', 'Alias for'),
+            'proxy_enabled'      => Yii::t('hipanel:hosting', 'Proxy enabled'),
+            'path'               => Yii::t('hipanel:hosting', 'Path'),
+            'alias_type'         => Yii::t('hipanel:hosting', 'Alias type'),
+            'dns_hdomain_id'     => Yii::t('hipanel:hosting', 'Domain'),
+            'dns_hdomain_domain' => Yii::t('hipanel:hosting', 'Domain'),
+            'dns_on'             => Yii::t('hipanel', 'DNS'),
+            'comment'            => Yii::t('hipanel', 'Comment'),
         ]);
     }
 

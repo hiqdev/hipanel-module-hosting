@@ -144,6 +144,7 @@ return [
     /**
      * Domains.
      */
+    'Alias type' => 'Тип алиаса',
     'Domain' => 'Домен',
     'Domains' => 'Домены',
     'New domain' => 'Новый домен',
