@@ -26,6 +26,9 @@ class Hdomain extends \hipanel\base\Model
     const STATE_DISABLED = 'disabled';
     const STATE_TEMPORARY = 'temporary';
 
+    const ALIAS_TYPE_NEW = 'new';
+    const ALIAS_TYPE_SUBDOMAIN = 'subdomain';
+
     public function init()
     {
         $this->on(self::EVENT_AFTER_FIND, function ($event) {
@@ -89,8 +92,8 @@ class Hdomain extends \hipanel\base\Model
             [['ip', 'backend_ip'], 'ip'],
             [['ip'], 'required', 'on' => ['create']],
             [['domain', 'id'], 'safe', 'on' => ['enable-paid-feature-autorenewal', 'disable-paid-feature-autorenewal']],
-            [['alias_type'], 'in', 'range' => ['new', 'subdomain'], 'on' => 'create-alias'],
-            [['alias_type'], 'default', 'value' => 'subdomain', 'on' => 'create-alias'],
+            [['alias_type'], 'in', 'range' => [self::ALIAS_TYPE_NEW, self::ALIAS_TYPE_SUBDOMAIN], 'on' => 'create-alias'],
+            [['alias_type'], 'default', 'value' => self::ALIAS_TYPE_SUBDOMAIN, 'on' => 'create-alias'],
             [
                 [
                     'server',
@@ -196,6 +199,14 @@ class Hdomain extends \hipanel\base\Model
     public function isAlias()
     {
         return isset($this->vhost_id);
+    }
+
+    public function getAliasTypeOptions()
+    {
+        return [
+            self::ALIAS_TYPE_SUBDOMAIN => Yii::t('hipanel:hosting', 'Subdomain of existing domain'),
+            self::ALIAS_TYPE_NEW => Yii::t('hipanel:hosting', 'New domain'),
+        ];
     }
 
     /** {@inheritdoc} */

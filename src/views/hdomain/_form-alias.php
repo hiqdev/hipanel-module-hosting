@@ -49,10 +49,7 @@ $form = ActiveForm::begin([
                                 ]);
                                 echo $form->field($model, "[$i]vhost_id")->widget(VhostCombo::class, ['hasId' => true, 'formElementSelector' => '.form-instance']);
 
-                                echo $form->field($model, "[$i]alias_type")->radioList([
-                                        'subdomain' => Yii::t('hipanel:hosting', 'Subdomain of existing domain'),
-                                        'new' => Yii::t('hipanel:hosting', 'New domain'),
-                                ], ['class' => 'alias-type']);
+                                echo $form->field($model, "[$i]alias_type")->radioList($model->getAliasTypeOptions(), ['class' => 'alias-type']);
                                 ?>
 
                                 <div class="alias-subdomain">
