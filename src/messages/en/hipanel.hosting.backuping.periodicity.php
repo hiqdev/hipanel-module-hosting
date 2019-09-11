@@ -17,4 +17,12 @@ return [
     'month' => 'Every month',
     'year' => 'Every year',
     'never' => 'Never',
+
+    '* hour' => 'Every hour',
+    '*/6 hours' => 'Every 6 hours',
+    '*/12 hours' => 'Every 12 hours',
+    '* day' => 'Every day',
+    '* week' => 'Every week',
+    '* month' => 'Every month',
+    '* year' => 'Every year',
 ];

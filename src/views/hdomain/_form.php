@@ -149,7 +149,7 @@ JS
                             echo $form->field($model, "[$i]backuping_type")->widget(StaticCombo::class, [
                                 'formElementSelector' => '.form-instance',
                                 'hasId' => true,
-                                'data' => Ref::getList('type,backuping', 'hipanel:hosting'),
+                                'data' => Ref::getList('type,backuping', 'hipanel.hosting.backuping.periodicity'),
                             ]);
                             ?>
                         </div>
