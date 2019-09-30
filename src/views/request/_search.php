@@ -13,9 +13,11 @@ use hiqdev\combo\StaticCombo;
  */
 ?>
 
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('server')->widget(PanelServerCombo::class, ['formElementSelector' => '.form-group']) ?>
-</div>
+<?php if (Yii::getAlias('@server', false)) : ?>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <?= $search->field('server')->widget(PanelServerCombo::class, ['formElementSelector' => '.form-group']) ?>
+    </div>
+<?php endif ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('account')->widget(AccountCombo::class) ?>

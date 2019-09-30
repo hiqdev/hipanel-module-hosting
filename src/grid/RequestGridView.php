@@ -35,10 +35,12 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                     return sprintf('%s, %s', $model->object_class, $model->action);
                 },
             ],
-            'server' => [
+            'server' => class_exists(ServerColumn::class) ? [
                 'sortAttribute' => 'server',
                 'attribute' => 'server_id',
                 'class' => ServerColumn::class,
+            ] : [
+                'visible' => false,
             ],
             'account' => [
                 'enableSorting' => false,
