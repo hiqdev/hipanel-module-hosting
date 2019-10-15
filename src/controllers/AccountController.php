@@ -125,8 +125,14 @@ class AccountController extends \hipanel\base\CrudController
             'set-system-settings' => [
                 'class' => SmartUpdateAction::class,
                 'view' => '_setSystemSettings',
-                'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
+                'success' => Yii::t('hipanel:hosting', 'System settings where changed'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change system settings'),
+            ],
+            'set-ghost-options' => [
+                'class' => SmartUpdateAction::class,
+                'view' => '_setGhostOptions',
+                'success' => Yii::t('hipanel:hosting', 'Global vhost options where changed'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change global vhost options'),
             ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,

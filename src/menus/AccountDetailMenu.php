@@ -35,7 +35,7 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
                 'encode' => false,
                 'visible' => true,
             ],
-           [
+            [
                 'label' => SettingsModal::widget([
                     'model' => $this->model,
                     'title' => Yii::t('hipanel:hosting:account', 'IP address restrictions'),
@@ -65,6 +65,16 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
                     'headerOptions' => ['class' => 'label-info'],
                     'icon' => 'fa fa-fw fa-cog',
                     'scenario' => 'set-system-settings',
+                ]),
+                'encode' => false,
+            ],
+            [
+                'label' => SettingsModal::widget([
+                    'model' => $this->model,
+                    'title' => Yii::t('hipanel:hosting', 'Global vhost options'),
+                    'headerOptions' => ['class' => 'label-info'],
+                    'icon' => 'fa fa-fw fa-bars',
+                    'scenario' => 'set-ghost-options',
                 ]),
                 'encode' => false,
             ],
