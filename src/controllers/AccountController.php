@@ -122,6 +122,12 @@ class AccountController extends \hipanel\base\CrudController
                 'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
             ],
+            'set-system-settings' => [
+                'class' => SmartUpdateAction::class,
+                'view' => '_setSystemSettings',
+                'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
+                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
+            ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel:hosting', 'Account was blocked successfully'),

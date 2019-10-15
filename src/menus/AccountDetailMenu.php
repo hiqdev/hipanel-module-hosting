@@ -59,6 +59,16 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
                 'disabled' => $this->model->isOperable(),
             ],
             [
+                'label' => SettingsModal::widget([
+                    'model' => $this->model,
+                    'title' => Yii::t('hipanel:hosting', 'System settings'),
+                    'headerOptions' => ['class' => 'label-info'],
+                    'icon' => 'fa fa-fw fa-cog',
+                    'scenario' => 'set-system-settings',
+                ]),
+                'encode' => false,
+            ],
+            [
                 'label' => BlockModalButton::widget(['model' => $this->model]),
                 'encode' => false,
                 'visible' => Yii::$app->user->can('support') && Yii::$app->user->id !== $this->model->client_id,

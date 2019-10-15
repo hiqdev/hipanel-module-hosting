@@ -36,9 +36,9 @@ class Account extends \hipanel\base\Model
     public function rules()
     {
         return [
-            [['id', 'client_id', 'device_id', 'server_id', 'seller_id', 'uid', 'gid'], 'integer'],
+            [['id', 'client_id', 'device_id', 'server_id', 'seller_id'], 'integer'],
             [
-                ['login', 'password', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller'],
+                ['login', 'password', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller', 'uid', 'gid'],
                 'safe',
             ],
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
@@ -82,10 +82,11 @@ class Account extends \hipanel\base\Model
             [
                 ['id'],
                 'required',
-                'on' => ['change-password', 'set-allowed-ips', 'set-mail-settings', 'delete'],
+                'on' => ['change-password', 'set-allowed-ips', 'set-mail-settings', 'set-system-settings', 'delete'],
             ],
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
             [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
+            [['home', 'gid', 'uid'], 'required', 'on' => ['set-system-settings']],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
