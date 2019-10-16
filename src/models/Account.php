@@ -11,9 +11,16 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\StringHelper;
+use hipanel\modules\hosting\models\query\AccountQuery;
 use hipanel\modules\hosting\validators\LoginValidator;
 use Yii;
 
+/**
+ * Class Account
+ * @package hipanel\modules\hosting\models
+ *
+ * @property $values
+ */
 class Account extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
@@ -87,17 +94,6 @@ class Account extends \hipanel\base\Model
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
             [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
             [['home', 'gid', 'uid'], 'safe', 'on' => ['set-system-settings']],
-            [['no_suexec', 'allow_scripts', 'dont_enable_ssi'], 'boolean'],
-            [
-                [
-                    'no_suexec', 'allow_scripts', 'dont_enable_ssi',
-                    'port', 'global_apache_conf', 'global_nginx_conf',
-                    'apache_conf', 'nginx_conf', 'nginx_listen',
-                    'domain_prefix', 'docroot_postfix', 'cgibin_postfix',
-                ],
-                'safe',
-                'on' => ['set-ghost-options'],
-            ],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
@@ -121,6 +117,11 @@ class Account extends \hipanel\base\Model
     public function goodStates()
     {
         return [self::STATE_OK];
+    }
+
+    public function getValues()
+    {
+        return $this->hasOne(AccountValues::class, ['obj_id' => 'obj_id']);
     }
 
     /**
@@ -182,5 +183,16 @@ class Account extends \hipanel\base\Model
                 $this->{$k} = $v;
             }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return AccountQuery
+     */
+    public static function find(array $options = []): AccountQuery
+    {
+        return new AccountQuery(get_called_class(), [
+            'options' => $options,
+        ]);
     }
 }
