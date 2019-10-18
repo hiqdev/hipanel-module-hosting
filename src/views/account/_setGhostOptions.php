@@ -12,16 +12,16 @@ use yii\helpers\Url;
 ?>
 <?php $form = ActiveForm::begin([
     'options' => [
-        'id' => $model->scenario . '-form',
+        'id' => 'sgo-form',
     ],
     'enableClientValidation' => true,
     'validateOnBlur' => true,
     'enableAjaxValidation' => true,
-    'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
+    'validationUrl' => Url::toRoute(['validate-sgo-form', 'scenario' => $model->scenario]),
 ]) ?>
     <div class="row-md-6">
             <legend><?= Yii::t('hipanel:hosting', 'Enter global vhost options') ?></legend>
-            <?= Html::activeHiddenInput($model->values, "[$model->id]id") ?>
+            <?= Html::activeHiddenInput($model->values, "id") ?>
             <div class="row">
                 <div class="col-sm-6">
                     <?= $form->field($model->values, "port") ?>

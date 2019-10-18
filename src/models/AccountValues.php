@@ -14,9 +14,19 @@ namespace hipanel\modules\hosting\models;
  * Class AccountValues
  * @package hipanel\modules\hosting\models
  */
-class AccountValues extends Account
+class AccountValues extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
+
+    const SCENARIO_DEFAULT = 'dumb';
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'account';
+    }
 
     /**
      * {@inheritdoc}
@@ -24,10 +34,10 @@ class AccountValues extends Account
     public function rules()
     {
         return array_merge(parent::rules(), [
+            [['id'], 'integer'],
             [['no_suexec', 'allow_scripts', 'dont_enable_ssi'], 'boolean'],
             [
                 [
-                    'id',
                     'no_suexec', 'allow_scripts', 'dont_enable_ssi',
                     'port', 'global_apache_conf', 'global_nginx_conf',
                     'apache_conf', 'nginx_conf', 'nginx_listen',
@@ -45,5 +55,23 @@ class AccountValues extends Account
     {
         return $this->mergeAttributeLabels([
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function primaryKey()
+    {
+        return ['id'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function scenarioActions()
+    {
+        return [
+            'default' => 'set-ghost-options',
+        ];
     }
 }

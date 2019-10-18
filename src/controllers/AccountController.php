@@ -28,6 +28,7 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\modules\hosting\models\AccountValues;
+use hiqdev\hiart\Collection;
 use Yii;
 use yii\base\Action;
 use yii\base\Event;
@@ -133,29 +134,24 @@ class AccountController extends \hipanel\base\CrudController
             'set-ghost-options' => [
                 'class' => SmartUpdateAction::class,
                 'view' => '_setGhostOptions',
+                'scenario' => 'default',
+                'collection' => [
+                    'class' => Collection::class,
+                    'model' => new AccountValues(['scenario' => 'default']),
+                    'scenario' => 'default',
+                ],
                 'on beforeFetchLoad' => function (Event $event): void {
                     $event->sender->getDataProvider()->query->withValues();
                 },
-                'on beforeLoad' => function (Event $event) {
-                    /** @var Action $action */
-                    $action = $event->sender;
-
-                    $action->collection->setModel(AccountValues::class);
-                },
-                'POST html' => [
-                    'save' => true,
-                    'success' => [
-                        'class' => RedirectAction::class,
-                        'url' => function () {
-                            $kek = 1;
-                            $account = Yii::$app->request->post('AccountValues');
-
-                            return ['@server/view', 'id' => $account['id']];
-                        },
-                    ],
-                ],
                 'success' => Yii::t('hipanel:hosting', 'Global vhost options where changed'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change global vhost options'),
+            ],
+            'validate-sgo-form' => [
+                'class' => ValidateFormAction::class,
+                'collection' => [
+                    'class' => Collection::class,
+                    'model' => new AccountValues(['scenario' => 'default']),
+                ],
             ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,

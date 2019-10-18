@@ -121,7 +121,7 @@ class Account extends \hipanel\base\Model
 
     public function getValues()
     {
-        return $this->hasOne(AccountValues::class, ['obj_id' => 'obj_id']);
+        return $this->hasOne(AccountValues::class, ['id' => 'id']);
     }
 
     /**
