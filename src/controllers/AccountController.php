@@ -128,8 +128,8 @@ class AccountController extends \hipanel\base\CrudController
             'set-system-settings' => [
                 'class' => SmartUpdateAction::class,
                 'view' => '_setSystemSettings',
-                'success' => Yii::t('hipanel:hosting', 'System settings where changed'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change system settings'),
+                'success' => Yii::t('hipanel:hosting:account', 'System settings where changed'),
+                'error' => Yii::t('hipanel:hosting:account', 'An error occurred when trying to change system settings'),
             ],
             'set-ghost-options' => [
                 'class' => SmartUpdateAction::class,
@@ -143,8 +143,8 @@ class AccountController extends \hipanel\base\CrudController
                 'on beforeFetchLoad' => function (Event $event): void {
                     $event->sender->getDataProvider()->query->withValues();
                 },
-                'success' => Yii::t('hipanel:hosting', 'Global vhost options where changed'),
-                'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change global vhost options'),
+                'success' => Yii::t('hipanel:hosting:account', 'Global vhost options where changed'),
+                'error' => Yii::t('hipanel:hosting:account', 'An error occurred when trying to change global vhost options'),
             ],
             'validate-sgo-form' => [
                 'class' => ValidateFormAction::class,

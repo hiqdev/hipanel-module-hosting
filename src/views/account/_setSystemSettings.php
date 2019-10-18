@@ -23,7 +23,7 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-6">
             <fieldset>
-                <legend><?= Yii::t('hipanel:hosting', 'Enter system settings') ?></legend>
+                <legend><?= Yii::t('hipanel:hosting:account', 'Enter system settings') ?></legend>
                 <?= Html::activeHiddenInput($model, "[$model->id]id") ?>
                 <?= $form->field($model, "[$model->id]path") ?>
                 <?= $form->field($model, "[$model->id]gid") ?>

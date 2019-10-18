@@ -61,7 +61,7 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
             [
                 'label' => SettingsModal::widget([
                     'model' => $this->model,
-                    'title' => Yii::t('hipanel:hosting', 'System settings'),
+                    'title' => Yii::t('hipanel:hosting:account', 'System settings'),
                     'headerOptions' => ['class' => 'label-info'],
                     'icon' => 'fa fa-fw fa-cog',
                     'scenario' => 'set-system-settings',
@@ -71,7 +71,7 @@ class AccountDetailMenu extends \hipanel\menus\AbstractDetailMenu
             [
                 'label' => SettingsModal::widget([
                     'model' => $this->model,
-                    'title' => Yii::t('hipanel:hosting', 'Global vhost options'),
+                    'title' => Yii::t('hipanel:hosting:account', 'Global vhost options'),
                     'headerOptions' => ['class' => 'label-info'],
                     'icon' => 'fa fa-fw fa-bars',
                     'scenario' => 'set-ghost-options',
