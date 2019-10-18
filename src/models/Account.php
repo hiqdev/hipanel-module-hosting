@@ -93,7 +93,7 @@ class Account extends \hipanel\base\Model
             ],
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
             [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
-            [['home', 'gid', 'uid'], 'safe', 'on' => ['set-system-settings']],
+            [['path', 'gid', 'uid'], 'safe', 'on' => ['set-system-settings']],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
@@ -111,6 +111,8 @@ class Account extends \hipanel\base\Model
             'block_send'     => Yii::t('hipanel:hosting', 'Block outgoing post'),
             'per_hour_limit' => Yii::t('hipanel:hosting', 'Maximum letters per hour'),
             'path'           => Yii::t('hipanel:hosting:account', 'Home directory'),
+            'gid'            => Yii::t('hipanel:hosting:account', 'Group'),
+            'uid'            => Yii::t('hipanel:hosting:account', 'ID'),
         ]);
     }
 

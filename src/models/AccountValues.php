@@ -10,6 +10,8 @@
 
 namespace hipanel\modules\hosting\models;
 
+use Yii;
+
 /**
  * Class AccountValues
  * @package hipanel\modules\hosting\models
@@ -54,6 +56,18 @@ class AccountValues extends \hipanel\base\Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
+            'no_suexec'             => Yii::t('hipanel:hosting:account', 'No Suexec'),
+            'allow_scripts'         => Yii::t('hipanel:hosting:account', 'Allow scripts'),
+            'dont_enable_ssi'       => Yii::t('hipanel:hosting:account', 'Dont enable Ssi'),
+            'port'                  => Yii::t('hipanel:hosting:account', 'Port'),
+            'global_apache_conf'    => Yii::t('hipanel:hosting:account', 'Global Apache configuration'),
+            'global_nginx_conf'     => Yii::t('hipanel:hosting:account', 'Global Nginx configuration'),
+            'apache_conf'           => Yii::t('hipanel:hosting:account', 'Apache configuration'),
+            'nginx_conf'            => Yii::t('hipanel:hosting:account', 'Nginx configuration'),
+            'domain_prefix'         => Yii::t('hipanel:hosting:account', 'Domain prefix'),
+            'nginx_listen'          => Yii::t('hipanel:hosting:account', 'Nginx listen'),
+            'docroot_postfix'       => Yii::t('hipanel:hosting:account', 'Document root postfix'),
+            'cgibin_postfix'        => Yii::t('hipanel:hosting:account', 'Cgibin postfix'),
         ]);
     }
 
