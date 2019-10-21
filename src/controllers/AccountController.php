@@ -123,7 +123,7 @@ class AccountController extends \hipanel\base\CrudController
                 'view' => '_setMailSettings',
                 'collection' => [
                     'class' => Collection::class,
-                    'model' => new AccountValues(['scenario' => 'default']),
+                    'model' => new AccountValues(['scenario' => 'set-mail-settings']),
                 ],
                 'on beforeFetchLoad' => function (Event $event): void {
                     $event->sender->getDataProvider()->query->withValues();

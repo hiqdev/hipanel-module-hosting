@@ -36,20 +36,19 @@ class AccountValues extends \hipanel\base\Model
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['id'], 'integer', 'on' => ['set-mail-settings', 'set-ghost-options']],
-            [['no_suexec', 'allow_scripts', 'dont_enable_ssi'], 'boolean', 'on' => ['set-ghost-options']],
+            [['id'], 'integer'],
+            [['no_suexec', 'allow_scripts', 'dont_enable_ssi', 'block_send'], 'boolean'],
             [
                 [
+                    'id', 'per_hour_limit', 'block_send',
                     'no_suexec', 'allow_scripts', 'dont_enable_ssi',
                     'port', 'global_apache_conf', 'global_nginx_conf',
                     'apache_conf', 'nginx_conf', 'nginx_listen',
                     'domain_prefix', 'docroot_postfix', 'cgibin_postfix',
                 ],
                 'safe',
-                'on' => ['set-ghost-options'],
+                'on' => ['default', 'set-ghost-options', 'set-mail-settings'],
             ],
-            [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
-            [['per_hour_limit'], 'safe', 'on' => ['set-mail-settings']],
         ]);
     }
 
@@ -82,16 +81,5 @@ class AccountValues extends \hipanel\base\Model
     public static function primaryKey()
     {
         return ['id'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarioActions()
-    {
-        return [
-            'default' => 'set-mail-settings',
-            'set-ghost-options' => 'set-ghost-options',
-        ];
     }
 }
