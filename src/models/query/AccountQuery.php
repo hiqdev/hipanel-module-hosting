@@ -28,4 +28,15 @@ class AccountQuery extends ActiveQuery
 
         return $this;
     }
+
+    /**
+     * @return $this
+     */
+    public function withBlocking(): self
+    {
+        $this->joinWith('blocking');
+        $this->andWhere(['with_blocking' => true]);
+
+        return $this;
+    }
 }

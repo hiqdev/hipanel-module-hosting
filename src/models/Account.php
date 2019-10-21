@@ -37,7 +37,6 @@ class Account extends \hipanel\base\Model
     public function init()
     {
         $this->on(static::EVENT_BEFORE_VALIDATE, [$this, 'onBeforeValidate']);
-        $this->on(static::EVENT_AFTER_FIND, [$this, 'onAfterFind']);
     }
 
     public function rules()
@@ -49,7 +48,7 @@ class Account extends \hipanel\base\Model
                 'safe',
             ],
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
-            [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label', 'mail_settings', 'per_hour_limit'], 'safe'],
+            [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label'], 'safe'],
             [['login', 'server', 'password', 'sshftp_ips', 'type'], 'safe', 'on' => ['create', 'create-ftponly']],
             [['login', 'server', 'password', 'type'], 'required', 'on' => ['create', 'create-ftponly']],
             [['account', 'path'], 'required', 'on' => ['create-ftponly']],
@@ -92,7 +91,6 @@ class Account extends \hipanel\base\Model
                 'on' => ['change-password', 'set-allowed-ips', 'set-mail-settings', 'set-system-settings', 'set-ghost-options', 'delete'],
             ],
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
-            [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
             [['path', 'gid', 'uid'], 'safe', 'on' => ['set-system-settings']],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
@@ -108,8 +106,6 @@ class Account extends \hipanel\base\Model
         return $this->mergeAttributeLabels([
             'allowed_ips'    => Yii::t('hipanel:hosting', 'Allowed IPs'),
             'sshftp_ips'     => Yii::t('hipanel:hosting', 'IP to access on the server via SSH or FTP'),
-            'block_send'     => Yii::t('hipanel:hosting', 'Block outgoing post'),
-            'per_hour_limit' => Yii::t('hipanel:hosting', 'Maximum letters per hour'),
             'path'           => Yii::t('hipanel:hosting:account', 'Home directory'),
             'gid'            => Yii::t('hipanel:hosting:account', 'Group'),
             'uid'            => Yii::t('hipanel:hosting:account', 'ID'),
@@ -176,15 +172,6 @@ class Account extends \hipanel\base\Model
         }
 
         return true;
-    }
-
-    public function onAfterFind()
-    {
-        if (!empty($this->mail_settings)) {
-            foreach ($this->mail_settings as $k => $v) {
-                $this->{$k} = $v;
-            }
-        }
     }
 
     /**

@@ -34,7 +34,6 @@ class AccountSearch extends Account
             'with_request',
             'with_counters',
             'with_directories',
-            'with_mail_settings',
         ]);
     }
 }

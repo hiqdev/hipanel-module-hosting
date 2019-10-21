@@ -36,8 +36,8 @@ class AccountValues extends \hipanel\base\Model
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['id'], 'integer'],
-            [['no_suexec', 'allow_scripts', 'dont_enable_ssi'], 'boolean'],
+            [['id'], 'integer', 'on' => ['set-mail-settings', 'set-ghost-options']],
+            [['no_suexec', 'allow_scripts', 'dont_enable_ssi'], 'boolean', 'on' => ['set-ghost-options']],
             [
                 [
                     'no_suexec', 'allow_scripts', 'dont_enable_ssi',
@@ -46,7 +46,10 @@ class AccountValues extends \hipanel\base\Model
                     'domain_prefix', 'docroot_postfix', 'cgibin_postfix',
                 ],
                 'safe',
+                'on' => ['set-ghost-options'],
             ],
+            [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
+            [['per_hour_limit'], 'safe', 'on' => ['set-mail-settings']],
         ]);
     }
 
@@ -68,6 +71,8 @@ class AccountValues extends \hipanel\base\Model
             'nginx_listen'          => Yii::t('hipanel:hosting:account', 'Nginx listen'),
             'docroot_postfix'       => Yii::t('hipanel:hosting:account', 'Document root postfix'),
             'cgibin_postfix'        => Yii::t('hipanel:hosting:account', 'Cgibin postfix'),
+            'block_send'            => Yii::t('hipanel:hosting', 'Block outgoing post'),
+            'per_hour_limit'        => Yii::t('hipanel:hosting', 'Maximum letters per hour'),
         ]);
     }
 
@@ -85,7 +90,8 @@ class AccountValues extends \hipanel\base\Model
     public function scenarioActions()
     {
         return [
-            'default' => 'set-ghost-options',
+            'default' => 'set-mail-settings',
+            'set-ghost-options' => 'set-ghost-options',
         ];
     }
 }
