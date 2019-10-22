@@ -22,8 +22,6 @@ return [
     'An error occurred when trying to change global vhost options' => 'Ошибка при изменении глобальных vhost настроек',
     'System settings' => 'Системные настройки',
     'Global vhost options' => 'Глобальные vhost настройки',
-    'Enter global vhost options' => 'Введите глобальные vhost настройки',
-    'Enter system settings' => 'Введите системные настройки',
     'Group' => 'Группа',
     'No Suexec' => 'Без Suexec',
     'Allow scripts' => 'Разрешить скрипты',
