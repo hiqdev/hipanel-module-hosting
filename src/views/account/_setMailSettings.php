@@ -26,7 +26,6 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-6">
             <fieldset>
-                <legend><?= Yii::t('hipanel:hosting', 'Enter mail settings') ?></legend>
                 <?php if (Yii::$app->user->can('support')) : ?>
                     <?= $form->field($model, "[$model->id]client")->widget(ClientCombo::class, ['inputOptions' => ['readonly' => true]]) ?>
                 <?php endif ?>

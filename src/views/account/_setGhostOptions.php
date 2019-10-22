@@ -20,7 +20,6 @@ use yii\helpers\Url;
     'validationUrl' => Url::toRoute(['validate-sgo-form', 'scenario' => $model->scenario]),
 ]) ?>
     <div class="row-md-6">
-            <legend><?= Yii::t('hipanel:hosting:account', 'Enter global vhost options') ?></legend>
             <?= Html::activeHiddenInput($model->values, "id") ?>
             <div class="row">
                 <div class="col-sm-6">
