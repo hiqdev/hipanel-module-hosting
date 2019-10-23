@@ -47,17 +47,6 @@ class IPAddressesCest
         ]);
     }
 
-    private function ensureICanSeeLegendBox()
-    {
-        $this->index->containsLegend([
-            'Shared',
-            'Free',
-            'Dedicated',
-            'System',
-            'Blocked',
-        ]);
-    }
-
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsColumns([
