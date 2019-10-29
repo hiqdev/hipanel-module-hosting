@@ -91,7 +91,7 @@ class Account extends \hipanel\base\Model
                 'on' => ['change-password', 'set-allowed-ips', 'set-mail-settings', 'set-system-settings', 'set-ghost-options', 'delete'],
             ],
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
-            [['path', 'gid', 'uid'], 'safe', 'on' => ['set-system-settings']],
+            [['path', 'gid', 'uid'], 'string', 'on' => ['set-system-settings']],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
