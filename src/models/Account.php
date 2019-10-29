@@ -11,9 +11,16 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\helpers\StringHelper;
+use hipanel\modules\hosting\models\query\AccountQuery;
 use hipanel\modules\hosting\validators\LoginValidator;
 use Yii;
 
+/**
+ * Class Account
+ * @package hipanel\modules\hosting\models
+ *
+ * @property $values
+ */
 class Account extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
@@ -30,19 +37,18 @@ class Account extends \hipanel\base\Model
     public function init()
     {
         $this->on(static::EVENT_BEFORE_VALIDATE, [$this, 'onBeforeValidate']);
-        $this->on(static::EVENT_AFTER_FIND, [$this, 'onAfterFind']);
     }
 
     public function rules()
     {
         return [
-            [['id', 'client_id', 'device_id', 'server_id', 'seller_id', 'uid', 'gid'], 'integer'],
+            [['id', 'client_id', 'device_id', 'server_id', 'seller_id'], 'integer'],
             [
-                ['login', 'password', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller'],
+                ['login', 'password', 'shell', 'client', 'path', 'home', 'device', 'server', 'seller', 'uid', 'gid'],
                 'safe',
             ],
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
-            [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label', 'mail_settings', 'per_hour_limit'], 'safe'],
+            [['ip', 'allowed_ips', 'objects_count', 'request_state', 'request_state_label'], 'safe'],
             [['login', 'server', 'password', 'sshftp_ips', 'type'], 'safe', 'on' => ['create', 'create-ftponly']],
             [['login', 'server', 'password', 'type'], 'required', 'on' => ['create', 'create-ftponly']],
             [['account', 'path'], 'required', 'on' => ['create-ftponly']],
@@ -82,10 +88,10 @@ class Account extends \hipanel\base\Model
             [
                 ['id'],
                 'required',
-                'on' => ['change-password', 'set-allowed-ips', 'set-mail-settings', 'delete'],
+                'on' => ['change-password', 'set-allowed-ips', 'set-mail-settings', 'set-system-settings', 'set-ghost-options', 'delete'],
             ],
             [['id'], 'canSetMailSettings', 'on' => ['set-mail-settings']],
-            [['block_send'], 'boolean', 'on' => ['set-mail-settings']],
+            [['path', 'gid', 'uid'], 'string', 'on' => ['set-system-settings']],
             [['account', 'server'], 'required', 'on' => ['get-directories-list']],
             [['type', 'comment'], 'required', 'on' => ['enable-block']],
             [['comment'], 'safe', 'on' => ['disable-block']],
@@ -100,15 +106,20 @@ class Account extends \hipanel\base\Model
         return $this->mergeAttributeLabels([
             'allowed_ips'    => Yii::t('hipanel:hosting', 'Allowed IPs'),
             'sshftp_ips'     => Yii::t('hipanel:hosting', 'IP to access on the server via SSH or FTP'),
-            'block_send'     => Yii::t('hipanel:hosting', 'Block outgoing post'),
-            'per_hour_limit' => Yii::t('hipanel:hosting', 'Maximum letters per hour'),
             'path'           => Yii::t('hipanel:hosting:account', 'Home directory'),
+            'gid'            => Yii::t('hipanel:hosting:account', 'Group'),
+            'uid'            => Yii::t('hipanel:hosting:account', 'ID'),
         ]);
     }
 
     public function goodStates()
     {
         return [self::STATE_OK];
+    }
+
+    public function getValues()
+    {
+        return $this->hasOne(AccountValues::class, ['id' => 'id']);
     }
 
     /**
@@ -163,12 +174,14 @@ class Account extends \hipanel\base\Model
         return true;
     }
 
-    public function onAfterFind()
+    /**
+     * {@inheritdoc}
+     * @return AccountQuery
+     */
+    public static function find(array $options = []): AccountQuery
     {
-        if (!empty($this->mail_settings)) {
-            foreach ($this->mail_settings as $k => $v) {
-                $this->{$k} = $v;
-            }
-        }
+        return new AccountQuery(get_called_class(), [
+            'options' => $options,
+        ]);
     }
 }

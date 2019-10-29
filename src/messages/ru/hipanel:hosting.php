@@ -38,7 +38,6 @@ return [
     'Account information' => 'Информация об аккаунте',
     'Confirm account deleting' => 'Подтвердите удаление аккаунта',
     'Are you sure you want to delete account {name}? You will loose all data, that relates this account!' => 'Вы уверены, что хотите удалить аккаунт {name}? Вы потеряете все данные, что связаны с ним!',
-    'Enter mail settings' => 'Введите настройки почты',
     'Mail settings' => 'Настройки почты',
     'This will immediately terminate all sessions of the user!' => 'Это немедленно прервет все сеансы пользователя!',
     'Enter new restrictions' => 'Введите новые ограничения',

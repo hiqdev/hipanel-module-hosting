@@ -27,6 +27,8 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\filters\EasyAccessControl;
+use hipanel\modules\hosting\models\AccountValues;
+use hiqdev\hiart\Collection;
 use Yii;
 use yii\base\Event;
 
@@ -60,6 +62,13 @@ class AccountController extends \hipanel\base\CrudController
                         'typeData' => $action->controller->getTypeData(),
                     ];
                 },
+                'collection' => [
+                    'class' => Collection::class,
+                    'model' => new AccountValues(['scenario' => 'default']),
+                ],
+                'on beforeFetchLoad' => function (Event $event): void {
+                    $event->sender->getDataProvider()->query->withValues();
+                },
                 'filterStorageMap' => [
                     'login_like' => 'hosting.account.login',
                     'server' => 'server.server.name',
@@ -71,15 +80,8 @@ class AccountController extends \hipanel\base\CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
-                'findOptions' => [
-                    'with_mail_settings' => true,
-                ],
                 'on beforePerform' => function (Event $event) {
-                    /** @var \hipanel\actions\SearchAction $action */
-                    $action = $event->sender;
-                    $dataProvider = $action->getDataProvider();
-                    $dataProvider->query->joinWith(['blocking']);
-                    $dataProvider->query->andWhere(['with_blocking' => 1]);
+                    $event->sender->getDataProvider()->query->withBlocking();
                 },
                 'data' => function ($action) {
                     return [
@@ -119,8 +121,41 @@ class AccountController extends \hipanel\base\CrudController
             'set-mail-settings' => [
                 'class' => SmartUpdateAction::class,
                 'view' => '_setMailSettings',
+                'collection' => [
+                    'class' => Collection::class,
+                    'model' => new AccountValues(['scenario' => 'set-mail-settings']),
+                ],
+                'on beforeFetchLoad' => function (Event $event): void {
+                    $event->sender->getDataProvider()->query->withValues();
+                },
                 'success' => Yii::t('hipanel:hosting', 'Mail settings where changed'),
                 'error' => Yii::t('hipanel:hosting', 'An error occurred when trying to change mail settings'),
+            ],
+            'set-system-settings' => [
+                'class' => SmartUpdateAction::class,
+                'view' => '_setSystemSettings',
+                'success' => Yii::t('hipanel:hosting:account', 'System settings where changed'),
+                'error' => Yii::t('hipanel:hosting:account', 'An error occurred when trying to change system settings'),
+            ],
+            'set-ghost-options' => [
+                'class' => SmartUpdateAction::class,
+                'view' => '_setGhostOptions',
+                'collection' => [
+                    'class' => Collection::class,
+                    'model' => new AccountValues(['scenario' => 'set-ghost-options']),
+                ],
+                'on beforeFetchLoad' => function (Event $event): void {
+                    $event->sender->getDataProvider()->query->withValues();
+                },
+                'success' => Yii::t('hipanel:hosting:account', 'Global vhost options where changed'),
+                'error' => Yii::t('hipanel:hosting:account', 'An error occurred when trying to change global vhost options'),
+            ],
+            'validate-sgo-form' => [
+                'class' => ValidateFormAction::class,
+                'collection' => [
+                    'class' => Collection::class,
+                    'model' => new AccountValues(['scenario' => 'default']),
+                ],
             ],
             'enable-block' => [
                 'class' => SmartUpdateAction::class,
