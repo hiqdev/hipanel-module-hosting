@@ -33,6 +33,7 @@ class BackupingController extends \hipanel\base\CrudController
                 'actions' => [
                     'update' => 'account.update',
                     'delete' => 'account.delete',
+                    'restore' => 'account.update',
                     '*' => 'account.read',
                 ],
             ],
@@ -68,6 +69,9 @@ class BackupingController extends \hipanel\base\CrudController
                 },
             ],
             'disable' => [
+                'class' => SmartPerformAction::class,
+            ],
+            'restore' => [
                 'class' => SmartPerformAction::class,
             ],
             'enable' => [
@@ -125,5 +129,10 @@ class BackupingController extends \hipanel\base\CrudController
             'disabled' => Yii::t('hipanel', 'Disabled'),
             'deleted' => Yii::t('hipanel', 'Deleted'),
         ];
+    }
+
+    public static function getTypeOptions()
+    {
+        return Backuping::getTypeOptions();
     }
 }
