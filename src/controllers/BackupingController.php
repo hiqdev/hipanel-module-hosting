@@ -71,7 +71,7 @@ class BackupingController extends \hipanel\base\CrudController
             'disable' => [
                 'class' => SmartPerformAction::class,
             ],
-            'restore' => [
+            'un-delete' => [
                 'class' => SmartPerformAction::class,
             ],
             'enable' => [
