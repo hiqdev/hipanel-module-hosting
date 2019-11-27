@@ -43,7 +43,7 @@ class BackupingDetailMenu extends \hipanel\menus\AbstractDetailMenu
             ], [
                 'label' => Yii::t('hipanel', 'Restore'),
                 'icon' => 'fa-archive',
-                'url' => ['@backuping/un-delete', 'id' => $this->model->id],
+                'url' => ['@backuping/undelete', 'id' => $this->model->id],
                 'encode' => false,
                 'visible' => $this->model->canBeRestored(),
                 'linkOptions' => [

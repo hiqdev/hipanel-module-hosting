@@ -35,7 +35,7 @@ class Backuping extends \hipanel\base\Model
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
 
             [['id', 'type'], 'safe', 'on' => ['update']],
-            [['id'], 'integer', 'on' => ['delete', 'disable', 'enable', 'un-delete']],
+            [['id'], 'integer', 'on' => ['delete', 'disable', 'enable', 'undelete']],
 
             // Update settings
             [['id', 'service_id'], 'integer', 'on' => 'update'],

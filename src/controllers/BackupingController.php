@@ -33,7 +33,7 @@ class BackupingController extends \hipanel\base\CrudController
                 'actions' => [
                     'update' => 'account.update',
                     'delete' => 'account.delete',
-                    'restore' => 'account.update',
+                    'undelete' => 'account.update',
                     '*' => 'account.read',
                 ],
             ],
@@ -71,7 +71,7 @@ class BackupingController extends \hipanel\base\CrudController
             'disable' => [
                 'class' => SmartPerformAction::class,
             ],
-            'un-delete' => [
+            'undelete' => [
                 'class' => SmartPerformAction::class,
             ],
             'enable' => [
