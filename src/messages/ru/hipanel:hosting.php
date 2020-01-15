@@ -299,6 +299,7 @@ return [
     'Go to the site' => 'Перейти',
     'Update settings' => 'Изменить настройки',
     'Backup settings have been changed' => 'Настройки бэкапа были изменены',
+    'Are you sure you want to delete backuping?' => 'Вы уверены, что хотите удалить настройки бэкапов?',
 
     'Scheduled time' => 'Запланированное время',
 ];

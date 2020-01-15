@@ -78,7 +78,7 @@ class BackupingDetailMenu extends \hipanel\menus\AbstractDetailMenu
                 'visible' => $this->model->canBeDeleted(),
                 'linkOptions' => [
                     'data' => [
-                        'confirm' => Yii::t('hipanel:hosting', 'Are you sure you want to delete backaping'),
+                        'confirm' => Yii::t('hipanel:hosting', 'Are you sure you want to delete backuping'),
                         'method' => 'post',
                         'pjax' => '0',
                         'params' => [
