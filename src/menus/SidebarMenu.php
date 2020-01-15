@@ -47,9 +47,14 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                         },
                     ],
                     'backuping' => [
-                        'label' => Yii::t('hipanel:hosting', 'Backups'),
+                        'label' => Yii::t('hipanel:hosting', 'Backups settings'),
                         'icon' => 'fa-archive',
                         'url' => ['/hosting/backuping/index'],
+                    ],
+                    'backup' => [
+                        'label' => Yii::t('hipanel:hosting', 'Backups'),
+                        'icon' => 'fa-archive',
+                        'url' => ['/hosting/backup/index'],
                     ],
                     'crontab' => [
                         'label' => Yii::t('hipanel:hosting', 'Crons'),

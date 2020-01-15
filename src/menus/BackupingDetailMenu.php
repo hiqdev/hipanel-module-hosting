@@ -24,7 +24,69 @@ class BackupingDetailMenu extends \hipanel\menus\AbstractDetailMenu
                 'icon' => 'fa-pencil',
                 'url' => ['@backuping/update', 'id' => $this->model->id],
                 'encode' => false,
-                'visible' => Yii::$app->user->can('support'),
+                'visible' => Yii::$app->user->can('support') && !$this->model->isDeleted(),
+            ],[
+                'label' => Yii::t('hipanel', 'Enable'),
+                'icon' => 'fa-activate',
+                'url' => ['@backuping/enable', 'id' => $this->model->id],
+                'encode' => false,
+                'visible' => $this->model->canBeEnabled(),
+                'linkOptions' => [
+                    'data' => [
+                        'method' => 'post',
+                        'pjax' => '0',
+                        'params' => [
+                            'Backuping[id]' => $this->model->id,
+                        ],
+                    ],
+                ],
+            ], [
+                'label' => Yii::t('hipanel', 'Restore'),
+                'icon' => 'fa-archive',
+                'url' => ['@backuping/undelete', 'id' => $this->model->id],
+                'encode' => false,
+                'visible' => $this->model->canBeRestored(),
+                'linkOptions' => [
+                    'data' => [
+                        'method' => 'post',
+                        'pjax' => '0',
+                        'params' => [
+                            'Backuping[id]' => $this->model->id,
+                        ],
+                    ],
+                ],
+            ], [
+                'label' => Yii::t('hipanel', 'Disable'),
+                'icon' => 'fa-ban',
+                'url' => ['@backuping/disable', 'id' => $this->model->id],
+                'encode' => false,
+                'visible' => $this->model->canBeDisabled(),
+                'linkOptions' => [
+                    'data' => [
+                        'method' => 'post',
+                        'pjax' => '0',
+                        'params' => [
+                            'Backuping[id]' => $this->model->id,
+                        ],
+                    ],
+                ],
+            ], [
+                'label' => Yii::t('hipanel', 'Delete'),
+                'icon' => 'fa-trash',
+                'url' => ['@backuping/delete', 'id' => $this->model->id],
+                'encode' => false,
+                'visible' => $this->model->canBeDeleted(),
+                'linkOptions' => [
+                    'data' => [
+                        'confirm' => Yii::t('hipanel:hosting', 'Are you sure you want to delete backuping?'),
+                        'method' => 'post',
+                        'pjax' => '0',
+                        'params' => [
+                            'Backuping[id]' => $this->model->id,
+                        ],
+                    ],
+                ],
+
             ],
         ];
     }

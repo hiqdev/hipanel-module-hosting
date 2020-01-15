@@ -19,6 +19,9 @@ class Backuping extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait;
 
+    const STATE_DELETED = 'deleted';
+    const STATE_DISABLED = 'disabled';
+
     /** {@inheritdoc} */
     public function rules()
     {
@@ -32,7 +35,7 @@ class Backuping extends \hipanel\base\Model
             [['type', 'type_label', 'state', 'state_label'], 'safe'],
 
             [['id', 'type'], 'safe', 'on' => ['update']],
-            [['id'], 'integer', 'on' => ['delete', 'disable', 'enable']],
+            [['id'], 'integer', 'on' => ['delete', 'disable', 'enable', 'undelete']],
 
             // Update settings
             [['id', 'service_id'], 'integer', 'on' => 'update'],
@@ -75,7 +78,42 @@ class Backuping extends \hipanel\base\Model
         ]);
     }
 
-    public function getTypeOptions(): array
+    public function canBeDeleted() : bool
+    {
+        return $this->can('account.delete') && !$this->isDeleted();
+    }
+
+    public function canBeDisabled() : bool
+    {
+        return $this->can('account.update') && $this->isEnabled();
+    }
+
+    public function canBeRestored() : bool
+    {
+        return $this->can('account.update') && $this->isDeleted();
+    }
+
+    public function canBeEnabled() : bool
+    {
+        return $this->can('account.update') && !$this->isEnabled() && !$this->isDeleted();
+    }
+
+    public function isDeleted() : bool
+    {
+        return $this->state === self::STATE_DELETED;
+    }
+
+    public function isDisabled() : bool
+    {
+        return $this->state === self::STATE_DISABLED;
+    }
+
+    public function isEnabled() : bool
+    {
+        return !$this->isDeleted() && !$this->isDisabled();
+    }
+
+    public static function getTypeOptions(): array
     {
         return Yii::$app->get('cache')->getOrSet([__METHOD__], function () {
             return ArrayHelper::map(Ref::find()->where([
@@ -84,5 +122,10 @@ class Backuping extends \hipanel\base\Model
                 return Yii::t('hipanel.hosting.backuping.periodicity', $model->name);
             });
         }, 86400 * 24); // 24 days
+    }
+
+    protected function can(string $permission) : bool
+    {
+        return Yii::$app->user->can($permission);
     }
 }

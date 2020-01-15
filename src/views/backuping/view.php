@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php $form = ActiveForm::begin(['action' => '@backuping/update']) ?>
                     <?= Html::activeHiddenInput($model, 'id') ?>
                     <?php $model->type = 'week' ?>
-                    <?= $form->field($model, 'type')->dropDownList($this->context->getTypeOptions()) ?>
+                    <?= $form->field($model, 'type')->dropDownList($model->typeOptions) ?>
                     <?= Html::submitButton(Yii::t('hipanel:hosting', 'Enable backup'), ['class' => 'btn btn-success']) ?>
                     <?php ActiveForm::end(); ?>
                 </div>
