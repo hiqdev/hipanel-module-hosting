@@ -21,7 +21,8 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'label' => Yii::t('hipanel:hosting', 'Hosting'),
                 'url' => '#',
                 'icon' => 'fa-sitemap',
-                'visible' => Yii::$app->user->can('account.read'),
+                'visible' => (Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support'))
+                    && Yii::$app->user->can('account.read'),
                 'items' => [
                     'accounts' => [
                         'label' => Yii::t('hipanel:hosting', 'Accounts'),
@@ -42,7 +43,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                         'label' => Yii::t('hipanel:hosting', 'Mailboxes'),
                         'url' => ['/hosting/mail/index'],
                         'icon' => 'fa-envelope-o',
-                        'visible' => function () {
+                        'visible' => static function () {
                             return (bool) Yii::getAlias('@mail', false);
                         },
                     ],
