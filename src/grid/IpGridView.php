@@ -10,12 +10,15 @@
 
 namespace hipanel\modules\hosting\grid;
 
+use hipanel\grid\BoxedGridView;
 use hipanel\grid\MainColumn;
 use hipanel\grid\XEditableColumn;
 use hipanel\helpers\FontIcon;
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\menus\IpActionsMenu;
 use hipanel\modules\hosting\models\HdomainSearch;
+use hipanel\modules\hosting\models\Ip;
+use hipanel\modules\hosting\widgets\ip\ApplyPtrChange;
 use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\XEditable;
@@ -24,7 +27,7 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
 
-class IpGridView extends \hipanel\grid\BoxedGridView
+class IpGridView extends BoxedGridView
 {
     public $controllerUrl = '@ip';
 
@@ -144,7 +147,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                     'style' => 'width: 40%',
                 ],
                 'format' => 'raw',
-                'value' => function ($model) {
+                'value' => static function (Ip $model): string {
                     if ($model->canSetPtr()) {
                         return XEditable::widget([
                             'model' => $model,
@@ -155,7 +158,7 @@ class IpGridView extends \hipanel\grid\BoxedGridView
                         ]);
                     }
 
-                    return null;
+                    return ApplyPtrChange::widget();
                 },
             ],
         ]);

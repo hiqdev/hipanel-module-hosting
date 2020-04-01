@@ -302,4 +302,6 @@ return [
     'Are you sure you want to delete backuping?' => 'Вы уверены, что хотите удалить настройки бэкапов?',
 
     'Scheduled time' => 'Запланированное время',
+
+    'Apply for change of PTR records' => 'Создать тикет для изменения PTR записи',
 ];
