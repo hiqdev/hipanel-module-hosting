@@ -144,9 +144,13 @@ class Ip extends \hipanel\base\Model
      *
      * @return bool
      */
-    public function canSetPtr()
+    public function canSetPtr(): bool
     {
-        return !in_array('aux', (array) $this->tags, true)
-            && (new IpValidator(['ranges' => ['!system', 'any']]))->validate($this->ip);
+        if (Yii::$app->user->can('ip.update')) {
+            return !in_array('aux', (array)$this->tags, true)
+                && (new IpValidator(['ranges' => ['!system', 'any']]))->validate($this->ip);
+        }
+
+        return false;
     }
 }
