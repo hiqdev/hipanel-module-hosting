@@ -6,10 +6,17 @@ use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\web\View;
+use hipanel\modules\hosting\models\Ip;
 
 class ApplyPtrChange extends Widget
 {
-    public function init()
+    /** @var Ip */
+    public $model;
+
+    /** @var string */
+    public $attribute = 'ptr';
+
+    public function init(): void
     {
         $this->view->registerJs(
             <<<'JS'
@@ -44,18 +51,23 @@ CSS
     {
         return Html::tag(
             'a',
-            Yii::t('hipanel', 'Empty'),
+            $this->model->{$this->attribute} ?? Yii::t('hipanel', 'Empty'),
             [
                 'class' => 'apply-ptr-change',
                 'href' => '#',
                 'data' => [
                     'container' => 'body',
                     'toggle' => 'popover',
-                    'title' => 'PTR',
-                    'content' => Html::a(
-                        Yii::t('hipanel:hosting', 'Apply for change of PTR records'),
-                        ['@ticket/create'],
-                        ['target' => '_blank']
+                    'content' => Yii::t(
+                        'hipanel:hosting',
+                        'In order to change you need to {apply}',
+                        [
+                            'apply' => Html::a(
+                                Yii::t('hipanel:hosting', 'apply for change of PTR records'),
+                                ['@ticket/create'],
+                                ['target' => '_blank']
+                            ),
+                        ]
                     ),
                     'placement' => 'top',
                 ],

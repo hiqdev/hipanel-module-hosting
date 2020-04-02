@@ -158,7 +158,7 @@ class IpGridView extends BoxedGridView
                         ]);
                     }
 
-                    return ApplyPtrChange::widget();
+                    return ApplyPtrChange::widget(compact('model'));
                 },
             ],
         ]);

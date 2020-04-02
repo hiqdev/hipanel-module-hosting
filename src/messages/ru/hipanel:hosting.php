@@ -303,5 +303,6 @@ return [
 
     'Scheduled time' => 'Запланированное время',
 
-    'Apply for change of PTR records' => 'Создать тикет для изменения PTR записи',
+    'In order to change you need to {apply}' => 'Для редактирования этого значения, вам нужно {apply}',
+    'apply for change of PTR records' => 'создать тикет на изменение PTR записи',
 ];
