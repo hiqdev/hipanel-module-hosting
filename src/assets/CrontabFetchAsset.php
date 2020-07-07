@@ -17,7 +17,7 @@ class CrontabFetchAsset extends AssetBundle
     /**
      * @var string
      */
-    public $sourcePath = '@hipanel/modules/hosting/assets/CrontabFetchAssets';
+    public $sourcePath = __DIR__ . '/CrontabFetchAssets';
 
     /**
      * @var array
