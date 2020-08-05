@@ -96,7 +96,8 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
             }
         }
 
-        $menu['hosting']['visible'] = Yii::$app->params['module.hosting.is_public'] && ($menu['hosting']['visible'] || $user->can('dns.read'));
+        $menu['hosting']['visible'] = (Yii::$app->params['module.hosting.is_public'] || $user->can('support'))
+            && ($menu['hosting']['visible'] || $user->can('dns.read'));
 
         return $menu;
     }
