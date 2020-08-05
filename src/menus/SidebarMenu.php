@@ -50,10 +50,16 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                         'visible' => ((bool) Yii::getAlias('@mail', false)) && $user->can('mail.read'),
                     ],
                     'backuping' => [
-                        'label' => Yii::t('hipanel:hosting', 'Backups'),
+                        'label' => Yii::t('hipanel:hosting', 'Backups settings'),
                         'icon' => 'fa-archive',
                         'url' => ['/hosting/backuping/index'],
                         'visible' => $user->can('backuping.read'),
+                    ],
+                    'backup' => [
+                        'label' => Yii::t('hipanel:hosting', 'Backups'),
+                        'icon' => 'fa-archive',
+                        'url' => ['/hosting/backup/index'],
+                        'visible' => $user->can('backup.read'),
                     ],
                     'crontab' => [
                         'label' => Yii::t('hipanel:hosting', 'Crons'),
