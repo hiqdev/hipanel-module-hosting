@@ -37,6 +37,7 @@ class Prefix extends Model
         return $this->mergeAttributeLabels([
             'ip' => Yii::t('hipanel.hosting.ipam', 'Prefix'),
             'vrf' => Yii::t('hipanel.hosting.ipam', 'VRF'),
+            'site' => Yii::t('hipanel.hosting.ipam', 'Site'),
             'note' => Yii::t('hipanel.hosting.ipam', 'Description'),
             'vlan' => Yii::t('hipanel.hosting.ipam', 'VLAN'),
             'vlan_group' => Yii::t('hipanel.hosting.ipam', 'VLAN group'),

@@ -19,6 +19,7 @@ use hipanel\modules\hosting\models\Prefix;
 use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;
+use yii\helpers\IpHelper;
 
 class PrefixGridView extends BoxedGridView
 {
@@ -54,6 +55,19 @@ class PrefixGridView extends BoxedGridView
                 'i18nDictionary' => 'hipanel.hosting.ipam',
                 'format' => 'raw',
                 'gtype' => 'type,ip_prefix_role',
+            ],
+            'site' => [
+                'class' => RefColumn::class,
+                'i18nDictionary' => 'hipanel.hosting.ipam',
+                'format' => 'raw',
+                'gtype' => 'type,location',
+            ],
+            'family' => [
+                'class' => DataColumn::class,
+                'label' => Yii::t('hipanel.hosting.ipam', 'Family'),
+                'value' => static function ($model) {
+                    return sprintf('IPv%d', IpHelper::getIpVersion($model->ip));
+                }
             ],
             'utilization' => [
                 'class' => UtilizationColumn::class,

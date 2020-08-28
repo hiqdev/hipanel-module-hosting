@@ -38,9 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'boxed' => false,
                     'model' => $model,
                     'columns' => [
+                        'family',
                         'state',
                         'vrf',
                         'role',
+                        'site',
                         'utilization',
                         'note',
                     ],
@@ -78,6 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'state',
                             'vrf',
                             'role',
+                            'site',
                             'note'
                         ],
                     ]) ?>

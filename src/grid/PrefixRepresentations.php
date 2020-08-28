@@ -26,6 +26,7 @@ class PrefixRepresentations extends RepresentationCollection
                     'state',
                     'vrf',
                     'role',
+                    'site',
                     'utilization',
                     'note',
                 ],

@@ -26,12 +26,23 @@ class UtilizationColumn extends DataColumn
 
     public function getDataCellValue($model, $key, $index)
     {
-        $prc = mt_rand(1, 84);
+        $prc = mt_rand(1, 100);
+        switch ($prc) {
+            case $prc >= 0 && $prc <= 40:
+                $level = 'progress-bar-success';
+                break;
+            case $prc >= 41 && $prc <= 70:
+                $level = 'progress-bar-warning';
+                break;
+            case $prc >= 71 && $prc <= 100:
+                $level = 'progress-bar-danger';
+                break;
+        }
 
         return Progress::widget([
             'percent' => $prc,
             'label' => $prc . '%',
-            'barOptions' => ['class' => 'progress-bar-success'],
+            'barOptions' => ['class' => $level],
             'options' => ['style' => 'background-color: grey;'],
         ]);
     }
