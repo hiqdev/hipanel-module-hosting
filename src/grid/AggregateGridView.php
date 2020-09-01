@@ -59,6 +59,9 @@ class AggregateGridView extends BoxedGridView
             'utilization' => [
                 'class' => UtilizationColumn::class,
             ],
+            'family' => [
+                'class' => FamilyColumn::class,
+            ],
             'actions' => [
                 'class' => MenuColumn::class,
                 'contentOptions' => ['style' => 'width: 1%; white-space:nowrap;'],

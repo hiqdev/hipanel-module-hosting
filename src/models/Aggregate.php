@@ -35,7 +35,7 @@ class Aggregate extends Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'ip' => Yii::t('hipanel.hosting.ipam', 'Prefix'),
+            'ip' => Yii::t('hipanel.hosting.ipam', 'Aggregate'),
             'rir' => Yii::t('hipanel.hosting.ipam', 'RIR'),
             'note' => Yii::t('hipanel.hosting.ipam', 'Description'),
         ]);

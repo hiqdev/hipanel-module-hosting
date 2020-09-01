@@ -13,7 +13,7 @@ namespace hipanel\modules\hosting\grid;
 use hiqdev\higrid\representations\RepresentationCollection;
 use Yii;
 
-class PrefixRepresentations extends RepresentationCollection
+class AddressRepresentations extends RepresentationCollection
 {
     protected function fillRepresentations()
     {
@@ -22,13 +22,11 @@ class PrefixRepresentations extends RepresentationCollection
                 'label' => Yii::t('hipanel', 'common'),
                 'columns' => [
                     'checkbox',
-                    'actions',
                     'ip',
                     'type',
                     'vrf',
                     'role',
                     'site',
-                    'utilization',
                     'note',
                 ],
             ],

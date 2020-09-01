@@ -32,17 +32,11 @@ class PrefixGridView extends BoxedGridView
                     return Html::a($prefix->ip, ['@prefix/view', 'id' => $prefix->id], ['class' => 'text-bold']);
                 },
             ],
-            'state' => [
-                'class' => RefColumn::class,
-                'i18nDictionary' => 'hipanel.hosting.ipam',
-                'format' => 'raw',
-                'gtype' => 'state,ip',
-            ],
             'type' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel.hosting.ipam',
                 'format' => 'raw',
-                'gtype' => 'type,ip',
+                'gtype' => 'type,ip_prefix',
             ],
             'vrf' => [
                 'class' => RefColumn::class,
@@ -63,11 +57,7 @@ class PrefixGridView extends BoxedGridView
                 'gtype' => 'type,location',
             ],
             'family' => [
-                'class' => DataColumn::class,
-                'label' => Yii::t('hipanel.hosting.ipam', 'Family'),
-                'value' => static function ($model) {
-                    return sprintf('IPv%d', IpHelper::getIpVersion($model->ip));
-                }
+                'class' => FamilyColumn::class,
             ],
             'utilization' => [
                 'class' => UtilizationColumn::class,

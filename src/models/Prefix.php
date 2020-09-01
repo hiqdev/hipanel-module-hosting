@@ -14,6 +14,7 @@ use hipanel\base\Model;
 use hipanel\base\ModelTrait;
 use hipanel\modules\hosting\models\query\PrefixQuery;
 use Yii;
+use yii\db\QueryInterface;
 
 class Prefix extends Model
 {
@@ -27,7 +28,7 @@ class Prefix extends Model
             [['note', 'vrf', 'role', 'site', 'state', 'type', 'client', 'seller', 'vlan_group', 'vlan'], 'string'],
             [['ip'], 'ip', 'subnet' => null],
 
-            [['ip', 'vrf', 'state'], 'required', 'on' => ['create', 'update']],
+            [['ip', 'vrf', 'type'], 'required', 'on' => ['create', 'update']],
         ]);
     }
 
@@ -36,6 +37,7 @@ class Prefix extends Model
     {
         return $this->mergeAttributeLabels([
             'ip' => Yii::t('hipanel.hosting.ipam', 'Prefix'),
+            'type' => Yii::t('hipanel.hosting.ipam', 'Status'),
             'vrf' => Yii::t('hipanel.hosting.ipam', 'VRF'),
             'site' => Yii::t('hipanel.hosting.ipam', 'Site'),
             'note' => Yii::t('hipanel.hosting.ipam', 'Description'),
@@ -48,7 +50,7 @@ class Prefix extends Model
      * {@inheritdoc}
      * @return PrefixQuery
      */
-    public static function find(array $options = []): PrefixQuery
+    public static function find(array $options = []): QueryInterface
     {
         return new PrefixQuery(get_called_class(), [
             'options' => $options,

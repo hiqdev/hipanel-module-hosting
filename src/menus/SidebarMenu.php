@@ -24,13 +24,17 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
                 'url' => '#',
                 'icon' => 'fa-sitemap',
                 'items' => [
-                    'aggregate' => [
-                        'label' => Yii::t('hipanel.hosting.ipam', 'Aggregates'),
-                        'url' => ['/hosting/aggregate/index'],
+                    'ip-addresses' => [
+                        'label' => Yii::t('hipanel.hosting.ipam', 'IP Addresses'),
+                        'url' => ['/hosting/address/index'],
                     ],
                     'prefixes' => [
                         'label' => Yii::t('hipanel.hosting.ipam', 'Prefixes'),
                         'url' => ['/hosting/prefix/index'],
+                    ],
+                    'aggregate' => [
+                        'label' => Yii::t('hipanel.hosting.ipam', 'Aggregates'),
+                        'url' => ['/hosting/aggregate/index'],
                     ],
                 ],
                 'visible' => Yii::$app->user->can('test.alpha'),

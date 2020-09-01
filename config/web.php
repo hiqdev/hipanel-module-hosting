@@ -22,6 +22,7 @@ return [
         '@crontab' => '/hosting/crontab',
         '@aggregate' => '/hosting/aggregate',
         '@prefix' => '/hosting/prefix',
+        '@address' => '/hosting/address',
     ],
     'modules' => [
         'hosting' => [

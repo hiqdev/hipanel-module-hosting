@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'columns' => [
                         'family',
-                        'state',
+                        'type',
                         'vrf',
                         'role',
                         'site',
