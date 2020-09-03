@@ -26,7 +26,6 @@ class AddressRepresentations extends RepresentationCollection
                     'type',
                     'vrf',
                     'role',
-                    'site',
                     'note',
                 ],
             ],

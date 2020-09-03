@@ -49,14 +49,13 @@ class AggregateController extends CrudController
                 'class' => ViewAction::class,
                 'data' => static function ($action) {
                     $prefixSearch = new PrefixSearch();
-                    $dataProvider = $prefixSearch->search([
+                    $childPrefixesDataProvider = $prefixSearch->search([
                         $prefixSearch->formName() => [
-                            'aggregate' => $action->getCollection()->first->ip,
+                            'ip_cnts_eql' => $action->getCollection()->first->ip,
                         ],
                     ]);
-//                    $dataProvider->query->withSuggestions();
 
-                    return ['childPrefixesDataProvider' => $dataProvider];
+                    return ['childPrefixesDataProvider' => $childPrefixesDataProvider];
                 },
             ],
             'create' => [

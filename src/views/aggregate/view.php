@@ -52,37 +52,36 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page = IndexPage::begin(['model' => $model, 'layout' => 'noSearch']) ?>
 
         <?php $page->beginContent('show-actions') ?>
-        <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel.hosting.ipam', 'Child prefixes') ?></h4>
+            <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel.hosting.ipam', 'Child prefixes') ?></h4>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
-        <?= $page->renderBulkDeleteButton('@prefix/delete') ?>
-            <?php $page->endContent() ?>
+<!--            --><?//= $page->renderBulkDeleteButton('@prefix/delete') ?>
+        <?php $page->endContent() ?>
 
-
-            <?php $page->beginContent('table') ?>
-                <?php $page->beginBulkForm() ?>
-                    <?= PrefixGridView::widget([
-                        'boxed' => false,
-                        'dataProvider' => $childPrefixesDataProvider,
-                        'filterModel' => new Prefix(),
-                        'tableOptions' => [
-                            'class' => 'table table-striped table-bordered',
-                        ],
-                        'filterRowOptions' => ['style' => 'display: none;'],
-                        'columns' => [
-                            'checkbox',
-                            'actions',
-                            'ip',
-                            'state',
-                            'vrf',
-                            'utilization',
-                            'role',
-                            'note'
-                        ],
-                    ]) ?>
-                <?php $page->endBulkForm() ?>
-            <?php $page->endContent() ?>
+        <?php $page->beginContent('table') ?>
+            <?php $page->beginBulkForm() ?>
+                <?= PrefixGridView::widget([
+                    'boxed' => false,
+                    'dataProvider' => $childPrefixesDataProvider,
+                    'filterModel' => new Prefix(),
+                    'tableOptions' => [
+                        'class' => 'table table-striped table-bordered',
+                    ],
+                    'filterRowOptions' => ['style' => 'display: none;'],
+                    'columns' => [
+//                        'checkbox',
+                        'actions',
+                        'ip',
+                        'state',
+                        'vrf',
+                        'utilization',
+                        'role',
+                        'note'
+                    ],
+                ]) ?>
+            <?php $page->endBulkForm() ?>
+        <?php $page->endContent() ?>
 
         <?php $page::end() ?>
     </div>

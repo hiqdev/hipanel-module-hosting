@@ -32,8 +32,11 @@ class AddressSearch extends Address
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
             'is_ip',
-            'aggregate',
-            'prefix',
+            'ip_cntd',
+            'ip_cntd_eql',
+            'ip_cnts',
+            'ip_cnts_eql',
+            'ip_cnts_cntd',
         ]);
     }
 }

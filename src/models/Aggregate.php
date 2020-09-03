@@ -12,7 +12,9 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\Model;
 use hipanel\base\ModelTrait;
+use hipanel\modules\hosting\models\query\AggregateQuery;
 use Yii;
+use yii\db\QueryInterface;
 
 class Aggregate extends Model
 {
@@ -22,12 +24,13 @@ class Aggregate extends Model
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['id', 'client_id', 'seller_id'], 'integer'],
+            [['id', 'client_id', 'seller_id', 'utilization'], 'integer'],
             [['note', 'rir', 'state', 'type', 'client', 'seller'], 'string'],
             [['ip'], 'ip', 'subnet' => null],
 
             [['ip', 'rir'], 'required', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update']],
+            [['id', 'note'], 'required', 'on' => ['set-note']],
         ]);
     }
 
@@ -38,6 +41,17 @@ class Aggregate extends Model
             'ip' => Yii::t('hipanel.hosting.ipam', 'Aggregate'),
             'rir' => Yii::t('hipanel.hosting.ipam', 'RIR'),
             'note' => Yii::t('hipanel.hosting.ipam', 'Description'),
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return QueryInterface
+     */
+    public static function find(array $options = []): QueryInterface
+    {
+        return new AggregateQuery(get_called_class(), [
+            'options' => $options,
         ]);
     }
 }

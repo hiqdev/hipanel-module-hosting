@@ -26,7 +26,7 @@ class UtilizationColumn extends DataColumn
 
     public function getDataCellValue($model, $key, $index)
     {
-        $prc = mt_rand(1, 100);
+        $prc = $model->utilization;
         switch ($prc) {
             case $prc >= 0 && $prc <= 40:
                 $level = 'progress-bar-success';

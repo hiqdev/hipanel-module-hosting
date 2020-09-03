@@ -40,14 +40,23 @@ class PrefixController extends CrudController
             'view' => [
                 'class' => ViewAction::class,
                 'data' => static function ($action) {
-                    $prefixSearch = new PrefixSearch();
-                    $dataProvider = $prefixSearch->search([
-                        $prefixSearch->formName() => [
-                            'prefix' => $action->getCollection()->first->ip,
+                    $childPrefixSearch = new PrefixSearch();
+                    $parentPrefixSearch = clone $childPrefixSearch;
+                    $childDataProvider = $childPrefixSearch->search([
+                        $childPrefixSearch->formName() => [
+                            'ip_cnts' => $action->getCollection()->first->ip,
+                        ],
+                    ]);
+                    $parentDataProvider = $parentPrefixSearch->search([
+                        $parentPrefixSearch->formName() => [
+                            'ip_cntd' => $action->getCollection()->first->ip,
                         ],
                     ]);
 
-                    return ['childPrefixesDataProvider' => $dataProvider];
+                    return [
+                        'childPrefixesDataProvider' => $childDataProvider,
+                        'parentPrefixesDataProvider' => $parentDataProvider,
+                    ];
                 },
             ],
             'create' => [

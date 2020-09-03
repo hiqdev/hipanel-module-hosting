@@ -4,7 +4,6 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\ModelTrait;
 use hipanel\modules\hosting\models\query\AddressQuery;
-use hipanel\modules\hosting\models\query\PrefixQuery;
 use Yii;
 use yii\db\QueryInterface;
 
@@ -28,12 +27,13 @@ class Address extends Prefix
     {
         return array_merge(parent::attributeLabels(), [
             'ip' => Yii::t('hipanel.hosting.ipam', 'Address'),
+            'type' => Yii::t('hipanel.hosting.ipam', 'Status'),
         ]);
     }
 
     /**
      * {@inheritdoc}
-     * @return PrefixQuery
+     * @return QueryInterface
      */
     public static function find(array $options = []): QueryInterface
     {

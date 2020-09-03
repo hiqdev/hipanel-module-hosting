@@ -14,12 +14,14 @@ use yii\web\View;
 /**
  * @var View $this
  * @var Aggregate $model
+ * @var ActiveDataProvider[] $parentPrefixesDataProvider
  * @var ActiveDataProvider[] $childPrefixesDataProvider
  */
 
 $this->title = Html::encode($model->ip);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel.hosting.ipam', 'Prefixes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
 
 ?>
 
@@ -41,9 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'family',
                         'type',
                         'vrf',
+                        'aggregate',
                         'role',
                         'site',
                         'utilization',
+                        'ip_count',
                         'note',
                     ],
                 ]) ?>
@@ -52,19 +56,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-md-9">
-        <?php $page = IndexPage::begin(['model' => $model, 'layout' => 'noSearch']) ?>
-
-            <?php $page->beginContent('show-actions') ?>
-                <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel.hosting.ipam', 'Child prefixes') ?></h4>
-            <?php $page->endContent() ?>
-
-            <?php $page->beginContent('bulk-actions') ?>
-                <?= $page->renderBulkDeleteButton('@prefix/delete') ?>
-            <?php $page->endContent() ?>
-
-
-            <?php $page->beginContent('table') ?>
-                <?php $page->beginBulkForm() ?>
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#parent_prefixes" data-toggle="tab" aria-expanded="true">Parent Prefixes</a>
+                </li>
+                <li class="">
+                    <a href="#child_prefixes" data-toggle="tab" aria-expanded="false">Child Prefixes</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="parent_prefixes">
+                    <?= PrefixGridView::widget([
+                        'boxed' => false,
+                        'dataProvider' => $parentPrefixesDataProvider,
+                        'filterModel' => new Prefix(),
+                        'tableOptions' => [
+                            'class' => 'table table-striped table-bordered',
+                        ],
+                        'filterRowOptions' => ['style' => 'display: none;'],
+                        'columns' => $columns,
+                    ]) ?>
+                </div>
+                <div class="tab-pane" id="child_prefixes">
                     <?= PrefixGridView::widget([
                         'boxed' => false,
                         'dataProvider' => $childPrefixesDataProvider,
@@ -73,20 +87,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'class' => 'table table-striped table-bordered',
                         ],
                         'filterRowOptions' => ['style' => 'display: none;'],
-                        'columns' => [
-                            'checkbox',
-                            'actions',
-                            'ip',
-                            'state',
-                            'vrf',
-                            'role',
-                            'site',
-                            'note'
-                        ],
+                        'columns' => $columns,
                     ]) ?>
-                <?php $page->endBulkForm() ?>
-            <?php $page->endContent() ?>
-
-        <?php $page::end() ?>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

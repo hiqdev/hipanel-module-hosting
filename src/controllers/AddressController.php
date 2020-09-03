@@ -43,11 +43,11 @@ class AddressController extends CrudController
                     $prefixSearch = new PrefixSearch();
                     $dataProvider = $prefixSearch->search([
                         $prefixSearch->formName() => [
-                            'prefix' => $action->getCollection()->first->ip,
+                            'ip_cntd' => $action->getCollection()->first->ip,
                         ],
                     ]);
 
-                    return ['childPrefixesDataProvider' => $dataProvider];
+                    return ['parentPrefixesDataProvider' => $dataProvider];
                 },
             ],
             'create' => [

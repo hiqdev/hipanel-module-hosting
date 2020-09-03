@@ -24,11 +24,12 @@ class Prefix extends Model
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['id', 'client_id', 'seller_id'], 'integer'],
-            [['note', 'vrf', 'role', 'site', 'state', 'type', 'client', 'seller', 'vlan_group', 'vlan'], 'string'],
+            [['id', 'client_id', 'seller_id', 'utilization', 'aggregate_id', 'ip_count'], 'integer'],
+            [['note', 'vrf', 'role', 'site', 'state', 'type', 'client', 'seller', 'vlan_group', 'vlan', 'aggregate'], 'string'],
             [['ip'], 'ip', 'subnet' => null],
 
             [['ip', 'vrf', 'type'], 'required', 'on' => ['create', 'update']],
+            [['id', 'note'], 'required', 'on' => ['set-note']],
         ]);
     }
 

@@ -11,7 +11,6 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\BoxedGridView;
-use hipanel\grid\DataColumn;
 use hipanel\grid\MainColumn;
 use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
@@ -51,7 +50,7 @@ class AggregateGridView extends BoxedGridView
             'note' => [
                 'class' => XEditableColumn::class,
                 'pluginOptions' => [
-                    'url' => 'set-note',
+                    'url' => '@aggregate/set-note',
                 ],
                 'filter' => true,
                 'popover' => Yii::t('hipanel', 'Make any notes for your convenience'),

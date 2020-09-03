@@ -11,15 +11,14 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\BoxedGridView;
-use hipanel\grid\DataColumn;
 use hipanel\grid\RefColumn;
 use hipanel\grid\XEditableColumn;
 use hipanel\modules\hosting\menus\PrefixActionsMenu;
+use hipanel\modules\hosting\models\AddressSearch;
 use hipanel\modules\hosting\models\Prefix;
 use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\helpers\Html;
-use yii\helpers\IpHelper;
 
 class PrefixGridView extends BoxedGridView
 {
@@ -65,10 +64,31 @@ class PrefixGridView extends BoxedGridView
             'note' => [
                 'class' => XEditableColumn::class,
                 'pluginOptions' => [
-                    'url' => 'set-note',
+                    'url' => '@prefix/set-note',
                 ],
                 'filter' => true,
                 'popover' => Yii::t('hipanel', 'Make any notes for your convenience'),
+            ],
+            'aggregate' => [
+                'attribute' => 'aggregate',
+                'format' => 'html',
+                'value' => static function ($prefix): string {
+                    return $prefix->aggregate ?
+                        Html::a($prefix->aggregate, ['@aggregate/view', 'id' => $prefix->aggregate_id]) :
+                        '';
+                },
+            ],
+            'ip_count' => [
+                'attribute' => 'ip_count',
+                'label' => Yii::t('hipanel.hosting.ipam', 'IP Addresses'),
+                'format' => 'html',
+                'value' => static function ($prefix): string {
+                    return $prefix->ip_count > 0 ?
+                        Html::a('IP Addresses (' . $prefix->ip_count . ')', [
+                            '@address/index', (new AddressSearch)->formName() => ['ip_cnts' => $prefix->ip],
+                        ], ['class' => 'btn btn-success btn-flat btn-sm']) :
+                        $prefix->ip_count;
+                },
             ],
             'actions' => [
                 'class' => MenuColumn::class,
