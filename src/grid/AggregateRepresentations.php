@@ -15,7 +15,7 @@ use Yii;
 
 class AggregateRepresentations extends RepresentationCollection
 {
-    protected function fillRepresentations()
+    protected function fillRepresentations(): void
     {
         $this->representations = array_filter([
             'common' => [

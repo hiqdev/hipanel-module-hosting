@@ -15,7 +15,7 @@ use Yii;
 
 class AddressRepresentations extends RepresentationCollection
 {
-    protected function fillRepresentations()
+    protected function fillRepresentations(): void
     {
         $this->representations = array_filter([
             'common' => [
@@ -25,7 +25,7 @@ class AddressRepresentations extends RepresentationCollection
                     'ip',
                     'type',
                     'vrf',
-                    'role',
+                    'tags',
                     'note',
                 ],
             ],

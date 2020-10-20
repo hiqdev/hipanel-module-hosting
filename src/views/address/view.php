@@ -4,6 +4,7 @@ use hipanel\modules\hosting\grid\PrefixGridView;
 use hipanel\modules\hosting\menus\AddressDetailMenu;
 use hipanel\modules\hosting\models\Aggregate;
 use hipanel\modules\hosting\models\Prefix;
+use hipanel\modules\hosting\widgets\TreeGrid;
 use hipanel\widgets\MainDetails;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
@@ -41,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'vrf',
                         'role',
                         'site',
+                        'tags',
                         'note',
                     ],
                 ]) ?>
@@ -54,22 +56,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="box-title"><?= Yii::t('hipanel.hosting.ipam', 'Parent prefixes') ?></h3>
             </div>
             <div class="box-body">
-                <?= PrefixGridView::widget([
-                    'boxed' => false,
+                <?= TreeGrid::widget([
                     'dataProvider' => $parentPrefixesDataProvider,
-                    'filterModel' => new Prefix(),
-                    'tableOptions' => [
-                        'class' => 'table table-striped table-bordered',
-                    ],
-                    'filterRowOptions' => ['style' => 'display: none;'],
-                    'columns' => [
-                        'ip',
-                        'type',
-                        'vrf',
-                        'role',
-                        'site',
-                        'note'
-                    ],
+                    'showAll' => true,
+                    'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
+
                 ]) ?>
             </div>
         </div>

@@ -10,7 +10,10 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
 use hipanel\filters\EasyAccessControl;
+use hipanel\modules\hosting\helpers\PrefixSort;
+use hipanel\modules\hosting\models\Prefix;
 use hipanel\modules\hosting\models\PrefixSearch;
+use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -40,14 +43,14 @@ class AddressController extends CrudController
             'view' => [
                 'class' => ViewAction::class,
                 'data' => static function ($action) {
-                    $prefixSearch = new PrefixSearch();
-                    $dataProvider = $prefixSearch->search([
-                        $prefixSearch->formName() => [
-                            'ip_cntd' => $action->getCollection()->first->ip,
-                        ],
+                    $parents = Prefix::find()->andWhere(['ip_cntd' => $action->getCollection()->first->ip])->withParent()->all();
+                    $sortedParents = [];
+                    PrefixSort::byKinship($parents, null, $sortedParents);
+                    $parentDataProvider = new ArrayDataProvider([
+                        'allModels' => $sortedParents,
                     ]);
 
-                    return ['parentPrefixesDataProvider' => $dataProvider];
+                    return ['parentPrefixesDataProvider' => $parentDataProvider];
                 },
             ],
             'create' => [

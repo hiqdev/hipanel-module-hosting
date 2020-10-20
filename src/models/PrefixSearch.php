@@ -11,10 +11,7 @@ class PrefixSearch extends Prefix
         searchAttributes as defaultSearchAttributes;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function searchAttributes()
+    public function searchAttributes(): array
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
             'is_ip',
@@ -23,6 +20,10 @@ class PrefixSearch extends Prefix
             'ip_cnts',
             'ip_cnts_eql',
             'ip_cnts_cntd',
+
+            'with_parent',
+            'include_suggestions',
+            'firstborn',
         ]);
     }
 }

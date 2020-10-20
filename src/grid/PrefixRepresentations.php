@@ -15,7 +15,7 @@ use Yii;
 
 class PrefixRepresentations extends RepresentationCollection
 {
-    protected function fillRepresentations()
+    protected function fillRepresentations(): void
     {
         $this->representations = array_filter([
             'common' => [
@@ -29,6 +29,7 @@ class PrefixRepresentations extends RepresentationCollection
                     'role',
                     'site',
                     'utilization',
+                    'tags',
                     'note',
                 ],
             ],

@@ -26,7 +26,7 @@ class Aggregate extends Model
         return array_merge(parent::rules(), [
             [['id', 'client_id', 'seller_id', 'utilization'], 'integer'],
             [['note', 'rir', 'state', 'type', 'client', 'seller'], 'string'],
-            [['ip'], 'ip', 'subnet' => null],
+            [['ip'], 'ip', 'subnet' => true],
 
             [['ip', 'rir'], 'required', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update']],

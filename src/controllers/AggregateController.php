@@ -18,7 +18,9 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
 use hipanel\filters\EasyAccessControl;
-use hipanel\modules\hosting\models\PrefixSearch;
+use hipanel\modules\hosting\actions\TreeGridRowsAction;
+use hipanel\modules\hosting\models\Prefix;
+use hiqdev\hiart\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -48,14 +50,11 @@ class AggregateController extends CrudController
             'view' => [
                 'class' => ViewAction::class,
                 'data' => static function ($action) {
-                    $prefixSearch = new PrefixSearch();
-                    $childPrefixesDataProvider = $prefixSearch->search([
-                        $prefixSearch->formName() => [
-                            'ip_cnts_eql' => $action->getCollection()->first->ip,
-                        ],
+                    $childDataProvider = new ActiveDataProvider([
+                        'query' => Prefix::find()->andWhere(['ip_cnts_eql' => $action->getCollection()->first->ip])->noParent(),
                     ]);
 
-                    return ['childPrefixesDataProvider' => $childPrefixesDataProvider];
+                    return ['childPrefixesDataProvider' => $childDataProvider];
                 },
             ],
             'create' => [
@@ -79,6 +78,10 @@ class AggregateController extends CrudController
                 'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel.hosting.ipam', 'Description was changed'),
                 'error' => Yii::t('hipanel.hosting.ipam', 'Failed to change description'),
+            ],
+            'get-tree-grid-rows' => [
+                'class' => TreeGridRowsAction::class,
+                'columns' => ['ip', 'state', 'vrf', 'utilization', 'role', 'text_note'],
             ],
         ]);
     }

@@ -12,6 +12,7 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\Model;
 use hipanel\base\ModelTrait;
+use hipanel\models\Ref;
 use hipanel\modules\hosting\models\query\PrefixQuery;
 use Yii;
 use yii\db\QueryInterface;
@@ -24,9 +25,10 @@ class Prefix extends Model
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['id', 'client_id', 'seller_id', 'utilization', 'aggregate_id', 'ip_count'], 'integer'],
+            [['id', 'parent_id', 'client_id', 'seller_id', 'utilization', 'aggregate_id', 'ip_count', 'child_count'], 'integer'],
             [['note', 'vrf', 'role', 'site', 'state', 'type', 'client', 'seller', 'vlan_group', 'vlan', 'aggregate'], 'string'],
-            [['ip'], 'ip', 'subnet' => null],
+            [['ip', 'parent_ip'], 'ip', 'subnet' => true],
+            [['tags'], 'safe'],
 
             [['ip', 'vrf', 'type'], 'required', 'on' => ['create', 'update']],
             [['id', 'note'], 'required', 'on' => ['set-note']],
@@ -56,5 +58,20 @@ class Prefix extends Model
         return new PrefixQuery(get_called_class(), [
             'options' => $options,
         ]);
+    }
+
+    public function getParent(): QueryInterface
+    {
+        return $this->hasOne(static::class, ['id' => 'parent_id']);
+    }
+
+    public function isSuggested(): bool
+    {
+        return !$this->state && !$this->client;
+    }
+
+    public function getTagOptions(): array
+    {
+        return Ref::getList('tag,ip', 'hipanel:hosting');
     }
 }

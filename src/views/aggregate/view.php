@@ -1,10 +1,9 @@
 <?php
 
 use hipanel\modules\hosting\grid\AggregateGridView;
-use hipanel\modules\hosting\grid\PrefixGridView;
 use hipanel\modules\hosting\menus\AggregateDetailMenu;
 use hipanel\modules\hosting\models\Aggregate;
-use hipanel\modules\hosting\models\Prefix;
+use hipanel\modules\hosting\widgets\TreeGrid;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\MainDetails;
 use yii\data\ActiveDataProvider;
@@ -49,36 +48,18 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-md-9">
-        <?php $page = IndexPage::begin(['model' => $model, 'layout' => 'noSearch']) ?>
+        <?php $page = IndexPage::begin(['model' => $model, 'layout' => 'resourceDetail']) ?>
 
-        <?php $page->beginContent('show-actions') ?>
+        <?php $page->beginContent('title') ?>
             <h4 class="box-title" style="display: inline-block;"><?= Yii::t('hipanel.hosting.ipam', 'Child prefixes') ?></h4>
-        <?php $page->endContent() ?>
-
-        <?php $page->beginContent('bulk-actions') ?>
-<!--            --><?//= $page->renderBulkDeleteButton('@prefix/delete') ?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
             <?php $page->beginBulkForm() ?>
-                <?= PrefixGridView::widget([
-                    'boxed' => false,
+                <?= TreeGrid::widget([
                     'dataProvider' => $childPrefixesDataProvider,
-                    'filterModel' => new Prefix(),
-                    'tableOptions' => [
-                        'class' => 'table table-striped table-bordered',
-                    ],
-                    'filterRowOptions' => ['style' => 'display: none;'],
-                    'columns' => [
-//                        'checkbox',
-                        'actions',
-                        'ip',
-                        'state',
-                        'vrf',
-                        'utilization',
-                        'role',
-                        'note'
-                    ],
+                    'showAll' => false,
+                    'columns' => ['ip', 'state', 'vrf', 'utilization', 'role', 'text_note'],
                 ]) ?>
             <?php $page->endBulkForm() ?>
         <?php $page->endContent() ?>
