@@ -1,12 +1,12 @@
 <?php
 
-/* @var $this yii\web\View */
-
-/* @var $model hipanel\modules\hosting\models\Aggregate */
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model hipanel\modules\hosting\models\Aggregate */
+
 
 $form = ActiveForm::begin([
     'id' => 'aggregate-form',
@@ -31,6 +31,8 @@ $form = ActiveForm::begin([
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <?= Html::submitButton(Yii::t('hipanel', $model->isNewRecord ? 'Create' : 'Save'), ['class' => 'btn btn-success']) ?>
+        &nbsp;
+        <?= Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default', 'onclick' => 'history.go(-1)']) ?>
     </div>
 </div>
 

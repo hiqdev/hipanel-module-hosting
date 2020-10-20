@@ -13,10 +13,11 @@ namespace hipanel\modules\hosting\grid;
 use hiqdev\higrid\DataColumn;
 use Yii;
 use yii\bootstrap\Progress;
+use yii\helpers\Html;
 
 class UtilizationColumn extends DataColumn
 {
-    public $format = 'html';
+    public $format = 'raw';
 
     public function init()
     {
@@ -26,7 +27,7 @@ class UtilizationColumn extends DataColumn
 
     public function getDataCellValue($model, $key, $index)
     {
-        $prc = $model->utilization;
+        $prc = $model->utilization ?? 0;
         switch ($prc) {
             case $prc >= 0 && $prc <= 40:
                 $level = 'progress-bar-success';
@@ -40,10 +41,10 @@ class UtilizationColumn extends DataColumn
         }
 
         return Progress::widget([
-            'percent' => $prc,
-            'label' => $prc . '%',
+            'percent' => $prc ?? 0,
+            'label' => Html::tag('span', sprintf("%d%%", $prc), ['style' => 'position: absolute; display: block; width: 100%;']),
             'barOptions' => ['class' => $level],
-            'options' => ['style' => 'background-color: grey;'],
+            'options' => ['style' => 'background-color: grey;position: relative;'],
         ]);
     }
 }

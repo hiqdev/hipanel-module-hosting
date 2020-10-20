@@ -19,7 +19,9 @@ class Address extends Prefix
     /** {@inheritdoc} */
     public function rules()
     {
-        return parent::rules();
+        return array_merge(parent::rules(), [
+            [['id'], 'ip', 'subnet' => null, 'normalize' => true, 'on' => ['create', 'update']],
+        ]);
     }
 
     /** {@inheritdoc} */

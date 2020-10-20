@@ -28,6 +28,10 @@ class PrefixGridView extends BoxedGridView
             'ip' => [
                 'format' => 'html',
                 'value' => static function (Prefix $prefix) {
+                    if ($prefix->isSuggested()) {
+                        return Html::a($prefix->ip, ['@prefix/create', 'ip' => $prefix->ip], ['class' => 'text-bold']);
+                    }
+
                     return Html::a($prefix->ip, ['@prefix/view', 'id' => $prefix->id], ['class' => 'text-bold']);
                 },
             ],
@@ -69,6 +73,9 @@ class PrefixGridView extends BoxedGridView
                 'filter' => true,
                 'popover' => Yii::t('hipanel', 'Make any notes for your convenience'),
             ],
+            'text_note' => [
+                'attribute' => 'note',
+            ],
             'aggregate' => [
                 'attribute' => 'aggregate',
                 'format' => 'html',
@@ -89,6 +96,9 @@ class PrefixGridView extends BoxedGridView
                         ], ['class' => 'btn btn-success btn-flat btn-sm']) :
                         $prefix->ip_count;
                 },
+            ],
+            'tags' => [
+                'class' => TagsColumn::class,
             ],
             'actions' => [
                 'class' => MenuColumn::class,

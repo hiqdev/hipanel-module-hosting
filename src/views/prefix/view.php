@@ -1,10 +1,13 @@
 <?php
 
+use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\PrefixGridView;
 use hipanel\modules\hosting\menus\AggregateDetailMenu;
 use hipanel\modules\hosting\menus\PrefixDetailMenu;
+use hipanel\modules\hosting\models\AddressSearch;
 use hipanel\modules\hosting\models\Aggregate;
 use hipanel\modules\hosting\models\Prefix;
+use hipanel\modules\hosting\widgets\TreeGrid;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\MainDetails;
 use yii\data\ActiveDataProvider;
@@ -47,7 +50,7 @@ $columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
                         'role',
                         'site',
                         'utilization',
-                        'ip_count',
+                        'tags',
                         'note',
                     ],
                 ]) ?>
@@ -59,35 +62,38 @@ $columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a href="#parent_prefixes" data-toggle="tab" aria-expanded="true">Parent Prefixes</a>
+                    <a href="#child_prefixes"
+                       data-toggle="tab"><?= Yii::t('hipanel.hosting.ipam', 'Child Prefixes') ?></a>
                 </li>
-                <li class="">
-                    <a href="#child_prefixes" data-toggle="tab" aria-expanded="false">Child Prefixes</a>
+                <li>
+                    <a href="#parent_prefixes"
+                       data-toggle="tab"><?= Yii::t('hipanel.hosting.ipam', 'Parent Prefixes') ?></a>
+                </li>
+                <li>
+                    <a href="<?= Url::to(['@address/index', (new AddressSearch)->formName() => ['ip_cnts' => $model->ip]]) ?>">
+                        <?= Yii::t('hipanel.hosting.ipam', 'IP Addresses {count}', [
+                            'count' => Html::tag('span', $model->ip_count, ['class' => 'label bg-red']),
+                        ]) ?>
+                    </a>
                 </li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="parent_prefixes">
-                    <?= PrefixGridView::widget([
-                        'boxed' => false,
-                        'dataProvider' => $parentPrefixesDataProvider,
-                        'filterModel' => new Prefix(),
-                        'tableOptions' => [
-                            'class' => 'table table-striped table-bordered',
-                        ],
-                        'filterRowOptions' => ['style' => 'display: none;'],
-                        'columns' => $columns,
+            <div class="tab-content" style="position: relative;">
+                <div class="overlay" style="display: none;">
+                    <i class="fa fa-refresh fa-spin"></i>
+                </div>
+                <div class="tab-pane active" id="child_prefixes">
+                    <?= TreeGrid::widget([
+                        'dataProvider' => $childPrefixesDataProvider,
+                        'showAll' => false,
+                        'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
                     ]) ?>
                 </div>
-                <div class="tab-pane" id="child_prefixes">
-                    <?= PrefixGridView::widget([
-                        'boxed' => false,
-                        'dataProvider' => $childPrefixesDataProvider,
-                        'filterModel' => new Prefix(),
-                        'tableOptions' => [
-                            'class' => 'table table-striped table-bordered',
-                        ],
-                        'filterRowOptions' => ['style' => 'display: none;'],
-                        'columns' => $columns,
+                <div class="tab-pane" id="parent_prefixes">
+                    <?= TreeGrid::widget([
+                        'dataProvider' => $parentPrefixesDataProvider,
+                        'showAll' => true,
+                        'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
+
                     ]) ?>
                 </div>
             </div>

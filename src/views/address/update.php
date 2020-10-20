@@ -7,7 +7,7 @@
 $this->title = Yii::t('hipanel:hosting', 'Editing IP address {ip}', ['ip' => $model->ip]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel.hosting.ipam', 'IP Addresses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ip, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = $model->ip;
+$this->params['breadcrumbs'][] = Yii::t('hipanel:hosting', 'Edit');
 
 ?>
 

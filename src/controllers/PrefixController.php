@@ -3,6 +3,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\RenderAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\SmartUpdateAction;
@@ -10,7 +11,11 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\base\CrudController;
 use hipanel\filters\EasyAccessControl;
-use hipanel\modules\hosting\models\PrefixSearch;
+use hipanel\modules\hosting\actions\TreeGridRowsAction;
+use hipanel\modules\hosting\helpers\PrefixSort;
+use hipanel\modules\hosting\models\Prefix;
+use yii\base\Event;
+use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -39,18 +44,27 @@ class PrefixController extends CrudController
             ],
             'view' => [
                 'class' => ViewAction::class,
-                'data' => static function ($action) {
-                    $childPrefixSearch = new PrefixSearch();
-                    $parentPrefixSearch = clone $childPrefixSearch;
-                    $childDataProvider = $childPrefixSearch->search([
-                        $childPrefixSearch->formName() => [
-                            'ip_cnts' => $action->getCollection()->first->ip,
-                        ],
+                'on beforePerform' => function (Event $event) {
+                    $event->sender->getDataProvider()->query->withParent();
+                },
+                'data' => static function ($action): array {
+                    $children = Prefix::find()
+                        ->andWhere(['ip_cnts' => $action->getCollection()->first->ip])
+                        ->includeSuggestions()
+                        ->withParent()
+                        ->firstbornOnly()
+                        ->all();
+                    $childDataProvider = new ArrayDataProvider([
+                        'allModels' => $children,
                     ]);
-                    $parentDataProvider = $parentPrefixSearch->search([
-                        $parentPrefixSearch->formName() => [
-                            'ip_cntd' => $action->getCollection()->first->ip,
-                        ],
+                    $parents = Prefix::find()
+                        ->andWhere(['ip_cntd' => $action->getCollection()->first->ip])
+                        ->withParent()
+                        ->all();
+                    $sortedParents = [];
+                    PrefixSort::byKinship($parents, null, $sortedParents);
+                    $parentDataProvider = new ArrayDataProvider([
+                        'allModels' => $sortedParents,
                     ]);
 
                     return [
@@ -63,6 +77,15 @@ class PrefixController extends CrudController
                 'class' => SmartCreateAction::class,
                 'success' => Yii::t('hipanel.hosting.ipam', 'Prefix was created successfully'),
                 'error' => Yii::t('hipanel.hosting.ipam', 'An error occurred when trying to add a prefix'),
+                'data' => static function (RenderAction $action): array {
+                    $prefix = $action->getCollection()->getModel();
+                    $prefix->ip = $action->controller->request->get('ip');
+
+                    return [
+                        'model' => $prefix,
+                        'models' => [$prefix],
+                    ];
+                },
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
@@ -80,6 +103,10 @@ class PrefixController extends CrudController
                 'class' => SmartUpdateAction::class,
                 'success' => Yii::t('hipanel.hosting.ipam', 'Description was changed'),
                 'error' => Yii::t('hipanel.hosting.ipam', 'Failed to change description'),
+            ],
+            'get-tree-grid-rows' => [
+                'class' => TreeGridRowsAction::class,
+                'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
             ],
         ]);
     }
