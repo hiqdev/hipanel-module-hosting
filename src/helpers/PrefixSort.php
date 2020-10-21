@@ -2,18 +2,23 @@
 
 namespace hipanel\modules\hosting\helpers;
 
-use PhpIP\IPBlock;
-
 class PrefixSort
 {
-    public static function byKinship(array $models, ?int $id, array &$result): void
+    public static function byKinship(array &$models): void
     {
-        foreach ($models as $model) {
-            if ($model->parent_id === $id) {
-                $result[] = $model;
-                self::byKinship($models, $model->id, $result);
+        $result = [];
+        function kinship(array $models, ?int $id, array &$result)
+        {
+            foreach ($models as $model) {
+                if ($model->parent_id === $id) {
+                    $result[] = $model;
+                    kinship($models, $model->id, $result);
+                }
             }
         }
+
+        kinship($models, null, $result);
+        $models = $result;
     }
 
     public static function byCidr(array &$models): void

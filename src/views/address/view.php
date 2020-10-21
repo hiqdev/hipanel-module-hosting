@@ -40,7 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'family',
                         'state',
                         'vrf',
-                        'role',
                         'site',
                         'tags',
                         'note',

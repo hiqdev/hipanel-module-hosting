@@ -4,12 +4,13 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\ModelTrait;
 use hipanel\modules\hosting\models\query\AddressQuery;
+use hipanel\modules\hosting\models\traits\IPBlockTrait;
 use Yii;
 use yii\db\QueryInterface;
 
 class Address extends Prefix
 {
-    use ModelTrait;
+    use ModelTrait, IPBlockTrait;
 
     public static function tableName()
     {
@@ -20,7 +21,7 @@ class Address extends Prefix
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['id'], 'ip', 'subnet' => null, 'normalize' => true, 'on' => ['create', 'update']],
+            'ip_validate' => [['ip'], 'ip', 'subnet' => null, 'on' => ['create', 'update']],
         ]);
     }
 

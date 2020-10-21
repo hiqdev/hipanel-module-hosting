@@ -58,6 +58,7 @@ class PrefixGridView extends BoxedGridView
                 'i18nDictionary' => 'hipanel.hosting.ipam',
                 'format' => 'raw',
                 'gtype' => 'type,location',
+                'value' => static fn($model) => $model->site ?? $model->parent->site,
             ],
             'family' => [
                 'class' => FamilyColumn::class,

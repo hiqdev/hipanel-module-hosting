@@ -15,7 +15,9 @@ $form = ActiveForm::begin([
     'validateOnBlur' => true,
     'enableAjaxValidation' => true,
     'validationUrl' => Url::toRoute(['validate-form', 'scenario' => $model->scenario]),
-]) ?>
+]);
+
+?>
 
 <div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12">
@@ -29,6 +31,13 @@ $form = ActiveForm::begin([
                 <?= $form->field($model, 'vrf')
                     ->dropDownList($this->context->getRefs('type,ip_vrf', 'hipanel.hosting.ipam'))
                     ->hint(Yii::t('hipanel.hosting.ipam', 'Virtual Routing and Forwarding')) ?>
+                <?php if (!$model->isNewRecord) : ?>
+                    <?= $form->field($model, 'site')->dropDownList($this->context->getRefs('type,location'), [
+                        'value' => $model->parent->site,
+                        'readonly' => true,
+                        'disabled' => true,
+                    ]) ?>
+                <?php endif ?>
                 <?= $form->field($model, "tags")->widget(StaticCombo::class, [
                     'data' => $model->getTagOptions(),
                     'hasId' => true,
