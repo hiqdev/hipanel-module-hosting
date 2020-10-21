@@ -14,12 +14,13 @@ use hipanel\base\Model;
 use hipanel\base\ModelTrait;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\query\PrefixQuery;
+use hipanel\modules\hosting\models\traits\IPBlockTrait;
 use Yii;
 use yii\db\QueryInterface;
 
 class Prefix extends Model
 {
-    use ModelTrait;
+    use ModelTrait, IPBlockTrait;
 
     /** {@inheritdoc} */
     public function rules()
@@ -27,11 +28,13 @@ class Prefix extends Model
         return array_merge(parent::rules(), [
             [['id', 'parent_id', 'client_id', 'seller_id', 'utilization', 'aggregate_id', 'ip_count', 'child_count'], 'integer'],
             [['note', 'vrf', 'role', 'site', 'state', 'type', 'client', 'seller', 'vlan_group', 'vlan', 'aggregate'], 'string'],
-            [['ip', 'parent_ip'], 'ip', 'subnet' => true],
+            [['parent_ip'], 'ip'],
             [['tags'], 'safe'],
 
-            [['ip', 'vrf', 'type'], 'required', 'on' => ['create', 'update']],
+            [['ip', 'vrf'], 'required', 'on' => ['create', 'update']],
             [['id', 'note'], 'required', 'on' => ['set-note']],
+            [['type'], 'required', 'when' => fn() => self::class === static::class, 'on' => ['create', 'update']],
+            'ip_validate' => [['ip'], 'ip', 'subnet' => true, 'on' => ['create', 'update']],
         ]);
     }
 
@@ -62,7 +65,7 @@ class Prefix extends Model
 
     public function getParent(): QueryInterface
     {
-        return $this->hasOne(static::class, ['id' => 'parent_id']);
+        return $this->hasOne(self::class, ['id' => 'parent_id']);
     }
 
     public function isSuggested(): bool

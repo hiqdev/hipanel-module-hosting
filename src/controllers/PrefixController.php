@@ -54,6 +54,7 @@ class PrefixController extends CrudController
                         ->withParent()
                         ->firstbornOnly()
                         ->all();
+                    PrefixSort::byCidr($children);
                     $childDataProvider = new ArrayDataProvider([
                         'allModels' => $children,
                     ]);
@@ -61,10 +62,9 @@ class PrefixController extends CrudController
                         ->andWhere(['ip_cntd' => $action->getCollection()->first->ip])
                         ->withParent()
                         ->all();
-                    $sortedParents = [];
-                    PrefixSort::byKinship($parents, null, $sortedParents);
+                    PrefixSort::byKinship($parents);
                     $parentDataProvider = new ArrayDataProvider([
-                        'allModels' => $sortedParents,
+                        'allModels' => $parents,
                     ]);
 
                     return [

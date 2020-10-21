@@ -109,7 +109,6 @@ class TreeGrid extends Widget
         ];
         if (!$this->showAll) {
             $options['onNodeExpand'] = new JsExpression("tte_{$this->getId()}");
-//            $options['expandable'] = true;
         }
 
         return $options;

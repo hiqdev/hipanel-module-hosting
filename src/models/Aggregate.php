@@ -13,12 +13,13 @@ namespace hipanel\modules\hosting\models;
 use hipanel\base\Model;
 use hipanel\base\ModelTrait;
 use hipanel\modules\hosting\models\query\AggregateQuery;
+use hipanel\modules\hosting\models\traits\IPBlockTrait;
 use Yii;
 use yii\db\QueryInterface;
 
 class Aggregate extends Model
 {
-    use ModelTrait;
+    use ModelTrait, IPBlockTrait;
 
     /** {@inheritdoc} */
     public function rules()
