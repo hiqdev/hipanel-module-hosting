@@ -46,7 +46,8 @@
         "yiisoft/yii2": "^2.0",
         "hiqdev/hipanel-core": "<2.0 || dev-master",
         "hiqdev/hipanel-module-client": "<2.0 || dev-master",
-        "rlanvin/php-ip": "dev-master"
+        "rlanvin/php-ip": "dev-master",
+        "npm-asset/jquery-treetable": "^3.2.0"
     },
     "require-dev": {
         "hiqdev/hidev-php": "dev-master",
