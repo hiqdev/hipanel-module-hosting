@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 
 class TreeTable extends AssetBundle
 {
-    public $sourcePath = '@bower/jquery-treetable';
+    public $sourcePath = '@npm/jquery-treetable';
 
     public $css = [
         'css/jquery.treetable.css',
