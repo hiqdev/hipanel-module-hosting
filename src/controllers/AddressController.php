@@ -13,7 +13,6 @@ use hipanel\base\CrudController;
 use hipanel\filters\EasyAccessControl;
 use hipanel\modules\hosting\helpers\PrefixSort;
 use hipanel\modules\hosting\models\Prefix;
-use hipanel\modules\hosting\models\PrefixSearch;
 use yii\base\Event;
 use yii\data\ArrayDataProvider;
 use yii\helpers\ArrayHelper;
@@ -47,10 +46,9 @@ class AddressController extends CrudController
                 'findOptions' => ['with_parent' => 1],
                 'data' => static function ($action) {
                     $parents = Prefix::find()->andWhere(['ip_cntd' => $action->getCollection()->first->ip])->withParent()->all();
-                    $sortedParents = [];
-                    PrefixSort::byKinship($parents, null, $sortedParents);
+                    PrefixSort::byKinship($parents);
                     $parentDataProvider = new ArrayDataProvider([
-                        'allModels' => $sortedParents,
+                        'allModels' => $parents,
                     ]);
 
                     return ['parentPrefixesDataProvider' => $parentDataProvider];

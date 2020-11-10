@@ -2,13 +2,10 @@
 
 use hipanel\helpers\Url;
 use hipanel\modules\hosting\grid\PrefixGridView;
-use hipanel\modules\hosting\menus\AggregateDetailMenu;
 use hipanel\modules\hosting\menus\PrefixDetailMenu;
 use hipanel\modules\hosting\models\AddressSearch;
 use hipanel\modules\hosting\models\Aggregate;
-use hipanel\modules\hosting\models\Prefix;
 use hipanel\modules\hosting\widgets\TreeGrid;
-use hipanel\widgets\IndexPage;
 use hipanel\widgets\MainDetails;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
@@ -76,6 +73,13 @@ $columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
                         ]) ?>
                     </a>
                 </li>
+                <li class="pull-right">
+                    <?= Html::a(
+                        Yii::t('hipanel.hosting.ipam', 'Add a new prefix'),
+                        ['@prefix/create'],
+                        ['class' => 'btn bg-olive', 'style' => 'padding: 5px 10px; font-size: 12px; border-radius: 3px; margin-top: 4px;']
+                    ) ?>
+                </li>
             </ul>
             <div class="tab-content" style="position: relative;">
                 <div class="overlay" style="display: none;">
@@ -93,7 +97,6 @@ $columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
                         'dataProvider' => $parentPrefixesDataProvider,
                         'showAll' => true,
                         'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
-
                     ]) ?>
                 </div>
             </div>
