@@ -68,6 +68,7 @@ class PrefixGridView extends BoxedGridView
             ],
             'note' => [
                 'class' => XEditableColumn::class,
+                'filterAttribute' => 'note_ilike',
                 'pluginOptions' => [
                     'url' => '@prefix/set-note',
                 ],
