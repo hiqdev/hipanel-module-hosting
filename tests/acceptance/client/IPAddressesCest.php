@@ -34,7 +34,6 @@ class IPAddressesCest
         $I->needPage(Url::to('@ip'));
         $I->see('IP addresses', 'h1');
         $this->ensureICanSeeAdvancedSearchBox($I);
-        $this->ensureICanSeeLegendBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
