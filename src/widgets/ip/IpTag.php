@@ -37,6 +37,7 @@ class IpTag extends Label
 
         $this->color = $class;
         $this->label = Yii::t('hipanel:hosting', $tag);
+        $this->tag = 'span';
         parent::init();
     }
 }

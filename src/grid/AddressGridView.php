@@ -24,7 +24,10 @@ class AddressGridView extends PrefixGridView
             'ip' => [
                 'format' => 'html',
                 'value' => static function ($address) {
-                    return Html::a($address->ip, ['@address/view', 'id' => $address->id], ['class' => 'text-bold']);
+                    $ip = Html::a($address->ip, ['@address/view', 'id' => $address->id], ['class' => 'text-bold']);
+                    $tags = TagsColumn::renderTags($address);
+
+                    return implode('<br>', [$ip, $tags]);
                 },
             ],
             'note' => [

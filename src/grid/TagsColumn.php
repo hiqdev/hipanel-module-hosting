@@ -5,6 +5,7 @@ namespace hipanel\modules\hosting\grid;
 use hipanel\grid\DataColumn;
 use hipanel\modules\hosting\widgets\ip\IpTag;
 use Yii;
+use yii\base\Model;
 use yii\helpers\Html;
 
 class TagsColumn extends DataColumn
@@ -26,6 +27,11 @@ class TagsColumn extends DataColumn
     }
 
     public function getDataCellValue($model, $key, $index)
+    {
+        return self::renderTags($model);
+    }
+
+    public static function renderTags(Model $model): string
     {
         $labels = [];
         foreach ($model->tags as $tag) {

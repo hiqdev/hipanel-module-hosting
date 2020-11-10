@@ -29,7 +29,6 @@ class PrefixRepresentations extends RepresentationCollection
                     'role',
                     'site',
                     'utilization',
-                    'tags',
                     'note',
                 ],
             ],

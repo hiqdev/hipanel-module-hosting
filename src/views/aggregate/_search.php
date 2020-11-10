@@ -14,5 +14,5 @@ use yii\web\View;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('rir')->dropDownList($this->context->getRefs('type,ip_rir', 'hipanel.hosting.ipam'), ['prompt' => '---']) ?>
+    <?= $search->field('rir')->dropDownList($this->context->getRefs('type,ip_rir', 'hipanel.hosting.ipam'), ['prompt' => $search->model->getAttributeLabel('rir')]) ?>
 </div>

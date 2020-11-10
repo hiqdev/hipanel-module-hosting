@@ -26,13 +26,15 @@ class PrefixGridView extends BoxedGridView
     {
         return array_merge(parent::columns(), [
             'ip' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => static function (Prefix $prefix) {
                     if ($prefix->isSuggested()) {
                         return Html::a($prefix->ip, ['@prefix/create', 'ip' => $prefix->ip], ['class' => 'text-bold']);
                     }
+                    $ip = Html::a($prefix->ip, ['@prefix/view', 'id' => $prefix->id], ['class' => 'text-bold']);
+                    $tags = TagsColumn::renderTags($prefix);
 
-                    return Html::a($prefix->ip, ['@prefix/view', 'id' => $prefix->id], ['class' => 'text-bold']);
+                    return implode('<br>', [$ip, $tags]);
                 },
             ],
             'type' => [

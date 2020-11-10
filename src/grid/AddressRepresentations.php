@@ -25,7 +25,6 @@ class AddressRepresentations extends RepresentationCollection
                     'ip',
                     'type',
                     'vrf',
-                    'tags',
                     'note',
                 ],
             ],
