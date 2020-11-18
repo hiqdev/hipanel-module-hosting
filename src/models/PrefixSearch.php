@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\SearchModelTrait;
 use hipanel\helpers\ArrayHelper;
+use Yii;
 
 class PrefixSearch extends Prefix
 {
@@ -24,6 +25,15 @@ class PrefixSearch extends Prefix
             'with_parent',
             'include_suggestions',
             'firstborn',
+            'family',
+        ]);
+    }
+
+    /** {@inheritdoc} */
+    public function attributeLabels()
+    {
+        return $this->mergeAttributeLabels([
+            'family' => Yii::t('hipanel.hosting.ipam', 'Family'),
         ]);
     }
 }

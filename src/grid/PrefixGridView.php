@@ -27,6 +27,8 @@ class PrefixGridView extends BoxedGridView
         return array_merge(parent::columns(), [
             'ip' => [
                 'format' => 'raw',
+                'attribute' => 'ip',
+                'filterAttribute' => 'ip_like',
                 'value' => static function (Prefix $prefix) {
                     if ($prefix->isSuggested()) {
                         return Html::a($prefix->ip, ['@prefix/create', 'ip' => $prefix->ip], ['class' => 'text-bold']);

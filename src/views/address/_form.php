@@ -27,7 +27,20 @@ $form = ActiveForm::begin([
             </div>
             <div class="box-body">
                 <?= Html::activeHiddenInput($model, 'id') ?>
-                <?= $form->field($model, 'ip')->hint(Yii::t('hipanel.hosting.ipam', 'IPv4 or IPv6 network with mask')) ?>
+                <?= $form->field($model, 'ip', ['options' => ['style' => 'margin-bottom: 0;']])->hint(Yii::t('hipanel.hosting.ipam', 'IPv4 or IPv6 network with mask or specify a numeric range to create multiple IPs.')) ?>
+                <div class="help-block" style="margin: 0 0 1em;">
+                    <div class="format"><?= Yii::t('hipanel:dns', 'Format:') ?>
+                        <samp class="value"><?= Yii::t('hipanel.hosting.ipam', 'IPv4, IPv6 or IP Range') ?></samp>
+                    </div>
+                    <div class="example"><?= Yii::t('hipanel.hosting.ipam', 'Examples:') ?>
+                        <?= Yii::t('hipanel.hosting.ipam', '{v4}, {v6}, {r4}, {r6}', [
+                            'v4' => Html::tag('code', '192.0.2.1'),
+                            'v6' => Html::tag('code', '2001:db8::'),
+                            'r4' => Html::tag('code', '192.0.2.[1,5,100-254]/24'),
+                            'r6' => Html::tag('code', '2001:db8:0:[0,fd-ff]::/64'),
+                        ]) ?>
+                    </div>
+                </div>
                 <?= $form->field($model, 'vrf')
                     ->dropDownList($this->context->getRefs('type,ip_vrf', 'hipanel.hosting.ipam'))
                     ->hint(Yii::t('hipanel.hosting.ipam', 'Virtual Routing and Forwarding')) ?>

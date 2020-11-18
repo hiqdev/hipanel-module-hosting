@@ -18,6 +18,7 @@ namespace hipanel\modules\hosting\models;
 
 use hipanel\base\SearchModelTrait;
 use hipanel\helpers\ArrayHelper;
+use Yii;
 
 class AddressSearch extends Address
 {
@@ -37,6 +38,15 @@ class AddressSearch extends Address
             'ip_cnts',
             'ip_cnts_eql',
             'ip_cnts_cntd',
+            'family',
+        ]);
+    }
+
+    /** {@inheritdoc} */
+    public function attributeLabels()
+    {
+        return $this->mergeAttributeLabels([
+            'family' => Yii::t('hipanel.hosting.ipam', 'Family'),
         ]);
     }
 }

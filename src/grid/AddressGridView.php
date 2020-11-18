@@ -23,6 +23,8 @@ class AddressGridView extends PrefixGridView
         return array_merge(parent::columns(), [
             'ip' => [
                 'format' => 'html',
+                'attribute' => 'ip',
+                'filterAttribute' => 'ip_like',
                 'value' => static function ($address) {
                     $ip = Html::a($address->ip, ['@address/view', 'id' => $address->id], ['class' => 'text-bold']);
                     $tags = TagsColumn::renderTags($address);
