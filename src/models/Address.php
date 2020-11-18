@@ -7,6 +7,7 @@ use hipanel\modules\hosting\models\query\AddressQuery;
 use hipanel\modules\hosting\models\traits\IPBlockTrait;
 use Yii;
 use yii\db\QueryInterface;
+use yii\web\JsExpression;
 
 class Address extends Prefix
 {
@@ -21,7 +22,12 @@ class Address extends Prefix
     public function rules()
     {
         return array_merge(parent::rules(), [
-            'ip_validate' => [['ip'], 'ip', 'subnet' => null, 'on' => ['create', 'update']],
+            'ip_validate' => [
+                ['ip'], 'ip', 'subnet' => null,
+                'when' => fn($model) => strpos($model->ip, '[') === false,
+                'whenClient' => new JsExpression('(attribute, value) => value.indexOf("[") === -1'),
+                'on' => ['create', 'update'],
+            ],
         ]);
     }
 

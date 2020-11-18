@@ -3,6 +3,7 @@
 namespace hipanel\modules\hosting\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\RedirectAction;
 use hipanel\actions\SearchAction;
 use hipanel\actions\SmartCreateAction;
 use hipanel\actions\SmartDeleteAction;
@@ -58,6 +59,13 @@ class AddressController extends CrudController
                 'class' => SmartCreateAction::class,
                 'success' => Yii::t('hipanel.hosting.ipam', 'IP Address was created successfully'),
                 'error' => Yii::t('hipanel.hosting.ipam', 'An error occurred when trying to add a prefix'),
+                'POST html' => [
+                    'save' => true,
+                    'success' => [
+                        'class' => RedirectAction::class,
+                        'url' => 'index',
+                    ],
+                ],
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
