@@ -19,6 +19,8 @@ class UtilizationColumn extends DataColumn
 {
     public $format = 'raw';
 
+    public $filter = false;
+
     public function init()
     {
         parent::init();
