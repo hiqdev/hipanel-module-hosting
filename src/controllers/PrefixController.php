@@ -48,8 +48,9 @@ class PrefixController extends CrudController
                     $event->sender->getDataProvider()->query->withParent();
                 },
                 'data' => static function ($action): array {
+                    $model = $action->getCollection()->first;
                     $children = Prefix::find()
-                        ->andWhere(['ip_cnts' => $action->getCollection()->first->ip])
+                        ->andWhere(['ip_cnts' => $model->ip, 'vrf' => $model->vrf])
                         ->includeSuggestions()
                         ->withParent()
                         ->firstbornOnly()
@@ -60,7 +61,7 @@ class PrefixController extends CrudController
                         'allModels' => $children,
                     ]);
                     $parents = Prefix::find()
-                        ->andWhere(['ip_cntd' => $action->getCollection()->first->ip])
+                        ->andWhere(['ip_cntd' => $model->ip, 'vrf' => $model->vrf])
                         ->withParent()
                         ->limit(-1)
                         ->all();
