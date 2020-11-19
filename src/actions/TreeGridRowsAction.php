@@ -17,7 +17,7 @@ class TreeGridRowsAction extends Action
     {
         $this->controller->response->format = Response::FORMAT_JSON;
         $id = $this->controller->request->get('id');
-        $models = prefix::find()->where(['parent_id' => $id])->withparent()->all();
+        $models = Prefix::find()->where(['parent_id' => $id])->withparent()->limit(-1)->all();
         $dp = new ArrayDataProvider(['allModels' => $models]);
         $grid = Yii::createObject([
             'class' => PrefixGridView::class,

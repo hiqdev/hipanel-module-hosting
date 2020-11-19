@@ -46,7 +46,7 @@ class AddressController extends CrudController
                 'class' => ViewAction::class,
                 'findOptions' => ['with_parent' => 1],
                 'data' => static function ($action) {
-                    $parents = Prefix::find()->andWhere(['ip_cntd' => $action->getCollection()->first->ip])->withParent()->all();
+                    $parents = Prefix::find()->andWhere(['ip_cntd' => $action->getCollection()->first->ip])->withParent()->limit(-1)->all();
                     PrefixSort::byKinship($parents);
                     $parentDataProvider = new ArrayDataProvider([
                         'allModels' => $parents,
