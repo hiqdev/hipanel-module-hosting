@@ -20,6 +20,8 @@ class TreeGrid extends Widget
 
     public bool $showAll = true;
 
+    public ?Prefix $parent = null;
+
     /**
      * @var array|string
      */
@@ -37,6 +39,7 @@ class TreeGrid extends Widget
 
         return PrefixGridView::widget([
             'boxed' => false,
+            'parent' => $this->parent,
             'dataProvider' => $this->dataProvider,
             'layout' => '{items}{pager}',
             'filterModel' => new Prefix(),

@@ -81,7 +81,11 @@ class PrefixController extends CrudController
                 'error' => Yii::t('hipanel.hosting.ipam', 'An error occurred when trying to add a prefix'),
                 'data' => static function (RenderAction $action): array {
                     $prefix = $action->getCollection()->getModel();
-                    $prefix->ip = $action->controller->request->get('ip');
+                    $request =$action->controller->request;
+                    $prefix->ip = $request->get('ip');
+                    $prefix->vrf = $request->get('vrf');
+                    $prefix->role = $request->get('role');
+                    $prefix->site = $request->get('site');
 
                     return [
                         'model' => $prefix,

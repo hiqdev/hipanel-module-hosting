@@ -22,6 +22,8 @@ use yii\helpers\Html;
 
 class PrefixGridView extends BoxedGridView
 {
+    public ?Prefix $parent = null;
+
     public function columns()
     {
         return array_merge(parent::columns(), [
@@ -29,9 +31,15 @@ class PrefixGridView extends BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'ip',
                 'filterAttribute' => 'ip_like',
-                'value' => static function (Prefix $prefix) {
+                'value' => function (Prefix $prefix) {
                     if ($prefix->isSuggested()) {
-                        return Html::a($prefix->ip, ['@prefix/create', 'ip' => $prefix->ip], ['class' => 'text-bold']);
+                        return Html::a($prefix->ip, [
+                            '@prefix/create',
+                            'ip' => $prefix->ip,
+                            'vrf' => $this->parent->vrf,
+                            'role' => $this->parent->role,
+                            'site' => $this->parent->site,
+                        ], ['class' => 'text-bold']);
                     }
                     $ip = Html::a($prefix->ip, ['@prefix/view', 'id' => $prefix->id], ['class' => 'text-bold']);
                     $tags = TagsColumn::renderTags($prefix);
@@ -50,19 +58,21 @@ class PrefixGridView extends BoxedGridView
                 'i18nDictionary' => 'hipanel.hosting.ipam',
                 'format' => 'raw',
                 'gtype' => 'type,ip_vrf',
+                'value' => fn($model) => $model->vrf ?? $this->parent->vrf,
             ],
             'role' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel.hosting.ipam',
                 'format' => 'raw',
                 'gtype' => 'type,ip_prefix_role',
+                'value' => fn($model) => $model->role ?? $this->parent->role,
             ],
             'site' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel.hosting.ipam',
                 'format' => 'raw',
                 'gtype' => 'type,location',
-                'value' => static fn($model) => $model->site, // todo: own site or parent site `?? $model->parent->site`
+                'value' => fn($model) => $model->site ?? $this->parent->site,
             ],
             'family' => [
                 'class' => FamilyColumn::class,
