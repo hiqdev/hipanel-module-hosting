@@ -16,7 +16,19 @@
 
 namespace hipanel\modules\hosting\models;
 
+use hipanel\base\SearchModelTrait;
+use hipanel\helpers\ArrayHelper;
+
 class RequestSearch extends Request
 {
-    use \hipanel\base\SearchModelTrait;
+    use SearchModelTrait {
+        searchAttributes as defaultSearchAttributes;
+    }
+
+    public function rules()
+    {
+        return ArrayHelper::merge(parent::rules(), [
+            [['ids'], 'safe', 'on' => ['search']],
+        ]);
+    }
 }

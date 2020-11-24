@@ -16,6 +16,7 @@
 
 namespace hipanel\modules\hosting\controllers;
 
+use hipanel\actions\ComboSearchAction;
 use hipanel\actions\IndexAction;
 use hipanel\actions\SmartDeleteAction;
 use hipanel\actions\ViewAction;
@@ -26,6 +27,9 @@ class RequestController extends \hipanel\base\CrudController
     public function actions()
     {
         return array_merge(parent::actions(), [
+            'search' => [
+                'class' => ComboSearchAction::class,
+            ],
             'index' => [
                 'class' => IndexAction::class,
                 'findOptions' => [
