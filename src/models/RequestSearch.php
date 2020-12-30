@@ -29,6 +29,7 @@ class RequestSearch extends Request
     {
         return ArrayHelper::merge(parent::rules(), [
             [['ids'], 'safe', 'on' => ['search']],
+            [['id_in'], 'safe'],
         ]);
     }
 }
