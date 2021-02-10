@@ -3,7 +3,7 @@
 namespace hipanel\modules\hosting\widgets;
 
 use hipanel\helpers\Url;
-use hipanel\modules\hosting\assets\TreeTable;
+use hipanel\assets\TreeTable;
 use hipanel\modules\hosting\grid\PrefixGridView;
 use hipanel\modules\hosting\models\Prefix;
 use yii\base\Widget;
