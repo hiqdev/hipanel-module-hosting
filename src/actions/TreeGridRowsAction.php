@@ -4,6 +4,7 @@ namespace hipanel\modules\hosting\actions;
 
 use hipanel\actions\Action;
 use hipanel\modules\hosting\grid\PrefixGridView;
+use hipanel\modules\hosting\helpers\PrefixSort;
 use hipanel\modules\hosting\models\Prefix;
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -17,8 +18,19 @@ class TreeGridRowsAction extends Action
     {
         $this->controller->response->format = Response::FORMAT_JSON;
         $id = $this->controller->request->get('id');
-        $models = Prefix::find()->where(['parent_id' => $id])->withParent()->limit(-1)->all();
-        $dp = new ArrayDataProvider(['allModels' => $models]);
+        $includeSuggestions = $this->controller->request->get('includeSuggestions', false);
+        $prefix = Prefix::findOne($id);
+        $query = Prefix::find()
+            ->andWhere(['ip_cnts' => $prefix->ip, 'vrf' => $prefix->vrf])
+            ->withParent()
+            ->firstbornOnly()
+            ->limit(-1);
+        if ($includeSuggestions) {
+            $query->includeSuggestions();
+        }
+        $models = $query->all();
+        PrefixSort::byCidr($models);
+        $dp = new ArrayDataProvider(['allModels' => $models, 'pagination' => ['pageSize' => false]]);
         $grid = Yii::createObject([
             'class' => PrefixGridView::class,
             'dataProvider' => $dp,
@@ -28,7 +40,7 @@ class TreeGridRowsAction extends Action
             'rowOptions' => static fn(Prefix $prefix, $key): array => [
                 'data' => [
                     'tt-id' => $prefix->id,
-                    'tt-parent-id' => $prefix->parent_id ?? 0,
+                    'tt-parent-id' => $prefix->parent_id ?? $id,
                     'tt-branch' => $prefix->child_count > 0 ? 'true' : 'false',
                 ],
                 'class' => sprintf("%s", $prefix->isSuggested() ? 'success' : ''),
@@ -40,7 +52,7 @@ class TreeGridRowsAction extends Action
         $rows = [];
         foreach ($dp->getModels() as $index => $model) {
             $key = $keys[$index];
-            $rows[$model->id] = $grid->renderTableRow($model, $key, $index);
+            $rows[$key] = $grid->renderTableRow($model, $key, $index);
         }
 
         return $rows;

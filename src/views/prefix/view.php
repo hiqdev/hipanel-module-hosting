@@ -90,6 +90,7 @@ $columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
                         'parent' => $model,
                         'dataProvider' => $childPrefixesDataProvider,
                         'showAll' => false,
+                        'includeSuggestions' => true,
                         'columns' => ['ip', 'state', 'vrf', 'role', 'utilization', 'site', 'text_note'],
                     ]) ?>
                 </div>
