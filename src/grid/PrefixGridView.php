@@ -28,6 +28,7 @@ class PrefixGridView extends BoxedGridView
     {
         return array_merge(parent::columns(), [
             'ip' => [
+                'label' => Yii::t('hipanel.hosting.ipam', 'IP'),
                 'format' => 'raw',
                 'attribute' => 'ip',
                 'filterAttribute' => 'ip_like',
