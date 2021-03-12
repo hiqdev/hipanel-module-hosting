@@ -31,6 +31,7 @@ class PrefixGridView extends BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'ip',
                 'filterAttribute' => 'ip_like',
+                'contentOptions' => ['style' => 'white-space:nowrap;'],
                 'value' => function (Prefix $prefix) {
                     if ($prefix->isSuggested()) {
                         return Html::a($prefix->ip, [
@@ -44,7 +45,7 @@ class PrefixGridView extends BoxedGridView
                     $ip = Html::a($prefix->ip, ['@prefix/view', 'id' => $prefix->id], ['class' => 'text-bold']);
                     $tags = TagsColumn::renderTags($prefix);
 
-                    return implode('<br>', [$ip, $tags]);
+                    return implode('<br>', array_filter([$ip, $tags], static fn(string $entry): bool => $entry !== ''));
                 },
             ],
             'type' => [
