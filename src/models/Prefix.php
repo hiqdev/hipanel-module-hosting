@@ -35,6 +35,7 @@ class Prefix extends Model
             [['id', 'note'], 'required', 'on' => ['set-note']],
             [['type'], 'required', 'when' => fn() => self::class === static::class, 'on' => ['create', 'update']],
             'ip_validate' => [['ip'], 'ip', 'subnet' => true, 'on' => ['create', 'update']],
+            [['id'], 'required', 'on' => 'delete'],
         ]);
     }
 

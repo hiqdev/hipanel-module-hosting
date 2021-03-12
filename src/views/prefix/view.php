@@ -90,14 +90,14 @@ $columns = ['actions', 'ip', 'state', 'vrf', 'role', 'site', 'note'];
                         'parent' => $model,
                         'dataProvider' => $childPrefixesDataProvider,
                         'showAll' => false,
-                        'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
+                        'columns' => ['ip', 'state', 'vrf', 'role', 'utilization', 'site', 'text_note'],
                     ]) ?>
                 </div>
                 <div class="tab-pane" id="parent_prefixes">
                     <?= TreeGrid::widget([
                         'dataProvider' => $parentPrefixesDataProvider,
-                        'showAll' => true,
-                        'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
+                        'showAll' => false,
+                        'columns' => ['ip', 'state', 'vrf', 'role', 'utilization', 'site', 'text_note'],
                     ]) ?>
                 </div>
             </div>

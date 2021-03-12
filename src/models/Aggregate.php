@@ -32,6 +32,7 @@ class Aggregate extends Model
             [['ip', 'rir'], 'required', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update']],
             [['id', 'note'], 'required', 'on' => ['set-note']],
+            [['id'], 'required', 'on' => 'delete'],
         ]);
     }
 

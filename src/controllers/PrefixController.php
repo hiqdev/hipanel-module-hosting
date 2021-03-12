@@ -59,6 +59,9 @@ class PrefixController extends CrudController
                     PrefixSort::byCidr($children);
                     $childDataProvider = new ArrayDataProvider([
                         'allModels' => $children,
+                        'pagination' => [
+                            'pageSize' => -1,
+                        ],
                     ]);
                     $parents = Prefix::find()
                         ->andWhere(['ip_cntd' => $model->ip, 'vrf' => $model->vrf])
@@ -68,6 +71,9 @@ class PrefixController extends CrudController
                     PrefixSort::byKinship($parents);
                     $parentDataProvider = new ArrayDataProvider([
                         'allModels' => $parents,
+                        'pagination' => [
+                            'pageSize' => -1,
+                        ],
                     ]);
 
                     return [
@@ -113,7 +119,7 @@ class PrefixController extends CrudController
             ],
             'get-tree-grid-rows' => [
                 'class' => TreeGridRowsAction::class,
-                'columns' => ['ip', 'state', 'vrf', 'role', 'site', 'text_note'],
+                'columns' => ['ip', 'state', 'vrf', 'role', 'utilization', 'site', 'text_note'],
             ],
         ]);
     }
