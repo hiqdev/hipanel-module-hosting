@@ -20,6 +20,8 @@ class TreeGrid extends Widget
 
     public bool $showAll = true;
 
+    public bool $includeSuggestions = false;
+
     public ?Prefix $parent = null;
 
     /**
@@ -60,8 +62,9 @@ class TreeGrid extends Widget
     private function registerJs(): void
     {
         $options = Json::encode(empty($this->pluginOptions) ? $this->getDefaultPluginOptions() : $this->pluginOptions);
+        $includeSuggestions = Json::htmlEncode($this->includeSuggestions ? 1 : 0);
         $id = $this->getId();
-        $url = Url::toRoute($this->url);
+        $url = $this->url;
         if ($this->showAll) {
             $this->view->registerJs("
               $('#{$id}').treetable({$options});
@@ -75,18 +78,23 @@ class TreeGrid extends Widget
                 if (this.children.length > 0) {
                   return;
                 }
-                $('.overlay').show();
                 $.ajax({
                   url: '{$url}',
                   type: 'GET',
                   dataType: 'json',
-                  data: { id: parentNodeId },
-                  success: rows => {
+                  data: { id: parentNodeId, includeSuggestions: {$includeSuggestions}},
+                  beforeSend: function () {
+                    $('.overlay').show();
+                  },
+                  complete: function () {
                     $('.overlay').hide();
+                  },
+                  success: rows => {
                     const parentNode = tt.treetable('node', parentNodeId);
                     if (Object.keys(rows).length) {
-                      for (const [id, row] of Object.entries(rows)) {
-                        if (!tt.treetable('node', id)) {
+                      for (const [key, row] of Object.entries(rows)) {
+                        const id = row.match(/data-tt-id=\"(\d+)\"/)[1];
+                        if (!tt.treetable('node', parseInt(id))) {
                           tt.treetable('loadBranch', parentNode, row);
                         }
                       }
