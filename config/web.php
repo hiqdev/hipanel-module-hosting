@@ -20,9 +20,6 @@ return [
         '@ip' => '/hosting/ip',
         '@request' => '/hosting/request',
         '@crontab' => '/hosting/crontab',
-        '@aggregate' => '/hosting/aggregate',
-        '@prefix' => '/hosting/prefix',
-        '@address' => '/hosting/address',
     ],
     'modules' => [
         'hosting' => [
@@ -45,10 +42,6 @@ return [
                     'basePath' => dirname(__DIR__) . '/src/messages',
                 ],
                 'hipanel:hosting:account' => [
-                    'class' => \yii\i18n\PhpMessageSource::class,
-                    'basePath' => dirname(__DIR__) . '/src/messages',
-                ],
-                'hipanel.hosting.ipam' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => dirname(__DIR__) . '/src/messages',
                 ],
