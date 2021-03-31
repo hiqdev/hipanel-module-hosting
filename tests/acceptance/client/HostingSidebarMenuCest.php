@@ -17,7 +17,7 @@ class HostingSidebarMenuCest
 {
     public function ensureMenuIsOk(Client $I)
     {
-        (new SidebarMenu($I))->ensureContains('IP Address Management',[
+        (new SidebarMenu($I))->ensureContains('IPAM',[
             'IP addresses' => '@address/index',
             'Prefixes' => '@prefix/index',
             'Aggregates' => '@aggregate/index',
