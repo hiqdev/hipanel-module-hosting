@@ -15,12 +15,8 @@ use hipanel\tests\_support\Step\Acceptance\Client;
 
 class HostingSidebarMenuCest
 {
-    public function ensureMenuIsOk(Client $I)
+    public function ensureMenuIsOk(Client $I): void
     {
-        (new SidebarMenu($I))->ensureContains('IPAM',[
-            'IP addresses' => '@address/index',
-            'Prefixes' => '@prefix/index',
-            'Aggregates' => '@aggregate/index',
-        ]);
+        (new SidebarMenu($I))->ensureDontSeeRootLevelItem('Hosting');
     }
 }
