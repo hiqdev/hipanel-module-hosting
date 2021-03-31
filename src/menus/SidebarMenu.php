@@ -19,26 +19,6 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
         $user = Yii::$app->user;
 
         $menu = [
-            'ipam' => [
-                'label' => Yii::t('hipanel.hosting.ipam', 'IP Address Management'),
-                'url' => '#',
-                'icon' => 'fa-sitemap',
-                'items' => [
-                    'ip-addresses' => [
-                        'label' => Yii::t('hipanel.hosting.ipam', 'IP Addresses'),
-                        'url' => ['/hosting/address/index'],
-                    ],
-                    'prefixes' => [
-                        'label' => Yii::t('hipanel.hosting.ipam', 'Prefixes'),
-                        'url' => ['/hosting/prefix/index'],
-                    ],
-                    'aggregate' => [
-                        'label' => Yii::t('hipanel.hosting.ipam', 'Aggregates'),
-                        'url' => ['/hosting/aggregate/index'],
-                    ],
-                ],
-                'visible' => Yii::$app->user->can('test.alpha'),
-            ],
             'hosting' => [
                 'label' => Yii::t('hipanel:hosting', 'Hosting'),
                 'url' => '#',
