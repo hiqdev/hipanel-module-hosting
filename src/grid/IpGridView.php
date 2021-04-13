@@ -53,7 +53,7 @@ class IpGridView extends BoxedGridView
                 'visible' => Yii::$app->user->can('admin'),
             ],
             'tags' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'attribute' => 'tag',
                 'header' => Yii::t('hipanel:hosting', 'Tags'),
                 'visible' => Yii::$app->user->can('admin'),
@@ -146,6 +146,7 @@ class IpGridView extends BoxedGridView
                 'options' => [
                     'style' => 'width: 40%',
                 ],
+                /** todo: refactor */
                 'format' => 'raw',
                 'value' => static function (Ip $model): string {
                     if ($model->canSetPtr()) {

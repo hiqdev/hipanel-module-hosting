@@ -46,6 +46,7 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             ],
             'sshftp_ips' => [
                 'attribute'         => 'sshftp_ips',
+                /** todo: fix */
                 'format'            => 'raw',
                 'value'             => function ($model) {
                     return ArraySpoiler::widget([
@@ -61,14 +62,13 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             'type' => [
                 'class'             => RefColumn::class,
                 'i18nDictionary'    => 'hipanel:hosting',
-                'format'            => 'raw',
                 'value'             => function ($model) {
                     return Type::widget(compact('model'));
                 },
                 'gtype'             => 'type,account',
             ],
             'access_data' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'label' => Yii::t('hipanel:hosting:account', 'Access data'),
                 'value' => function (Account $model): string {
                     return Yii::t('hipanel:hosting:account', '{ip_label} {ip} {login_label} {login}', [

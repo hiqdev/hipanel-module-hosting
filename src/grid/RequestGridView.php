@@ -49,7 +49,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             'object' => [
                 'enableSorting' => false,
                 'filter' => false,
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function (Request $model): string {
                     return Html::a('<i class="fa fa-external-link"></i>&nbsp;' . $model->object,
                         ['/hosting/' . $model->object_class . '/view', 'id' => $model->object_id],
@@ -67,7 +67,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel:hosting',
                 'gtype' => 'state,request',
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     $colors = [
                         'error' => 'danger',
@@ -84,7 +84,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 ],
             ],
             'parent' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function (Request $model): string {
                     return Html::a($model->parent, ['@request/view', 'id' => $model->parent_id]);
                 },

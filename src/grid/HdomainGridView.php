@@ -35,6 +35,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'attribute' => 'domain',
             ],
             'hdomain_with_aliases' => [
+                /** todo: refactor */
                 'format' => 'raw',
                 'attribute' => 'domain',
                 'filterAttribute' => 'domain_like',
@@ -71,7 +72,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'ip' => [
                 'enableSorting' => false,
                 'filter' => false,
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     $vhost = $model->getAttribute('vhost');
 
@@ -117,7 +118,6 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,hdomain',
             ],
             'dns_on' => [
-                'format' => 'raw',
                 'value' => function ($model) {
                     return $model->dns_on ? Yii::t('hipanel', 'Enabled') : Yii::t('hipanel', 'Disabled');
                 },
@@ -125,6 +125,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'dns_switch' => [
                 'attribute' => 'dns_on',
                 'label' => Yii::t('hipanel:hosting', 'DNS'),
+                /** todo: refactor */
                 'format' => 'raw',
                 'value' => function ($model) {
                     if (empty($model->dns_hdomain_id)) {
@@ -151,6 +152,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'aliases' => [
                 'label' => Yii::t('hipanel', 'Aliases'),
+                /** todo: refactor */
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
@@ -162,7 +164,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'backups_widget' => [
                 'label' => Yii::t('hipanel:hosting', 'Backups'),
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     return BackupGridRow::widget(['model' => $model]);
                 },

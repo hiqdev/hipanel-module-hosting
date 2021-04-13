@@ -39,7 +39,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'class' => ServerColumn::class,
             ],
             'object' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'header' => Yii::t('hipanel:hosting', 'Object'),
                 'value' => function ($model) {
                     $html = $model->name . ' ';
@@ -80,6 +80,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'ip' => [
+                /** todo: fix */
                 'format' => 'raw',
                 'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {
@@ -87,7 +88,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'ip_with_link' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {
                     $ips = Html::tag('span', ArraySpoiler::widget(['data' => array_unique(array_merge((array) $model->ip, (array) $model->ips))]));
@@ -119,7 +120,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
             'state' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel:hosting',
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
                 },

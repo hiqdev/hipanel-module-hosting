@@ -34,7 +34,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             'state' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel:hosting',
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
                 },
@@ -52,13 +52,13 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'domain' => [
                 'attribute' => 'hdomain_id',
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     return Html::a($model->domain, ['@hdomain/view', 'id' => $model->hdomain_id]);
                 },
             ],
             'type' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'filter' => function ($column, $model, $attribute) {
                     return Html::activeDropDownList($model, $attribute, ['' => '----------'] + Mail::getTypes(), [
                         'class' => 'form-control',
@@ -69,6 +69,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'forwards' => [
+                /** todo:refactor */
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
@@ -84,7 +85,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'account' => ['class' => AccountColumn::class],
             'spam_action' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'value' => function ($model) {
                     /** @var $model Mail */
                     if ($model->spam_action === $model::SPAM_ACTION_DELETE) {
