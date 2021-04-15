@@ -121,6 +121,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'total_du' => [
                 'filter' => false,
+                'format' => 'html',
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->total_du, 2);
                 },

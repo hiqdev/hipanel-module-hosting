@@ -35,6 +35,7 @@ class DbGridView extends BoxedGridView
             ],
             'state'       => [
                 'class'  => RefColumn::class,
+                'format' => 'html',
                 'i18nDictionary' => 'hipanel:hosting',
                 'value'  => function ($model) {
                     return State::widget(compact('model'));
