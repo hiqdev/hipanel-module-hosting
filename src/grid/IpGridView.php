@@ -146,7 +146,6 @@ class IpGridView extends BoxedGridView
                 'options' => [
                     'style' => 'width: 40%',
                 ],
-                /** todo: refactor */
                 'format' => 'raw',
                 'value' => static function (Ip $model): string {
                     if ($model->canSetPtr()) {

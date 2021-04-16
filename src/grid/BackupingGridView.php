@@ -90,7 +90,6 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'type' => [
                 'attribute' => 'type',
-                /** todo: refactor */
                 'format' => 'raw',
                 'filter' => false,
                 'enableSorting' => false,

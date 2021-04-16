@@ -124,7 +124,6 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'dns_switch' => [
                 'attribute' => 'dns_on',
                 'label' => Yii::t('hipanel:hosting', 'DNS'),
-                /** todo: refactor */
                 'format' => 'raw',
                 'value' => function ($model) {
                     if (empty($model->dns_hdomain_id)) {
@@ -151,7 +150,6 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'aliases' => [
                 'label' => Yii::t('hipanel', 'Aliases'),
-                /** todo: refactor */
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
