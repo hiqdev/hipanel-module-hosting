@@ -35,14 +35,13 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'attribute' => 'domain',
             ],
             'hdomain_with_aliases' => [
-                /** todo: refactor */
                 'format' => 'raw',
                 'attribute' => 'domain',
                 'filterAttribute' => 'domain_like',
                 'value' => function ($model) {
                     $aliases = (array) $model->getAttribute('aliases');
 
-                    $html = Html::a($model->domain, ['view', 'id' => $model->id], ['class' => 'bold']) . '&nbsp;';
+                    $html = Html::a(Html::encode($model->domain), ['view', 'id' => Html::encode($model->id)], ['class' => 'bold']) . '&nbsp;';
                     $html .= ArraySpoiler::widget([
                         'data' => $aliases,
                         'visibleCount' => 0,

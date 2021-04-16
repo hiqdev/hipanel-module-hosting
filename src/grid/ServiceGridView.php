@@ -80,7 +80,6 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'ip' => [
-                /** todo: fix */
                 'format' => 'raw',
                 'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {

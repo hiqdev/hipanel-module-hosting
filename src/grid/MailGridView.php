@@ -69,7 +69,6 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'forwards' => [
-                /** todo:refactor */
                 'format' => 'raw',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([

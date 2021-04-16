@@ -46,7 +46,6 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             ],
             'sshftp_ips' => [
                 'attribute'         => 'sshftp_ips',
-                /** todo: fix */
                 'format'            => 'raw',
                 'value'             => function ($model) {
                     return ArraySpoiler::widget([
