@@ -53,7 +53,7 @@ class IpGridView extends BoxedGridView
                 'visible' => Yii::$app->user->can('admin'),
             ],
             'tags' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'attribute' => 'tag',
                 'header' => Yii::t('hipanel:hosting', 'Tags'),
                 'visible' => Yii::$app->user->can('admin'),

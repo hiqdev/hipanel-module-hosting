@@ -39,7 +39,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'class' => ServerColumn::class,
             ],
             'object' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'header' => Yii::t('hipanel:hosting', 'Object'),
                 'value' => function ($model) {
                     $html = $model->name . ' ';
@@ -87,12 +87,12 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'ip_with_link' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'label' => Yii::t('hipanel:hosting', 'IP'),
                 'value' => function ($model) {
                     $ips = Html::tag('span', ArraySpoiler::widget(['data' => array_unique(array_merge((array) $model->ip, (array) $model->ips))]));
                     $linkToIPs = Html::a(Yii::t('hipanel', 'Show'), IpController::getSearchUrl([
-                        'server_in' => $model->server,
+                        'server_in' => Html::encode($model->server),
                         'service_id' => $model->id,
                     ]), ['class' => 'btn bg-olive btn-xs btn-flat', 'target' => '_blank', 'data-pjax' => 0]);
 
@@ -100,26 +100,24 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'bin' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->bin ? Html::tag('code', $model->bin) : '';
+                    return $model->bin ? Html::tag('code', Html::encode($model->bin)) : '';
                 },
             ],
             'etc' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->etc ? Html::tag('code', $model->etc) : '';
+                    return $model->etc ? Html::tag('code', Html::encode($model->etc)) : '';
                 },
             ],
             'soft' => [
-                'value' => function ($model) {
-                    return $model->soft;
-                },
+                'attribute' => 'soft',
             ],
             'state' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel:hosting',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
                 },

@@ -40,20 +40,20 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'class' => AccountColumn::class,
             ],
             'object' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'attribute' => 'name',
                 'filterAttribute' => 'name_like',
                 'filterOptions' => ['class' => 'narrow-filter'],
                 'value' => function ($model) {
-                    return  Html::a($model->name, ['@backuping/view', 'id' => $model->object_id], ['class' => 'bold']) . ' ' .
+                    return  Html::a(Html::encode($model->name), ['@backuping/view', 'id' => $model->object_id], ['class' => 'bold']) . ' ' .
                             ObjLinkWidget::widget(['model' => $model->getObj()]);
                 },
             ],
             'name' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'attribute' => 'name',
                 'value' => function ($model) {
-                    return ObjLinkWidget::widget(['label' => $model->name, 'model' => $model->getObj()]);
+                    return ObjLinkWidget::widget(['label' => Html::encode($model->name), 'model' => $model->getObj()]);
                 },
             ],
             'size' => [

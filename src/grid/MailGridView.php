@@ -34,7 +34,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             'state' => [
                 'class' => RefColumn::class,
                 'i18nDictionary' => 'hipanel:hosting',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return State::widget(compact('model'));
                 },
@@ -45,20 +45,20 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'du_limit' => [
                 'attribute' => 'du_limit',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return !empty($model->du_limit) ? $model->du_limit . 'MB' : '';
+                    return !empty($model->du_limit) ? Html::encode($model->du_limit) . 'MB' : '';
                 },
             ],
             'domain' => [
                 'attribute' => 'hdomain_id',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->domain, ['@hdomain/view', 'id' => $model->hdomain_id]);
+                    return Html::a(Html::encode($model->domain), ['@hdomain/view', 'id' => $model->hdomain_id]);
                 },
             ],
             'type' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'filter' => function ($column, $model, $attribute) {
                     return Html::activeDropDownList($model, $attribute, ['' => '----------'] + Mail::getTypes(), [
                         'class' => 'form-control',
@@ -84,7 +84,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'account' => ['class' => AccountColumn::class],
             'spam_action' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     /** @var $model Mail */
                     if ($model->spam_action === $model::SPAM_ACTION_DELETE) {

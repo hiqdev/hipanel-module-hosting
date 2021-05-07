@@ -61,21 +61,22 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
             'type' => [
                 'class'             => RefColumn::class,
                 'i18nDictionary'    => 'hipanel:hosting',
-                'format'            => 'html',
+                'format'            => 'raw',
                 'value'             => function ($model) {
                     return Type::widget(compact('model'));
                 },
                 'gtype'             => 'type,account',
             ],
             'access_data' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'label' => Yii::t('hipanel:hosting:account', 'Access data'),
                 'value' => function (Account $model): string {
                     return Yii::t('hipanel:hosting:account', '{ip_label} {ip} {login_label} {login}', [
                         'ip_label' => Html::tag('b', Yii::t('hipanel', 'IP:')),
                         'login_label' => Html::tag('b', Yii::t('hipanel', 'Login:')),
-                        'ip' => $model->ip,
-                        'login' => $model->login, ]);
+                        'ip' => Html::encode($model->ip),
+                        'login' => Html::encode($model->login),
+                    ]);
                 },
             ],
         ]);

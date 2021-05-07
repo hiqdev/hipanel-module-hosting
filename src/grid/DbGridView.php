@@ -29,13 +29,13 @@ class DbGridView extends BoxedGridView
         return array_merge(parent::columns(), [
             'name'          => [
                 'class'           => MainColumn::class,
-                'format' => 'html',
+                'format' => 'raw',
                 'attribute'       => 'name',
                 'filterAttribute' => 'name_like',
             ],
             'state'       => [
                 'class'  => RefColumn::class,
-                'format' => 'html',
+                'format' => 'raw',
                 'i18nDictionary' => 'hipanel:hosting',
                 'value'  => function ($model) {
                     return State::widget(compact('model'));
@@ -72,26 +72,26 @@ class DbGridView extends BoxedGridView
             ],
             'backups_widget' => [
                 'label' => Yii::t('hipanel:hosting', 'Backups'),
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return BackupGridRow::widget(['model' => $model]);
                 },
             ],
             'info_server' => [
                 'label' => Yii::t('hipanel:hosting', 'Server'),
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function (Db $model): string {
                     return Yii::t('hipanel:hosting', '{host_label} {host} {dbms_label} {dbms}', [
                         'host_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Host:')),
-                        'host' => $model->service_ip,
+                        'host' => Html::encode($model->service_ip),
                         'dbms_label' => Html::tag('b', Yii::t('hipanel:hosting', 'DBMS:')),
-                        'dbms' => $model->service,
+                        'dbms' => Html::encode($model->service),
                     ]);
                 },
             ],
             'access' => [
                 'label' => Yii::t('hipanel:hosting', 'Access credentials'),
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function (DB $model): string {
                     return Yii::t('hipanel:hosting', '{login_label} {login}', [
                         'login_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Login:')),

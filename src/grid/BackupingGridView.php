@@ -56,17 +56,17 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             'name' => [
                 'class' => MainColumn::class,
                 'filterAttribute' => 'name_like',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->name, ['@' . $model->object . '/view', 'id' => $model->id], ['class' => 'bold']);
+                    return Html::a(Html::encode($model->name), ['@' . Html::encode($model->object) . '/view', 'id' => $model->id], ['class' => 'bold']);
                 },
             ],
             'main' => [
                 'attribute' => 'name',
                 'filterAttribute' => 'name_like',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return  Html::tag('span', Html::a($model->name, ['@backuping/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
+                    return  Html::tag('span', Html::a(Html::encode($model->name), ['@backuping/view', 'id' => $model->id], ['class' => 'bold']) . ' ' .
                             ObjLinkWidget::widget(['model' => $model->getObj()]), ['style' => 'display: flex; justify-content: space-between;']);
                 },
             ],
@@ -80,7 +80,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'object' => [
                 'filter' => false,
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return ObjLabelWidget::widget(['model' => $model->getObj()]);
                 },
@@ -112,7 +112,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'backup_last' => [
                 'filter' => false,
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return Html::tag('nobr', Yii::$app->formatter->asDate($model->backup_last)) . ' ' .
                            Html::tag('nobr', Yii::$app->formatter->asTime($model->backup_last));
@@ -120,7 +120,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'total_du' => [
                 'filter' => false,
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->total_du, 2);
                 },

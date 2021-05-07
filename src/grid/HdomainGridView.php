@@ -60,9 +60,9 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'account' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function (Hdomain $hdomain): string {
-                    return Html::a($hdomain->account, ['@account/view', 'id' => $hdomain->account_id]);
+                    return Html::a(Html::encode($hdomain->account), ['@account/view', 'id' => $hdomain->account_id]);
                 }
             ],
             'server' => [
@@ -71,19 +71,19 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'ip' => [
                 'enableSorting' => false,
                 'filter' => false,
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     $vhost = $model->getAttribute('vhost');
 
-                    $html = $vhost['ip'];
+                    $html = Html::encode($vhost['ip']);
                     if (isset($vhost['port']) && $vhost['port'] !== 80) {
-                        $html .= ':' . $vhost['port'];
+                        $html .= ':' . Html::encode($vhost['port']);
                     }
                     if ($model->isProxied) {
                         $backend = $vhost['backend'];
-                        $html .= ' ' . Html::tag('i', '', ['class' => 'fa fa-long-arrow-right']) . ' ' . $backend['ip'];
+                        $html .= ' ' . Html::tag('i', '', ['class' => 'fa fa-long-arrow-right']) . ' ' . Html::encode($backend['ip']);
                         if ($backend['port'] !== 80) {
-                            $html .= ':' . $backend['port'];
+                            $html .= ':' . Html::encode($backend['port']);
                         }
                     }
 
@@ -161,7 +161,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             ],
             'backups_widget' => [
                 'label' => Yii::t('hipanel:hosting', 'Backups'),
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
                     return BackupGridRow::widget(['model' => $model]);
                 },
