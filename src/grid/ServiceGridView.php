@@ -92,7 +92,7 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     $ips = Html::tag('span', ArraySpoiler::widget(['data' => array_unique(array_merge((array) $model->ip, (array) $model->ips))]));
                     $linkToIPs = Html::a(Yii::t('hipanel', 'Show'), IpController::getSearchUrl([
-                        'server_in' => $model->server,
+                        'server_in' => Html::encode($model->server),
                         'service_id' => $model->id,
                     ]), ['class' => 'btn bg-olive btn-xs btn-flat', 'target' => '_blank', 'data-pjax' => 0]);
 
@@ -100,21 +100,19 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'bin' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->bin ? Html::tag('code', $model->bin) : '';
+                    return $model->bin ? Html::tag('code', Html::encode($model->bin)) : '';
                 },
             ],
             'etc' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return $model->etc ? Html::tag('code', $model->etc) : '';
+                    return $model->etc ? Html::tag('code', Html::encode($model->etc)) : '';
                 },
             ],
             'soft' => [
-                'value' => function ($model) {
-                    return $model->soft;
-                },
+                'attribute' => 'soft',
             ],
             'state' => [
                 'class' => RefColumn::class,

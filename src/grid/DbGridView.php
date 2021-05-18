@@ -29,14 +29,14 @@ class DbGridView extends BoxedGridView
         return array_merge(parent::columns(), [
             'name'          => [
                 'class'           => MainColumn::class,
-                'format' => 'html',
+                'format' => 'raw',
                 'attribute'       => 'name',
                 'filterAttribute' => 'name_like',
             ],
             'state'       => [
                 'class'  => RefColumn::class,
-                'i18nDictionary' => 'hipanel:hosting',
                 'format' => 'raw',
+                'i18nDictionary' => 'hipanel:hosting',
                 'value'  => function ($model) {
                     return State::widget(compact('model'));
                 },
@@ -83,9 +83,9 @@ class DbGridView extends BoxedGridView
                 'value' => function (Db $model): string {
                     return Yii::t('hipanel:hosting', '{host_label} {host} {dbms_label} {dbms}', [
                         'host_label' => Html::tag('b', Yii::t('hipanel:hosting', 'Host:')),
-                        'host' => $model->service_ip,
+                        'host' => Html::encode($model->service_ip),
                         'dbms_label' => Html::tag('b', Yii::t('hipanel:hosting', 'DBMS:')),
-                        'dbms' => $model->service,
+                        'dbms' => Html::encode($model->service),
                     ]);
                 },
             ],

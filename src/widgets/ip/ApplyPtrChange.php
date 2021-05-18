@@ -51,7 +51,7 @@ CSS
     {
         return Html::tag(
             'a',
-            $this->model->{$this->attribute} ?? Yii::t('hipanel', 'Empty'),
+            Html::encode($this->model->{$this->attribute}) ?? Yii::t('hipanel', 'Empty'),
             [
                 'class' => 'apply-ptr-change',
                 'href' => '#',

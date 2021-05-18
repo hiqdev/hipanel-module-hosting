@@ -24,7 +24,6 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
         return array_merge(parent::columns(), [
             'id' => [
                 'class' => MainColumn::class,
-                'format' => 'html',
                 'filterOptions' => ['class' => 'narrow-filter'],
             ],
             'object_id' => [
@@ -46,7 +45,7 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'name_like',
                 'filterOptions' => ['class' => 'narrow-filter'],
                 'value' => function ($model) {
-                    return  Html::a($model->name, ['@backuping/view', 'id' => $model->object_id], ['class' => 'bold']) . ' ' .
+                    return  Html::a(Html::encode($model->name), ['@backuping/view', 'id' => $model->object_id], ['class' => 'bold']) . ' ' .
                             ObjLinkWidget::widget(['model' => $model->getObj()]);
                 },
             ],
@@ -54,11 +53,10 @@ class BackupGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'attribute' => 'name',
                 'value' => function ($model) {
-                    return ObjLinkWidget::widget(['label' => $model->name, 'model' => $model->getObj()]);
+                    return ObjLinkWidget::widget(['label' => Html::encode($model->name), 'model' => $model->getObj()]);
                 },
             ],
             'size' => [
-                'format' => 'html',
                 'filter' => false,
                 'value' => function ($model) {
                     return Yii::$app->formatter->asShortSize($model->size, 2);

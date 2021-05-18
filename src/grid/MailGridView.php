@@ -45,16 +45,16 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'du_limit' => [
                 'attribute' => 'du_limit',
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    return !empty($model->du_limit) ? $model->du_limit . 'MB' : '';
+                    return !empty($model->du_limit) ? Html::encode($model->du_limit) . 'MB' : '';
                 },
             ],
             'domain' => [
                 'attribute' => 'hdomain_id',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return Html::a($model->domain, ['@hdomain/view', 'id' => $model->hdomain_id]);
+                    return Html::a(Html::encode($model->domain), ['@hdomain/view', 'id' => $model->hdomain_id]);
                 },
             ],
             'type' => [

@@ -74,8 +74,9 @@ class AccountGridView extends \hipanel\grid\BoxedGridView
                     return Yii::t('hipanel:hosting:account', '{ip_label} {ip} {login_label} {login}', [
                         'ip_label' => Html::tag('b', Yii::t('hipanel', 'IP:')),
                         'login_label' => Html::tag('b', Yii::t('hipanel', 'Login:')),
-                        'ip' => $model->ip,
-                        'login' => $model->login, ]);
+                        'ip' => Html::encode($model->ip),
+                        'login' => Html::encode($model->login),
+                    ]);
                 },
             ],
         ]);

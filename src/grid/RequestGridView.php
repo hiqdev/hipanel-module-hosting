@@ -51,8 +51,8 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                 'filter' => false,
                 'format' => 'raw',
                 'value' => function (Request $model): string {
-                    return Html::a('<i class="fa fa-external-link"></i>&nbsp;' . $model->object,
-                        ['/hosting/' . $model->object_class . '/view', 'id' => $model->object_id],
+                    return Html::a('<i class="fa fa-external-link"></i>&nbsp;' . Html::encode($model->object),
+                        ['/hosting/' . Html::encode($model->object_class) . '/view', 'id' => $model->object_id],
                         ['data-pjax' => 0]
                     );
                 },
@@ -75,7 +75,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
                         'done' => 'success',
                     ];
 
-                    return Html::tag('span', Yii::t('hipanel:hosting', $model->state_label), [
+                    return Html::tag('span', Yii::t('hipanel:hosting', Html::encode($model->state_label)), [
                         'class' => 'text-' . (isset($colors[$model->state]) ? $colors[$model->state] : 'default'),
                     ]);
                 },
@@ -86,7 +86,7 @@ class RequestGridView extends \hipanel\grid\BoxedGridView
             'parent' => [
                 'format' => 'raw',
                 'value' => function (Request $model): string {
-                    return Html::a($model->parent, ['@request/view', 'id' => $model->parent_id]);
+                    return Html::a(Html::encode($model->parent), ['@request/view', 'id' => $model->parent_id]);
                 },
             ],
             'actions' => [

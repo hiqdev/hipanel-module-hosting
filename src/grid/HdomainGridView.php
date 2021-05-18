@@ -41,7 +41,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     $aliases = (array) $model->getAttribute('aliases');
 
-                    $html = Html::a($model->domain, ['view', 'id' => $model->id], ['class' => 'bold']) . '&nbsp;';
+                    $html = Html::a(Html::encode($model->domain), ['view', 'id' => Html::encode($model->id)], ['class' => 'bold']) . '&nbsp;';
                     $html .= ArraySpoiler::widget([
                         'data' => $aliases,
                         'visibleCount' => 0,
@@ -60,9 +60,9 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'account' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'value' => function (Hdomain $hdomain): string {
-                    return Html::a($hdomain->account, ['@account/view', 'id' => $hdomain->account_id]);
+                    return Html::a(Html::encode($hdomain->account), ['@account/view', 'id' => $hdomain->account_id]);
                 }
             ],
             'server' => [
@@ -75,15 +75,15 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     $vhost = $model->getAttribute('vhost');
 
-                    $html = $vhost['ip'];
+                    $html = Html::encode($vhost['ip']);
                     if (isset($vhost['port']) && $vhost['port'] !== 80) {
-                        $html .= ':' . $vhost['port'];
+                        $html .= ':' . Html::encode($vhost['port']);
                     }
                     if ($model->isProxied) {
                         $backend = $vhost['backend'];
-                        $html .= ' ' . Html::tag('i', '', ['class' => 'fa fa-long-arrow-right']) . ' ' . $backend['ip'];
+                        $html .= ' ' . Html::tag('i', '', ['class' => 'fa fa-long-arrow-right']) . ' ' . Html::encode($backend['ip']);
                         if ($backend['port'] !== 80) {
-                            $html .= ':' . $backend['port'];
+                            $html .= ':' . Html::encode($backend['port']);
                         }
                     }
 
@@ -117,7 +117,6 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'gtype' => 'state,hdomain',
             ],
             'dns_on' => [
-                'format' => 'raw',
                 'value' => function ($model) {
                     return $model->dns_on ? Yii::t('hipanel', 'Enabled') : Yii::t('hipanel', 'Disabled');
                 },
