@@ -4,6 +4,10 @@ use hipanel\widgets\ArraySpoiler;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+/**
+ * @var \yii\base\Model $model
+ * @var \yii\base\Model[] $models
+ */
 ?>
 <?php $form = ActiveForm::begin([
     'id' => 'bulk-enable-block-form',
@@ -19,11 +23,8 @@ use yii\helpers\Html;
         <div class="panel-heading"><?= Yii::t('hipanel:hosting', 'Affected domains') ?></div>
         <div class="panel-body">
             <?= ArraySpoiler::widget([
-                'data' => $models,
+                'data' => array_map(fn ($model) => $model->domain, $models),
                 'visibleCount' => count($models),
-                'formatter' => function ($model) {
-                    return $model->domain;
-                },
                 'delimiter' => ',&nbsp; ',
             ]); ?>
         </div>

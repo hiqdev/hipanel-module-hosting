@@ -129,11 +129,12 @@ class IpGridView extends BoxedGridView
                     return ArraySpoiler::widget([
                         'data' => $model->links,
                         'formatter' => function ($link) {
+                            $service = Html::encode($link->service);
                             if (Yii::$app->user->can('support') && Yii::getAlias('@service', false)) {
-                                return Html::a($link->service, ['@service/view', 'id' => $link->service_id]);
+                                return Html::a($service, ['@service/view', 'id' => $link->service_id]);
                             }
 
-                            return $link->service;
+                            return $service;
                         },
                     ]);
                 },

@@ -5,6 +5,9 @@ use hipanel\modules\hosting\widgets\ip\IpTag;
 use hipanel\widgets\ArraySpoiler;
 use yii\helpers\Html;
 
+/**
+ * @var array $ips
+ */
 ?>
 
 <div class="row">
@@ -13,13 +16,8 @@ use yii\helpers\Html;
             echo ArraySpoiler::widget([
                 'data' => $ips,
                 'formatter' => function ($v) {
-                    $html = '';
-
-                    if ($v['id']) {
-                        $html .= Html::a($v['ip'], ['@ip/view', 'id' => $v['id']]);
-                    } else {
-                        $html .= $v['ip'];
-                    }
+                    $ip = Html::encode($v['ip']);
+                    $html = $v['id'] ? Html::a($ip, ['@ip/view', 'id' => $v['id']]) : $ip;
 
                     if ($v['tags']) {
                         $tags = [' '];

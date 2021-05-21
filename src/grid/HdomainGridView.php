@@ -52,7 +52,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                             'popoverOptions' => ['html' => true],
                         ],
                         'formatter' => function ($value, $key) {
-                            return Html::a($value, ['view', 'id' => $key]);
+                            return Html::a(Html::encode($value), ['view', 'id' => $key]);
                         },
                     ]);
 
