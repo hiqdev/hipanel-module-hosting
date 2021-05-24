@@ -24,7 +24,6 @@ class DNSzoneCest
     {
         $I->login();
         $I->needPage(Url::to('@dns/zone/index'));
-        $I->wait(3);
         $I->see('DNS zones', 'h1');
         $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
