@@ -70,7 +70,7 @@ class IpGridView extends BoxedGridView
                 },
             ],
             'counters' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'header' => Yii::t('hipanel:hosting', 'Counters'),
                 'value' => function ($model) {
                     $html = '';
@@ -106,24 +106,26 @@ class IpGridView extends BoxedGridView
                 },
             ],
             'links' => [
-                'format' => 'html',
+                'attribute' => 'links',
+                'format' => 'raw',
                 'value' => function ($model) {
-                    $items = [];
-                    foreach ($model->links as $link) {
-                        $item = Html::a($link->device, ['@server/view', 'id' => $link->device_id]);
-                        if ($link->service_id) {
-                            $item .= '&nbsp;' . FontIcon::i('fa-long-arrow-right');
-                            $item .= '&nbsp;' . Html::a($link->service ?: $link->soft, ['@service/view', 'id' => $link->service_id]);
-                        }
-                        $items[] = $item;
-                    }
-
-                    return ArraySpoiler::widget(['data' => $items, 'visibleCount' => 3]);
+                    return ArraySpoiler::widget([
+                        'data' => $model->links,
+                        'formatter' => function ($link) {
+                            $item = Html::a(Html::encode($link->device), ['@server/view', 'id' => $link->device_id]);
+                            if ($link->service_id) {
+                                $item .= '&nbsp;' . FontIcon::i('fa-long-arrow-right');
+                                $item .= '&nbsp;' . Html::a(Html::encode($link->service ?: $link->soft), ['@service/view', 'id' => $link->service_id]);
+                            }
+                            return $item;
+                        },
+                        'visibleCount' => 3,
+                    ]);
                 },
             ],
             'services' => [
                 'attribute' => 'links',
-                'format' => 'html',
+                'format' => 'raw',
                 'label' => Yii::t('hipanel:server', 'Services'),
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
