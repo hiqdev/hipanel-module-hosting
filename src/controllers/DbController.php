@@ -33,7 +33,9 @@ class DbController extends CrudController
                     'create' => 'account.create',
                     'delete,truncate' => 'account.delete',
                     'set-password,set-description' => 'account.update',
-                    '*' => 'account.read',
+                    '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
+                        ? 'db.read'
+                        : false,
                 ],
             ],
         ]);

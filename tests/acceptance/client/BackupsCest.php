@@ -14,6 +14,7 @@ use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
 use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
+use Yii;
 
 class BackupsCest
 {
@@ -29,6 +30,9 @@ class BackupsCest
 
     public function ensureIndexPageWorks(Client $I)
     {
+        if (!Yii::$app->params['module.hosting.is_public']) {
+            $I->markTestSkipped('Test is not allowed for client');
+        }
         $I->login();
         $I->needPage(Url::to('@backuping'));
         $I->see('Backups', 'h1');

@@ -34,7 +34,9 @@ class BackupingController extends \hipanel\base\CrudController
                     'update' => 'account.update',
                     'delete' => 'account.delete',
                     'undelete' => 'account.update',
-                    '*' => 'account.read',
+                    '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
+                        ? 'backuping.read'
+                        : false,
                 ],
             ],
         ]);
