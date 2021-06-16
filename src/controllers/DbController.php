@@ -30,9 +30,9 @@ class DbController extends CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create' => 'account.create',
-                    'delete,truncate' => 'account.delete',
-                    'set-password,set-description' => 'account.update',
+                    'create' => 'db.create',
+                    'delete,truncate' => 'db.delete',
+                    'set-password,set-description' => 'db.update',
                     '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
                         ? 'db.read'
                         : false,

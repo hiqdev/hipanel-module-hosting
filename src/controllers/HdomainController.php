@@ -33,8 +33,8 @@ class HdomainController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create' => 'account.create',
-                    'delete' => 'account.delete',
+                    'create' => 'hdomain.create',
+                    'delete' => 'hdomain.delete',
                     '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
                         ? 'hdomain.read'
                         : false,

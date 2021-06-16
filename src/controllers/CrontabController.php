@@ -34,7 +34,7 @@ class CrontabController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'update' => 'account.update',
+                    'update' => 'crontab.update',
                     '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
                         ? 'crontab.read'
                         : false,

@@ -26,7 +26,7 @@ class BackupController extends CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'delete' => 'account.delete',
+                    'delete' => 'backup.delete',
                     '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
                         ? 'backup.read'
                         : false,

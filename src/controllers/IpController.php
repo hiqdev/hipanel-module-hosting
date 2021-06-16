@@ -34,9 +34,9 @@ class IpController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create' => 'admin',
-                    'update' => 'admin',
-                    'delete' => 'admin',
+                    'create' => 'ip.create',
+                    'update' => 'ip.update',
+                    'delete' => 'ip.delete',
                     '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
                         ? 'ip.read'
                         : false,
