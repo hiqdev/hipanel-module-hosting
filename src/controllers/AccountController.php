@@ -45,7 +45,9 @@ class AccountController extends \hipanel\base\CrudController
                     'change-password' => 'account.update',
                     'set-allowed-ips' => 'account.update',
                     'delete' => 'account.delete',
-                    '*' => 'account.read',
+                    '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
+                        ? 'account.read'
+                        : false,
                 ],
             ],
         ]);

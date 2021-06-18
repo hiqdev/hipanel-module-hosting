@@ -14,6 +14,7 @@ use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
 use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
+use Yii;
 
 class CronsCest
 {
@@ -29,6 +30,9 @@ class CronsCest
 
     public function ensureIndexPageWorks(Client $I)
     {
+        if (!Yii::$app->params['module.hosting.is_public']) {
+            $I->markTestSkipped('Test is not allowed for client');
+        }
         $I->login();
         $I->needPage(Url::to('@crontab'));
         $I->see('Crons', 'h1');

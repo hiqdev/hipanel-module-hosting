@@ -17,16 +17,18 @@ class HostingSidebarMenuCest
 {
     public function ensureMenuIsOk(Admin $I)
     {
-        (new SidebarMenu($I))->ensureContains('Hosting',[
+        (new SidebarMenu($I))->ensureContains('Hosting', [
             'Accounts' => '@account/index',
             'Databases' => '@db/index',
             'Domains' => '@hdomain/index',
             'Mailboxes' => '@mail/index',
-            'Backups' => '@backuping/index',
+            'Backups settings' => '@backuping/index',
+            'Backups' => '@backup/index',
             'Crons' => '@crontab/index',
             'IP addresses' => '@ip/index',
             'Services' => '@service/index',
             'Requests' => '@request/index',
+            'DNS' => '@dns/zone/index',
         ]);
     }
 }

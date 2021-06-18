@@ -36,10 +36,14 @@ class MailController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create' => 'account.create',
-                    'update' => 'account.update',
-                    'delete' => 'account.delete',
-                    '*' => 'account.read',
+                    'create' => 'mail.create',
+                    'update' => 'mail.update',
+                    'delete' => 'mail.delete',
+                    '*' => (Yii::$app->params['module.hosting.is_public']
+                            || Yii::$app->user->can('support'))
+                            && (bool) Yii::getAlias('@mail', false)
+                        ? 'mail.read'
+                        : false,
                 ],
             ],
         ]);

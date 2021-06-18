@@ -36,10 +36,12 @@ class ServiceController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    'create' => 'admin',
-                    'update' => 'admin',
-                    'delete' => 'admin',
-                    '*' => 'server.read',
+                    'create' => 'service.create',
+                    'update' => 'service.update',
+                    'delete' => 'service.delete',
+                    '*' => Yii::$app->params['module.hosting.is_public'] || Yii::$app->user->can('support')
+                        ? 'service.read'
+                        : false,
                 ],
             ],
         ]);
