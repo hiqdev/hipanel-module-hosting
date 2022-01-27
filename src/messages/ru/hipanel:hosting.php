@@ -305,4 +305,7 @@ return [
 
     'In order to change you need to {apply}' => 'Для редактирования этого значения, вам нужно {apply}',
     'apply for change of PTR records' => 'создать тикет на изменение PTR записи',
+
+    'Period' => 'Период',
+    '{0, plural, one{# backup} other{# backups}}' => '{0, plural, one{# бэкап} few{# бэкапа} many{# бэкапов} other{# бэкапов}}',
 ];

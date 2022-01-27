@@ -17,21 +17,35 @@
 namespace hipanel\modules\hosting\models;
 
 use hipanel\base\SearchModelTrait;
-use yii\helpers\ArrayHelper;
+use hipanel\helpers\ArrayHelper;
+use Yii;
 
 class BackupingSearch extends Backuping
 {
     use SearchModelTrait {
         searchAttributes as defaultSearchAttributes;
+        rules as defaultRules;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function rules()
+    {
+        return ArrayHelper::merge($this->defaultRules(), [
+            [['period'], 'string', 'skipOnEmpty' => true],
+        ]);
+    }
+
     public function searchAttributes()
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
             'object',
+            'period',
+        ]);
+    }
+
+    public function attributeLabels()
+    {
+        return $this->mergeAttributeLabels([
+            'period' => Yii::t('hipanel:hosting', 'Period'),
         ]);
     }
 }

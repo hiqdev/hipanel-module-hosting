@@ -45,6 +45,10 @@ return [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => dirname(__DIR__) . '/src/messages',
                 ],
+                'hipanel.hosting.objects' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => dirname(__DIR__) . '/src/messages',
+                ],
             ],
         ],
     ],
