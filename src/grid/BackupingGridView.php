@@ -75,7 +75,7 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 'class' => AccountColumn::class,
             ],
             'server' => [
-                'attribute' => 'server_id',
+                'attribute' => 'server',
                 'class' => ServerColumn::class,
             ],
             'object' => [
@@ -87,24 +87,28 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             ],
             'backup_count' => [
                 'filter' => false,
+                'format' => 'raw',
+                'value' => static fn($model): string => (int) $model->backup_count > 0 ? Html::a(
+                    Yii::t('hipanel:hosting', '{0, plural, one{# backup} other{# backups}}', (int) $model->backup_count),
+                    Url::toRoute(['@backup/index', 'BackupSearch' => ['object_id' => $model->id]]),
+                    ['target' => '_blank', 'data-pjax' => 0]
+                ) : '',
             ],
             'type' => [
                 'attribute' => 'type',
                 'format' => 'raw',
                 'filter' => false,
                 'enableSorting' => false,
-                'value' => function ($model) use ($typeOptions) {
-                    return XEditable::widget([
-                        'model' => $model,
-                        'attribute' => 'type',
-                        'pluginOptions' => [
-                            'type' => 'select',
-                            'source' => $typeOptions,
-                            'url' => Url::to('update'),
-                            'data-display-value' => Yii::t('hipanel.hosting.backuping.periodicity', $model->type),
-                        ],
-                    ]);
-                },
+                'value' => fn($model) => XEditable::widget([
+                    'model' => $model,
+                    'attribute' => 'type',
+                    'pluginOptions' => [
+                        'type' => 'select',
+                        'source' => $typeOptions,
+                        'url' => Url::to('update'),
+                        'data-display-value' => Yii::t('hipanel.hosting.backuping.periodicity', $model->type),
+                    ],
+                ]),
             ],
             'state_label' => [
                 'filter' => false,
@@ -113,10 +117,10 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
             'backup_last' => [
                 'filter' => false,
                 'format' => 'raw',
-                'value' => function ($model) {
-                    return Html::tag('nobr', Yii::$app->formatter->asDate($model->backup_last)) . ' ' .
-                           Html::tag('nobr', Yii::$app->formatter->asTime($model->backup_last));
-                },
+                'value' => static fn($model) => implode(' ', [
+                    Html::tag('nobr', Yii::$app->formatter->asDate($model->backup_last)),
+                    Html::tag('nobr', Yii::$app->formatter->asTime($model->backup_last)),
+                ]),
             ],
             'total_du' => [
                 'filter' => false,
