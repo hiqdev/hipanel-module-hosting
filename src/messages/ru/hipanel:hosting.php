@@ -259,7 +259,7 @@ return [
     'Backups' => 'Бэкапы',
     'Backup' => 'Бэкап',
     'Show backups' => 'Показать бэкапы',
-    'Backup settings' => 'Настройки бэкапов',
+    'Backup statistics' => 'Статистика по бэкапам',
     'Backup periodicity' => 'Периодичность бэкапа',
     'Backup type' => 'Тип бэкапа',
     'Method' => 'Метод',
