@@ -1,8 +1,15 @@
 <?php
 
 use hipanel\modules\hosting\grid\CrontabGridView;
+use hipanel\modules\hosting\models\Crontab;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
+use yii\data\DataProviderInterface;
+
+/**
+ * @var Crontab $model
+ * @var DataProviderInterface $dataProvider
+ */
 
 $this->title = Yii::t('hipanel:hosting', 'Crons');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
@@ -34,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= CrontabGridView::widget([
                     'boxed' => false,
                     'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
+                    'filterModel' => $model,
                     'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 ]) ?>
             <?php $page->endBulkForm() ?>

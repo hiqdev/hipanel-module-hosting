@@ -38,7 +38,7 @@ class HdomainSearch extends Hdomain
                 ['domain_in'],
                 'filter',
                 'filter' => function ($value) {
-                    return is_array($value) ? $value : StringHelper::explode($value);
+                    return is_array($value) ? $value : StringHelper::explode((string)$value);
                 },
             ],
         ]);

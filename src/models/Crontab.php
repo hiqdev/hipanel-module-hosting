@@ -50,7 +50,7 @@ class Crontab extends \hipanel\base\Model
     {
         $count = 0;
         $regex = '/^(\s+)?(#.*)?$/';
-        foreach (explode("\n", $this->crontab) as $line) {
+        foreach (explode("\n", (string)$this->crontab) as $line) {
             if (!preg_match($regex, trim($line))) {
                 ++$count;
             }

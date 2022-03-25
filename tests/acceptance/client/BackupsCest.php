@@ -35,7 +35,7 @@ class BackupsCest
         }
         $I->login();
         $I->needPage(Url::to('@backuping'));
-        $I->see('Backups', 'h1');
+        $I->see('Backup statistics', 'h1');
         $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }

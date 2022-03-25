@@ -33,8 +33,8 @@ class Hdomain extends \hipanel\base\Model
     {
         $this->on(self::EVENT_AFTER_FIND, function ($event) {
             $this->setAttributes([
-                'ip' => $this->getAttribute('vhost')['ip'],
-                'backend_ip' => $this->getAttribute('vhost')['backend']['ip'],
+                'ip' => $this->getAttribute('vhost')['ip'] ?? '',
+                'backend_ip' => $this->getAttribute('vhost')['backend']['ip'] ?? '',
                 'proxy_enabled' => $this->getIsProxied(),
             ]);
         });

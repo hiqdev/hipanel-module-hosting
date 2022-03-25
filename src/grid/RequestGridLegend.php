@@ -26,13 +26,13 @@ class RequestGridLegend extends BaseGridLegend implements GridLegendInterface
             [
                 'label' => ['hipanel:hosting', 'Already'],
                 'color' => '#E0E0E0',
-                'rule' => ((new DateTime($this->model->time)) < (new DateTime())),
+                'rule' => isset($this->model->time) && (((new DateTime($this->model->time)) < (new DateTime()))),
                 'columns' => ['time'],
             ],
             [
                 'label' => ['hipanel:hosting', 'Deferred'],
                 'color' => '#AAAAFF',
-                'rule' => ((new DateTime($this->model->time)) > (new DateTime())),
+                'rule' => isset($this->model->time) && (((new DateTime($this->model->time)) > (new DateTime()))),
                 'columns' => ['time'],
             ],
             [

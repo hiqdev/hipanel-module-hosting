@@ -18,7 +18,7 @@ use hiqdev\combo\StaticCombo;
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('domain_in')->textInput([
-        'value' => implode(',', $search->model->domain_in),
+        'value' => implode(',', is_array($search->model->domain_in) ? $search->model->domain_in : []),
         'placeholder' => $search->model->getAttributeLabel('domain_in'),
     ]) ?>
 </div>

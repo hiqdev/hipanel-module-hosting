@@ -22,7 +22,7 @@ class HostingSidebarMenuCest
             'Databases' => '@db/index',
             'Domains' => '@hdomain/index',
             'Mailboxes' => '@mail/index',
-            'Backups settings' => '@backuping/index',
+            'Backup statistics' => '@backuping/index',
             'Backups' => '@backup/index',
             'Crons' => '@crontab/index',
             'IP addresses' => '@ip/index',

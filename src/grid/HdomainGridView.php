@@ -75,7 +75,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     $vhost = $model->getAttribute('vhost');
 
-                    $html = Html::encode($vhost['ip']);
+                    $html = Html::encode($vhost['ip'] ?? '');
                     if (isset($vhost['port']) && $vhost['port'] !== 80) {
                         $html .= ':' . Html::encode($vhost['port']);
                     }
@@ -93,7 +93,7 @@ class HdomainGridView extends \hipanel\grid\BoxedGridView
             'service' => [
                 'label' => Yii::t('hipanel', 'Service'),
                 'value' => function ($model) {
-                    return $model->getAttribute('vhost')['service'];
+                    return $model->getAttribute('vhost')['service'] ?? '';
                 },
             ],
             'state' => [
