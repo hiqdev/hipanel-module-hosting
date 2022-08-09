@@ -22,7 +22,7 @@ class Vhost extends \hipanel\base\Model
     {
         $this->on(self::EVENT_AFTER_FIND, function ($event) {
             $this->setAttributes([
-                'backend_ip' => $this->getAttribute('backend')['ip'],
+                'backend_ip' => is_array($this->getAttribute('backend')) ? $this->getAttribute('backend')['ip'] : null,
                 'proxy_enabled' => $this->getIsProxied(),
             ]);
         });
