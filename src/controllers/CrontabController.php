@@ -22,6 +22,8 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\modules\hosting\models\Crontab;
+use hipanel\actions\RenderJsonAction;
+use hipanel\actions\RedirectAction;
 use Yii;
 use yii\base\Exception;
 use yii\web\Response;
@@ -59,6 +61,16 @@ class CrontabController extends \hipanel\base\CrudController
             ],
             'update' => [
                 'class' => SmartUpdateAction::class,
+                'success' => Yii::t('hipanel:hosting', 'Success'),
+                'POST ajax' => [
+                    'save' => true,
+                    'success' => [
+                        'class' => RedirectAction::class,
+                        'url' => function ($action) {
+                            return ['@crontab/index'];
+                        },
+                    ],
+                ],
             ],
             'validate-form' => [
                 'class' => ValidateFormAction::class,
