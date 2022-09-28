@@ -4,18 +4,23 @@
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
+
 use hipanel\modules\hosting\grid\ServiceGridView;
 use hipanel\modules\hosting\menus\ServiceDetailMenu;
+use hipanel\modules\hosting\models\Service;
 use hipanel\widgets\Box;
-use hipanel\widgets\Pjax;
+use yii\web\View;
+
+/**
+ * @var View $this
+ * @var Service $model
+ */
 
 $this->title = $model->pageTitle;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'Services'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-
-<?php Pjax::begin(Yii::$app->params['pjax']) ?>
 
 <div class="row">
     <div class="col-md-3">
@@ -65,5 +70,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-
-<?php Pjax::end() ?>

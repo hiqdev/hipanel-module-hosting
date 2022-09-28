@@ -4,18 +4,19 @@ use hipanel\modules\hosting\grid\IpGridView;
 use hipanel\modules\hosting\menus\IpDetailMenu;
 use hipanel\modules\hosting\models\Ip;
 use hipanel\widgets\Box;
-use hipanel\widgets\Pjax;
+use yii\web\View;
 
 /**
- * @var $model Ip
+ * @var View $this
+ * @var Ip $model
  */
+
 $this->title = $model->ip;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:hosting', 'IP addresses'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php Pjax::begin(Yii::$app->params['pjax']) ?>
 <div class="row">
     <div class="col-md-3">
         <?php Box::begin([
@@ -63,4 +64,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-<?php Pjax::end() ?>
