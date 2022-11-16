@@ -127,6 +127,13 @@ class ServiceGridView extends \hipanel\grid\BoxedGridView
                 'class' => MenuColumn::class,
                 'menuClass' => ServiceActionsMenu::class,
             ],
+            'soft_type_label' => [
+                'class' => RefColumn::class,
+                'i18nDictionary' => 'hipanel:hosting',
+                'filter' => false,
+                'enableSorting' => false,
+                'attribute' => 'soft_type_label',
+            ],
         ]);
     }
 }
