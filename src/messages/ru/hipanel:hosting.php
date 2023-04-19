@@ -63,7 +63,7 @@ return [
     'IP to access on the server via SSH or FTP' => 'IP для доступа на сервере через SSH или FTP',
     'Allowed IPs changing task has been successfully added to queue' => 'Задача изменения списска разрешенных IP адресов была добавлена в очередь',
     'An error occurred when trying to change allowed IPs' => 'Ошибка при изменении разрешенных IP адресов',
-    'Mail settings where changed' => 'Настройки почты были изменены',
+    'Mail settings have been changed' => 'Настройки почты были изменены',
     'An error occurred when trying to change mail settings' => 'Ошибка при изменении настроек почты',
     'Account was blocked successfully' => 'Аккаунт был заблокирован',
     'Error during the account blocking' => 'Ошибка при блокировании аккаунта',
