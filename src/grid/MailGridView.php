@@ -70,6 +70,7 @@ class MailGridView extends \hipanel\grid\BoxedGridView
             ],
             'forwards' => [
                 'format' => 'raw',
+                'filterAttribute' => 'forwards_like',
                 'value' => function ($model) {
                     return ArraySpoiler::widget([
                         'delimiter' => '<br>',
