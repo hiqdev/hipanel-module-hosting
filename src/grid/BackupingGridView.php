@@ -111,23 +111,23 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 ]),
             ],
             'state_label' => [
+                'attribute' => 'state_label',
                 'filter' => false,
                 'enableSorting' => false,
+                'value' => static fn($model): string => Yii::t('hipanel:hosting', $model->state_label),
             ],
             'backup_last' => [
                 'filter' => false,
                 'format' => 'raw',
-                'value' => static fn($model) => implode(' ', [
-                    Html::tag('nobr', Yii::$app->formatter->asDate($model->backup_last)),
-                    Html::tag('nobr', Yii::$app->formatter->asTime($model->backup_last)),
+                'value' => fn($model) => implode(' ', [
+                    Html::tag('nobr', $this->formatter->asDate($model->backup_last)),
+                    Html::tag('nobr', $this->formatter->asTime($model->backup_last)),
                 ]),
             ],
             'total_du' => [
                 'filter' => false,
                 'format' => 'raw',
-                'value' => function ($model) {
-                    return Yii::$app->formatter->asShortSize($model->total_du, 2);
-                },
+                'value' => fn($model): string => $this->formatter->asShortSize($model->total_du, 2),
             ],
         ]);
     }
