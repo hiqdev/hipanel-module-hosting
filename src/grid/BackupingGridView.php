@@ -17,6 +17,7 @@
 namespace hipanel\modules\hosting\grid;
 
 use hipanel\grid\MainColumn;
+use hipanel\grid\RefColumn;
 use hipanel\helpers\Url;
 use hipanel\modules\server\grid\ServerColumn;
 use hipanel\widgets\obj\ObjLabelWidget;
@@ -111,6 +112,8 @@ class BackupingGridView extends \hipanel\grid\BoxedGridView
                 ]),
             ],
             'state_label' => [
+                'class' => RefColumn::class,
+                'i18nDictionary' => 'hipanel.hosting.backuping.periodicity',
                 'filter' => false,
                 'enableSorting' => false,
             ],
