@@ -19,15 +19,6 @@ test.describe("Test account block @hipanel-module-hosting @admin", () => {
     await index.chooseNumberRowOnTable(rowNumber);
   });
 
-  test("Enable account block @hipanel-module-hosting @admin", async ({ adminPage }) => {
-
-    await index.clickDropdownBulkButton('Basic actions', 'Enable block');
-    await accountHelper.confirmEnableBlock();
-
-    await accountHelper.seeSuccessAlert('Account was blocked successfully');
-    await accountHelper.seeAccountStatus(account, 'Blocked');
-  });
-
   test("Disable account block @hipanel-module-hosting @admin", async ({ adminPage }) => {
 
     await index.clickDropdownBulkButton('Basic actions', 'Disable block');
@@ -35,6 +26,15 @@ test.describe("Test account block @hipanel-module-hosting @admin", () => {
 
     await accountHelper.seeSuccessAlert('Account was unblocked successfully');
     await accountHelper.seeAccountStatus(account, 'Ok');
+  });
+
+  test("Enable account block @hipanel-module-hosting @admin", async ({ adminPage }) => {
+
+    await index.clickDropdownBulkButton('Basic actions', 'Enable block');
+    await accountHelper.confirmEnableBlock();
+
+    await accountHelper.seeSuccessAlert('Account was blocked successfully');
+    await accountHelper.seeAccountStatus(account, 'Blocked');
   });
 });
 

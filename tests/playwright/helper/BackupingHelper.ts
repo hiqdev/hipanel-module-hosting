@@ -25,6 +25,11 @@ export default class BackupingHelper {
         await this.index.chooseNumberRowOnTable(rowNumber);
     }
 
+    async delete() {
+        this.page.on('dialog', dialog => dialog.accept());
+        await this.index.clickBulkButton('Delete');
+    }
+
     async seeSuccessAlert(message: string) {
         await Alert.on(this.page).hasText(message);
     }
