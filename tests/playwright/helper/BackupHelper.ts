@@ -26,12 +26,13 @@ export default class BackupHelper {
     }
 
     async checkDetailViewData(backup: object) {
-        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[2]/td')).toContainText(backup['objectId']);
+        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[1]/td')).toContainText(backup['id']);
         await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[3]/td')).toContainText(backup['client']);
+        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[5]/td')).toContainText(backup['server']);
     }
 
     async deleteBackup() {
-        await this.page.on('dialog', dialog => dialog.accept());
+        this.page.on('dialog', dialog => dialog.accept());
         await this.index.clickBulkButton('Delete');
     }
 

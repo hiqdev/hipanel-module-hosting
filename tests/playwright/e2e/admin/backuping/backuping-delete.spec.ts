@@ -11,10 +11,11 @@ test("Delete backup statistic @hipanel-module-hosting @admin", async ({ adminPag
   const index = new Index(adminPage);
 
   await backupingHelper.gotoIndexBackuping();
-  await backupingHelper.chooseRowOnTableByName(backupName);
-  await index.clickBulkButton('Delete');
 
-  await backupingHelper.seeSuccessAlert('Deleted');
+  await backupingHelper.chooseRowOnTableByName(backupName);
+  await backupingHelper.delete();
+
+  expect(await adminPage.locator(`text=${backupName}`)).not.toBeVisible();
 });
 
 

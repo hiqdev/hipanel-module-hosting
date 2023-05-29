@@ -4,9 +4,10 @@ import Index from "@hipanel-core/page/Index";
 import BackupHelper from "@hipanel-module-hosting/helper/BackupHelper";
 import Input from "@hipanel-core/input/Input";
 
-const backup: object = {
-  objectId: '40112902',
+let backup: object = {
+  id: '',
   client: 'hipanel_test_reseller',
+  server: 'DS1380',
 }
 
 test("Correct view backup @hipanel-module-hosting @admin", async ({ adminPage }) => {
@@ -15,7 +16,7 @@ test("Correct view backup @hipanel-module-hosting @admin", async ({ adminPage })
   const index = new Index(adminPage);
 
   await backupHelper.gotoIndexBackup();
-  await Input.filterBy(adminPage, 'Object ID').setValue(backup['objectId']);
+  backup['id'] = await index.getValueInColumnByNumberRow('ID', 1);
   await backupHelper.gotoBackupPage(1);
 
   await backupHelper.checkDetailViewData(backup);
