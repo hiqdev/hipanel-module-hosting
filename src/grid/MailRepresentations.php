@@ -24,6 +24,7 @@ class MailRepresentations extends RepresentationCollection
                     'checkbox',
                     'mail',
                     'forwards',
+                    'aliases',
                     'client',
                     'seller',
                     'server',
