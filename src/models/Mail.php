@@ -53,7 +53,7 @@ class Mail extends \hipanel\base\Model
 
                 return $res;
             }, 'skipOnArray' => true, 'on' => ['create', 'update']],
-            [['forwards', 'spam_forward_mail'], 'each', 'rule' => ['email'], 'on' => ['create', 'update']],
+            [['forwards', 'spam_forward_mail', 'aliases'], 'each', 'rule' => ['email'], 'on' => ['create', 'update']],
             [['spam_action', 'autoanswer'], 'safe', 'on' => ['create', 'update']],
             [['du_limit'], 'integer', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update', 'delete']],
@@ -68,6 +68,7 @@ class Mail extends \hipanel\base\Model
     {
         return $this->mergeAttributeLabels([
             'forwards'      => Yii::t('hipanel:hosting', 'Forwarding'),
+            'aliases'       => Yii::t('hipanel:hosting', 'Aliases'),
             'du_limit'      => Yii::t('hipanel:hosting', 'Disk usage limit'),
             'autoanswer'    => Yii::t('hipanel:hosting', 'Auto answer'),
             'spam_action' => Yii::t('hipanel:hosting', 'Spam action'),

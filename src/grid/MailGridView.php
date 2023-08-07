@@ -83,6 +83,21 @@ class MailGridView extends \hipanel\grid\BoxedGridView
                     ]);
                 },
             ],
+            'aliases' => [
+                'format' => 'raw',
+                'filterAttribute' => 'aliases_like',
+                'value' => function ($model) {
+                    return ArraySpoiler::widget([
+                        'delimiter' => '<br>',
+                        'visibleCount' => 2,
+                        'data' => $model->aliases,
+                        'button' => [
+                            'label' => '+{count}',
+                            'popoverOptions' => ['html' => true],
+                        ],
+                    ]);
+                },
+            ],
             'account' => ['class' => AccountColumn::class],
             'spam_action' => [
                 'format' => 'raw',
