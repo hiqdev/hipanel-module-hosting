@@ -58,7 +58,7 @@ class HdomainIpCombo extends Combo
                             var ret = [];
                             var used_ips = {};
                             $.each(data, function (i, v) {
-                                $.each(v.expanded_ips, function (key, ip) {
+                                $.each(v.expanded_ips, function (ip, ipval) {
                                     if (used_ips[ip]) return;
 
                                     var row = {id: ip};
