@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'model' => $model,
                     'columns' => [
                         'client_id', 'seller_id', 'server', 'account',
-                        'type', 'domain', 'forwards', 'spam_action',
+                        'type', 'domain', 'forwards', 'aliases', 'spam_action',
                         'state', 'du_limit',
                     ],
                 ]);
