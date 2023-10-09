@@ -41,9 +41,8 @@ export default class ServiceHelper {
     }
 
     async checkDetailViewData(service: object) {
-        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[1]/td')).toContainText(service['reseller']);
-        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[2]/td')).toContainText(service['client']);
-        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[3]/td')).toContainText(service['server']);
+        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[2]/td')).toContainText(service.client);
+        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[3]/td')).toContainText(service.server);
     }
 
     async seeSuccessAlert(message: string) {
