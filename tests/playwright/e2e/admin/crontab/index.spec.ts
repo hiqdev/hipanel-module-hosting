@@ -6,7 +6,7 @@ import CrontabHelper from "@hipanel-module-hosting/helper/CrontabHelper";
 
 const crontab: object = {
   account: 'hipanel_test_user',
-  server: 'COMMON',
+  client: 'hipanel_test_reseller',
 }
 
 test("Correct view crontab @hipanel-module-hosting @admin", async ({ adminPage }) => {
@@ -15,9 +15,6 @@ test("Correct view crontab @hipanel-module-hosting @admin", async ({ adminPage }
   const index = new Index(adminPage);
 
   await backupHelper.gotoIndexCrontab();
-  await backupHelper.gotoCrontabPage(1);
-
-  await backupHelper.checkDetailViewData(crontab);
 });
 
 

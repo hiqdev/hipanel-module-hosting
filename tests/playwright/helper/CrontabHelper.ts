@@ -22,7 +22,7 @@ export default class CrontabHelper {
 
     async checkDetailViewData(crontab: object) {
         await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[1]/td')).toContainText(crontab['account']);
-        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[2]/td')).toContainText(crontab['server']);
+        await expect(this.page.locator('//table[contains(@class, "detail-view")]//tbody/tr[3]/td')).toContainText(crontab['client']);
     }
 
     async seeSuccessAlert(message: string) {

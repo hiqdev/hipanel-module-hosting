@@ -4,7 +4,7 @@ import Index from "@hipanel-core/page/Index";
 import Alert from "@hipanel-core/ui/Alert";
 import Select2 from "@hipanel-core/input/Select2";
 
-export default class IPHelper {
+export default class MailHelper {
     private page: Page;
     private index: Index;
 

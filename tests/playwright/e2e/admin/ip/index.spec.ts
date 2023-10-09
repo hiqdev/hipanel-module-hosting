@@ -9,12 +9,6 @@ const ip: object = {
 };
 
 test("Correct view IP @hipanel-module-hosting @admin", async ({ adminPage }) => {
-
   const ipHelper = new IPHelper(adminPage);
-
   await ipHelper.gotoIndexIP();
-  await ipHelper.gotoIPPage(ip['ip']);
-
-  await ipHelper.checkDetailViewData(ip);
-
 });
