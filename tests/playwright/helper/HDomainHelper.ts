@@ -36,11 +36,13 @@ export default class HDomainHelper {
     async confirmEnableBlock() {
         await Input.field(this.page, 'input[name="comment"]').fill("Test enable comment");
         await this.index.clickButton('Block');
+        await this.page.waitForLoadState('networkidle');
     }
 
     async confirmDisableBlock() {
         await Input.field(this.page, 'input[name="comment"]').fill("Test unblock comment");
         await this.index.clickButton('Unblock');
+        await this.page.waitForLoadState('networkidle');
     }
 
     async confirmDelete() {
