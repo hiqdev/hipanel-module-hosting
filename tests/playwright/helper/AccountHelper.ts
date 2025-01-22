@@ -27,12 +27,12 @@ export default class AccountHelper {
     }
 
     async confirmEnableBlock() {
-        await Input.field(this.page, 'input[name="comment"]').fill("Test enable comment");
+        await Input.field(this.page, 'textarea[name="comment"]').fill("Test enable comment");
         await this.index.clickButton('Enable block');
     }
 
     async confirmDisableBlock() {
-        await Input.field(this.page, 'input[name="comment"]').fill("Test disable comment");
+        await Input.field(this.page, 'textarea[name="comment"]').fill("Test disable comment");
         await this.index.clickButton('Disable block');
     }
 
