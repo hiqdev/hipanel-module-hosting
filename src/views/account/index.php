@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $dropDownItems = [
             [
-                'label' => '<i class="fa fa-trash"></i> ' . Yii::t('hipanel', 'Delete'),
+                'label' => '<i class="fa fa-trash"></i>' . Yii::t('hipanel', 'Delete'),
                 'url' => '#bulk-delete-modal',
                 'linkOptions' => ['data-toggle' => 'modal'],
             ],
