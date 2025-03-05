@@ -88,11 +88,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ];
         if (Yii::$app->user->can('support')) {
             array_unshift($dropDownItems, [
-                'label' => '<i class="fa fa-toggle-on"></i> ' . Yii::t('hipanel', 'Enable block'),
+                'label' => '<i class="fa fa-toggle-on"></i>' . Yii::t('hipanel', 'Enable block'),
                 'linkOptions' => ['data-toggle' => 'modal'],
                 'url' => '#bulk-enable-block-modal',
             ],[
-                'label' => '<i class="fa fa-toggle-off"></i> ' . Yii::t('hipanel', 'Disable block'),
+                'label' => '<i class="fa fa-toggle-off"></i>' . Yii::t('hipanel', 'Disable block'),
                 'url' => '#bulk-disable-block-modal',
                 'linkOptions' => ['data-toggle' => 'modal'],
             ]);
