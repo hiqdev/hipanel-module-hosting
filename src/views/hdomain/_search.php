@@ -13,7 +13,7 @@ use hiqdev\combo\StaticCombo;
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('domain_like')->label() ?>
+    <?= $search->field('domain_like') ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">

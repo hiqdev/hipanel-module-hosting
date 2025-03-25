@@ -5,26 +5,12 @@
  * @var array $stateOptions
  */
 
-use hipanel\assets\BootstrapDatetimepickerAsset;
 use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\hosting\widgets\combo\AccountCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 use hipanel\widgets\AdvancedSearch;
+use hipanel\widgets\MonthPicker;
 use hiqdev\combo\StaticCombo;
-
-BootstrapDatetimepickerAsset::register($this);
-
-$locale = Yii::$app->language;
-$this->registerJs(/* @lang JavaScript */ <<<"JS"
-    $('#backupingsearch-period').datetimepicker({
-      locale: '$locale',
-      viewMode: 'months',
-      format: 'YYYY-MM',
-      maxDate: moment().endOf('month'),
-      showTodayButton: true
-    });
-JS
-);
 
 if (empty($search->model->period)) {
     $search->model->period = Yii::$app->formatter->asDatetime(new DateTime(), 'php:Y-m');
@@ -57,11 +43,16 @@ if (empty($search->model->period)) {
 </div>
 
 <?php if (Yii::$app->user->can('support')) : ?>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-        <?= $search->field('client_id')->widget(ClientCombo::class, ['formElementSelector' => '.form-group']) ?>
-    </div>
+  <div class="col-md-4 col-sm-6 col-xs-12">
+      <?= $search->field('client_id')->widget(ClientCombo::class, ['formElementSelector' => '.form-group']) ?>
+  </div>
 <?php endif ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('period') ?>
+    <?= $search->field('period')->widget(MonthPicker::class, [
+        'clientOptions' => [
+            'dateFormat' => 'Y-m',
+            'maxDate' => (new DateTime())->modify("last day of this month")->format('Y-m'),
+        ],
+    ]) ?>
 </div>
