@@ -16,6 +16,13 @@ use Yii;
 use yii\helpers\StringHelper;
 use yii\validators\IpValidator;
 
+/**
+ * @property int $id
+ * @property int $client_id
+ * @property int $seller_id
+ * @property string $ip
+ * @property Link[] $links
+ */
 class Ip extends \hipanel\base\Model
 {
     use \hipanel\base\ModelTrait {
