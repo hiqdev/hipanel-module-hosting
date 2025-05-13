@@ -96,7 +96,7 @@ class SidebarMenu extends \hiqdev\yii2\menus\Menu
 
         return [
             'hosting' => [
-                'label' => Yii::t('hipanel:hosting', 'Hosting'),
+                'label' => Yii::t('hipanel:hosting', 'Managed Hosting'),
                 'url' => '#',
                 'icon' => 'fa-sitemap',
                 'visible' => $user->can('dns.read') || $isHostingVisible,

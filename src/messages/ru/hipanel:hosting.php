@@ -10,6 +10,7 @@
 
 return [
     'Hosting' => 'Хостинг',
+    'Managed Hosting' => 'Хостинг',
 
     /**
      * Account.

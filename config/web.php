@@ -77,8 +77,7 @@ return [
                             'class' => \hipanel\modules\hosting\menus\SidebarMenu::class,
                         ],
                         'where' => [
-                            'after' => ['servers', 'domains', 'tickets', 'finance', 'clients', 'dashboard'],
-                            'before' => ['stock'],
+                            'after' => ['servers'],
                         ],
                     ],
                 ],
