@@ -7,7 +7,7 @@ import Input from "@hipanel-core/input/Input";
 let backup: object = {
   id: '',
   client: 'hipanel_test_reseller',
-  server: 'DS1380',
+  server: 'DSTEST02',
 }
 
 test("Correct view backup @hipanel-module-hosting @admin", async ({ adminPage }) => {
