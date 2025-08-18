@@ -19,12 +19,11 @@ use hipanel\actions\VariantsAction;
 use hipanel\actions\ViewAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\modules\hosting\widgets\backuping\DiskUsageTotalWidget;
-use yii\grid\GridView;
+use hipanel\widgets\DataProviderGridRenderer;
 use hipanel\helpers\ArrayHelper;
 use hipanel\models\Ref;
 use hipanel\modules\hosting\models\Backuping;
 use hipanel\modules\hosting\models\BackupSearch;
-use hipanel\widgets\SynchronousCountEnabler;
 use Yii;
 
 class BackupingController extends \hipanel\base\CrudController
@@ -65,7 +64,7 @@ class BackupingController extends \hipanel\base\CrudController
                 'responseVariants' => [
                     IndexAction::VARIANT_SUMMARY_RESPONSE => static function (VariantsAction $action): string {
                         $dataProvider = $action->parent->getDataProvider();
-                        $defaultSummary = (new SynchronousCountEnabler($dataProvider, fn(GridView $grid): string => $grid->renderSummary()))();
+                        $defaultSummary = (new DataProviderGridRenderer($dataProvider))->renderSummary();
 
                         return $defaultSummary . DiskUsageTotalWidget::widget([
                             'rows' => $dataProvider->query->all(),
