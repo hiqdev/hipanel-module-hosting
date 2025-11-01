@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
-import Input from "@hipanel-core/input/Input";
 import Index from "@hipanel-core/page/Index";
 import Alert from "@hipanel-core/ui/Alert";
+import Modal from "@hipanel-core/ui/Modal";
 
 export default class HDomainHelper {
     private page: Page;
@@ -34,15 +34,21 @@ export default class HDomainHelper {
     }
 
     async confirmEnableBlock() {
-        await Input.field(this.page, 'input[name="comment"]').fill("Test enable comment");
-        await this.index.clickButton('Block');
-        await this.page.waitForLoadState('networkidle');
+        const modal = new Modal(this.page, '[id="bulk-enable-block-modal"]');
+
+        await modal.fillField('comment', 'Test enable comment');
+        await modal.clickButton('Block');
+
+        await Alert.on(this.page).hasText("Domains have been blocked successfully");
     }
 
     async confirmDisableBlock() {
-        await Input.field(this.page, 'input[name="comment"]').fill("Test unblock comment");
-        await this.index.clickButton('Unblock');
-        await this.page.waitForLoadState('networkidle');
+        const modal = new Modal(this.page, '[id="bulk-disable-block-modal"]');
+
+        await modal.fillField('comment', 'Test unblock comment');
+        await modal.clickButton('Unblock');
+
+        await Alert.on(this.page).hasText("Domains have been unblocked successfully");
     }
 
     async confirmDelete() {
