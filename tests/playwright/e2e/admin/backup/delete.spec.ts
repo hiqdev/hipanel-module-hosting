@@ -15,7 +15,9 @@ test("Delete backup @hipanel-module-hosting @admin", async ({ adminPage }) => {
   const backupId = await index.getValueInColumnByNumberRow('ID', 1);
 
   await backupHelper.deleteBackup();
-  expect(await adminPage.locator(`text=${backupId}`)).not.toBeVisible();
+
+  const backupRow = adminPage.locator(`text=${backupId}`);
+  await expect(backupRow).not.toBeVisible();
 });
 
 
