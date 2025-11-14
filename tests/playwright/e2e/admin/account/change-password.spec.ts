@@ -1,10 +1,9 @@
 import { test } from "@hipanel-core/fixtures";
-import { expect } from "@playwright/test";
 import AccountHelper from "@hipanel-module-hosting/helper/AccountHelper";
 import Index from "@hipanel-core/page/Index";
 
-const account: string = 'hipanel_test_user';
-const newPassword: string = '12345';
+const account: string = "hipanel_test_user";
+const newPassword: string = "12345";
 
 test("Change password @hipanel-module-hosting @admin", async ({ adminPage }) => {
 
@@ -14,8 +13,8 @@ test("Change password @hipanel-module-hosting @admin", async ({ adminPage }) => 
   await accountHelper.gotoIndexAccount();
   await accountHelper.gotoAccountPage(account);
 
-  await index.clickProfileMenuOnViewPage('Change password');
+  await index.clickProfileMenuOnViewPage("Change password");
   await accountHelper.saveNewPassword(newPassword);
 
-  await accountHelper.seeSuccessAlert('Settings saved');
+  await accountHelper.seeSuccessAlert("Settings saved");
 });

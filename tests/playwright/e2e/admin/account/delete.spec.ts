@@ -1,9 +1,8 @@
 import { test } from "@hipanel-core/fixtures";
-import { expect } from "@playwright/test";
 import AccountHelper from "@hipanel-module-hosting/helper/AccountHelper";
 import Index from "@hipanel-core/page/Index";
 
-const account: string = "gadezist_test"
+const account: string = "gadezist_test";
 
 test("Delete account @hipanel-module-hosting @admin", async ({ adminPage }) => {
 
@@ -15,9 +14,9 @@ test("Delete account @hipanel-module-hosting @admin", async ({ adminPage }) => {
   const rowNumber = await index.getRowNumberInColumnByValue("Account", account);
   await index.chooseNumberRowOnTable(rowNumber);
 
-  await index.clickDropdownBulkButton('Basic actions', 'Delete');
+  await index.clickDropdownBulkButton("Basic actions", "Delete");
   await accountHelper.confirmDelete();
 
-  await accountHelper.seeSuccessAlert('Account deleting task has been added to queue');
-  await accountHelper.seeAccountStatus(account, 'Deleting');
+  await accountHelper.seeSuccessAlert("Account deleting task has been added to queue");
+  await accountHelper.seeAccountStatus(account, "Deleting");
 });
