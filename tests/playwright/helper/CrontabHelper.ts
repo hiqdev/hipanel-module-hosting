@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import Index from "@hipanel-core/page/Index";
-import Alert from "@hipanel-core/ui/Alert";
+import { Alert } from "@hipanel-core/shared/ui/components";
 
 export default class CrontabHelper {
     private page: Page;
