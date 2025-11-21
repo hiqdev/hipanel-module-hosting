@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import Index from "@hipanel-core/page/Index";
-import Alert from "@hipanel-core/ui/Alert";
-import Modal from "@hipanel-core/ui/Modal";
+import { Alert } from "@hipanel-core/shared/ui/components";
+import { Modal } from "@hipanel-core/shared/ui/components";
 
 export default class HDomainHelper {
     private page: Page;

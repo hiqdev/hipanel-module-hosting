@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import Input from "@hipanel-core/input/Input";
 import Index from "@hipanel-core/page/Index";
-import Alert from "@hipanel-core/ui/Alert";
+import { Alert } from "@hipanel-core/shared/ui/components";
 import Select2 from "@hipanel-core/input/Select2";
 
 export default class IPHelper {
