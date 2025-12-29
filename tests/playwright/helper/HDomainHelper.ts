@@ -34,7 +34,7 @@ export default class HDomainHelper {
     }
 
     async confirmEnableBlock() {
-        const modal = new Modal(this.page, '[id="bulk-enable-block-modal"]');
+        const modal = new Modal(this.page);
 
         await modal.fillField('comment', 'Test enable comment');
         await modal.clickButton('Block');
@@ -43,7 +43,7 @@ export default class HDomainHelper {
     }
 
     async confirmDisableBlock() {
-        const modal = new Modal(this.page, '[id="bulk-disable-block-modal"]');
+        const modal = new Modal(this.page);
 
         await modal.fillField('comment', 'Test unblock comment');
         await modal.clickButton('Unblock');
