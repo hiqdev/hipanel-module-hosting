@@ -28,16 +28,30 @@ export default class AccountHelper {
 
   async confirmEnableBlock() {
     await Input.field(this.page, "textarea[name=\"comment\"]").fill("Test enable comment");
-    await this.index.clickButton("Enable block");
+    await this.clickButtonAndWaitForNavigation("Enable block");
   }
 
   async confirmDisableBlock() {
     await Input.field(this.page, "textarea[name=\"comment\"]").fill("Test disable comment");
-    await this.index.clickButton("Disable block");
+    await this.clickButtonAndWaitForNavigation("Disable block");
   }
 
   async confirmDelete() {
-    await this.index.clickButton("Delete");
+    await this.clickButtonAndWaitForNavigation("Delete");
+  }
+
+  // These submits full-page-navigate back to the index. clickButton() alone
+  // only awaits the click; if the caller then reads the table (e.g.
+  // seeAccountStatus) before that navigation finishes, the read can start
+  // mid-navigation and throw "Execution context was destroyed" instead of
+  // reading fresh data. The navigation wait has to be attached before the
+  // click fires (matches Index.clickPopoverMenu) — awaiting it afterward can
+  // race the navigation's own start and resolve against the pre-click page.
+  private async clickButtonAndWaitForNavigation(name: string) {
+    await Promise.all([
+      this.page.waitForNavigation({ waitUntil: "domcontentloaded" }),
+      this.index.clickButton(name),
+    ]);
   }
 
   async saveMailSettings(maximumLetters: string) {
@@ -69,11 +83,6 @@ export default class AccountHelper {
   }
 
   async seeAccountStatus(account: string, status: string) {
-    // Callers invoke this right after a form submit that reloads the index
-    // page (block/delete). Without this, the table query can start while
-    // that navigation is still in flight, throwing "Execution context was
-    // destroyed" instead of just reading stale data for one retry.
-    await this.page.waitForLoadState("networkidle");
     const rowNumber = await this.index.getRowNumberInColumnByValue("Account", account);
     const accountStatus = await this.index.seeTextOnTable("Status", rowNumber, status);
   }
