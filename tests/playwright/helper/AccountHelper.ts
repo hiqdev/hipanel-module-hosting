@@ -69,6 +69,11 @@ export default class AccountHelper {
   }
 
   async seeAccountStatus(account: string, status: string) {
+    // Callers invoke this right after a form submit that reloads the index
+    // page (block/delete). Without this, the table query can start while
+    // that navigation is still in flight, throwing "Execution context was
+    // destroyed" instead of just reading stale data for one retry.
+    await this.page.waitForLoadState("networkidle");
     const rowNumber = await this.index.getRowNumberInColumnByValue("Account", account);
     const accountStatus = await this.index.seeTextOnTable("Status", rowNumber, status);
   }
