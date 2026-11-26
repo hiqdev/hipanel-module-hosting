@@ -27,8 +27,11 @@ use hipanel\actions\SmartUpdateAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\actions\ViewAction;
 use hipanel\filters\EasyAccessControl;
+use hipanel\modules\hosting\models\Account;
+use hipanel\modules\hosting\models\AccountCopyForm;
 use hipanel\modules\hosting\models\AccountValues;
 use hiqdev\hiart\Collection;
+use hiqdev\hiart\ResponseErrorException;
 use Yii;
 use yii\base\Event;
 
@@ -42,6 +45,7 @@ class AccountController extends \hipanel\base\CrudController
                 'actions' => [
                     'create' => 'account.create',
                     'create-ftponly' => 'account.create',
+                    'copy' => 'account.create',
                     'change-password' => 'account.update',
                     'set-allowed-ips' => 'account.update',
                     'delete' => 'account.delete',
@@ -265,6 +269,25 @@ class AccountController extends \hipanel\base\CrudController
                 },
             ],
         ]);
+    }
+
+    /**
+     * Copies accounts with their domains, crons and DBs from one server to another.
+     */
+    public function actionCopy()
+    {
+        $model = new AccountCopyForm();
+        $result = null;
+        if ($model->load($this->request->post()) && $model->validate()) {
+            try {
+                $result = Account::perform('smart-copy', $model->toApi());
+                Yii::$app->session->setFlash('success', Yii::t('hipanel:hosting:account', 'Accounts have been copied'));
+            } catch (ResponseErrorException $e) {
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('copy', ['model' => $model, 'result' => $result]);
     }
 
     public function getStateData()

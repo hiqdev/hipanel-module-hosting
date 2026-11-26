@@ -51,6 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'items' => [
                     ['label' => Yii::t('hipanel:hosting', 'Create account'), 'url' => ['create']],
                     ['label' => Yii::t('hipanel:hosting', 'Create FTP account'), 'url' => ['create-ftponly']],
+                    ['label' => Yii::t('hipanel:hosting:account', 'Copy accounts'), 'url' => ['copy']],
                 ],
             ]); ?>
         </div>
